@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlackLogic Technologies</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+  body { background:#000; color:#fff; overflow-x:hidden; }
+
+  /* Banner */
+  .banner {
+    width:100%;
+    height:400px;
+    background: url('logicH.jpg') center/cover no-repeat;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position: relative;
+  }
+  .banner::before {
+    content:"";
+    position:absolute;
+    inset:0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.9));
+  }
+
+  /* Hamburger Menu */
+  .hamburger { position:fixed; top:20px; left:20px; font-size:2rem; color:#00ffff; cursor:pointer; z-index:1001; }
+  .side-drawer {
+    position:fixed; top:0; left:-250px; width:250px; height:100%; background:#111; padding-top:60px;
+    transition: left 0.3s ease; z-index:1000;
+  }
+  .side-drawer a {
+    display:flex; align-items:center; padding:15px 20px; color:#ccc; text-decoration:none; font-size:1rem; transition:0.3s;
+  }
+  .side-drawer a i { margin-right:15px; font-size:1.2rem; }
+  .side-drawer a:hover { color:#00ffff; }
+  .drawer-open { left:0; }
+
+  /* HQ Section */
+  .hq-section { padding:60px 20px; text-align:center; }
+  .hq-section h2 { font-size:2.5rem; color:#00ffff; margin-bottom:10px; }
+  .hq-subtitle { color:#aaa; margin-bottom:50px; font-size:1rem; }
+
+  /* Floors Grid */
+  .floor-grid {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    gap:30px;
+    max-width:1200px;
+    margin:0 auto;
+  }
+
+  .floor-card {
+    background: #0a0a0a;
+    border: 1px solid rgba(0,255,255,0.3);
+    border-radius: 16px;
+    padding:30px 20px;
+    transition: 0.4s ease;
+    box-shadow: 0 0 15px rgba(0,255,255,0.1);
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .floor-card i {
+    font-size: 3rem;
+    color: #00ffff;
+    margin-bottom:15px;
+  }
+
+  .floor-title {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    font-size:1.3rem;
+    font-weight:600;
+    color:#00ffff;
+    margin-bottom:8px;
+  }
+
+  .floor-desc {
+    color:#aaa;
+    font-size:0.9rem;
+    line-height:1.4;
+  }
+
+  .floor-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 25px #00ffff;
+  }
+
+  @media(max-width:768px){
+    .hq-section h2{ font-size:2rem; }
+    .floor-card { padding:25px 15px; }
+  }
+
+  @media(max-width:500px){
+    .hq-section h2{ font-size:1.8rem; }
+    .floor-card i{ font-size:2.5rem; }
+    .floor-title { font-size:1.1rem; }
+  }
+</style>
+</head>
+
+<body>
+ <!-- Hamburger Menu -->
+<div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+<nav class="side-drawer" id="sideDrawer">
+  <a href="services.html"><i class="fas fa-building"></i>Floor 01 - Company Services</a>
+  <a href="price.html"><i class="fas fa-box-open"></i>Floor 02 - Products & Pricing</a>
+  <a href="testimonial.html"><i class="fas fa-award"></i>Floor 03 - Testimonials & Success</a>
+  <a href="consult.html"><i class="fas fa-headset"></i>Floor 04 - Consult Centre</a>
+  <a href="apps.html"><i class="fas fa-mobile-alt"></i>Floor 05 - 2026 Innovation</a>
+  <a href="about.html"><i class="fas fa-user-tie"></i>Floor 06 - About & Leadership</a>
+</nav>
+
+  <!-- Banner -->
+  <section class="banner"></section>
+
+  <!-- HQ Floors Section -->
+  <section class="hq-section">
+    <h2></h2>
+    <p class="hq-subtitle">A Digital Skyscraper Engineered for Innovation</p>
+
+    <div class="floor-grid">
+
+      <div class="floor-card">
+        <i class="fas fa-building"></i>
+        <div class="floor-title">Floor 01 - Company Services</div>
+        <p class="floor-desc">Showcasing all the services BlackLogic Technologies provides, including software, hardware, and innovation solutions.</p>
+      </div>
+
+      <div class="floor-card">
+        <i class="fas fa-box-open"></i>
+        <div class="floor-title">Floor 02 - Products & Pricing</div>
+        <p class="floor-desc">Display of products, software packages, and custom solutions with transparent pricing details.</p>
+      </div>
+
+      <div class="floor-card">
+        <i class="fas fa-award"></i>
+        <div class="floor-title">Floor 03 - Testimonials & Success</div>
+        <p class="floor-desc">Highlighting success stories and client feedback from Bonvinco Tactical Response and Bovinco Holdings.</p>
+      </div>
+
+      <div class="floor-card">
+        <i class="fas fa-headset"></i>
+        <div class="floor-title">Floor 04 - Consult Centre</div>
+        <p class="floor-desc">Customer support and consulting services to guide businesses and individuals in tech solutions.</p>
+      </div>
+
+      <div class="floor-card">
+        <i class="fas fa-mobile-alt"></i>
+        <div class="floor-title">Floor 05 - 2026 Innovation</div>
+        <p class="floor-desc">Featuring upcoming apps, AI tools, and tech innovations that will define 2026 and beyond.</p>
+      </div>
+
+      <div class="floor-card">
+        <i class="fas fa-user-tie"></i>
+        <div class="floor-title">Floor 06 - About & Leadership</div>
+        <p class="floor-desc">Learn about the company’s leadership, vision, and the team driving BlackLogic Technologies forward.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const sideDrawer = document.getElementById('sideDrawer');
+    hamburger.addEventListener('click', ()=>{
+      sideDrawer.classList.toggle('drawer-open');
+    });
+  </script>
+</body>
+</html>
