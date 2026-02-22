@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlackLogic Technologies</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    color: white;
+    position: relative;
+}
+
+/* Background slides */
+.hero {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+}
+
+.bg-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: opacity 2s ease-in-out;
+}
+
+.bg1 {
+    background-image: url('logic.png');
+    opacity: 1;
+}
+
+.bg2 {
+    background-image: url('quinn.png');
+    opacity: 0;
+}
+
+/* Dark overlay */
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.85),
+        rgba(0,0,0,0.5),
+        rgba(0,0,0,0.95)
+    );
+    z-index: -1;
+}
+
+/* Bottom content container */
+.bottom-content {
+    position: absolute;
+    bottom: 90px;
+    right: 80px;
+    text-align: right;
+    max-width: 500px;
+}
+
+/* Description text */
+.description {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #00eaff;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+/* Button */
+.proceed-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 38px;
+    border-radius: 50px;
+    background: #00eaff;
+    color: black;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: 0.3s ease;
+    box-shadow: 0 0 15px rgba(0,234,255,0.6);
+}
+
+.proceed-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 30px rgba(0,234,255,1);
+}
+
+/* SVG icon */
+.proceed-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: black;
+}
+
+/* Responsive */
+@media(max-width:768px){
+    .bottom-content{
+        right: 30px;
+        left: 30px;
+        text-align: center;
+        bottom: 70px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+    <div class="bg-slide bg1"></div>
+    <div class="bg-slide bg2"></div>
+</div>
+
+<div class="overlay"></div>
+
+<div class="bottom-content">
+    <div class="description">
+        Welcome to BlackLogic Technologies  Official Headquarter Website
+    </div>
+
+    <a href="landing.html" class="proceed-btn">
+        Proceed
+        <svg viewBox="0 0 24 24">
+            <path d="M12 3L4 5v14l8 2 8-2V5l-8-2zm0 2.2l6 1.5v10.6l-6 1.5-6-1.5V6.7l6-1.5zM11 8h2v8h-2z"/>
+        </svg>
+    </a>
+</div>
+
+<script>
+let bg1 = document.querySelector('.bg1');
+let bg2 = document.querySelector('.bg2');
+
+setInterval(() => {
+    if (bg1.style.opacity == 0) {
+        bg1.style.opacity = 1;
+        bg2.style.opacity = 0;
+    } else {
+        bg1.style.opacity = 0;
+        bg2.style.opacity = 1;
+    }
+}, 6000);
+</script>
+
+</body>
+</html>

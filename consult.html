@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlackLogic Consult Centre</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+  body { background:#000; color:#fff; overflow-x:hidden; }
+
+  /* Header */
+  header {
+    width:100%;
+    padding:20px;
+    background: linear-gradient(90deg, #00ffff, #00bbbb);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    box-shadow: 0 0 15px rgba(0,255,255,0.3);
+  }
+  header h1 {
+    color:#000;
+    font-size:1.8rem;
+    text-shadow: 0 0 5px #fff;
+  }
+  .social-icons { display:flex; gap:15px; }
+  .social-icons a {
+    color:#000;
+    font-size:1.5rem;
+    transition:0.3s;
+  }
+  .social-icons a:hover { color:#fff; }
+
+  .search-bar {
+    display:flex;
+    align-items:center;
+    background:rgba(255,255,255,0.1);
+    border-radius:25px;
+    padding:5px 10px;
+  }
+  .search-bar input {
+    border:none;
+    background:none;
+    color:#fff;
+    padding:5px;
+    outline:none;
+    width:150px;
+  }
+  .search-bar i { margin-left:10px; cursor:pointer; }
+
+  /* Logo */
+  img.logo { display:block; width:200px; margin:20px auto; }
+
+  /* Toggle Buttons */
+  .toggle-container { display:flex; justify-content:center; margin:20px; flex-wrap:wrap; }
+  .toggle-btn { padding:10px 25px; margin:5px 10px; border:2px solid #00ffff; border-radius:25px; background:#111; color:#00ffff; cursor:pointer; transition:0.3s; font-weight:600; }
+  .toggle-btn.active { background:#00ffff; color:#000; }
+
+  /* Forms */
+  .consult-form { max-width:700px; margin:20px auto 60px auto; background: rgba(255,255,255,0.05); padding:30px; border-radius:15px; border:2px solid #555; transition: all 0.3s ease; }
+  .consult-form h2 { color:#00ffff; text-align:center; margin-bottom:20px; text-shadow:0 0 10px #00ffff; }
+  .consult-form label { display:block; margin-bottom:5px; color:#ccc; font-size:0.9rem; }
+  .consult-form input, .consult-form select, .consult-form textarea { width:100%; padding:10px; margin-bottom:15px; border-radius:8px; border:1px solid #555; background:rgba(255,255,255,0.05); color:#fff; font-size:0.95rem; }
+  .consult-form textarea { resize:none; height:100px; }
+  .consult-form button { width:100%; padding:12px; background:#00ffff; color:#111; border:none; border-radius:25px; font-weight:bold; font-size:1rem; cursor:pointer; transition:0.3s; }
+  .consult-form button:hover { background:#00e5ff; box-shadow:0 0 15px #00ffff; }
+
+  /* Bottom Navigation */
+  .bottom-nav { position:fixed; bottom:0; width:100%; background:#111; display:flex; justify-content:space-around; align-items:center; padding:10px 0; border-top:2px solid #00ffff; z-index:1000; }
+  .bottom-nav a { color:#ccc; text-decoration:none; text-align:center; font-size:0.9rem; display:flex; flex-direction:column; align-items:center; transition: all 0.3s ease; }
+  .bottom-nav a i { font-size:1.5rem; margin-bottom:5px; }
+  .bottom-nav a:hover { color:#00ffff; }
+
+  @media(max-width:500px){ 
+    .consult-form input, .consult-form select, .consult-form textarea{ font-size:0.85rem; } 
+    header { flex-direction:column; gap:10px; }
+    .search-bar input { width:100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <h1>Consult Centre - Would you like to consult us?</h1>
+  <div class="social-icons">
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-tiktok"></i></a>
+    <a href="#"><i class="fab fa-google"></i></a>
+  </div>
+<div class="search-bar">
+  <input type="text" value="BlackLogic Technologies" readonly>
+  <i class="fas fa-search"></i>
+</div>
+</header>
+
+
+<!-- Toggle -->
+<div class="toggle-container">
+  <div class="toggle-btn active" id="personalBtn">Personal</div>
+  <div class="toggle-btn" id="businessBtn">Business</div>
+</div>
+
+<!-- Personal Form -->
+<form id="personalForm" class="consult-form">
+  <h2>Personal Consultation / Job Application</h2>
+  <label for="p_name">Name</label>
+  <input type="text" id="p_name" required>
+
+  <label for="p_surname">Surname</label>
+  <input type="text" id="p_surname" required>
+
+  <label for="p_id">ID Number</label>
+  <input type="text" id="p_id" required>
+
+  <label for="p_email">Email</label>
+  <input type="email" id="p_email" required>
+
+  <label>Apply for Job?</label>
+  <select id="p_job_apply">
+    <option value="No">No</option>
+    <option value="Yes">Yes</option>
+  </select>
+
+  <div id="p_grade_container" style="display:none;">
+    <label for="p_grade">Highest Grade</label>
+    <input type="text" id="p_grade">
+  </div>
+
+  <label for="p_career">Career</label>
+  <select id="p_career" required>
+    <option value="">Select Career</option>
+    <option>Software Developer</option>
+    <option>AI Engineer</option>
+    <option>Machine Learning Specialist</option>
+    <option>Web Designer</option>
+    <option>Mobile App Developer</option>
+    <option>Architect</option>
+    <option>Project Manager</option>
+    <option>Restaurant Manager</option>
+    <option>Business Administrator</option>
+    <option>Digital Marketing Specialist</option>
+  </select>
+
+  <label for="p_sector">Consultation Sector</label>
+  <select id="p_sector" required>
+    <option value="">Select Sector</option>
+    <option value="Software">Software Development</option>
+    <option value="Construction">Construction Technology</option>
+    <option value="Food">Food & Restaurant</option>
+  </select>
+
+  <label for="p_trade">Trade Name</label>
+  <input type="text" id="p_trade" readonly>
+
+  <label for="p_consult">Consult Based On</label>
+  <select id="p_consult" required>
+    <option value="">Select Consultation</option>
+  </select>
+
+  <button type="submit">Send via WhatsApp</button>
+</form>
+
+<!-- Business Form -->
+<form id="businessForm" class="consult-form" style="display:none;">
+  <h2>Business Consultation</h2>
+  <label for="b_name">Business Name</label>
+  <input type="text" id="b_name" required>
+
+  <label for="b_email">Email</label>
+  <input type="email" id="b_email" required>
+
+  <label for="b_sector">Consultation Sector</label>
+  <select id="b_sector" required>
+    <option value="">Select Sector</option>
+    <option value="Software">Software Development</option>
+    <option value="Construction">Construction Technology</option>
+    <option value="Food">Food & Restaurant</option>
+  </select>
+
+  <label for="b_trade">Trade Name</label>
+  <input type="text" id="b_trade" readonly>
+
+  <label for="b_consult">Consult Based On</label>
+  <select id="b_consult" required>
+    <option value="">Select Consultation</option>
+  </select>
+
+  <button type="submit">Send via WhatsApp</button>
+</form>
+
+<script>
+  const personalBtn = document.getElementById('personalBtn');
+  const businessBtn = document.getElementById('businessBtn');
+  const personalForm = document.getElementById('personalForm');
+  const businessForm = document.getElementById('businessForm');
+
+  personalBtn.addEventListener('click', ()=>{
+    personalBtn.classList.add('active'); businessBtn.classList.remove('active');
+    personalForm.style.display = 'block'; businessForm.style.display = 'none';
+  });
+
+  businessBtn.addEventListener('click', ()=>{
+    businessBtn.classList.add('active'); personalBtn.classList.remove('active');
+    businessForm.style.display = 'block'; personalForm.style.display = 'none';
+  });
+
+  const jobApply = document.getElementById('p_job_apply');
+  const gradeContainer = document.getElementById('p_grade_container');
+  jobApply.addEventListener('change', ()=>{ gradeContainer.style.display = jobApply.value==='Yes'?'block':'none'; });
+
+  const pSector = document.getElementById('p_sector');
+  const pTrade = document.getElementById('p_trade');
+  const pConsult = document.getElementById('p_consult');
+  const bSector = document.getElementById('b_sector');
+  const bTrade = document.getElementById('b_trade');
+  const bConsult = document.getElementById('b_consult');
+
+  const consultOptions = {
+    'Software': ['Apps & Website','Design & Branding','Artificial Intelligence','Machine Learning'],
+    'Construction': ['Architectural Design Drawing','Project Management','Construction Technology'],
+    'Food': ['Join the Digital Entrepreneur','Business Management','Admin & Registration']
+  };
+
+  pSector.addEventListener('change', ()=>{
+    const sector=pSector.value;
+    pTrade.value = sector==='Software'?'BlackLogic Technologies': sector==='Construction'?'Mkholo Ecosystem':'Mamzo Lifestyles';
+    pConsult.innerHTML = '<option value="">Select Consultation</option>';
+    consultOptions[sector].forEach(opt=>{
+      const el=document.createElement('option'); el.value=opt; el.textContent=opt; pConsult.appendChild(el);
+    });
+  });
+
+  bSector.addEventListener('change', ()=>{
+    const sector=bSector.value;
+    bTrade.value = sector==='Software'?'BlackLogic Technologies': sector==='Construction'?'Mkholo Ecosystem':'Mamzo Lifestyles';
+    bConsult.innerHTML = '<option value="">Select Consultation</option>';
+    consultOptions[sector].forEach(opt=>{
+      const el=document.createElement('option'); el.value=opt; el.textContent=opt; bConsult.appendChild(el);
+    });
+  });
+
+  personalForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('p_name').value;
+    const surname = document.getElementById('p_surname').value;
+    const id = document.getElementById('p_id').value;
+    const email = document.getElementById('p_email').value;
+    const jobApply = document.getElementById('p_job_apply').value;
+    const grade = document.getElementById('p_grade').value;
+    const career = document.getElementById('p_career').value;
+    const sector = document.getElementById('p_sector').value;
+    const trade = document.getElementById('p_trade').value;
+    const consult = document.getElementById('p_consult').value;
+
+    let text = `Hello BlackLogic!%0A---Personal Consultation---%0AName: ${name} ${surname}%0AID: ${id}%0AEmail: ${email}%0AApply for Job: ${jobApply}`;
+    if(jobApply==='Yes'){ text += `%0AHighest Grade: ${grade}`;}
+    text += `%0ACareer: ${career}%0ASector: ${sector}%0ATrade: ${trade}%0AConsultation: ${consult}`;
+
+    window.open(`https://wa.me/0606614909?text=${text}`, '_blank');
+  });
+
+  businessForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('b_name').value;
+    const email = document.getElementById('b_email').value;
+    const sector = document.getElementById('b_sector').value;
+    const trade = document.getElementById('b_trade').value;
+    const consult = document.getElementById('b_consult').value;
+
+    const text = `Hello BlackLogic!%0A---Business Consultation---%0ABusiness Name: ${name}%0AEmail: ${email}%0ASector: ${sector}%0ATrade: ${trade}%0AConsultation: ${consult}`;
+    window.open(`https://wa.me/0606614909?text=${text}`, '_blank');
+  });
+</script>
+
+</body>
+</html>
