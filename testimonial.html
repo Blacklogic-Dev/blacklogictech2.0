@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlackLogic Testimonials</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+  body { background:#000; color:#fff; overflow-x:hidden; }
+
+  /* Banner */
+  .banner { 
+    width:100%; 
+    height:300px; 
+    background:url('BlackLogic.png') center/cover no-repeat; 
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#00ffff;
+    font-size:2rem;
+    text-shadow: 2px 2px 8px #000;
+  }
+
+  /* Story Container */
+  .testimonial-container {
+    max-width:900px;
+    margin:40px auto;
+    background: rgba(255,255,255,0.05);
+    padding:30px 40px;
+    border-radius:15px;
+    border:2px solid #555;
+    transition: all 0.3s ease;
+  }
+  .testimonial-container h2 {
+    color:#00ffff;
+    text-align:center;
+    font-size:1.8rem;
+    margin-bottom:20px;
+    border-bottom:2px solid #00ffff;
+    display:inline-block;
+    padding-bottom:5px;
+  }
+  .testimonial-container p {
+    color:#ccc;
+    font-size:1rem;
+    line-height:1.8;
+    margin-bottom:20px;
+  }
+  .testimonial-date {
+    color:#ffd700;
+    font-weight:bold;
+    font-size:0.95rem;
+    margin-bottom:10px;
+  }
+
+  /* Newspaper style block */
+  .story {
+    background:#111;
+    border-left:4px solid #00ffff;
+    padding:20px;
+    margin-bottom:30px;
+    border-radius:8px;
+    box-shadow:0 0 15px rgba(0,255,255,0.3);
+  }
+  .story h3 {
+    color:#00ffff;
+    font-size:1.4rem;
+    margin-bottom:10px;
+  }
+  .story p {
+    color:#ccc;
+    font-size:1rem;
+    line-height:1.7;
+  }
+
+  @media(max-width:500px){
+    .testimonial-container { padding:20px; }
+    .banner { font-size:1.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Banner -->
+<div class="banner">
+  
+</div>
+
+<!-- Testimonial Container -->
+<div class="testimonial-container">
+  <h2>Client Success Stories</h2>
+
+  <div class="story">
+    <div class="testimonial-date">2026, January</div>
+    <h3>Bonvinco Tactical Response</h3>
+    <p>
+      BlackLogic Technologies successfully created the AI Website Intelligence Infrastructure and a Modern UI Website for 
+      <strong>Bonvinco Tactical Response</strong>. Our team ensured that the project was delivered on time with precision and cutting-edge technology. 
+      From the first wireframe to the final deployment, every step was meticulously designed to enhance functionality, user experience, and data intelligence. 
+      The client now enjoys a responsive, AI-powered system that elevates operational efficiency and digital presence. This marks another milestone in BlackLogic's journey to revolutionize African tech.
+    </p>
+  </div>
+
+  <div class="story">
+    <div class="testimonial-date">2025, December</div>
+    <h3>AfricaCareer Platform</h3>
+    <p>
+      In December 2025, BlackLogic Technologies delivered the <strong>AfricaCareer Platform</strong>, an intuitive career and skills development system. 
+      The project showcased our expertise in integrating user-friendly interfaces with advanced backend logic. Students and professionals now enjoy seamless access to career opportunities and personalized skill-tracking dashboards. 
+      The launch was celebrated for its innovative approach to digital recruitment and skill enhancement.
+    </p>
+  </div>
+
+</div>
+
+<script>
+  // Optional: Add interactive elements like fade-in on scroll
+  const stories = document.querySelectorAll('.story');
+  window.addEventListener('scroll', ()=>{
+    stories.forEach(story => {
+      const top = story.getBoundingClientRect().top;
+      if(top < window.innerHeight - 100){
+        story.style.transform = 'translateY(0)';
+        story.style.opacity = '1';
+        story.style.transition = 'all 0.8s ease';
+      }
+    });
+  });
+  stories.forEach(story => {
+    story.style.transform = 'translateY(50px)';
+    story.style.opacity = '0';
+  });
+</script>
+
+</body>
+</html>

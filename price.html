@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlackLogic Products & Pricing</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+  body { background:#000; color:#fff; overflow-x:hidden; }
+
+  /* Side Drawer */
+  .hamburger { position:fixed; top:20px; left:20px; font-size:2rem; color:#00ffff; cursor:pointer; z-index:1001; } 
+  .side-drawer { position:fixed; top:0; left:-250px; width:250px; height:100%; background:#111; padding-top:60px; transition: left 0.3s ease; z-index:1000; } 
+  .side-drawer a { display:flex; align-items:center; padding:15px 20px; color:#ccc; text-decoration:none; font-size:1rem; transition:0.3s; } 
+  .side-drawer a i { margin-right:15px; font-size:1.2rem; } 
+  .side-drawer a:hover { color:#00ffff; } 
+  .drawer-open { left:0; }
+
+  /* Product Grids */
+  .grid-section { display:grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap:30px; padding:40px 20px; max-width:1200px; margin:0 auto; } 
+  .card { background: rgba(255,255,255,0.05); border:2px solid #555; border-radius:12px; padding:20px; text-align:center; cursor:pointer; transition: all 0.3s ease; } 
+  .card:hover, .card.active { border-color:#00ffff; background: rgba(0,255,255,0.1); } 
+  .card img { width:100%; height:400px; object-fit:cover; border-radius:12px; } 
+  .card i { font-size:3rem; margin-top:15px; color:#fff; transition: all 0.3s; } 
+  .card h3 { margin-top:10px; color:#fff; font-size:1.2rem; } 
+  .card p { color:#ccc; font-size:0.95rem; margin:5px 0; } 
+  .price { color:#00ffff; font-weight:bold; margin-top:10px; font-size:1rem; }
+
+  /* Download Pricing Section */
+  .download-pricing { max-width:900px; margin:50px auto; padding:30px 40px; background: rgba(255,255,255,0.05); border-radius:15px; border:2px solid #555; text-align:center; }
+  .download-pricing h2 { color:#00ffff; font-size:1.8rem; margin-bottom:20px; }
+  .download-pricing p { color:#ccc; font-size:1rem; margin-bottom:20px; }
+  .download-pricing a { display:inline-block; padding:12px 25px; background:#00ffff; color:#000; font-weight:600; border-radius:25px; text-decoration:none; transition:0.3s; }
+  .download-pricing a:hover { background:#00bbbb; box-shadow:0 0 15px #00ffff; }
+
+  @media(max-width:500px){ 
+    .card img{height:250px;} 
+    .card i{font-size:2.2rem;} 
+  } 
+</style>
+</head>
+<body>
+
+
+
+<!-- Product Grids with Pricing -->
+<section class="grid-section">
+  <div class="card">
+    <img src="design1.jpg" alt="Logo Design and Branding">
+    <i class="fas fa-paint-brush"></i>
+    <h3>Logo Design and Branding</h3>
+    <p>We give artist designs</p>
+    <div class="price">From R500</div>
+  </div>
+  <div class="card">
+    <img src="design.jpg" alt="Design and Culture">    <i class="fas fa-bullhorn"></i>
+    <h3>Advertisement / Invitation</h3>
+    <p>Effective promotional content</p>
+    <div class="price">From R750</div>
+  </div>
+<div></div>
+  </div>
+  <div class="card">
+    <img src="web.jpg" alt="Advertisement or Invitation">
+        <i class="fas fa-bullhorn"></i>
+    <h3>Apps & Websites</h3>
+    <p>Mordern UI website</p>
+    <div class="price">From R2500</div>
+  </div>
+
+  <div class="card">
+    <img src="ML.jpg" alt="Machine Learning">
+    <i class="fas fa-robot"></i>
+    <h3>Machine Learning</h3>
+    <p>We provide predictive ML models</p>
+    <div class="price">From R5000</div>
+  </div>
+  <div class="card">
+    <img src="aibot.jpg" alt="AI Chatbot">
+    <i class="fas fa-comments"></i>
+    <h3>Personalized & Business AI Chatbot</h3>
+    <p>AI assistant with human capabilities</p>
+    <div class="price">From R7500</div>
+  </div>
+</section>
+
+<!-- Consult CTA -->
+<div class="consult-cta" style="text-align:center; margin:40px 0;">
+  <p style="color:#fff; font-size:1.1rem; margin-bottom:15px;">
+    If you would like to have any of our services, please consult us.
+  </p>
+  <a href="consult.html" 
+     style="display:inline-block; padding:15px 30px; background:#00ffff; color:#000; font-weight:700; border-radius:25px; text-decoration:none; font-size:1rem; transition:0.3s;">
+    Consult Us
+  </a>
+</div>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const sideDrawer = document.getElementById('sideDrawer');
+
+  hamburger.addEventListener('click', ()=>{
+    sideDrawer.classList.toggle('drawer-open');
+  });
+</script>
+</body>
+</html>

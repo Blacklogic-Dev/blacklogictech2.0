@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlackLogic Technologies - Company Services</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+  body { background:#000; color:#fff; }
+
+  /* Banner */
+  .banner {
+    width:100%;
+    height:300px;
+    background: url('dubai.jpg') center/cover no-repeat;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:2rem;
+    font-weight:600;
+    color:#00ffff;
+    text-shadow: 0 0 10px #00ffff;
+  }
+
+  /* Grid Layout */
+  .grid {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap:30px;
+    padding:40px 20px;
+    max-width:1200px;
+    margin:0 auto;
+  }
+
+  /* Card */
+  .card {
+    background:#111;
+    border:2px solid #00ffff;
+    border-radius:16px;
+    overflow:hidden;
+    text-align:center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,255,255,0.1);
+    padding-bottom:20px;
+  }
+
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 25px #00ffff;
+  }
+
+  .card img {
+    width:100%;
+    height:600px;
+    object-fit:cover;
+    display:block;
+    border-bottom:2px solid #00ffff;
+  }
+
+  .card h3 {
+    margin-top:15px;
+    font-size:1.2rem;
+    color:#00ffff;
+  }
+
+  .card p {
+    margin-top:10px;
+    font-size:1rem;
+    color:#ccc;
+    padding: 0 10px;
+  }
+
+  .card .icon {
+    font-size:40px;
+    margin-top:15px;
+    color:#00ffff;
+  }
+
+  @media(max-width:500px){
+    .banner { font-size:1.5rem; padding:0 10px; text-align:center; }
+    .card img { height:150px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Banner -->
+<div class="banner">
+    
+</div>
+
+<!-- Grid of Services -->
+<div class="grid">
+
+  <div class="card">
+    <img src="software.jpg" alt="BlackLogic Technologies Software & Hardware" />
+    <div class="icon">💻</div>
+    <h3>BlackLogic Technologies Software & Hardware</h3>
+    <p>Providing software solutions and hardware management for businesses and individuals.</p>
+  </div>
+
+  <div class="card">
+    <img src="Site.jpg" alt="Mkholo Ecosystem Construction Tech" />
+    <div class="icon">🏗️</div>
+    <h3>Mkholo Ecosystem Construction Tech</h3>
+    <p>Construction technology solutions for modern infrastructure projects and innovations.</p>
+  </div>
+
+  <div class="card">
+    <img src="restaurant.jpg" alt="Mamzo Lifestyles – Food & Delivery" />
+    <div class="icon">🍽️</div>
+    <h3>Mamzo Lifestyles – Food & Delivery</h3>
+    <p>Fast food delivery and restaurant services providing convenience and quality meals.</p>
+  </div>
+
+  <div class="card">
+    <img src="banner.jpg" alt="AfricaSpani Database & AfricaCareer" />
+    <div class="icon">🗂️</div>
+    <h3>AfricaSpani Database & AfricaCareer</h3>
+    <p>Digital attendance and technological recruitment solutions for modern workplaces.</p>
+  </div>
+
+  <div class="card">
+    <img src="bash.jpg" alt="Africa Institution of Technology" />
+    <div class="icon">🎓</div>
+    <h3>Africa Institution of Technology</h3>
+    <p>A platform empowering creativity and skill development across multiple disciplines.</p>
+  </div>
+
+</div>
+
+</body>
+</html>
