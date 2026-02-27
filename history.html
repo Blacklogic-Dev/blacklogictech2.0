@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlackLogic Technologies - Hardware Project History</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+  body { background:#000; color:#fff; }
+
+  /* Banner */
+  .banner {
+    width:100%;
+    height:200px;
+    background: #111;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    font-size:2rem;
+    font-weight:600;
+    color:#00ffff;
+    text-shadow: 0 0 10px #00ffff;
+  }
+
+  .banner p {
+    font-size:1rem;
+    color:#ccc;
+    margin-top:10px;
+    text-align:center;
+    max-width:90%;
+  }
+
+  /* Back button */
+  .back-btn {
+    display:inline-block;
+    margin:15px auto;
+    padding: 8px 15px;
+    background-color: #1f2937;
+    color: #fff;
+    text-decoration: none;
+    border-radius:5px;
+    font-weight:bold;
+    transition: background 0.3s;
+  }
+  .back-btn:hover { background-color: #374151; }
+
+  /* Grid Layout */
+  .grid {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap:30px;
+    padding:40px 20px;
+    max-width:1200px;
+    margin:0 auto;
+  }
+
+  /* Card */
+  .card {
+    background:#111;
+    border:2px solid #00ffff;
+    border-radius:16px;
+    overflow:hidden;
+    text-align:center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,255,255,0.1);
+    padding-bottom:20px;
+  }
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 25px #00ffff;
+  }
+  .card img {
+    width:100%;
+    height:400px;
+    object-fit:cover;
+    display:block;
+    border-bottom:2px solid #00ffff;
+  }
+  .card h3 {
+    margin-top:15px;
+    font-size:1.2rem;
+    color:#00ffff;
+  }
+  .card p {
+    margin-top:10px;
+    font-size:1rem;
+    color:#ccc;
+    padding:0 10px;
+  }
+
+  @media(max-width:500px){
+    .banner { font-size:1.5rem; padding:0 10px; text-align:center; }
+    .card img { height:150px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="banner">
+  Hardware Project History
+  <p>BlackLogic Technologies Hardware Technical Partner has successfully worked on the following projects.</p>
+</div>
+
+<a href="services.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Services</a>
+
+<div class="grid">
+  <div class="card">
+    <img src="cctv.png" alt="CCTV Camera Installation">
+    <h3>1. CCTV Camera Installation</h3>
+    <p>Professional CCTV camera setup for homes, offices, and commercial properties, ensuring full coverage and security.</p>
+  </div>
+
+  <div class="card">
+    <img src="system.jpg" alt="CCTV Monitoring System">
+    <h3>2. CCTV Monitoring System</h3>
+    <p>Remote monitoring solutions to keep track of your premises 24/7 with real-time alerts and secure access.</p>
+  </div>
+
+  <div class="card">
+    <img src="electric.png" alt="Electric Gate Installation">
+    <h3>3. Electric Gate Installation</h3>
+    <p>Automated gate setup for residential and commercial estates, providing convenience and enhanced security.</p>
+  </div>
+
+  <div class="card">
+    <img src="fence.jpg" alt="Electric Fence Installation">
+    <h3>4. Electric Fence Installation</h3>
+    <p>Reliable electric fence installation and monitoring to secure your property against intruders.</p>
+  </div>
+
+  <div class="card">
+    <img src="alert.jpg" alt="Emergency Alert System">
+    <h3>5. Emergency Alert System</h3>
+    <p>Installation of alert systems for rapid response during emergencies, integrated with security infrastructure.</p>
+  </div>
+</div>
