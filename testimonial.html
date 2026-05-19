@@ -3,134 +3,367 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BlackLogic Testimonials</title>
+
+<title>Case Studies | BlackLogic Technologies</title>
+
+<meta name="description" content="Explore BlackLogic Technologies case studies in enterprise software engineering, digital transformation and operational systems.">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 <style>
-  * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
-  body { background:#000; color:#fff; overflow-x:hidden; }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
 
-  /* Banner */
-  .banner { 
-    width:100%; 
-    height:300px; 
-    background:url('BlackLogic.png') center/cover no-repeat; 
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#00ffff;
-    font-size:2rem;
-    text-shadow: 2px 2px 8px #000;
-  }
+body{
+background:#050505;
+color:#fff;
+overflow-x:hidden;
+}
 
-  /* Story Container */
-  .testimonial-container {
-    max-width:900px;
-    margin:40px auto;
-    background: rgba(255,255,255,0.05);
-    padding:30px 40px;
-    border-radius:15px;
-    border:2px solid #555;
-    transition: all 0.3s ease;
-  }
-  .testimonial-container h2 {
-    color:#00ffff;
-    text-align:center;
-    font-size:1.8rem;
-    margin-bottom:20px;
-    border-bottom:2px solid #00ffff;
-    display:inline-block;
-    padding-bottom:5px;
-  }
-  .testimonial-container p {
-    color:#ccc;
-    font-size:1rem;
-    line-height:1.8;
-    margin-bottom:20px;
-  }
-  .testimonial-date {
-    color:#ffd700;
-    font-weight:bold;
-    font-size:0.95rem;
-    margin-bottom:10px;
-  }
+/* Drawer */
+.hamburger{
+position:fixed;
+top:20px;
+left:20px;
+font-size:1.8rem;
+color:#00c8d7;
+cursor:pointer;
+z-index:1001;
+}
 
-  /* Newspaper style block */
-  .story {
-    background:#111;
-    border-left:4px solid #00ffff;
-    padding:20px;
-    margin-bottom:30px;
-    border-radius:8px;
-    box-shadow:0 0 15px rgba(0,255,255,0.3);
-  }
-  .story h3 {
-    color:#00ffff;
-    font-size:1.4rem;
-    margin-bottom:10px;
-  }
-  .story p {
-    color:#ccc;
-    font-size:1rem;
-    line-height:1.7;
-  }
+.side-drawer{
+position:fixed;
+top:0;
+left:-280px;
+width:280px;
+height:100%;
+background:#0b0b0b;
+padding-top:80px;
+transition:.35s ease;
+z-index:1000;
+border-right:1px solid rgba(0,200,215,.15);
+}
 
-  @media(max-width:500px){
-    .testimonial-container { padding:20px; }
-    .banner { font-size:1.4rem; }
-  }
+.side-drawer a{
+display:flex;
+align-items:center;
+padding:18px 25px;
+color:#ccc;
+text-decoration:none;
+transition:.3s;
+}
+
+.side-drawer a i{
+margin-right:14px;
+color:#00c8d7;
+}
+
+.side-drawer a:hover{
+background:#111;
+color:#fff;
+}
+
+.drawer-open{
+left:0;
+}
+
+/* Hero */
+.hero{
+height:320px;
+background:linear-gradient(135deg,#00151a,#050505);
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:20px;
+}
+
+.hero-content h1{
+font-size:3rem;
+margin-bottom:15px;
+}
+
+.hero-content span{
+color:#00c8d7;
+}
+
+.hero-content p{
+color:#bbb;
+max-width:850px;
+line-height:1.8;
+}
+
+/* Section */
+.section{
+padding:80px 20px;
+max-width:1200px;
+margin:auto;
+}
+
+.section-title{
+text-align:center;
+font-size:2.2rem;
+color:#00c8d7;
+margin-bottom:50px;
+}
+
+/* Case Cards */
+.case-grid{
+display:grid;
+gap:35px;
+}
+
+.case-card{
+background:#0d0d0d;
+border:1px solid rgba(0,200,215,.15);
+border-radius:18px;
+overflow:hidden;
+transition:.35s;
+}
+
+.case-card:hover{
+transform:translateY(-8px);
+box-shadow:0 0 24px rgba(0,200,215,.12);
+}
+
+.case-banner{
+height:300px;
+background-size:cover;
+background-position:center;
+}
+
+.case-content{
+padding:35px;
+}
+
+.case-client{
+color:#00c8d7;
+font-size:1.4rem;
+margin-bottom:15px;
+}
+
+.meta{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+margin-bottom:25px;
+color:#999;
+font-size:.9rem;
+}
+
+.case-block{
+margin-bottom:22px;
+}
+
+.case-block h4{
+color:#fff;
+margin-bottom:8px;
+}
+
+.case-block p{
+color:#aaa;
+line-height:1.7;
+}
+
+/* Results */
+.results{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:20px;
+margin-top:25px;
+}
+
+.result{
+background:#101010;
+padding:20px;
+border-radius:14px;
+text-align:center;
+}
+
+.result h3{
+color:#00c8d7;
+font-size:1.6rem;
+margin-bottom:8px;
+}
+
+.result p{
+color:#aaa;
+font-size:.9rem;
+}
+
+@media(max-width:768px){
+.hero-content h1{
+font-size:2rem;
+}
+
+.case-banner{
+height:180px;
+}
+}
 </style>
 </head>
+
 <body>
 
-<!-- Banner -->
-<div class="banner">
-  
+<div class="hamburger" id="hamburger">
+<i class="fas fa-bars"></i>
 </div>
 
-<!-- Testimonial Container -->
-<div class="testimonial-container">
-  <h2>Client Success Stories</h2>
+<nav class="side-drawer" id="drawer">
+<a href="landing.html"><i class="fas fa-home"></i>Home</a>
+<a href="landing.html"><i class="fas fa-layer-group"></i>Solutions</a>
+<a href="consult.html"><i class="fas fa-headset"></i>Consult</a>
+<a href="about.html"><i class="fas fa-building"></i>About</a>
+</nav>
 
-  <div class="story">
-    <div class="testimonial-date">2026, January</div>
-    <h3>Bonvinco Tactical Response</h3>
-    <p>
-      BlackLogic Technologies successfully created the AI Website Intelligence Infrastructure and a Modern UI Website for 
-      <strong>Bonvinco Tactical Response</strong>. Our team ensured that the project was delivered on time with precision and cutting-edge technology. 
-      From the first wireframe to the final deployment, every step was meticulously designed to enhance functionality, user experience, and data intelligence. 
-      The client now enjoys a responsive, AI-powered system that elevates operational efficiency and digital presence. This marks another milestone in BlackLogic's journey to revolutionize African tech.
-    </p>
-  </div>
+<section class="hero">
+<div class="hero-content">
+<h1>Enterprise <span>Case Studies</span></h1>
+<p>
+Real-world systems engineered to solve operational challenges through
+secure software architecture and intelligent digital transformation.
+</p>
+</div>
+</section>
 
-  <div class="story">
-    <div class="testimonial-date">2025, December</div>
-    <h3>AfricaCareer Platform</h3>
-    <p>
-      In December 2025, BlackLogic Technologies delivered the <strong>AfricaCareer Platform</strong>, an intuitive career and skills development system. 
-      The project showcased our expertise in integrating user-friendly interfaces with advanced backend logic. Students and professionals now enjoy seamless access to career opportunities and personalized skill-tracking dashboards. 
-      The launch was celebrated for its innovative approach to digital recruitment and skill enhancement.
-    </p>
-  </div>
+<section class="section">
+
+<h2 class="section-title">Featured Projects</h2>
+
+<div class="case-grid">
+
+<!-- CASE 1 -->
+<div class="case-card">
+
+<div class="case-banner" style="background-image:url('tactical.png');"></div>
+
+<div class="case-content">
+
+<div class="case-client">Bonvinco Tactical Response</div>
+
+<div class="meta">
+<span>Security Operations</span>
+<span>Enterprise Website Infrastructure</span>
+<span>2026</span>
+</div>
+
+<div class="case-block">
+<h4>Challenge</h4>
+<p>
+The client required a modern digital platform to strengthen operational credibility,
+communicate service capabilities and improve digital engagement.
+</p>
+</div>
+
+<div class="case-block">
+<h4>Solution</h4>
+<p>
+BlackLogic designed and deployed a responsive enterprise-grade web platform
+with modern UI architecture, performance optimization and intelligent digital structure.
+</p>
+</div>
+
+<div class="case-block">
+<h4>Business Impact</h4>
+<p>
+The deployment elevated online brand authority, improved customer accessibility
+and positioned the company for stronger digital visibility.
+</p>
+</div>
+
+<div class="results">
+<div class="result">
+<h3>100%</h3>
+<p>Responsive Deployment</p>
+</div>
+
+<div class="result">
+<h3>Modern</h3>
+<p>UI Architecture</p>
+</div>
+
+<div class="result">
+<h3>Live</h3>
+<p>Operational Platform</p>
+</div>
+</div>
 
 </div>
+</div>
+
+<!-- CASE 2 -->
+<div class="case-card">
+
+<div class="case-banner" style="background-image:url('banner.jpg');"></div>
+
+<div class="case-content">
+
+<div class="case-client">AfricaSpani Database</div>
+
+<div class="meta">
+<span>Workforce Intelligence</span>
+<span>Internal Innovation System</span>
+<span>Flagship Platform</span>
+</div>
+
+<div class="case-block">
+<h4>Challenge</h4>
+<p>
+Operational labour management environments require secure identity verification,
+attendance visibility and audit accountability.
+</p>
+</div>
+
+<div class="case-block">
+<h4>Solution</h4>
+<p>
+BlackLogic engineered a workforce monitoring platform with identity verification,
+attendance intelligence and enterprise audit architecture.
+</p>
+</div>
+
+<div class="case-block">
+<h4>Business Impact</h4>
+<p>
+Provides a scalable digital foundation for workforce operational transparency.
+</p>
+</div>
+
+<div class="results">
+<div class="result">
+<h3>RTDB</h3>
+<p>Cloud Monitoring</p>
+</div>
+
+<div class="result">
+<h3>Audit</h3>
+<p>Traceability</p>
+</div>
+
+<div class="result">
+<h3>Secure</h3>
+<p>Verification</p>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+</section>
 
 <script>
-  // Optional: Add interactive elements like fade-in on scroll
-  const stories = document.querySelectorAll('.story');
-  window.addEventListener('scroll', ()=>{
-    stories.forEach(story => {
-      const top = story.getBoundingClientRect().top;
-      if(top < window.innerHeight - 100){
-        story.style.transform = 'translateY(0)';
-        story.style.opacity = '1';
-        story.style.transition = 'all 0.8s ease';
-      }
-    });
-  });
-  stories.forEach(story => {
-    story.style.transform = 'translateY(50px)';
-    story.style.opacity = '0';
-  });
+const hamburger=document.getElementById('hamburger');
+const drawer=document.getElementById('drawer');
+
+hamburger.addEventListener('click',()=>{
+drawer.classList.toggle('drawer-open');
+});
 </script>
 
 </body>
