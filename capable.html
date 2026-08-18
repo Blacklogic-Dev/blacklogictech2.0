@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BlackLogic Technologies | Engineering Capabilities</title>
+
+<meta name="description" content="Discover the engineering capabilities behind BlackLogic Technologies: Artificial Intelligence Engineering, Software Engineering, UX/UI Design and Systems Intelligence Engineering.">
+
+<meta name="keywords" content="BlackLogic Technologies, Artificial Intelligence Engineering, Software Engineering South Africa, UX UI Design, Systems Intelligence Engineering, AI Software Cloud Engineer, digital systems">
+
+<meta name="author" content="BlackLogic Technologies">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="BlackLogic Technologies | Engineering Capabilities">
+<meta property="og:description" content="We engineer digital systems through Artificial Intelligence Engineering, Software Engineering, UX/UI Design and Systems Intelligence Engineering.">
+<meta property="og:site_name" content="BlackLogic Technologies">
+<meta property="og:locale" content="en_ZA">
+
+<meta name="theme-color" content="#000000">
+
+<link rel="canonical" href="https://blacklogictechnologies.netlify.app/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Poppins",sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#050505;
+    color:#fff;
+    overflow-x:hidden;
+}
+
+/* ================================
+   NAVIGATION
+================================ */
+
+.hamburger{
+    position:fixed;
+    top:20px;
+    left:20px;
+    font-size:1.8rem;
+    color:#00c8d7;
+    cursor:pointer;
+    z-index:1001;
+    transition:.3s ease;
+}
+
+.hamburger:hover{
+    transform:scale(1.08);
+}
+
+.side-drawer{
+    position:fixed;
+    top:0;
+    left:-280px;
+    width:280px;
+    height:100%;
+    background:#0b0b0b;
+    padding-top:80px;
+    transition:.35s ease;
+    z-index:1000;
+    border-right:1px solid rgba(0,200,215,.15);
+}
+
+.side-drawer a{
+    display:flex;
+    align-items:center;
+    padding:18px 25px;
+    color:#ccc;
+    text-decoration:none;
+    transition:.3s;
+    font-size:.95rem;
+}
+
+.side-drawer a i{
+    margin-right:14px;
+    color:#00c8d7;
+    width:18px;
+    text-align:center;
+}
+
+.side-drawer a:hover{
+    background:#111;
+    color:#fff;
+    padding-left:30px;
+}
+
+.drawer-open{
+    left:0;
+}
+
+/* ================================
+   HERO
+================================ */
+
+.hero{
+    min-height:520px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    position:relative;
+    padding:100px 25px 80px;
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(0,200,215,.08),
+            transparent 45%
+        ),
+        #050505;
+}
+
+.hero::after{
+    content:"";
+    position:absolute;
+    bottom:0;
+    left:10%;
+    right:10%;
+    height:1px;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(0,200,215,.35),
+        transparent
+    );
+}
+
+.hero-content{
+    max-width:900px;
+    position:relative;
+    z-index:2;
+}
+
+.eyebrow{
+    color:#00c8d7;
+    font-size:.82rem;
+    font-weight:600;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:3.2rem;
+    font-weight:800;
+    line-height:1.18;
+    margin-bottom:22px;
+}
+
+.hero h1 span{
+    color:#00c8d7;
+}
+
+.hero p{
+    max-width:760px;
+    margin:auto;
+    color:#aaa;
+    font-size:1.05rem;
+    line-height:1.9;
+}
+
+/* ================================
+   STATEMENT
+================================ */
+
+.truth{
+    padding:75px 25px 45px;
+    text-align:center;
+}
+
+.truth-label{
+    color:#00c8d7;
+    font-size:.75rem;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-weight:600;
+    margin-bottom:18px;
+}
+
+.truth h2{
+    max-width:900px;
+    margin:auto;
+    font-size:2rem;
+    font-weight:700;
+    line-height:1.5;
+}
+
+.truth h2 span{
+    color:#00c8d7;
+}
+
+/* ================================
+   CAPABILITIES
+================================ */
+
+.capabilities{
+    padding:45px 20px 85px;
+    max-width:1250px;
+    margin:auto;
+}
+
+.section-heading{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.section-heading h2{
+    color:#00c8d7;
+    font-size:2.3rem;
+    font-weight:800;
+    margin-bottom:12px;
+}
+
+.section-heading p{
+    color:#777;
+    font-size:.95rem;
+}
+
+/* ================================
+   CAPABILITY GRID
+================================ */
+
+.capability-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+}
+
+.capability{
+    background:#0d0d0d;
+    border:1px solid rgba(0,200,215,.16);
+    border-radius:18px;
+    padding:35px 30px;
+    transition:.35s ease;
+    position:relative;
+    overflow:hidden;
+}
+
+.capability::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:2px;
+    background:#00c8d7;
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:.35s ease;
+}
+
+.capability:hover{
+    transform:translateY(-7px);
+    border-color:rgba(0,200,215,.35);
+    box-shadow:0 0 28px rgba(0,200,215,.10);
+}
+
+.capability:hover::before{
+    transform:scaleX(1);
+}
+
+.icon{
+    width:58px;
+    height:58px;
+    border-radius:15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,200,215,.08);
+    border:1px solid rgba(0,200,215,.18);
+    color:#00c8d7;
+    font-size:1.45rem;
+    margin-bottom:22px;
+}
+
+.capability-number{
+    position:absolute;
+    top:25px;
+    right:28px;
+    color:#333;
+    font-size:2rem;
+    font-weight:800;
+}
+
+.capability h3{
+    font-size:1.25rem;
+    margin-bottom:14px;
+    color:#fff;
+}
+
+.capability p{
+    color:#999;
+    font-size:.91rem;
+    line-height:1.8;
+}
+
+/* ================================
+   ENGINEERING PEOPLE
+================================ */
+
+.people{
+    padding:85px 20px;
+    background:#080808;
+    border-top:1px solid rgba(255,255,255,.04);
+    border-bottom:1px solid rgba(255,255,255,.04);
+}
+
+.people-heading{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.people-heading h2{
+    font-size:2.3rem;
+    font-weight:800;
+    color:#00c8d7;
+    margin-bottom:12px;
+}
+
+.people-heading p{
+    color:#777;
+    font-size:.95rem;
+}
+
+.people-grid{
+    max-width:1100px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:28px;
+}
+
+.person{
+    background:#0d0d0d;
+    border:1px solid rgba(0,200,215,.15);
+    border-radius:18px;
+    padding:32px;
+    text-align:center;
+    transition:.35s ease;
+}
+
+.person:hover{
+    transform:translateY(-6px);
+    border-color:rgba(0,200,215,.35);
+    box-shadow:0 0 25px rgba(0,200,215,.09);
+}
+
+.person-icon{
+    width:72px;
+    height:72px;
+    border-radius:50%;
+    margin:0 auto 20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#00c8d7;
+    background:rgba(0,200,215,.08);
+    border:1px solid rgba(0,200,215,.2);
+    font-size:1.7rem;
+}
+
+.person h3{
+    font-size:1.15rem;
+    margin-bottom:7px;
+}
+
+.person .role{
+    color:#00c8d7;
+    font-size:.82rem;
+    font-weight:600;
+    margin-bottom:15px;
+}
+
+.person p{
+    color:#999;
+    font-size:.88rem;
+    line-height:1.75;
+}
+
+/* ================================
+   SYSTEM STATEMENT
+================================ */
+
+.system-statement{
+    max-width:1000px;
+    margin:0 auto;
+    padding:90px 25px;
+    text-align:center;
+}
+
+.statement-icon{
+    color:#00c8d7;
+    font-size:2rem;
+    margin-bottom:22px;
+}
+
+.system-statement h2{
+    font-size:2rem;
+    line-height:1.5;
+    margin-bottom:20px;
+}
+
+.system-statement p{
+    color:#999;
+    line-height:1.9;
+    font-size:.95rem;
+}
+
+.system-statement strong{
+    color:#00c8d7;
+}
+
+/* ================================
+   CTA
+================================ */
+
+.cta{
+    text-align:center;
+    padding:65px 20px 80px;
+}
+
+.cta p{
+    color:#777;
+    margin-bottom:20px;
+}
+
+.cta a{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:15px 35px;
+    border-radius:40px;
+    background:#00c8d7;
+    color:#000;
+    text-decoration:none;
+    font-weight:700;
+    transition:.3s ease;
+}
+
+.cta a:hover{
+    transform:translateY(-3px);
+    box-shadow:0 0 22px rgba(0,200,215,.35);
+}
+
+/* ================================
+   FOOTER
+================================ */
+
+.footer{
+    padding:30px 20px;
+    text-align:center;
+    border-top:1px solid rgba(255,255,255,.06);
+    color:#666;
+    font-size:.8rem;
+    letter-spacing:.7px;
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media(max-width:800px){
+
+    .hero{
+        min-height:460px;
+    }
+
+    .hero h1{
+        font-size:2.25rem;
+    }
+
+    .capability-grid,
+    .people-grid{
+        grid-template-columns:1fr;
+    }
+
+    .truth h2{
+        font-size:1.55rem;
+    }
+
+}
+
+@media(max-width:500px){
+
+    .hero{
+        padding:90px 20px 65px;
+    }
+
+    .hero h1{
+        font-size:1.8rem;
+    }
+
+    .hero p{
+        font-size:.9rem;
+    }
+
+    .section-heading h2,
+    .people-heading h2{
+        font-size:1.8rem;
+    }
+
+    .capability{
+        padding:28px 23px;
+    }
+
+}
+
+/* ================================
+   ACCESSIBILITY
+================================ */
+
+a:focus,
+button:focus,
+.hamburger:focus{
+    outline:2px solid #00c8d7;
+    outline-offset:3px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================================
+     NAVIGATION
+================================ -->
+
+<div
+    class="hamburger"
+    id="hamburger"
+    role="button"
+    tabindex="0"
+    aria-label="Open navigation menu"
+>
+    <i class="fas fa-bars"></i>
+</div>
+
+<nav
+    class="side-drawer"
+    id="drawer"
+    aria-label="Main navigation"
+>
+
+    <a href="landing.html">
+        <i class="fas fa-layer-group"></i>
+        Solutions
+    </a>
+
+    <a href="capable.html">
+        <i class="fas fa-microchip"></i>
+        Engineering Capabilities
+    </a>
+
+    <a href="testimonial.html">
+        <i class="fas fa-chart-line"></i>
+        Case Studies
+    </a>
+
+    <a href="consult.html">
+        <i class="fas fa-headset"></i>
+        Consultation
+    </a>
+
+    <a href="about.html">
+        <i class="fas fa-building"></i>
+        Company Profile
+    </a>
+
+</nav>
+
+
+<!-- ================================
+     HERO
+================================ -->
+
+<header class="hero">
+
+    <div class="hero-content">
+
+        <div class="eyebrow">
+            BLACKLOGIC TECHNOLOGIES
+        </div>
+
+        <h1>
+            Engineering
+            <span>Intelligence</span>
+            Into Digital Systems
+        </h1>
+
+        <p>
+            BlackLogic Technologies engineers digital systems by combining
+            artificial intelligence, software engineering, human-centred
+            design and systems intelligence to solve real-world operational
+            problems.
+        </p>
+
+    </div>
+
+</header>
+
+
+<!-- ================================
+     PLACE OF TRUTH
+================================ -->
+
+<section class="truth">
+
+    <div class="truth-label">
+        The BlackLogic Principle
+    </div>
+
+    <h2>
+        We do not engineer products simply to sell.
+        We engineer <span>solutions to problems.</span>
+    </h2>
+
+</section>
+
+
+<!-- ================================
+     ENGINEERING CAPABILITIES
+================================ -->
+
+<section class="capabilities">
+
+    <div class="section-heading">
+
+        <h2>
+            Engineering Capabilities
+        </h2>
+
+        <p>
+            The disciplines through which BlackLogic transforms complex
+            problems into usable digital systems.
+        </p>
+
+    </div>
+
+
+    <div class="capability-grid">
+
+
+        <!-- AI ENGINEERING -->
+
+        <article class="capability">
+
+            <div class="capability-number">01</div>
+
+            <div class="icon">
+                <i class="fas fa-brain"></i>
+            </div>
+
+            <h3>
+                Artificial Intelligence Engineering
+            </h3>
+
+            <p>
+                Engineering intelligent capabilities into digital systems
+                through AI-assisted workflows, intelligent automation,
+                machine learning technologies, data interpretation and
+                emerging AI technologies.
+            </p>
+
+        </article>
+
+
+        <!-- SOFTWARE ENGINEERING -->
+
+        <article class="capability">
+
+            <div class="capability-number">02</div>
+
+            <div class="icon">
+                <i class="fas fa-code"></i>
+            </div>
+
+            <h3>
+                Software Engineering
+            </h3>
+
+            <p>
+                Designing and engineering secure software systems, cloud
+                applications, databases, authentication, operational
+                platforms, web applications and digital infrastructure
+                built around real-world requirements.
+            </p>
+
+        </article>
+
+
+        <!-- UX/UI -->
+
+        <article class="capability">
+
+            <div class="capability-number">03</div>
+
+            <div class="icon">
+                <i class="fas fa-pen-ruler"></i>
+            </div>
+
+            <h3>
+                UX / UI Design
+            </h3>
+
+            <p>
+                Designing intuitive digital experiences through interface
+                architecture, interaction design, visual systems,
+                accessibility, responsive experiences and human-centred
+                digital workflows.
+            </p>
+
+        </article>
+
+
+        <!-- SYSTEMS INTELLIGENCE -->
+
+        <article class="capability">
+
+            <div class="capability-number">04</div>
+
+            <div class="icon">
+                <i class="fas fa-network-wired"></i>
+            </div>
+
+            <h3>
+                Systems Intelligence Engineering
+            </h3>
+
+            <p>
+                Understanding complex operational environments, modelling
+                workflows, connecting information and engineering digital
+                ecosystems that improve visibility, coordination,
+                decision-making and operational intelligence.
+            </p>
+
+        </article>
+
+
+    </div>
+
+</section>
+
+
+<!-- ================================
+     ENGINEERING TEAM
+================================ -->
+
+<section class="people">
+
+    <div class="people-heading">
+
+        <h2>
+            The Engineering Team
+        </h2>
+
+        <p>
+            Engineering and design leadership across BlackLogic Technologies
+            digital systems and intelligence ecosystems.
+        </p>
+
+    </div>
+
+
+    <div class="people-grid">
+
+
+        <!-- LEAD ENGINEER -->
+
+        <article class="person">
+
+            <div class="person-icon">
+                <i class="fas fa-microchip"></i>
+            </div>
+
+            <h3>
+                Mr MS Mathebula
+            </h3>
+
+            <div class="role">
+                Lead Engineer — AI Software & Cloud Engineer
+            </div>
+
+            <p>
+                Leads software engineering, AI integration, cloud
+                infrastructure, systems architecture and systems
+                intelligence engineering across BlackLogic Technologies
+                digital systems.
+            </p>
+
+        </article>
+
+
+        <!-- LEAD DESIGNER -->
+
+        <article class="person">
+
+            <div class="person-icon">
+                <i class="fas fa-palette"></i>
+            </div>
+
+            <h3>
+                Ms AA Mahlaba
+            </h3>
+
+            <div class="role">
+                Lead Designer — Software Designer & UX/UI Practitioner
+            </div>
+
+            <p>
+                Leads design direction, UX/UI architecture, creative
+                development, visual communication and human-centred
+                digital experiences across BlackLogic Technologies.
+            </p>
+
+        </article>
+
+
+    </div>
+
+</section>
+
+
+<!-- ================================
+     PLACE OF TRUTH
+================================ -->
+
+<section class="system-statement">
+
+    <div class="statement-icon">
+        <i class="fas fa-circle-nodes"></i>
+    </div>
+
+    <h2>
+        Every system begins with a
+        <strong>problem worth solving.</strong>
+    </h2>
+
+    <p>
+        From operational intelligence and investigation systems to workforce
+        technology, digital access, commerce and enterprise transformation,
+        BlackLogic Technologies approaches each engagement as an engineering
+        problem — understanding the environment, designing the experience,
+        engineering the technology and continuously improving the system.
+    </p>
+
+</section>
+
+
+<!-- ================================
+     CTA
+================================ -->
+
+<section class="cta">
+
+    <p>
+        Have a real-world problem that requires a digital system?
+    </p>
+
+    <a href="consult.html">
+        Start an Engineering Consultation
+        <i class="fas fa-arrow-right"></i>
+    </a>
+
+</section>
+
+
+<!-- ================================
+     FOOTER
+================================ -->
+
+<footer class="footer">
+
+    BlackLogic Technologies —
+    Engineering Digital Systems for Real-World Operations.
+
+</footer>
+
+
+<script>
+
+const hamburger = document.getElementById('hamburger');
+const drawer = document.getElementById('drawer');
+
+function toggleDrawer(){
+    drawer.classList.toggle('drawer-open');
+}
+
+hamburger.addEventListener('click', toggleDrawer);
+
+hamburger.addEventListener('keydown', function(event){
+
+    if(event.key === 'Enter' || event.key === ' '){
+
+        event.preventDefault();
+        toggleDrawer();
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>

@@ -4,16 +4,45 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>BlackLogic Solutions Portal</title>
+<title>BlackLogic Technologies | Digital Systems & Technology Solutions</title>
+
+<meta name="description" content="Explore BlackLogic Technologies digital systems and technology solutions including NewEra Central Intelligence Agency, NewEra Investigators, AfricaSpani Database, Black Empowerment Portal, Luxury Lifestyles, Bonvinco Tactical Response Gen 3.5 and Bovinco Holdings Gen 3.5.">
+
+<meta name="keywords" content="BlackLogic Technologies, digital systems South Africa, enterprise software, operational intelligence, NewEra Central Intelligence Agency, NCIA, NewEra Investigators, AfricaSpani Database, Black Empowerment Portal, Luxury Lifestyles, Bonvinco Tactical Response, Bovinco Holdings, Gen 3.5">
+
+<meta name="author" content="BlackLogic Technologies">
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://blacklogictechnologies.netlify.app/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="BlackLogic Technologies | Digital Systems & Technology Solutions">
+<meta property="og:description" content="Explore digital systems engineered by BlackLogic Technologies for intelligence, investigations, workforce technology, digital access, commerce and enterprise operations.">
+<meta property="og:site_name" content="BlackLogic Technologies">
+<meta property="og:locale" content="en_ZA">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BlackLogic Technologies | Digital Systems">
+<meta name="twitter:description" content="Engineering digital systems for real-world operations across Africa.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
+
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+font-family:"Poppins",sans-serif;
+}
+
+html{
+scroll-behavior:smooth;
 }
 
 body{
@@ -22,7 +51,10 @@ color:#fff;
 overflow-x:hidden;
 }
 
-/* Drawer */
+/* ================================
+   DRAWER
+================================ */
+
 .hamburger{
 position:fixed;
 top:20px;
@@ -31,6 +63,11 @@ font-size:1.8rem;
 color:#00c8d7;
 cursor:pointer;
 z-index:1001;
+transition:.3s ease;
+}
+
+.hamburger:hover{
+transform:scale(1.08);
 }
 
 .side-drawer{
@@ -44,6 +81,7 @@ padding-top:80px;
 transition:.35s ease;
 z-index:1000;
 border-right:1px solid rgba(0,200,215,.15);
+box-shadow:10px 0 30px rgba(0,0,0,.4);
 }
 
 .side-drawer a{
@@ -59,21 +97,27 @@ font-size:.95rem;
 .side-drawer a i{
 margin-right:14px;
 color:#00c8d7;
+width:18px;
+text-align:center;
 }
 
 .side-drawer a:hover{
 background:#111;
 color:#fff;
+padding-left:30px;
 }
 
 .drawer-open{
 left:0;
 }
 
-/* Hero */
+/* ================================
+   HERO
+================================ */
+
 .banner{
-height:420px;
-background:url('logicH.jpg') center/cover no-repeat;
+min-height:420px;
+background:url('software.jpg') center/cover no-repeat;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -85,40 +129,51 @@ text-align:center;
 content:"";
 position:absolute;
 inset:0;
-background:linear-gradient(to bottom,rgba(0,0,0,.45),rgba(0,0,0,.9));
+background:linear-gradient(
+to bottom,
+rgba(0,0,0,.45),
+rgba(0,0,0,.92)
+);
 }
 
 .banner-content{
 position:relative;
 z-index:2;
-max-width:850px;
+max-width:900px;
 padding:0 20px;
 }
 
 .banner h1{
 font-size:3rem;
 font-weight:800;
-margin-bottom:15px;
+line-height:1.2;
+margin-bottom:18px;
 }
 
-.banner span{
+.banner h1 span{
 color:#00c8d7;
 }
 
 .banner p{
 color:#ccc;
-font-size:1.1rem;
-line-height:1.7;
+font-size:1.05rem;
+line-height:1.8;
+max-width:780px;
+margin:auto;
 }
 
-/* Section */
+/* ================================
+   SOLUTIONS
+================================ */
+
 .portal-section{
-padding:70px 20px;
+padding:75px 20px;
 text-align:center;
 }
 
 .portal-section h2{
 font-size:2.4rem;
+font-weight:800;
 color:#00c8d7;
 margin-bottom:12px;
 }
@@ -126,16 +181,24 @@ margin-bottom:12px;
 .portal-subtitle{
 color:#999;
 margin-bottom:55px;
+font-size:.98rem;
 }
 
-/* Grid */
+/* ================================
+   GRID
+================================ */
+
 .portal-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:28px;
+gap:30px;
 max-width:1300px;
 margin:auto;
 }
+
+/* ================================
+   CARD
+================================ */
 
 .portal-card{
 background:#0d0d0d;
@@ -144,26 +207,76 @@ border-radius:18px;
 overflow:hidden;
 transition:.35s ease;
 box-shadow:0 0 15px rgba(0,200,215,.06);
+display:flex;
+flex-direction:column;
+text-align:left;
 }
 
 .portal-card:hover{
 transform:translateY(-8px);
-box-shadow:0 0 24px rgba(0,200,215,.18);
+box-shadow:0 0 28px rgba(0,200,215,.18);
+border-color:rgba(0,200,215,.35);
+}
+
+.card-image-wrapper{
+position:relative;
+overflow:hidden;
 }
 
 .card-image{
 width:100%;
-height:200px;
+height:205px;
 object-fit:cover;
 display:block;
+transition:.45s ease;
 }
+
+.portal-card:hover .card-image{
+transform:scale(1.04);
+}
+
+.card-overlay{
+position:absolute;
+inset:0;
+background:linear-gradient(
+to top,
+rgba(0,0,0,.65),
+transparent 55%
+);
+pointer-events:none;
+}
+
+/* ================================
+   STATUS
+================================ */
+
+.status{
+position:absolute;
+top:15px;
+right:15px;
+background:rgba(0,0,0,.75);
+border:1px solid rgba(0,200,215,.3);
+color:#00c8d7;
+padding:6px 11px;
+border-radius:20px;
+font-size:.7rem;
+font-weight:600;
+letter-spacing:.5px;
+}
+
+/* ================================
+   CARD CONTENT
+================================ */
 
 .card-content{
 padding:24px;
+display:flex;
+flex-direction:column;
+flex:1;
 }
 
 .portal-title{
-font-size:1.2rem;
+font-size:1.15rem;
 font-weight:700;
 margin-bottom:12px;
 color:#00c8d7;
@@ -171,13 +284,52 @@ color:#00c8d7;
 
 .portal-desc{
 color:#aaa;
-font-size:.93rem;
-line-height:1.6;
+font-size:.91rem;
+line-height:1.7;
+margin-bottom:22px;
 }
 
-/* CTA */
+/* ================================
+   SOLUTION BUTTON
+================================ */
+
+.solution-btn{
+margin-top:auto;
+display:inline-flex;
+align-items:center;
+justify-content:center;
+gap:10px;
+padding:12px 20px;
+border-radius:35px;
+background:#00c8d7;
+color:#000;
+text-decoration:none;
+font-size:.85rem;
+font-weight:700;
+transition:.3s ease;
+}
+
+.solution-btn:hover{
+transform:translateY(-3px);
+box-shadow:0 0 18px rgba(0,200,215,.35);
+}
+
+.solution-btn i{
+font-size:.8rem;
+}
+
+/* ================================
+   CTA
+================================ */
+
 .cta{
-margin-top:60px;
+margin-top:65px;
+}
+
+.cta p{
+color:#777;
+font-size:.9rem;
+margin-bottom:18px;
 }
 
 .cta a{
@@ -193,113 +345,572 @@ transition:.3s;
 
 .cta a:hover{
 transform:translateY(-3px);
+box-shadow:0 0 20px rgba(0,200,215,.35);
 }
 
-/* Mobile */
+/* ================================
+   FOOTER
+================================ */
+
+.footer{
+margin-top:40px;
+padding:30px 20px;
+text-align:center;
+border-top:1px solid rgba(255,255,255,.06);
+color:#666;
+font-size:.8rem;
+letter-spacing:.7px;
+}
+
+/* ================================
+   MOBILE
+================================ */
+
 @media(max-width:768px){
+
+.banner{
+min-height:390px;
+}
+
 .banner h1{
 font-size:2rem;
+}
+
+.banner p{
+font-size:.92rem;
+}
+
+.portal-section{
+padding:60px 18px;
 }
 
 .portal-section h2{
 font-size:1.8rem;
 }
 
+.portal-subtitle{
+font-size:.88rem;
+margin-bottom:40px;
+}
+
+.portal-grid{
+grid-template-columns:1fr;
+gap:24px;
+}
+
 .card-image{
-height:180px;
+height:190px;
 }
+
 }
+
+@media(max-width:500px){
+
+.banner h1{
+font-size:1.7rem;
+}
+
+.banner p{
+font-size:.85rem;
+}
+
+.card-content{
+padding:20px;
+}
+
+}
+
+/* ================================
+   ACCESSIBILITY
+================================ */
+
+.solution-btn:focus,
+.side-drawer a:focus,
+.hamburger:focus{
+outline:2px solid #00c8d7;
+outline-offset:3px;
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="hamburger" id="hamburger">
+<!-- ================================
+     NAVIGATION
+================================ -->
+
+<div class="hamburger"
+     id="hamburger"
+     aria-label="Open navigation menu"
+     role="button"
+     tabindex="0">
+
 <i class="fas fa-bars"></i>
+
 </div>
 
-<nav class="side-drawer" id="drawer">
-<a href="landing.html"><i class="fas fa-layer-group"></i>Solutions</a>
-<a href="price.html"><i class="fas fa-box"></i>Products</a>
-<a href="testimonial.html"><i class="fas fa-chart-line"></i>Case Studies</a>
-<a href="consult.html"><i class="fas fa-headset"></i>Consultation</a>
+<nav class="side-drawer"
+     id="drawer"
+     aria-label="Main navigation">
 
-<a href="about.html"><i class="fas fa-building"></i>Company Profile</a>
+<a href="landing.html">
+<i class="fas fa-layer-group"></i>
+Solutions
+</a>
+
+<a href="capable.html">
+<i class="fas fa-box"></i>
+Engineering Capabilites
+</a>
+
+<a href="testimonial.html">
+<i class="fas fa-chart-line"></i>
+Case Studies
+</a>
+
+<a href="consult.html">
+<i class="fas fa-headset"></i>
+Consultation
+</a>
+
+<a href="profile.html">
+<i class="fas fa-building"></i>
+Company Profile
+</a>
+
 </nav>
 
+
+<!-- ================================
+     HERO
+================================ -->
+
 <section class="banner">
+
 <div class="banner-content">
-<h1>BlackLogic <span>Solutions Portal</span></h1>
+
+<h1>
+BlackLogic
+<span>Technology Ecosystem</span>
+</h1>
+
 <p>
-Enterprise software systems engineered for mining, workforce intelligence,
-security operations, and digital transformation across Africa.
+Digital systems engineered for operational intelligence, investigations,
+workforce technology, digital access, commerce and enterprise transformation
+across South Africa and Africa.
 </p>
+
 </div>
+
 </section>
 
+
+<!-- ================================
+     SOLUTIONS
+================================ -->
+
 <section class="portal-section">
-<h2>Enterprise Solutions</h2>
+
+<h2>
+Our Digital Systems
+</h2>
+
 <p class="portal-subtitle">
-Operational systems built for performance, visibility and scalability
+Technology platforms and digital ecosystems engineered by BlackLogic Technologies
+for real-world operations.
 </p>
+
 
 <div class="portal-grid">
 
-<div class="portal-card">
-<img src="invest.png" alt="NewEra Investigators" class="card-image">
-<div class="card-content">
-<div class="portal-title">NewEra Investigators</div>
-<div class="portal-desc">
-Digital incident intelligence, forensic reporting and operational case management.
-</div>
-</div>
-</div>
 
-<div class="portal-card">
-<img src="banner.jpg" alt="AfricaSpani Database" class="card-image">
-<div class="card-content">
-<div class="portal-title">AfricaSpani Database</div>
-<div class="portal-desc">
-Workforce identity verification, labour attendance monitoring and audit intelligence.
-</div>
-</div>
-</div>
+<!-- =================================
+     01 — NCIA
+================================= -->
 
-<div class="portal-card">
-<img src="studio2.png" alt="Custom Development" class="card-image">
-<div class="card-content">
-<div class="portal-title">Custom Development</div>
-<div class="portal-desc">
-Secure enterprise-grade systems built for African operational environments.
-</div>
-</div>
-</div>
+<article class="portal-card">
 
-<div class="portal-card">
-<img src="bash.jpg" alt="Africa Institution of Technology" class="card-image">
-<div class="card-content">
-<div class="portal-title">Africa Institution of Technology</div>
-<div class="portal-desc">
-Practical digital skills and real-world engineering training.
-</div>
-</div>
+<div class="card-image-wrapper">
+
+<img
+src="ncia.jpg"
+alt="NewEra Central Intelligence Agency operational intelligence technology ecosystem"
+class="card-image"
+loading="lazy"
+>
+
+<div class="card-overlay"></div>
+
+<div class="status">
+PILOT
 </div>
 
 </div>
+
+<div class="card-content">
+
+<div class="portal-title">
+NewEra Central Intelligence Agency
+</div>
+
+<div class="portal-desc">
+An operational intelligence technology ecosystem designed to support
+structured intelligence workflows, information management, operational
+analysis, secure access and data-driven decision support.
+</div>
+
+<a
+
+
+</div>
+
+</article>
+
+
+<!-- =================================
+     02 — NEWERA INVESTIGATORS
+================================= -->
+
+<article class="portal-card">
+
+<div class="card-image-wrapper">
+
+<img
+src="new.jpg"
+alt="NewEra Investigators digital investigation and case management system"
+class="card-image"
+loading="lazy"
+>
+
+<div class="card-overlay"></div>
+
+<div class="status">
+OPERATIONAL SYSTEM
+</div>
+
+</div>
+
+<div class="card-content">
+
+<div class="portal-title">
+NewEra Investigators
+</div>
+
+<div class="portal-desc">
+A digital investigation and operational reporting ecosystem supporting
+case management, incident reporting, forensic workflows, medical reporting
+and structured investigative records.
+</div>
+
+
+
+</div>
+
+</article>
+
+
+<!-- =================================
+     03 — AFRICASPANI
+================================= -->
+
+<article class="portal-card">
+
+<div class="card-image-wrapper">
+
+<img
+src="span.jpg"
+alt="AfricaSpani Database digital workforce attendance and workplace identity system"
+class="card-image"
+loading="lazy"
+>
+
+<div class="card-overlay"></div>
+
+<div class="status">
+PILOT
+</div>
+
+</div>
+
+<div class="card-content">
+
+<div class="portal-title">
+AfricaSpani Database
+</div>
+
+<div class="portal-desc">
+A workforce technology platform combining digital workplace identity,
+QR verification, attendance management, labour registration, checkout
+tracking and operational workforce telemetry.
+</div>
+
+
+</div>
+
+</article>
+
+
+<!-- =================================
+     04 — BLACK EMPOWERMENT
+================================= -->
+
+<article class="portal-card">
+
+<div class="card-image-wrapper">
+
+<img
+src="black.jpg"
+alt="Black Empowerment Portal digital education and student access platform"
+class="card-image"
+loading="lazy"
+>
+
+<div class="card-overlay"></div>
+
+<div class="status">
+LIVE PLATFORM
+</div>
+
+</div>
+
+<div class="card-content">
+
+<div class="portal-title">
+Black Empowerment Portal
+</div>
+
+<div class="portal-desc">
+A digital access platform connecting students with university and TVET
+information, study choices, application assistance, processing workflows
+and application tracking.
+</div>
+
+<a
+href="https://blackempower.netlify.app/"
+target="_blank"
+rel="noopener noreferrer"
+class="solution-btn"
+aria-label="Visit Black Empowerment Portal"
+>
+Visit Portal
+<i class="fas fa-external-link-alt"></i>
+</a>
+
+</div>
+
+</article>
+
+
+<!-- =================================
+     05 — LUXURY LIFESTYLES
+================================= -->
+
+<article class="portal-card">
+
+<div class="card-image-wrapper">
+
+<img
+src="banner1.png"
+alt="Luxury Lifestyles ecommerce technology platform"
+class="card-image"
+loading="lazy"
+>
+
+<div class="card-overlay"></div>
+
+<div class="status">
+CLIENT PLATFORM
+</div>
+
+</div>
+
+<div class="card-content">
+
+<div class="portal-title">
+Luxury Lifestyles
+</div>
+
+<div class="portal-desc">
+A client-focused e-commerce platform demonstrating digital commerce
+engineering, product presentation, order management, Firebase infrastructure
+and AI-assisted creative workflows.
+</div>
+
+<a
+href="https://luxurylifestyles.netlify.app"
+target="_blank"
+rel="noopener noreferrer"
+class="solution-btn"
+aria-label="Visit Luxury Lifestyles ecommerce platform"
+>
+Visit Client
+<i class="fas fa-external-link-alt"></i>
+</a>
+
+</div>
+
+</article>
+
+
+<!-- =================================
+     06 — BONVINCO TACTICAL RESPONSE
+================================= -->
+
+<article class="portal-card">
+
+<div class="card-image-wrapper">
+
+<img
+src="bonvinco.jpg"
+alt="Bonvinco Tactical Response Gen 3.5 digital transformation platform"
+class="card-image"
+loading="lazy"
+>
+
+<div class="card-overlay"></div>
+
+<div class="status">
+GEN 3.5 • LAUNCHED
+</div>
+
+</div>
+
+<div class="card-content">
+
+<div class="portal-title">
+Bonvinco Tactical Response Gen 3.5
+</div>
+
+<div class="portal-desc">
+A digital transformation ecosystem engineered for a security operations
+environment, combining modern web infrastructure, operational technology,
+UX engineering, performance optimisation, SEO and digital standardisation.
+</div>
+
+<a
+href="https://bonvinco.com"
+target="_blank"
+rel="noopener noreferrer"
+class="solution-btn"
+aria-label="Visit Bonvinco Tactical Response"
+>
+Visit Platform
+<i class="fas fa-external-link-alt"></i>
+</a>
+
+</div>
+
+</article>
+
+
+<!-- =================================
+     07 — BOVINCO HOLDINGS
+================================= -->
+
+<article class="portal-card">
+
+<div class="card-image-wrapper">
+
+<img
+src="bovinco.jpg"
+alt="Bovinco Holdings Gen 3.5 digital ecosystem"
+class="card-image"
+loading="lazy"
+>
+
+<div class="card-overlay"></div>
+
+<div class="status">
+GEN 3.5 • LAUNCHED
+</div>
+
+</div>
+
+<div class="card-content">
+
+<div class="portal-title">
+Bovinco Holdings Gen 3.5
+</div>
+
+<div class="portal-desc">
+A corporate digital ecosystem engineered to strengthen Bovinco Holdings'
+online presence through modern UX/UI, structured information architecture,
+responsive engineering, SEO and digital transformation.
+</div>
+
+<a
+href="https://bovincoholdings.com"
+target="_blank"
+rel="noopener noreferrer"
+class="solution-btn"
+aria-label="Visit Bovinco Holdings"
+>
+Visit Platform
+<i class="fas fa-external-link-alt"></i>
+</a>
+
+</div>
+
+</article>
+
+
+</div>
+
+
+<!-- ================================
+     CONSULTATION CTA
+================================ -->
 
 <div class="cta">
-<a href="consult.html">Book Consultation</a>
+
+<p>
+Have an operational challenge that requires a digital system?
+</p>
+
+<a href="consult.html">
+Book Engineering Consultation
+</a>
+
 </div>
 
 </section>
 
+
+<!-- ================================
+     FOOTER
+================================ -->
+
+<footer class="footer">
+
+BlackLogic Technologies —
+Engineering Digital Systems for Real-World Operations.
+
+</footer>
+
+
 <script>
+
 const hamburger = document.getElementById('hamburger');
 const drawer = document.getElementById('drawer');
 
-hamburger.addEventListener('click',()=>{
+function toggleDrawer(){
 drawer.classList.toggle('drawer-open');
+}
+
+hamburger.addEventListener('click', toggleDrawer);
+
+hamburger.addEventListener('keydown', (event)=>{
+
+if(event.key === 'Enter' || event.key === ' '){
+
+event.preventDefault();
+toggleDrawer();
+
+}
+
 });
+
 </script>
 
 </body>
