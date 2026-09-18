@@ -5,22 +5,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>BlackLogic Technologies | Engineering Case Studies</title>
+<title>BlackLogic Technologies | Case Studies</title>
 
-<meta name="description" content="Explore BlackLogic Technologies engineering case studies including Digital OB, NewEra Investigators v2.0, NCIA, AfricaSpani Database and Africa Institution of Technology.">
+<meta name="description" content="Explore BlackLogic Technologies case studies across Business Consulting, Professional Design and Digital Systems Engineering, including Khaya Group, Aziseza Group, Digital OB, NewEra Investigators, NCIA and Africa Institution of Technology.">
 
-<meta name="keywords" content="BlackLogic Technologies case studies, Digital OB, Digital Occurrence Book, NewEra Investigators v2.0, NCIA, NewEra Central Intelligence Agency, AfricaSpani Database, Africa Institution of Technology, software engineering South Africa">
+<meta name="keywords" content="BlackLogic Technologies case studies, BlackLogic Consulting, Khaya Group Pty Ltd, BlackLogic Design, Aziseza Group Pty Ltd, BlackLogic Engineering, Digital OB, NewEra Investigators, NCIA, AfricaSpani Database, Africa Institution of Technology">
 
 <meta name="author" content="BlackLogic Technologies">
 <meta name="robots" content="index, follow">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="BlackLogic Technologies | Engineering Case Studies">
-<meta property="og:description" content="Real engineering stories behind BlackLogic Technologies digital systems, operational intelligence platforms and technology initiatives.">
+<meta property="og:title" content="BlackLogic Technologies | Case Studies">
+<meta property="og:description" content="Real client and engineering stories across BlackLogic Consulting, BlackLogic Design and BlackLogic Engineering.">
 <meta property="og:site_name" content="BlackLogic Technologies">
 <meta property="og:locale" content="en_ZA">
 
 <meta name="theme-color" content="#000000">
+
+<link rel="canonical" href="https://blacklogictechnologies.netlify.app/testimonial.html">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -220,14 +222,173 @@ body{
 
 
 /* =================================
-   CASE STUDIES
+   DIVISION SECTION
 ================================= */
 
-.case-studies{
+.division-section{
     max-width:1200px;
     margin:auto;
     padding:35px 20px 90px;
 }
+
+.division-block{
+    margin-bottom:70px;
+}
+
+.division-heading{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin-bottom:28px;
+    padding-bottom:18px;
+    border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.division-icon{
+    width:58px;
+    height:58px;
+    flex-shrink:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:15px;
+
+    background:rgba(0,200,215,.08);
+    border:1px solid rgba(0,200,215,.2);
+
+    color:#00c8d7;
+    font-size:1.4rem;
+}
+
+.division-heading h2{
+    font-size:1.8rem;
+    font-weight:800;
+}
+
+.division-heading p{
+    color:#00c8d7;
+    font-size:.75rem;
+    font-weight:600;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    margin-top:4px;
+}
+
+
+/* =================================
+   CONSULTING / DESIGN CASE
+================================= */
+
+.client-case{
+    background:#0b0b0b;
+    border:1px solid rgba(0,200,215,.15);
+    border-radius:22px;
+    padding:35px;
+    transition:.35s ease;
+}
+
+.client-case:hover{
+    border-color:rgba(0,200,215,.32);
+    box-shadow:0 0 30px rgba(0,200,215,.08);
+}
+
+.client-case-header{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin-bottom:25px;
+}
+
+.client-case-icon{
+    width:58px;
+    height:58px;
+    flex-shrink:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:15px;
+
+    background:rgba(0,200,215,.08);
+    border:1px solid rgba(0,200,215,.2);
+
+    color:#00c8d7;
+    font-size:1.35rem;
+}
+
+.client-case-header h3{
+    font-size:1.35rem;
+}
+
+.client-case-header p{
+    color:#00c8d7;
+    font-size:.78rem;
+    font-weight:600;
+    margin-top:4px;
+}
+
+.client-case-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+}
+
+.client-case-section h4{
+    color:#00c8d7;
+    font-size:.88rem;
+    text-transform:uppercase;
+    letter-spacing:1.4px;
+    margin-bottom:12px;
+}
+
+.client-case-section p{
+    color:#999;
+    font-size:.9rem;
+    line-height:1.85;
+}
+
+.client-case-section ul{
+    list-style:none;
+    margin-top:10px;
+}
+
+.client-case-section li{
+    color:#999;
+    font-size:.88rem;
+    line-height:1.8;
+    padding:4px 0;
+}
+
+.client-case-section li i{
+    color:#00c8d7;
+    margin-right:9px;
+}
+
+.client-status{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    margin-top:22px;
+
+    padding:8px 14px;
+    border-radius:25px;
+
+    background:rgba(0,200,215,.07);
+    border:1px solid rgba(0,200,215,.18);
+
+    color:#00c8d7;
+    font-size:.72rem;
+    font-weight:600;
+}
+
+
+/* =================================
+   ENGINEERING CASE STUDIES
+================================= */
 
 .case-study{
     background:#0b0b0b;
@@ -486,7 +647,7 @@ body{
 
 
 /* =================================
-   CLOSING STATEMENT
+   CLOSING
 ================================= */
 
 .closing{
@@ -543,6 +704,7 @@ body{
         font-size:2.3rem;
     }
 
+    .client-case-grid,
     .case-grid{
         grid-template-columns:1fr;
         gap:25px;
@@ -571,6 +733,18 @@ body{
 
     .hero p{
         font-size:.88rem;
+    }
+
+    .division-heading{
+        align-items:flex-start;
+    }
+
+    .division-heading h2{
+        font-size:1.4rem;
+    }
+
+    .client-case{
+        padding:25px;
     }
 
     .case-header{
@@ -631,10 +805,10 @@ aria-label="Main navigation"
 
 <a href="landing.html">
 <i class="fas fa-layer-group"></i>
-Solutions
+Infrastructure Solutions
 </a>
 
-<a href="capabilities.html">
+<a href="capable.html">
 <i class="fas fa-microchip"></i>
 Engineering Capabilities
 </a>
@@ -670,13 +844,14 @@ BLACKLOGIC TECHNOLOGIES
 </div>
 
 <h1>
-Engineering
-<span>Case Studies</span>
+Case
+<span>Studies</span>
 </h1>
 
 <p>
-Real engineering stories behind the digital systems, intelligence
-platforms and technology initiatives developed by BlackLogic Technologies.
+Evidence of how BlackLogic Technologies applies business consultation,
+professional design and digital systems engineering to real-world
+organisations, requirements and problems.
 </p>
 
 </div>
@@ -691,29 +866,340 @@ platforms and technology initiatives developed by BlackLogic Technologies.
 <section class="intro">
 
 <div class="intro-label">
-Engineering Evidence
+BlackLogic Evidence
 </div>
 
 <h2>
 We don't just present what we built.
-We document <span>why we built it.</span>
+We document <span>the work behind it.</span>
 </h2>
 
 <p>
-Every BlackLogic system begins with a problem, an operational requirement
-or an opportunity for improvement. These case studies document the
-engineering journey from problem understanding and system design through
-development, testing, deployment and continuous improvement.
+Our case studies show how different BlackLogic divisions contribute to
+real engagements — from business formalisation and professional design
+through to the engineering of digital systems and operational technology.
 </p>
 
 </section>
 
 
 <!-- =================================
-     CASE STUDIES
+     DIVISION CASE STUDIES
 ================================= -->
 
-<section class="case-studies">
+<section class="division-section">
+
+
+<!-- =================================
+     BLACKLOGIC CONSULTING
+================================= -->
+
+<div class="division-block">
+
+<div class="division-heading">
+
+<div class="division-icon">
+<i class="fas fa-briefcase"></i>
+</div>
+
+<div>
+
+<h2>
+BlackLogic Consulting
+</h2>
+
+<p>
+Business Consultation
+</p>
+
+</div>
+
+</div>
+
+
+<article class="client-case">
+
+<div class="client-case-header">
+
+<div class="client-case-icon">
+<i class="fas fa-building"></i>
+</div>
+
+<div>
+
+<h3>
+KHAYA GROUP (PTY) LTD
+</h3>
+
+<p>
+Business Registration & Formalisation
+</p>
+
+</div>
+
+</div>
+
+
+<div class="client-case-grid">
+
+
+<div class="client-case-section">
+
+<h4>
+The Requirement
+</h4>
+
+<p>
+Khaya Group (Pty) Ltd required support with the formalisation of the
+business and the documentation associated with establishing the company
+as a registered and operational business entity.
+</p>
+
+</div>
+
+
+<div class="client-case-section">
+
+<h4>
+The BlackLogic Response
+</h4>
+
+<p>
+BlackLogic Consulting supported the business through its registration
+and formalisation requirements, including CIPC, SARS, CSD and the
+resulting business documentation.
+</p>
+
+</div>
+
+
+<div class="client-case-section">
+
+<h4>
+Engagement Scope
+</h4>
+
+<ul>
+
+<li>
+<i class="fas fa-check"></i>
+Business registration
+</li>
+
+<li>
+<i class="fas fa-check"></i>
+SARS registration
+</li>
+
+<li>
+<i class="fas fa-check"></i>
+CSD registration
+</li>
+
+<li>
+<i class="fas fa-check"></i>
+Business documentation
+</li>
+
+</ul>
+
+</div>
+
+
+<div class="client-case-section">
+
+<h4>
+Outcome
+</h4>
+
+<p>
+A completed business formalisation engagement resulting in the
+required registration and supporting documentation for the company.
+</p>
+
+<div class="client-status">
+<i class="fas fa-circle"></i>
+Completed Engagement
+</div>
+
+</div>
+
+
+</div>
+
+</article>
+
+</div>
+
+
+<!-- =================================
+     BLACKLOGIC DESIGN
+================================= -->
+
+<div class="division-block">
+
+<div class="division-heading">
+
+<div class="division-icon">
+<i class="fas fa-palette"></i>
+</div>
+
+<div>
+
+<h2>
+BlackLogic Design
+</h2>
+
+<p>
+Professional Design
+</p>
+
+</div>
+
+</div>
+
+
+<article class="client-case">
+
+<div class="client-case-header">
+
+<div class="client-case-icon">
+<i class="fas fa-pen-ruler"></i>
+</div>
+
+<div>
+
+<h3>
+AZISEZA GROUP (PTY) LTD
+</h3>
+
+<p>
+Professional Business Design
+</p>
+
+</div>
+
+</div>
+
+
+<div class="client-case-grid">
+
+
+<div class="client-case-section">
+
+<h4>
+The Requirement
+</h4>
+
+<p>
+AZISEZA GROUP (PTY) LTD required a professional visual identity and
+business communication materials suitable for presenting the company
+professionally across its business activities.
+</p>
+
+</div>
+
+
+<div class="client-case-section">
+
+<h4>
+The BlackLogic Response
+</h4>
+
+<p>
+BlackLogic Design developed a selected company logo concept and extended
+the visual identity into practical business documentation, including
+an invoice template and company profile.
+</p>
+
+</div>
+
+
+<div class="client-case-section">
+
+<h4>
+Design Deliverables
+</h4>
+
+<ul>
+
+<li>
+<i class="fas fa-check"></i>
+Company logo
+</li>
+
+<li>
+<i class="fas fa-check"></i>
+Professional invoice template
+</li>
+
+<li>
+<i class="fas fa-check"></i>
+Company profile / portfolio
+</li>
+
+<li>
+<i class="fas fa-check"></i>
+Digital implementation on the company website
+</li>
+
+</ul>
+
+</div>
+
+
+<div class="client-case-section">
+
+<h4>
+Outcome
+</h4>
+
+<p>
+A consistent set of professional business materials was delivered for
+AZISEZA GROUP, providing a visual identity and reusable documentation
+for ongoing business communication.
+</p>
+
+<div class="client-status">
+<i class="fas fa-circle"></i>
+Completed Design Engagement
+</div>
+
+</div>
+
+
+</div>
+
+</article>
+
+</div>
+
+
+<!-- =================================
+     BLACKLOGIC ENGINEERING
+================================= -->
+
+<div class="division-block">
+
+<div class="division-heading">
+
+<div class="division-icon">
+<i class="fas fa-microchip"></i>
+</div>
+
+<div>
+
+<h2>
+BlackLogic Engineering
+</h2>
+
+<p>
+Digital Systems Engineering
+</p>
+
+</div>
+
+</div>
 
 
 <!-- =================================
@@ -1207,6 +1693,8 @@ Software Development
 </article>
 
 
+</div>
+
 </section>
 
 
@@ -1217,18 +1705,20 @@ Software Development
 <section class="closing">
 
 <div class="closing-icon">
-<i class="fas fa-microchip"></i>
+<i class="fas fa-layer-group"></i>
 </div>
 
 <h2>
-Every case study represents a
-<span>problem solved through engineering.</span>
+Three divisions.
+<span>One BlackLogic ecosystem.</span>
 </h2>
 
 <p>
-From operational systems and intelligence ecosystems to technology
-education, BlackLogic Technologies continues to engineer solutions
-where software, intelligence, design and real-world requirements meet.
+From business formalisation and professional visual communication to
+digital systems, operational intelligence and technology development,
+BlackLogic Technologies applies the right division to the actual
+requirement — connecting consulting, design and engineering where the
+engagement requires it.
 </p>
 
 </section>
@@ -1241,7 +1731,7 @@ where software, intelligence, design and real-world requirements meet.
 <footer class="footer">
 
 BlackLogic Technologies —
-Engineering Digital Systems for Real-World Operations.
+Consulting. Design. Engineering.
 
 </footer>
 

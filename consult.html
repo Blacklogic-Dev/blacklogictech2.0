@@ -5,13 +5,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Consult BlackLogic Technologies | Digital Systems Engineering</title>
+<title>Consult BlackLogic Technologies | Consulting, Design & Engineering</title>
 
 <meta name="description"
-content="Start an engineering consultation with BlackLogic Technologies Pty Ltd for artificial intelligence, software engineering, UX/UI design, systems intelligence and digital transformation.">
+content="Start a consultation with BlackLogic Technologies Pty Ltd for business registration and formalisation, professional design, software engineering, artificial intelligence, UX/UI, digital systems and digital transformation.">
 
 <meta name="keywords"
-content="BlackLogic Technologies, BlackLogic Technologies Pty Ltd, software engineering South Africa, AI engineering, systems intelligence, digital transformation, UX UI design, technology consultation">
+content="BlackLogic Technologies, business registration South Africa, CIPC registration, SARS registration, CSD registration, business consultation, professional design, logo design, company profile, software engineering South Africa, AI engineering, digital systems, UX UI design, digital transformation">
 
 <meta name="author" content="BlackLogic Technologies Pty Ltd">
 
@@ -335,6 +335,10 @@ label{
     margin-bottom:8px;
 }
 
+.required{
+    color:#00c8d7;
+}
+
 input,
 select,
 textarea{
@@ -382,6 +386,149 @@ textarea{
 textarea::placeholder,
 input::placeholder{
     color:#555;
+}
+
+
+/* =========================================
+   DIVISION SELECTOR
+========================================= */
+
+.division-field{
+    margin-bottom:25px;
+}
+
+.division-label{
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    color:#fff;
+
+    font-weight:600;
+
+    margin-bottom:10px;
+}
+
+.division-label i{
+    color:#00c8d7;
+}
+
+.division-help{
+    color:#666;
+
+    font-size:.72rem;
+
+    line-height:1.6;
+
+    margin-top:7px;
+}
+
+.division-options{
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:12px;
+
+    margin-top:10px;
+}
+
+.division-option{
+    position:relative;
+}
+
+.division-option input{
+    position:absolute;
+
+    opacity:0;
+
+    pointer-events:none;
+}
+
+.division-option label{
+    min-height:120px;
+
+    margin:0;
+
+    padding:20px 15px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    gap:9px;
+
+    border-radius:14px;
+
+    background:#111;
+
+    border:1px solid rgba(255,255,255,.07);
+
+    color:#999;
+
+    cursor:pointer;
+
+    transition:.3s ease;
+}
+
+.division-option label i{
+    color:#666;
+
+    font-size:1.35rem;
+
+    transition:.3s ease;
+}
+
+.division-option label strong{
+    color:#ddd;
+
+    font-size:.78rem;
+
+    line-height:1.4;
+}
+
+.division-option label span{
+    color:#666;
+
+    font-size:.62rem;
+
+    line-height:1.4;
+}
+
+.division-option label:hover{
+    border-color:rgba(0,200,215,.25);
+
+    transform:translateY(-2px);
+}
+
+.division-option input:checked + label{
+    background:rgba(0,200,215,.07);
+
+    border-color:rgba(0,200,215,.65);
+
+    box-shadow:
+        0 0 0 1px rgba(0,200,215,.12),
+        0 8px 25px rgba(0,200,215,.06);
+}
+
+.division-option input:checked + label i{
+    color:#00c8d7;
+}
+
+.division-option input:checked + label strong{
+    color:#fff;
+}
+
+.division-option input:checked + label span{
+    color:#999;
 }
 
 
@@ -643,9 +790,11 @@ button:hover{
 
     margin-top:6px;
 
-    font-size:.95rem;
+    font-size:.9rem;
 
     color:#fff;
+
+    line-height:1.7;
 }
 
 
@@ -753,11 +902,26 @@ button:hover{
 
     .form-row{
         grid-template-columns:1fr;
+
         gap:0;
     }
 
     .actions{
         grid-template-columns:1fr;
+    }
+
+    .division-options{
+        grid-template-columns:1fr;
+    }
+
+    .division-option label{
+        min-height:95px;
+
+        flex-direction:row;
+
+        text-align:left;
+
+        justify-content:flex-start;
     }
 
 }
@@ -802,6 +966,12 @@ a:focus{
     outline-offset:3px;
 }
 
+.division-option input:focus + label{
+    outline:2px solid #00c8d7;
+
+    outline-offset:3px;
+}
+
 </style>
 
 </head>
@@ -819,7 +989,7 @@ a:focus{
     <div class="brand">
 
         <div class="brand-icon">
-            <i class="fas fa-microchip"></i>
+            <i class="fas fa-circle-nodes"></i>
         </div>
 
         <div class="brand-text">
@@ -829,7 +999,7 @@ a:focus{
             </strong>
 
             <span>
-                DIGITAL SYSTEMS ENGINEERING
+                CONSULTING • DESIGN • ENGINEERING
             </span>
 
         </div>
@@ -859,14 +1029,14 @@ a:focus{
     </div>
 
     <h1>
-        Let's Engineer
-        <span>What Comes Next.</span>
+        Let's Build
+        <span>What's Next.</span>
     </h1>
 
     <p>
-        Every meaningful digital system begins with understanding the
-        problem. Tell us what you're trying to solve, improve or build —
-        and let's explore the engineering path together.
+        Whether you need to formalise your business, strengthen your
+        professional identity or engineer a digital system, start by
+        telling BlackLogic what you need.
     </p>
 
 </section>
@@ -884,14 +1054,13 @@ a:focus{
 
     <h2>
         We don't start with a product.
-        We start with the <span>problem.</span>
+        We start with the <span>requirement.</span>
     </h2>
 
     <p>
-        BlackLogic Technologies brings together Artificial Intelligence
-        Engineering, Software Engineering, UX/UI Design and Systems
-        Intelligence Engineering to turn real-world requirements into
-        usable digital systems.
+        BlackLogic Technologies brings together Business Consultation,
+        Professional Design and Digital Systems Engineering to help
+        organisations move from requirements to practical outcomes.
     </p>
 
 </section>
@@ -913,13 +1082,14 @@ a:focus{
     <div class="form-heading">
 
         <h2>
-            Start an Engineering Conversation
+            Start a BlackLogic Consultation
         </h2>
 
         <p>
-            Provide a few details below. Your information will be
-            automatically prepared into a consultation request that you
-            can send directly to BlackLogic Technologies.
+            Select the BlackLogic division you would like to consult,
+            then provide a few details about your requirement. Your
+            information will be prepared into a consultation request
+            that you can send directly to BlackLogic Technologies.
         </p>
 
     </div>
@@ -927,6 +1097,129 @@ a:focus{
 
     <form id="consultForm">
 
+
+        <!-- =================================
+             DIVISION
+        ================================== -->
+
+        <div class="division-field">
+
+            <div class="division-label">
+
+                <i class="fas fa-layer-group"></i>
+
+                <span>
+                    What would you like to consult BlackLogic about?
+                    <span class="required">*</span>
+                </span>
+
+            </div>
+
+
+            <div class="division-options">
+
+
+                <!-- CONSULTING -->
+
+                <div class="division-option">
+
+                    <input
+                        type="radio"
+                        id="consulting"
+                        name="division"
+                        value="BlackLogic Consulting — Business Consultation"
+                        required
+                    >
+
+                    <label for="consulting">
+
+                        <i class="fas fa-file-signature"></i>
+
+                        <strong>
+                            BlackLogic Consulting
+                        </strong>
+
+                        <span>
+                            Business Registration & Formalisation
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- DESIGN -->
+
+                <div class="division-option">
+
+                    <input
+                        type="radio"
+                        id="design"
+                        name="division"
+                        value="BlackLogic Design — Professional Design"
+                        required
+                    >
+
+                    <label for="design">
+
+                        <i class="fas fa-pen-ruler"></i>
+
+                        <strong>
+                            BlackLogic Design
+                        </strong>
+
+                        <span>
+                            Professional Design & Business Materials
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- ENGINEERING -->
+
+                <div class="division-option">
+
+                    <input
+                        type="radio"
+                        id="engineering"
+                        name="division"
+                        value="BlackLogic Engineering — Digital Systems Engineering"
+                        required
+                    >
+
+                    <label for="engineering">
+
+                        <i class="fas fa-microchip"></i>
+
+                        <strong>
+                            BlackLogic Engineering
+                        </strong>
+
+                        <span>
+                            Digital Systems, AI, Software & UX/UI
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="division-help">
+                Select the division that best matches what you need.
+                You can explain the full requirement below.
+            </div>
+
+        </div>
+
+
+        <!-- =================================
+             PERSONAL / BUSINESS DETAILS
+        ================================== -->
 
         <div class="form-row">
 
@@ -941,6 +1234,7 @@ a:focus{
                     type="text"
                     id="name"
                     placeholder="Your full name"
+                    autocomplete="name"
                     required
                 >
 
@@ -957,6 +1251,7 @@ a:focus{
                     type="text"
                     id="company"
                     placeholder="Company name"
+                    autocomplete="organization"
                     required
                 >
 
@@ -979,6 +1274,7 @@ a:focus{
                     type="tel"
                     id="contact"
                     placeholder="Phone / WhatsApp number"
+                    autocomplete="tel"
                     required
                 >
 
@@ -995,6 +1291,7 @@ a:focus{
                     type="email"
                     id="email"
                     placeholder="you@company.com"
+                    autocomplete="email"
                     required
                 >
 
@@ -1003,6 +1300,10 @@ a:focus{
 
         </div>
 
+
+        <!-- =================================
+             INDUSTRY
+        ================================== -->
 
         <div class="field">
 
@@ -1057,20 +1358,28 @@ a:focus{
         </div>
 
 
+        <!-- =================================
+             REQUIREMENT
+        ================================== -->
+
         <div class="field">
 
             <label for="challenge">
-                What are you trying to solve?
+                Tell us what you need
             </label>
 
             <textarea
                 id="challenge"
-                placeholder="Tell us about the problem, workflow, system or opportunity you want to explore..."
+                placeholder="Describe the business requirement, design work, registration/formalisation need, workflow, system, problem or opportunity you want to discuss..."
                 required
             ></textarea>
 
         </div>
 
+
+        <!-- =================================
+             ACTIONS
+        ================================== -->
 
         <div class="actions">
 
@@ -1121,7 +1430,8 @@ a:focus{
 
         <p>
             Choose the channel that works best for your consultation.
-            Our contact details are also available for direct enquiries.
+            You can also contact BlackLogic directly using the details
+            below.
         </p>
 
     </div>
@@ -1220,7 +1530,7 @@ a:focus{
             <!-- Replace href values with official profile URLs -->
 
             <a
-                href="#"
+                href="https://www.facebook.com/profile.php?id=61583334487516"
                 class="social-link"
                 aria-label="BlackLogic Technologies on Facebook"
                 title="Facebook"
@@ -1232,7 +1542,7 @@ a:focus{
 
 
             <a
-                href="#"
+                href="https://www.tiktok.com/@blacklogictech?_r=1&_t=ZS-99phzFKw2mS"
                 class="social-link"
                 aria-label="BlackLogic Technologies on TikTok"
                 title="TikTok"
@@ -1244,7 +1554,7 @@ a:focus{
 
 
             <a
-                href="#"
+                href="https://www.instagram.com/blacklogic_technologies?stkn=MTBqMThhbjlpNTQyMA=="
                 class="social-link"
                 aria-label="BlackLogic Technologies on Instagram"
                 title="Instagram"
@@ -1264,11 +1574,11 @@ a:focus{
     <div class="business-card">
 
         <small>
-            Engineering Focus
+            BlackLogic Divisions
         </small>
 
         <strong>
-            AI • Software • UX/UI • Systems Intelligence
+            Consulting • Design • Engineering
         </strong>
 
     </div>
@@ -1293,19 +1603,19 @@ a:focus{
     <div class="trust-grid">
 
         <div class="trust-item">
-            Engineering-led
+            Business Consultation
         </div>
 
         <div class="trust-item">
-            AI & Software
+            Professional Design
         </div>
 
         <div class="trust-item">
-            Cloud Systems
+            Software Engineering
         </div>
 
         <div class="trust-item">
-            Systems Intelligence
+            Artificial Intelligence
         </div>
 
         <div class="trust-item">
@@ -1313,7 +1623,7 @@ a:focus{
         </div>
 
         <div class="trust-item">
-            Digital Transformation
+            Digital Infrastructure
         </div>
 
     </div>
@@ -1333,7 +1643,7 @@ a:focus{
 
     <br>
 
-    Engineering Digital Systems for Real-World Operations.
+    Consulting. Design. Engineering.
 
     <br><br>
 
@@ -1351,9 +1661,11 @@ BLACKLOGIC CONSULTATION ENGINE
 */
 
 
-const form = document.getElementById("consultForm");
+const form =
+    document.getElementById("consultForm");
 
-const emailBtn = document.getElementById("emailBtn");
+const emailBtn =
+    document.getElementById("emailBtn");
 
 
 /*
@@ -1362,7 +1674,8 @@ COMPANY CONTACT DETAILS
 -----------------------------------------------
 */
 
-const WHATSAPP_NUMBER = "27606614909";
+const WHATSAPP_NUMBER =
+    "27606614909";
 
 const COMPANY_EMAIL =
     "blacklogictechnologies@gmail.com";
@@ -1376,25 +1689,53 @@ FORM DATA
 
 function getFormData(){
 
+    const selectedDivision =
+        document.querySelector(
+            'input[name="division"]:checked'
+        );
+
     return {
 
+        division:
+            selectedDivision
+                ? selectedDivision.value
+                : "",
+
         name:
-            document.getElementById("name").value.trim(),
+            document
+                .getElementById("name")
+                .value
+                .trim(),
 
         company:
-            document.getElementById("company").value.trim(),
+            document
+                .getElementById("company")
+                .value
+                .trim(),
 
         contact:
-            document.getElementById("contact").value.trim(),
+            document
+                .getElementById("contact")
+                .value
+                .trim(),
 
         email:
-            document.getElementById("email").value.trim(),
+            document
+                .getElementById("email")
+                .value
+                .trim(),
 
         industry:
-            document.getElementById("industry").value.trim(),
+            document
+                .getElementById("industry")
+                .value
+                .trim(),
 
         challenge:
-            document.getElementById("challenge").value.trim()
+            document
+                .getElementById("challenge")
+                .value
+                .trim()
 
     };
 
@@ -1417,6 +1758,21 @@ function validateForm(){
 
     }
 
+    const selectedDivision =
+        document.querySelector(
+            'input[name="division"]:checked'
+        );
+
+    if(!selectedDivision){
+
+        alert(
+            "Please select the BlackLogic division you would like to consult."
+        );
+
+        return false;
+
+    }
+
     return true;
 
 }
@@ -1432,9 +1788,12 @@ function createMessage(data){
 
     return `Hello BlackLogic Technologies,
 
-I would like to request an engineering consultation.
+I would like to request a consultation.
 
-CONSULTATION REQUEST
+BLACKLOGIC CONSULTATION REQUEST
+
+Division:
+${data.division}
 
 Name & Surname:
 ${data.name}
@@ -1451,12 +1810,13 @@ ${data.email}
 Industry / Environment:
 ${data.industry}
 
-Problem / Requirement:
+Requirement / Problem:
 ${data.challenge}
 
-I would like to discuss how BlackLogic Technologies could help engineer a suitable digital solution.
+I would like to discuss my requirement with the relevant BlackLogic team and understand the appropriate next steps.
 
 Thank you.`;
+
 
 }
 
@@ -1467,28 +1827,35 @@ WHATSAPP
 -----------------------------------------------
 */
 
-form.addEventListener("submit", function(event){
+form.addEventListener(
+    "submit",
+    function(event){
 
-    event.preventDefault();
+        event.preventDefault();
 
-    if(!validateForm()){
-        return;
+        if(!validateForm()){
+
+            return;
+
+        }
+
+        const data =
+            getFormData();
+
+        const message =
+            createMessage(data);
+
+        const whatsappURL =
+            `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
+        window.open(
+            whatsappURL,
+            "_blank",
+            "noopener,noreferrer"
+        );
+
     }
-
-    const data = getFormData();
-
-    const message = createMessage(data);
-
-    const whatsappURL =
-        `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-
-    window.open(
-        whatsappURL,
-        "_blank",
-        "noopener,noreferrer"
-    );
-
-});
+);
 
 
 /*
@@ -1497,25 +1864,33 @@ EMAIL
 -----------------------------------------------
 */
 
-emailBtn.addEventListener("click", function(){
+emailBtn.addEventListener(
+    "click",
+    function(){
 
-    if(!validateForm()){
-        return;
+        if(!validateForm()){
+
+            return;
+
+        }
+
+        const data =
+            getFormData();
+
+        const message =
+            createMessage(data);
+
+        const subject =
+            `BlackLogic Consultation — ${data.division.split(" — ")[0]} — ${data.company}`;
+
+        const emailURL =
+            `mailto:${COMPANY_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+
+        window.location.href =
+            emailURL;
+
     }
-
-    const data = getFormData();
-
-    const message = createMessage(data);
-
-    const subject =
-        `Engineering Consultation Request — ${data.company}`;
-
-    const emailURL =
-        `mailto:${COMPANY_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
-
-    window.location.href = emailURL;
-
-});
+);
 
 
 /*
@@ -1527,7 +1902,6 @@ Replace the "#" values in the HTML with the
 official BlackLogic Technologies profiles.
 -----------------------------------------------
 */
-
 
 </script>
 

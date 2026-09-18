@@ -5,16 +5,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Company Profile | Blacklogic Technologies Hardware and Projects Pty Ltd</title>
+<title>Company Profile | BlackLogic Technologies</title>
 
 <meta name="description"
-content="Official company profile of Blacklogic Technologies Hardware and Projects Pty Ltd, a South African technology company engineering artificial intelligence, software, UX/UI and systems intelligence solutions.">
+content="Official company profile of BlackLogic Technologies Hardware and Projects Pty Ltd, a South African company providing business consultation, professional design and digital systems engineering.">
 
 <meta name="keywords"
-content="Blacklogic Technologies Hardware and Projects Pty Ltd, BlackLogic Technologies, South Africa technology company, AI engineering, software engineering, systems intelligence, digital transformation, CIPC, CSD, SARS">
+content="BlackLogic Technologies Hardware and Projects Pty Ltd, BlackLogic Technologies, South Africa technology company, business consultation, business registration, professional design, logo design, company profile, software engineering, AI engineering, systems intelligence, digital transformation">
 
 <meta name="author"
-content="Blacklogic Technologies Hardware and Projects Pty Ltd">
+content="BlackLogic Technologies Hardware and Projects Pty Ltd">
 
 <meta name="robots"
 content="index, follow">
@@ -23,7 +23,7 @@ content="index, follow">
 content="#050505">
 
 <link rel="canonical"
-href="https://blacklogictechnologies.netlify.app/about.html">
+href="https://blacklogictechnologies.netlify.app/profile.html">
 
 <link rel="preconnect"
 href="https://fonts.googleapis.com">
@@ -318,7 +318,7 @@ header{
 
 .hero p{
 
-    max-width:780px;
+    max-width:800px;
 
     margin:auto;
 
@@ -385,12 +385,12 @@ header{
 
 
 /* =========================================
-   LEGAL FOUNDATION
+   DIVISIONS
 ========================================= */
 
-.foundation{
+.divisions{
 
-    padding:80px 20px;
+    padding:85px 20px;
 
     background:#080808;
 
@@ -400,7 +400,7 @@ header{
 
 }
 
-.foundation-inner{
+.divisions-inner{
 
     max-width:1150px;
 
@@ -421,6 +421,173 @@ header{
     text-transform:uppercase;
 
     margin-bottom:12px;
+
+}
+
+.divisions h2{
+
+    font-size:2rem;
+
+    margin-bottom:15px;
+
+}
+
+.section-intro{
+
+    max-width:780px;
+
+    color:#777;
+
+    font-size:.88rem;
+
+    line-height:1.8;
+
+    margin-bottom:40px;
+
+}
+
+.division-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:20px;
+
+}
+
+.division-card{
+
+    background:#0d0d0d;
+
+    border:1px solid rgba(0,200,215,.14);
+
+    border-radius:18px;
+
+    padding:30px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    transition:.35s ease;
+
+}
+
+.division-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:2px;
+
+    background:#00c8d7;
+
+    transform:scaleX(0);
+
+    transform-origin:left;
+
+    transition:.35s ease;
+
+}
+
+.division-card:hover{
+
+    transform:translateY(-6px);
+
+    border-color:rgba(0,200,215,.3);
+
+    box-shadow:0 0 25px rgba(0,200,215,.07);
+
+}
+
+.division-card:hover::before{
+
+    transform:scaleX(1);
+
+}
+
+.division-icon{
+
+    width:55px;
+
+    height:55px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:14px;
+
+    background:rgba(0,200,215,.07);
+
+    border:1px solid rgba(0,200,215,.17);
+
+    color:#00c8d7;
+
+    font-size:1.35rem;
+
+    margin-bottom:22px;
+
+}
+
+.division-card h3{
+
+    font-size:1.1rem;
+
+    margin-bottom:8px;
+
+}
+
+.division-role{
+
+    color:#00c8d7;
+
+    font-size:.74rem;
+
+    font-weight:600;
+
+    margin-bottom:15px;
+
+}
+
+.division-card p{
+
+    color:#888;
+
+    font-size:.82rem;
+
+    line-height:1.8;
+
+}
+
+
+/* =========================================
+   LEGAL FOUNDATION
+========================================= */
+
+.foundation{
+
+    padding:80px 20px;
+
+    background:#050505;
+
+}
+
+.foundation-inner{
+
+    max-width:1150px;
+
+    margin:auto;
 
 }
 
@@ -832,22 +999,22 @@ header{
 
 
 /* =========================================
-   FINAL MESSAGE
+   PHILOSOPHY
 ========================================= */
 
-.final{
+.philosophy{
 
     max-width:1000px;
 
     margin:auto;
 
-    padding:110px 25px;
+    padding:100px 25px;
 
     text-align:center;
 
 }
 
-.final-icon{
+.philosophy-icon{
 
     color:#00c8d7;
 
@@ -857,9 +1024,9 @@ header{
 
 }
 
-.final h2{
+.philosophy h2{
 
-    font-size:2.5rem;
+    font-size:2.4rem;
 
     line-height:1.4;
 
@@ -867,13 +1034,13 @@ header{
 
 }
 
-.final h2 span{
+.philosophy h2 span{
 
     color:#00c8d7;
 
 }
 
-.final p{
+.philosophy p{
 
     max-width:800px;
 
@@ -887,7 +1054,7 @@ header{
 
 }
 
-.final-line{
+.philosophy-line{
 
     width:90px;
 
@@ -899,9 +1066,94 @@ header{
 
 }
 
-.final strong{
+.philosophy strong{
 
     color:#fff;
+
+}
+
+
+/* =========================================
+   CTA
+========================================= */
+
+.cta{
+
+    padding:70px 20px 100px;
+
+    text-align:center;
+
+}
+
+.cta-box{
+
+    max-width:900px;
+
+    margin:auto;
+
+    padding:45px 30px;
+
+    border-radius:20px;
+
+    background:#0b0b0b;
+
+    border:1px solid rgba(0,200,215,.14);
+
+}
+
+.cta-box h2{
+
+    font-size:1.8rem;
+
+    margin-bottom:12px;
+
+}
+
+.cta-box p{
+
+    color:#777;
+
+    font-size:.85rem;
+
+    line-height:1.8;
+
+    max-width:650px;
+
+    margin:0 auto 25px;
+
+}
+
+.cta-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:9px;
+
+    padding:14px 25px;
+
+    border-radius:40px;
+
+    background:#00c8d7;
+
+    color:#000;
+
+    text-decoration:none;
+
+    font-size:.82rem;
+
+    font-weight:700;
+
+    transition:.3s ease;
+
+}
+
+.cta-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 8px 25px rgba(0,200,215,.14);
 
 }
 
@@ -937,11 +1189,11 @@ footer strong{
    RESPONSIVE
 ========================================= */
 
-@media(max-width:850px){
+@media(max-width:900px){
 
-    .hero h1{
+    .division-grid{
 
-        font-size:2.5rem;
+        grid-template-columns:1fr;
 
     }
 
@@ -1018,9 +1270,15 @@ footer strong{
 
     }
 
-    .final h2{
+    .philosophy h2{
 
         font-size:1.9rem;
+
+    }
+
+    .cta-box{
+
+        padding:35px 22px;
 
     }
 
@@ -1088,10 +1346,10 @@ footer strong{
 
         <h1>
 
-            More Than a Company.
+            Business.
 
             <span>
-                An Engineering Practice.
+                Design. Engineering.
             </span>
 
         </h1>
@@ -1099,10 +1357,10 @@ footer strong{
         <p>
 
             Blacklogic Technologies Hardware and Projects Pty Ltd
-            is a South African technology company focused on engineering
-            digital systems that solve real-world problems across
-            software, artificial intelligence, design, cloud technology
-            and systems intelligence.
+            is a South African company bringing together business
+            consultation, professional design and digital systems
+            engineering to help organisations move from requirements
+            to practical outcomes.
 
         </p>
 
@@ -1125,18 +1383,146 @@ footer strong{
 
     <h2>
 
-        Our identity is not defined by
-        <span>what we sell.</span>
+        More than what we provide.
+        <span>
+            It is how we solve.
+        </span>
 
     </h2>
 
     <p>
 
-        It is defined by the problems we are capable of understanding,
-        the systems we are capable of engineering and the people who
-        bring those systems to life.
+        BlackLogic Technologies is structured around three connected
+        capabilities. We help organisations formalise their business,
+        communicate professionally and engineer digital systems around
+        real-world requirements.
 
     </p>
+
+</section>
+
+
+<!-- =========================================
+     DIVISIONS
+========================================= -->
+
+<section class="divisions">
+
+<div class="divisions-inner">
+
+    <div class="section-label">
+        BlackLogic Ecosystem
+    </div>
+
+    <h2>
+        Three Divisions. One Company.
+    </h2>
+
+    <p class="section-intro">
+
+        Each BlackLogic division addresses a different part of an
+        organisation's journey. The divisions can operate independently
+        while also working together when a requirement crosses
+        business, design and technology.
+
+    </p>
+
+
+    <div class="division-grid">
+
+
+        <!-- CONSULTING -->
+
+        <article class="division-card">
+
+            <div class="division-icon">
+
+                <i class="fas fa-file-signature"></i>
+
+            </div>
+
+            <h3>
+                BlackLogic Consulting
+            </h3>
+
+            <div class="division-role">
+                Business Consultation
+            </div>
+
+            <p>
+
+                Support across business registration and formalisation
+                requirements, including CIPC, SARS, CSD, B-BBEE and
+                related business documentation.
+
+            </p>
+
+        </article>
+
+
+        <!-- DESIGN -->
+
+        <article class="division-card">
+
+            <div class="division-icon">
+
+                <i class="fas fa-pen-ruler"></i>
+
+            </div>
+
+            <h3>
+                BlackLogic Design
+            </h3>
+
+            <div class="division-role">
+                Professional Design
+            </div>
+
+            <p>
+
+                Professional visual and business communication assets
+                including logos, visual identity, invoices, company
+                profiles, flyers and other materials that help
+                organisations present themselves professionally.
+
+            </p>
+
+        </article>
+
+
+        <!-- ENGINEERING -->
+
+        <article class="division-card">
+
+            <div class="division-icon">
+
+                <i class="fas fa-microchip"></i>
+
+            </div>
+
+            <h3>
+                BlackLogic Engineering
+            </h3>
+
+            <div class="division-role">
+                Digital Systems Engineering
+            </div>
+
+            <p>
+
+                Engineering digital systems, software, artificial
+                intelligence, cloud infrastructure, UX/UI and systems
+                intelligence around real-world organisational
+                requirements.
+
+            </p>
+
+        </article>
+
+
+    </div>
+
+</div>
 
 </section>
 
@@ -1185,8 +1571,8 @@ footer strong{
                 <br><br>
 
                 This is the legal registered company identity
-                behind the BlackLogic Technologies engineering
-                and technology operations.
+                behind the BlackLogic Technologies business,
+                design and engineering operations.
 
             </p>
 
@@ -1257,7 +1643,7 @@ footer strong{
         </div>
 
         <h2>
-            The People Behind the Engineering.
+            The People Behind BlackLogic.
         </h2>
 
         <p>
@@ -1271,7 +1657,7 @@ footer strong{
     <div class="leaders">
 
 
-        <!-- ENGINEER -->
+        <!-- ENGINEERING LEADERSHIP -->
 
         <article class="leader">
 
@@ -1310,16 +1696,16 @@ footer strong{
                 <br><br>
 
                 His role spans the technical lifecycle of a system:
-                understanding the problem, designing the architecture,
-                engineering the technology, deploying the system and
-                continuously improving it.
+                understanding the requirement, designing the
+                architecture, engineering the technology, deploying
+                the system and continuously improving it.
 
             </p>
 
         </article>
 
 
-        <!-- DESIGNER -->
+        <!-- DESIGN LEADERSHIP -->
 
         <article class="leader">
 
@@ -1356,9 +1742,9 @@ footer strong{
 
                 <br><br>
 
-                Her work transforms engineering concepts into
-                understandable, usable and purposeful digital
-                experiences.
+                Her work transforms requirements and engineering
+                concepts into understandable, usable and purposeful
+                digital experiences.
 
             </p>
 
@@ -1371,7 +1757,7 @@ footer strong{
 
 
 <!-- =========================================
-     ENGINEERING IDENTITY
+     IDENTITY
 ========================================= -->
 
 <section class="identity">
@@ -1379,24 +1765,25 @@ footer strong{
 <div class="identity-inner">
 
     <div class="section-label">
-        Our Engineering Identity
+        BlackLogic Engineering
     </div>
 
     <h2>
 
-        Four Disciplines.
+        Four Engineering Disciplines.
 
         <span>
-            One Engineering Philosophy.
+            One Philosophy.
         </span>
 
     </h2>
 
     <p>
 
-        BlackLogic Technologies brings different technical disciplines
-        together around one principle: understand the problem first,
-        then engineer the right system.
+        Engineering remains one of BlackLogic's core capabilities.
+        Different technical disciplines are brought together around
+        one principle: understand the problem first, then engineer
+        the right system.
 
     </p>
 
@@ -1456,12 +1843,12 @@ footer strong{
 
 
 <!-- =========================================
-     FINAL MESSAGE
+     PHILOSOPHY
 ========================================= -->
 
-<section class="final">
+<section class="philosophy">
 
-    <div class="final-icon">
+    <div class="philosophy-icon">
 
         <i class="fas fa-infinity"></i>
 
@@ -1479,14 +1866,15 @@ footer strong{
 
     <p>
 
-        BlackLogic Technologies began with an ambition to use technology
-        to solve problems that matter.
+        BlackLogic Technologies began with an ambition to use
+        practical capabilities to solve problems that matter.
 
         <br><br>
 
-        Today, that ambition is expressed through software systems,
+        Today, that ambition is expressed through business
+        formalisation, professional design, software systems,
         artificial intelligence, cloud infrastructure, operational
-        intelligence, digital experiences and technology education.
+        intelligence and digital experiences.
 
         <br><br>
 
@@ -1503,14 +1891,14 @@ footer strong{
         <br><br>
 
         <strong>
-            Understand the problem.
-            Engineer the system.
-            Improve the world around it.
+            Understand the requirement.
+            Build with purpose.
+            Deliver something useful.
         </strong>
 
     </p>
 
-    <div class="final-line"></div>
+    <div class="philosophy-line"></div>
 
     <p>
 
@@ -1520,9 +1908,45 @@ footer strong{
 
         <br>
 
-        Engineering Digital Systems for Real-World Operations.
+        Consulting. Design. Engineering.
 
     </p>
+
+</section>
+
+
+<!-- =========================================
+     CTA
+========================================= -->
+
+<section class="cta">
+
+    <div class="cta-box">
+
+        <h2>
+            Have a Requirement?
+        </h2>
+
+        <p>
+
+            Whether you need business registration and formalisation,
+            professional design or a digital system, start a
+            consultation with the relevant BlackLogic division.
+
+        </p>
+
+        <a
+            href="consult.html"
+            class="cta-btn"
+        >
+
+            Start a Consultation
+
+            <i class="fas fa-arrow-right"></i>
+
+        </a>
+
+    </div>
 
 </section>
 
@@ -1538,6 +1962,10 @@ footer strong{
     </strong>
 
     <br>
+
+    Consulting • Design • Engineering
+
+    <br><br>
 
     CIPC Registered • CSD Compliant • SARS Compliant
 

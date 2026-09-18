@@ -4,24 +4,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>BlackLogic Technologies | Engineering Capabilities</title>
+<title>BlackLogic Technologies | Consulting, Design & Engineering</title>
 
-<meta name="description" content="Discover the engineering capabilities behind BlackLogic Technologies: Artificial Intelligence Engineering, Software Engineering, UX/UI Design and Systems Intelligence Engineering.">
+<meta name="description" content="Explore BlackLogic Technologies across Business Consulting, Professional Design and Digital Systems Engineering, including AI, software, UX/UI and systems intelligence.">
 
-<meta name="keywords" content="BlackLogic Technologies, Artificial Intelligence Engineering, Software Engineering South Africa, UX UI Design, Systems Intelligence Engineering, AI Software Cloud Engineer, digital systems">
+<meta name="keywords" content="BlackLogic Technologies, Business Consulting South Africa, Business Registration, Professional Design, Software Engineering South Africa, Artificial Intelligence Engineering, UX UI Design, Systems Intelligence Engineering, Digital Systems">
 
 <meta name="author" content="BlackLogic Technologies">
 <meta name="robots" content="index, follow">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="BlackLogic Technologies | Engineering Capabilities">
-<meta property="og:description" content="We engineer digital systems through Artificial Intelligence Engineering, Software Engineering, UX/UI Design and Systems Intelligence Engineering.">
+<meta property="og:title" content="BlackLogic Technologies | Consulting, Design & Engineering">
+<meta property="og:description" content="Business consulting, professional design and digital systems engineering delivered through one technology ecosystem.">
 <meta property="og:site_name" content="BlackLogic Technologies">
 <meta property="og:locale" content="en_ZA">
 
 <meta name="theme-color" content="#000000">
 
-<link rel="canonical" href="https://blacklogictechnologies.netlify.app/">
+<link rel="canonical" href="https://blacklogictechnologies.netlify.app/capable.html">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -109,6 +109,7 @@ body{
     left:0;
 }
 
+
 /* ================================
    HERO
 ================================ */
@@ -121,6 +122,7 @@ body{
     text-align:center;
     position:relative;
     padding:100px 25px 80px;
+
     background:
         radial-gradient(
             circle at center,
@@ -137,6 +139,7 @@ body{
     left:10%;
     right:10%;
     height:1px;
+
     background:linear-gradient(
         90deg,
         transparent,
@@ -146,7 +149,7 @@ body{
 }
 
 .hero-content{
-    max-width:900px;
+    max-width:950px;
     position:relative;
     z-index:2;
 }
@@ -172,20 +175,143 @@ body{
 }
 
 .hero p{
-    max-width:760px;
+    max-width:800px;
     margin:auto;
     color:#aaa;
     font-size:1.05rem;
     line-height:1.9;
 }
 
+
 /* ================================
-   STATEMENT
+   THREE DIVISIONS
+================================ */
+
+.divisions{
+    padding:80px 20px 70px;
+    max-width:1250px;
+    margin:auto;
+}
+
+.section-heading{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.section-heading h2{
+    color:#00c8d7;
+    font-size:2.3rem;
+    font-weight:800;
+    margin-bottom:12px;
+}
+
+.section-heading p{
+    color:#777;
+    font-size:.95rem;
+    max-width:760px;
+    margin:auto;
+    line-height:1.8;
+}
+
+.division-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.division{
+    background:#0d0d0d;
+    border:1px solid rgba(0,200,215,.16);
+    border-radius:18px;
+    padding:35px 30px;
+    transition:.35s ease;
+    position:relative;
+    overflow:hidden;
+}
+
+.division::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:2px;
+    background:#00c8d7;
+
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:.35s ease;
+}
+
+.division:hover{
+    transform:translateY(-7px);
+    border-color:rgba(0,200,215,.35);
+    box-shadow:0 0 28px rgba(0,200,215,.10);
+}
+
+.division:hover::before{
+    transform:scaleX(1);
+}
+
+.division-number{
+    position:absolute;
+    top:25px;
+    right:28px;
+    color:#333;
+    font-size:2rem;
+    font-weight:800;
+}
+
+.division-icon{
+    width:58px;
+    height:58px;
+    border-radius:15px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:rgba(0,200,215,.08);
+    border:1px solid rgba(0,200,215,.18);
+
+    color:#00c8d7;
+    font-size:1.45rem;
+
+    margin-bottom:22px;
+}
+
+.division h3{
+    font-size:1.25rem;
+    margin-bottom:14px;
+}
+
+.division p{
+    color:#999;
+    font-size:.91rem;
+    line-height:1.8;
+}
+
+.division-label{
+    color:#00c8d7;
+    font-size:.72rem;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    font-weight:600;
+    margin-bottom:9px;
+}
+
+
+/* ================================
+   PRINCIPLE
 ================================ */
 
 .truth{
-    padding:75px 25px 45px;
+    padding:75px 25px 55px;
     text-align:center;
+    background:#080808;
+
+    border-top:1px solid rgba(255,255,255,.04);
+    border-bottom:1px solid rgba(255,255,255,.04);
 }
 
 .truth-label{
@@ -209,32 +335,46 @@ body{
     color:#00c8d7;
 }
 
+
 /* ================================
-   CAPABILITIES
+   ENGINEERING CAPABILITIES
 ================================ */
 
 .capabilities{
-    padding:45px 20px 85px;
+    padding:85px 20px;
     max-width:1250px;
     margin:auto;
 }
 
-.section-heading{
+.capabilities-heading{
     text-align:center;
     margin-bottom:50px;
 }
 
-.section-heading h2{
+.capabilities-heading .label{
+    color:#00c8d7;
+    font-size:.75rem;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-weight:600;
+    margin-bottom:12px;
+}
+
+.capabilities-heading h2{
     color:#00c8d7;
     font-size:2.3rem;
     font-weight:800;
     margin-bottom:12px;
 }
 
-.section-heading p{
+.capabilities-heading p{
     color:#777;
     font-size:.95rem;
+    max-width:760px;
+    margin:auto;
+    line-height:1.8;
 }
+
 
 /* ================================
    CAPABILITY GRID
@@ -264,6 +404,7 @@ body{
     width:100%;
     height:2px;
     background:#00c8d7;
+
     transform:scaleX(0);
     transform-origin:left;
     transition:.35s ease;
@@ -283,13 +424,17 @@ body{
     width:58px;
     height:58px;
     border-radius:15px;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     background:rgba(0,200,215,.08);
     border:1px solid rgba(0,200,215,.18);
+
     color:#00c8d7;
     font-size:1.45rem;
+
     margin-bottom:22px;
 }
 
@@ -305,7 +450,6 @@ body{
 .capability h3{
     font-size:1.25rem;
     margin-bottom:14px;
-    color:#fff;
 }
 
 .capability p{
@@ -314,6 +458,7 @@ body{
     line-height:1.8;
 }
 
+
 /* ================================
    ENGINEERING PEOPLE
 ================================ */
@@ -321,6 +466,7 @@ body{
 .people{
     padding:85px 20px;
     background:#080808;
+
     border-top:1px solid rgba(255,255,255,.04);
     border-bottom:1px solid rgba(255,255,255,.04);
 }
@@ -328,6 +474,15 @@ body{
 .people-heading{
     text-align:center;
     margin-bottom:50px;
+}
+
+.people-heading .label{
+    color:#00c8d7;
+    font-size:.75rem;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-weight:600;
+    margin-bottom:12px;
 }
 
 .people-heading h2{
@@ -340,11 +495,15 @@ body{
 .people-heading p{
     color:#777;
     font-size:.95rem;
+    max-width:760px;
+    margin:auto;
+    line-height:1.8;
 }
 
 .people-grid{
     max-width:1100px;
     margin:auto;
+
     display:grid;
     grid-template-columns:repeat(2,1fr);
     gap:28px;
@@ -369,13 +528,17 @@ body{
     width:72px;
     height:72px;
     border-radius:50%;
+
     margin:0 auto 20px;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     color:#00c8d7;
     background:rgba(0,200,215,.08);
     border:1px solid rgba(0,200,215,.2);
+
     font-size:1.7rem;
 }
 
@@ -396,6 +559,7 @@ body{
     font-size:.88rem;
     line-height:1.75;
 }
+
 
 /* ================================
    SYSTEM STATEMENT
@@ -430,6 +594,7 @@ body{
     color:#00c8d7;
 }
 
+
 /* ================================
    CTA
 ================================ */
@@ -448,12 +613,16 @@ body{
     display:inline-flex;
     align-items:center;
     gap:10px;
+
     padding:15px 35px;
     border-radius:40px;
+
     background:#00c8d7;
     color:#000;
+
     text-decoration:none;
     font-weight:700;
+
     transition:.3s ease;
 }
 
@@ -462,6 +631,7 @@ body{
     box-shadow:0 0 22px rgba(0,200,215,.35);
 }
 
+
 /* ================================
    FOOTER
 ================================ */
@@ -469,15 +639,26 @@ body{
 .footer{
     padding:30px 20px;
     text-align:center;
+
     border-top:1px solid rgba(255,255,255,.06);
+
     color:#666;
     font-size:.8rem;
     letter-spacing:.7px;
 }
 
+
 /* ================================
    RESPONSIVE
 ================================ */
+
+@media(max-width:950px){
+
+    .division-grid{
+        grid-template-columns:1fr;
+    }
+
+}
 
 @media(max-width:800px){
 
@@ -515,15 +696,18 @@ body{
     }
 
     .section-heading h2,
+    .capabilities-heading h2,
     .people-heading h2{
         font-size:1.8rem;
     }
 
+    .division,
     .capability{
         padding:28px 23px;
     }
 
 }
+
 
 /* ================================
    ACCESSIBILITY
@@ -541,6 +725,7 @@ button:focus,
 
 <body>
 
+
 <!-- ================================
      NAVIGATION
 ================================ -->
@@ -555,6 +740,7 @@ button:focus,
     <i class="fas fa-bars"></i>
 </div>
 
+
 <nav
     class="side-drawer"
     id="drawer"
@@ -563,7 +749,7 @@ button:focus,
 
     <a href="landing.html">
         <i class="fas fa-layer-group"></i>
-        Solutions
+        Infrastructure Solutions
     </a>
 
     <a href="capable.html">
@@ -602,16 +788,17 @@ button:focus,
         </div>
 
         <h1>
-            Engineering
-            <span>Intelligence</span>
-            Into Digital Systems
+            Business.
+            <span>Design.</span>
+            Engineering.
         </h1>
 
         <p>
-            BlackLogic Technologies engineers digital systems by combining
-            artificial intelligence, software engineering, human-centred
-            design and systems intelligence to solve real-world operational
-            problems.
+            BlackLogic Technologies operates across three connected
+            divisions — Business Consulting, Professional Design and
+            Digital Systems Engineering — bringing business formalisation,
+            visual communication and technology together within one
+            technology ecosystem.
         </p>
 
     </div>
@@ -620,7 +807,124 @@ button:focus,
 
 
 <!-- ================================
-     PLACE OF TRUTH
+     THREE DIVISIONS
+================================ -->
+
+<section class="divisions">
+
+    <div class="section-heading">
+
+        <h2>
+            Three Divisions. One Ecosystem.
+        </h2>
+
+        <p>
+            Each division addresses a different layer of an organisation's
+            journey — from formalisation and professional identity to the
+            engineering of digital systems and operational infrastructure.
+        </p>
+
+    </div>
+
+
+    <div class="division-grid">
+
+
+        <!-- CONSULTING -->
+
+        <article class="division">
+
+            <div class="division-number">
+                01
+            </div>
+
+            <div class="division-icon">
+                <i class="fas fa-briefcase"></i>
+            </div>
+
+            <div class="division-label">
+                BlackLogic Consulting
+            </div>
+
+            <h3>
+                Business Consultation
+            </h3>
+
+            <p>
+                Support across business registration and formalisation
+                requirements, including CIPC, SARS, CSD, B-BBEE and related
+                business documentation.
+            </p>
+
+        </article>
+
+
+        <!-- DESIGN -->
+
+        <article class="division">
+
+            <div class="division-number">
+                02
+            </div>
+
+            <div class="division-icon">
+                <i class="fas fa-palette"></i>
+            </div>
+
+            <div class="division-label">
+                BlackLogic Design
+            </div>
+
+            <h3>
+                Professional Design
+            </h3>
+
+            <p>
+                Professional visual and business communication assets
+                including logos, visual identity, invoices, company profiles,
+                flyers and other materials that help organisations present
+                themselves professionally.
+            </p>
+
+        </article>
+
+
+        <!-- ENGINEERING -->
+
+        <article class="division">
+
+            <div class="division-number">
+                03
+            </div>
+
+            <div class="division-icon">
+                <i class="fas fa-microchip"></i>
+            </div>
+
+            <div class="division-label">
+                BlackLogic Engineering
+            </div>
+
+            <h3>
+                Digital Systems Engineering
+            </h3>
+
+            <p>
+                Engineering digital systems, software, artificial
+                intelligence, cloud infrastructure, UX/UI and operational
+                technology around real-world organisational requirements.
+            </p>
+
+        </article>
+
+
+    </div>
+
+</section>
+
+
+<!-- ================================
+     PRINCIPLE
 ================================ -->
 
 <section class="truth">
@@ -643,15 +947,20 @@ button:focus,
 
 <section class="capabilities">
 
-    <div class="section-heading">
+    <div class="capabilities-heading">
+
+        <div class="label">
+            BlackLogic Engineering
+        </div>
 
         <h2>
             Engineering Capabilities
         </h2>
 
         <p>
-            The disciplines through which BlackLogic transforms complex
-            problems into usable digital systems.
+            The engineering disciplines through which BlackLogic transforms
+            complex operational problems into usable digital systems,
+            experiences and infrastructure.
         </p>
 
     </div>
@@ -664,7 +973,9 @@ button:focus,
 
         <article class="capability">
 
-            <div class="capability-number">01</div>
+            <div class="capability-number">
+                01
+            </div>
 
             <div class="icon">
                 <i class="fas fa-brain"></i>
@@ -688,7 +999,9 @@ button:focus,
 
         <article class="capability">
 
-            <div class="capability-number">02</div>
+            <div class="capability-number">
+                02
+            </div>
 
             <div class="icon">
                 <i class="fas fa-code"></i>
@@ -712,7 +1025,9 @@ button:focus,
 
         <article class="capability">
 
-            <div class="capability-number">03</div>
+            <div class="capability-number">
+                03
+            </div>
 
             <div class="icon">
                 <i class="fas fa-pen-ruler"></i>
@@ -736,7 +1051,9 @@ button:focus,
 
         <article class="capability">
 
-            <div class="capability-number">04</div>
+            <div class="capability-number">
+                04
+            </div>
 
             <div class="icon">
                 <i class="fas fa-network-wired"></i>
@@ -762,15 +1079,19 @@ button:focus,
 
 
 <!-- ================================
-     ENGINEERING TEAM
+     ENGINEERING PEOPLE
 ================================ -->
 
 <section class="people">
 
     <div class="people-heading">
 
+        <div class="label">
+            BlackLogic Engineering
+        </div>
+
         <h2>
-            The Engineering Team
+            Engineering & Design Leadership
         </h2>
 
         <p>
@@ -841,7 +1162,7 @@ button:focus,
 
 
 <!-- ================================
-     PLACE OF TRUTH
+     SYSTEM STATEMENT
 ================================ -->
 
 <section class="system-statement">
@@ -856,11 +1177,13 @@ button:focus,
     </h2>
 
     <p>
-        From operational intelligence and investigation systems to workforce
+        From business formalisation and professional communication to
+        operational intelligence, investigation systems, workforce
         technology, digital access, commerce and enterprise transformation,
-        BlackLogic Technologies approaches each engagement as an engineering
-        problem — understanding the environment, designing the experience,
-        engineering the technology and continuously improving the system.
+        BlackLogic Technologies approaches each engagement according to
+        the actual requirement — understanding the environment, designing
+        the experience, engineering the technology and continuously
+        improving the system.
     </p>
 
 </section>
@@ -873,11 +1196,11 @@ button:focus,
 <section class="cta">
 
     <p>
-        Have a real-world problem that requires a digital system?
+        Have a business, design or technology requirement?
     </p>
 
-    <a href="consult.html">
-        Start an Engineering Consultation
+    <a href="contact.html">
+        Consult BlackLogic
         <i class="fas fa-arrow-right"></i>
     </a>
 
@@ -891,7 +1214,7 @@ button:focus,
 <footer class="footer">
 
     BlackLogic Technologies —
-    Engineering Digital Systems for Real-World Operations.
+    Consulting. Design. Engineering.
 
 </footer>
 
