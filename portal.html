@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>BBSP | BlackLogic Business Supplier Portal</title>
+
+  <meta name="description" content="Register your formally established business with the BlackLogic Business Supplier Portal.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root {
+      --black: #080b0d;
+      --surface: #111719;
+      --surface-light: #182124;
+      --teal: #00c9b1;
+      --teal-dark: #009f8d;
+      --white: #ffffff;
+      --muted: #9aa8aa;
+      --border: rgba(255,255,255,0.10);
+      --danger: #ff7777;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .navbar {
+      width: 100%;
+      padding: 20px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      background: rgba(8,11,13,0.95);
+    }
+
+    .brand {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.7px;
+    }
+
+    .brand span {
+      color: var(--teal);
+    }
+
+    .back-link {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .back-link:hover {
+      color: var(--teal);
+    }
+
+    .hero {
+      max-width: 850px;
+      margin: 65px auto 35px;
+      padding: 0 22px;
+      text-align: center;
+    }
+
+    .hero-label {
+      display: inline-block;
+      color: var(--teal);
+      border: 1px solid rgba(0,201,177,0.3);
+      background: rgba(0,201,177,0.07);
+      padding: 7px 14px;
+      border-radius: 30px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(30px, 5vw, 48px);
+      line-height: 1.15;
+      letter-spacing: -1.8px;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 span {
+      color: var(--teal);
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 620px;
+      margin: auto;
+    }
+
+    .form-wrapper {
+      width: min(850px, calc(100% - 32px));
+      margin: 0 auto 70px;
+    }
+
+    .form-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    .form-header {
+      padding: 25px 30px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(
+        120deg,
+        rgba(0,201,177,0.08),
+        transparent
+      );
+    }
+
+    .form-header h2 {
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .form-header p {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    .form-body {
+      padding: 30px;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin-bottom: 24px;
+    }
+
+    .section-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: rgba(0,201,177,0.10);
+      color: var(--teal);
+      font-size: 17px;
+    }
+
+    .section-heading h3 {
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 2px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 19px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #dce5e5;
+    }
+
+    .required {
+      color: var(--teal);
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 14px 15px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      outline: none;
+      background: var(--surface-light);
+      color: var(--white);
+      font-family: inherit;
+      font-size: 13px;
+      transition: 0.25s;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #718083;
+    }
+
+    select {
+      cursor: pointer;
+    }
+
+    select option {
+      background: var(--surface-light);
+      color: var(--white);
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(0,201,177,0.08);
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 35px 0;
+    }
+
+    .terms-box {
+      margin-top: 25px;
+      padding: 20px;
+      border: 1px solid rgba(0,201,177,0.22);
+      background: rgba(0,201,177,0.04);
+      border-radius: 12px;
+    }
+
+    .terms-box h4 {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 13px;
+      color: var(--teal);
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .terms-list {
+      list-style-type: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 11.5px;
+    }
+
+    .terms-list li {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .terms-list li i {
+      color: var(--teal);
+      margin-top: 3px;
+    }
+
+    .checkbox-group {
+      margin-top: 15px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .checkbox-group input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--teal);
+      margin-top: 2px;
+      cursor: pointer;
+    }
+
+    .checkbox-group label {
+      font-size: 12px;
+      color: var(--white);
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .submit-area {
+      margin-top: 27px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      border: none;
+      border-radius: 9px;
+      padding: 16px;
+      background: var(--teal);
+      color: #06110f;
+      font-size: 13px;
+      font-weight: 800;
+      font-family: inherit;
+      cursor: pointer;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .submit-btn:hover {
+      background: var(--teal-dark);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .success-card {
+      display: none;
+      padding: 40px 30px;
+      text-align: center;
+      background: var(--surface);
+      border: 1px solid var(--teal);
+      border-radius: 18px;
+    }
+
+    .success-card i {
+      font-size: 55px;
+      color: var(--teal);
+      margin-bottom: 20px;
+    }
+
+    .success-card h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .success-card p {
+      color: var(--muted);
+      font-size: 13px;
+      max-width: 500px;
+      margin: 0 auto 20px;
+    }
+
+    .app-badge {
+      display: inline-block;
+      padding: 10px 20px;
+      background: rgba(0,201,177,0.1);
+      border: 1px dashed var(--teal);
+      color: var(--teal);
+      font-weight: 800;
+      font-size: 16px;
+      border-radius: 8px;
+      margin-bottom: 25px;
+      letter-spacing: 1px;
+    }
+
+    .footer {
+      padding: 25px 7%;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .footer span {
+      color: var(--teal);
+      font-weight: 700;
+    }
+
+    @media (max-width: 600px) {
+      .navbar {
+        padding: 17px 5%;
+      }
+
+      .hero {
+        margin-top: 45px;
+      }
+
+      .form-body {
+        padding: 22px 18px;
+      }
+
+      .form-header {
+        padding: 22px 18px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .form-group.full {
+        grid-column: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="brand">
+      BLACKLOGIC<span>.</span>
+    </a>
+
+    <a href="landing.html" class="back-link">
+      <i class="fas fa-arrow-left"></i> Back to Website
+    </a>
+  </nav>
+
+  <header class="hero">
+    <span class="hero-label">BBSP • SUPPLIER REGISTRATION</span>
+
+    <h1>
+      Join the Business<br>
+      <span>Supplier Network.</span>
+    </h1>
+
+    <p>
+      Register your formally established business with the
+      BlackLogic Business Supplier Portal and become part
+      of a network focused on business collaboration,
+      supplier opportunities and partnerships.
+    </p>
+  </header>
+
+  <main class="form-wrapper">
+
+    <form class="form-card" id="supplierRegistrationForm">
+
+      <div class="form-header">
+        <h2>Business Registration</h2>
+        <p>Complete the information below to register your enterprise.</p>
+      </div>
+
+      <div class="form-body">
+
+        <!-- BUSINESS / ENTERPRISE DETAILS -->
+
+        <section>
+          <div class="section-heading">
+            <div class="section-icon">
+              <i class="fas fa-briefcase"></i>
+            </div>
+
+            <div>
+              <h3>Business / Enterprise Details</h3>
+              <p>Information about your registered business.</p>
+            </div>
+          </div>
+
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label for="enterpriseName">
+                Enterprise Name <span class="required">*</span>
+              </label>
+
+              <input
+                type="text"
+                id="enterpriseName"
+                name="enterpriseName"
+                placeholder="Enter registered enterprise name"
+                autocomplete="organization"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="enterpriseType">
+                Enterprise Type <span class="required">*</span>
+              </label>
+
+              <select
+                id="enterpriseType"
+                name="enterpriseType"
+                required
+              >
+                <option value="" disabled selected>
+                  Select company type
+                </option>
+                <option value="Pty Ltd">Private Company ((Pty) Ltd)</option>
+                <option value="Ltd">Public Company (Ltd)</option>
+                <option value="NPC">Non-Profit Company (NPC)</option>
+                <option value="CC">Close Corporation (CC)</option>
+                <option value="Inc">Incorporated (Inc.)</option>
+                <option value="Sole Proprietorship">Sole Proprietorship</option>
+                <option value="Partnership">Partnership</option>
+                <option value="Soc Ltd">State-Owned Company (SOC Ltd)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="enterpriseNumber">
+                Enterprise Registration Number <span class="required">*</span>
+              </label>
+
+              <input
+                type="text"
+                id="enterpriseNumber"
+                name="enterpriseNumber"
+                placeholder="e.g. 2025/885280/07"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="businessEmail">
+                Business Email <span class="required">*</span>
+              </label>
+
+              <input
+                type="email"
+                id="businessEmail"
+                name="businessEmail"
+                placeholder="business@example.co.za"
+                autocomplete="email"
+                required
+              >
+            </div>
+
+            <div class="form-group full">
+              <label for="businessWebsite">
+                Business Website
+              </label>
+
+              <input
+                type="url"
+                id="businessWebsite"
+                name="businessWebsite"
+                placeholder="https://www.example.co.za"
+              >
+            </div>
+
+            <div class="form-group full">
+              <label for="businessCategory">
+                Procurement Business Category <span class="required">*</span>
+              </label>
+
+              <select
+                id="businessCategory"
+                name="businessCategory"
+                required
+              >
+                <option value="" disabled selected>
+                  Select your primary South African procurement category
+                </option>
+                <option value="Information Technology & Telecommunications">1. Information Technology & Telecommunications</option>
+                <option value="Civil & Structural Engineering (CIDB CE)">2. Civil & Structural Engineering (CIDB CE)</option>
+                <option value="General Building Works (CIDB GB)">3. General Building Works (CIDB GB)</option>
+                <option value="Mechanical Engineering & HVAC (CIDB ME)">4. Mechanical Engineering & HVAC (CIDB ME)</option>
+                <option value="Electrical Infrastructure (CIDB EB/EP)">5. Electrical Infrastructure (CIDB EB/EP)</option>
+                <option value="Professional Advisory & Consulting Services">6. Professional Advisory & Consulting Services</option>
+                <option value="Facilities & Maintenance Services">7. Facilities & Maintenance Services</option>
+                <option value="Physical Security & Asset Protection">8. Physical Security & Asset Protection</option>
+                <option value="Transport, Fleet & Logistics">9. Transport, Fleet & Logistics</option>
+                <option value="Medical Equipment & Health Supplies">10. Medical Equipment & Health Supplies</option>
+                <option value="Renewable Energy & Environmental Services">11. Renewable Energy & Environmental Services</option>
+                <option value="Office Supplies, Furniture & Stationery">12. Office Supplies, Furniture & Stationery</option>
+                <option value="Printing, Packaging & Publishing">13. Printing, Packaging & Publishing</option>
+                <option value="Catering, Hospitality & Food Services">14. Catering, Hospitality & Food Services</option>
+                <option value="Petroleum, Fuels & Lubricants">15. Petroleum, Fuels & Lubricants</option>
+                <option value="Agriculture, Farming & Livestock">16. Agriculture, Farming & Livestock</option>
+                <option value="Mining & Heavy Industrial Supplies">17. Mining & Heavy Industrial Supplies</option>
+                <option value="Apparel, Textiles & Uniforms">18. Apparel, Textiles & Uniforms</option>
+                <option value="Water & Sanitation Services">19. Water & Sanitation Services</option>
+                <option value="Telecoms Infrastructure & Fibre Optics">20. Telecoms Infrastructure & Fibre Optics</option>
+                <option value="Real Estate, Property & Leasing">21. Real Estate, Property & Leasing</option>
+                <option value="Human Capital, Recruitment & Labour Brokering">22. Human Capital, Recruitment & Labour Brokering</option>
+                <option value="Events, Marketing & Public Relations">23. Events, Marketing & Public Relations</option>
+                <option value="Travel, Accommodation & Tourism">24. Travel, Accommodation & Tourism</option>
+                <option value="Automotive Sales, Maintenance & Repair">25. Automotive Sales, Maintenance & Repair</option>
+                <option value="Chemical & Laboratory Consumables">26. Chemical & Laboratory Consumables</option>
+                <option value="Defense, Aviation & Aerospace">27. Defense, Aviation & Aerospace</option>
+                <option value="Hardware, Tools & Industrial Building Consumables">28. Hardware, Tools & Industrial Building Consumables</option>
+                <option value="Disaster Management & Emergency Services">29. Disaster Management & Emergency Services</option>
+                <option value="Art, Heritage, Culture & Creative Goods">30. Art, Heritage, Culture & Creative Goods</option>
+              </select>
+            </div>
+
+            <div class="form-group full">
+              <label for="businessDescription">
+                Business Description & Specialization <span class="required">*</span>
+              </label>
+
+              <textarea
+                id="businessDescription"
+                name="businessDescription"
+                placeholder="Describe your specific trade, core competencies, services, or product specializations..."
+                required
+              ></textarea>
+            </div>
+
+          </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- BUSINESS REPRESENTATIVE -->
+
+        <section>
+          <div class="section-heading">
+            <div class="section-icon">
+              <i class="fas fa-user-tie"></i>
+            </div>
+
+            <div>
+              <h3>Business Representative</h3>
+              <p>Details of the person representing the enterprise.</p>
+            </div>
+          </div>
+
+          <div class="form-grid">
+
+            <div class="form-group full">
+              <label for="representativePosition">
+                Position <span class="required">*</span>
+              </label>
+
+              <select
+                id="representativePosition"
+                name="representativePosition"
+                required
+              >
+                <option value="" disabled selected>
+                  Select your position
+                </option>
+                <option value="Administrative Agent">Administrative Agent</option>
+                <option value="Director">Director</option>
+                <option value="Manager">Manager</option>
+                <option value="Founder">Founder</option>
+                <option value="CEO">CEO</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="representativeName">
+                Full Name <span class="required">*</span>
+              </label>
+
+              <input
+                type="text"
+                id="representativeName"
+                name="representativeName"
+                placeholder="Enter first name"
+                autocomplete="given-name"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="representativeSurname">
+                Surname <span class="required">*</span>
+              </label>
+
+              <input
+                type="text"
+                id="representativeSurname"
+                name="representativeSurname"
+                placeholder="Enter surname"
+                autocomplete="family-name"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="representativeEmail">
+                Email Address <span class="required">*</span>
+              </label>
+
+              <input
+                type="email"
+                id="representativeEmail"
+                name="representativeEmail"
+                placeholder="Enter representative email"
+                autocomplete="email"
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="representativePhone">
+                Cellphone / WhatsApp Number <span class="required">*</span>
+              </label>
+
+              <input
+                type="tel"
+                id="representativePhone"
+                name="representativePhone"
+                placeholder="e.g. +27 79 000 0000"
+                autocomplete="tel"
+                required
+              >
+            </div>
+
+          </div>
+        </section>
+
+        <!-- TERMS AND CONDITIONS -->
+        <div class="terms-box">
+          <h4><i class="fas fa-file-contract"></i> Terms and Conditions</h4>
+          <ul class="terms-list">
+            <li>
+              <i class="fas fa-check"></i>
+              <span><strong>1.</strong> Supplier registration is intended for formally registered businesses. Submission of an application does not automatically confirm supplier approval or guarantee procurement, funding, or contract opportunities.</span>
+            </li>
+            <li>
+              <i class="fas fa-check"></i>
+              <span><strong>2.</strong> All information provided is true, correct, and you grant BlackLogic Technologies permission to securely store and process this record.</span>
+            </li>
+            <li>
+              <i class="fas fa-check"></i>
+              <span><strong>3.</strong> You agree that this registration is intended to empower businesses with knowledge, procurement opportunities, and funding networks. There are no guarantees of funding or tender awards. BlackLogic Technologies offers transparent opportunities, company services, and you agree to all terms herein.</span>
+            </li>
+          </ul>
+
+          <div class="checkbox-group">
+            <input type="checkbox" id="acceptTerms" required>
+            <label for="acceptTerms">I have read, understood, and agree to the BlackLogic Business Supplier Portal Terms and Conditions <span class="required">*</span></label>
+          </div>
+        </div>
+
+        <div class="submit-area">
+          <button type="submit" class="submit-btn" id="submitBtn">
+            <span>Submit Business Registration</span>
+            <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+
+      </div>
+    </form>
+
+    <!-- SUCCESS & RECEIPT CARD -->
+    <div class="success-card" id="successCard">
+      <i class="fas fa-circle-check"></i>
+      <h3>Application Submitted Successfully</h3>
+      <p>Your business application has been written to the BlackLogic Cloud Portal.</p>
+      
+      <div class="app-badge" id="appNumDisplay">BBSPSA2026110000</div>
+      
+      <p>Your official supplier receipt has been generated and downloaded. Please retain this reference for tracking.</p>
+      
+      <button class="submit-btn" onclick="window.location.reload();" style="max-width: 300px; margin: 0 auto;">
+        Register Another Business
+      </button>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <p>
+      © <span>BlackLogic Technologies</span> |
+      BlackLogic Business Supplier Portal
+    </p>
+    <p>Digital Infrastructure. Engineered for Impact.</p>
+  </footer>
+
+  <!-- FIREBASE MODULE INTEGRATION -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDgPvBHxMVhOBkI4pGrekMFggqn1ifgqPE",
+      authDomain: "blacklogic-5bdbe.firebaseapp.com",
+      databaseURL: "https://blacklogic-5bdbe-default-rtdb.firebaseio.com",
+      projectId: "blacklogic-5bdbe",
+      storageBucket: "blacklogic-5bdbe.firebasestorage.app",
+      messagingSenderId: "10978908004",
+      appId: "1:10978908004:web:eb223b6d510aafabb84c71",
+      measurementId: "G-JYP6MJWMDB"
+    };
+
+    // Initialize Firebase Engine & Database Node
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+
+    const registrationForm = document.getElementById("supplierRegistrationForm");
+    const submitBtn = document.getElementById("submitBtn");
+    const successCard = document.getElementById("successCard");
+    const appNumDisplay = document.getElementById("appNumDisplay");
+
+    // Generate Application Number: BBSPSA202611....
+    function generateApplicationNumber() {
+      const hexSuffix = Math.floor(1000 + Math.random() * 9000).toString(16).toUpperCase();
+      const randDigits = Math.floor(1000 + Math.random() * 9000);
+      return `BBSPSA202611${randDigits}${hexSuffix}`;
+    }
+
+    // Generate Application Receipt Text File
+    function downloadReceipt(data) {
+      const receiptText = `================================================================
+BLACKLOGIC BUSINESS SUPPLIER PORTAL (BBSP)
+OFFICIAL SUPPLIER REGISTRATION RECEIPT
+================================================================
+
+Application Ref No: ${data.applicationNumber}
+Date of Registration: ${new Date(data.timestamp).toLocaleString("en-ZA")}
+
+1. ENTERPRISE DETAILS
+----------------------------------------------------------------
+Enterprise Name       : ${data.enterpriseName}
+Enterprise Type       : ${data.enterpriseType}
+CIPC Reg / ID No      : ${data.enterpriseNumber}
+Business Email        : ${data.businessEmail}
+Business Website      : ${data.businessWebsite || "N/A"}
+Procurement Category  : ${data.businessCategory}
+
+Specialization / Description:
+${data.businessDescription}
+
+2. REPRESENTATIVE DETAILS
+----------------------------------------------------------------
+Position              : ${data.representativePosition}
+Representative Name   : ${data.representativeName} ${data.representativeSurname}
+Email Address         : ${data.representativeEmail}
+Contact Number        : ${data.representativePhone}
+
+3. TERMS & COMPLIANCE ACKNOWLEDGEMENT
+----------------------------------------------------------------
+[X] Supplier registration intended for formally registered entities.
+[X] Confirmed information is accurate and authorized for BlackLogic storage.
+[X] Agreed to BBSP empowerment network guidelines (no funding/tender guarantee).
+
+================================================================
+BlackLogic Technologies Hardware & Projects (Pty) Ltd.
+Digital Infrastructure. Engineered for Impact.
+================================================================`;
+
+      const blob = new Blob([receiptText], { type: "text/plain;charset=utf-8" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = `BBSP_Application_Receipt_${data.applicationNumber}.txt`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    registrationForm.addEventListener("submit", async function(event) {
+      event.preventDefault();
+
+      if (!registrationForm.reportValidity()) {
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Processing Cloud Upload...`;
+
+      const applicationNumber = generateApplicationNumber();
+      const timestamp = new Date().toISOString();
+
+      const formData = {
+        applicationNumber: applicationNumber,
+        timestamp: timestamp,
+        enterpriseName: document.getElementById("enterpriseName").value.trim(),
+        enterpriseType: document.getElementById("enterpriseType").value,
+        enterpriseNumber: document.getElementById("enterpriseNumber").value.trim(),
+        businessEmail: document.getElementById("businessEmail").value.trim(),
+        businessWebsite: document.getElementById("businessWebsite").value.trim(),
+        businessCategory: document.getElementById("businessCategory").value,
+        businessDescription: document.getElementById("businessDescription").value.trim(),
+        representativePosition: document.getElementById("representativePosition").value,
+        representativeName: document.getElementById("representativeName").value.trim(),
+        representativeSurname: document.getElementById("representativeSurname").value.trim(),
+        representativeEmail: document.getElementById("representativeEmail").value.trim(),
+        representativePhone: document.getElementById("representativePhone").value.trim(),
+        acceptedTerms: document.getElementById("acceptTerms").checked
+      };
+
+      try {
+        // Push record to Firebase Realtime Database (/suppliers)
+        const suppliersRef = ref(database, 'suppliers');
+        const newSupplierRef = push(suppliersRef);
+        await set(newSupplierRef, formData);
+
+        // Download receipt file
+        downloadReceipt(formData);
+
+        // Display Success State
+        appNumDisplay.textContent = applicationNumber;
+        registrationForm.style.display = "none";
+        successCard.style.display = "block";
+
+      } catch (error) {
+        console.error("Firebase Submission Error:", error);
+        alert("Failed to submit application to the cloud. Please try again or check your internet connection.");
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = `Submit Business Registration <i class="fas fa-arrow-right"></i>`;
+      }
+    });
+  </script>
+
+</body>
+</html>

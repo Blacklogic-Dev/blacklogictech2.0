@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,7 +49,7 @@ header{
     background:#080808;
     border-bottom:1px solid rgba(0,200,215,.12);
     display:flex;
-    justify-content:space-between;
+    justify-space:space-between;
     align-items:center;
     position:relative;
     z-index:10;
@@ -391,43 +390,138 @@ input::placeholder{
     margin-top:9px;
 }
 
-/* BUTTONS */
+/* SESSION SELECTION FIELD */
 
-.actions{
+.session-toggle-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:12px;
     margin-top:8px;
 }
 
+.session-toggle-option{
+    position:relative;
+}
+
+.session-toggle-option input{
+    position:absolute;
+    opacity:0;
+    pointer-events:none;
+}
+
+.session-toggle-option label{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding:13px;
+    border-radius:10px;
+    background:#111;
+    border:1px solid rgba(255,255,255,.07);
+    color:#aaa;
+    font-size:.82rem;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s ease;
+    margin:0;
+}
+
+.session-toggle-option label i{
+    color:#666;
+    font-size:.9rem;
+    transition:.3s ease;
+}
+
+.session-toggle-option label:hover{
+    border-color:rgba(0,200,215,.25);
+}
+
+.session-toggle-option input:checked + label{
+    background:rgba(0,200,215,.07);
+    border-color:rgba(0,200,215,.65);
+    color:#fff;
+}
+
+.session-toggle-option input:checked + label i{
+    color:#00c8d7;
+}
+
+/* BUTTONS */
+
+.actions{
+    margin-top:20px;
+}
+
 button{
-    padding:15px;
+    width:100%;
+    padding:16px;
     border:none;
     border-radius:40px;
     font-weight:700;
-    font-size:.85rem;
+    font-size:.9rem;
     cursor:pointer;
     transition:.3s ease;
     display:flex;
     align-items:center;
     justify-content:center;
     gap:9px;
-}
-
-.whatsapp-btn{
     background:#00c8d7;
     color:#000;
 }
 
-.email-btn{
-    background:#151515;
-    color:#00c8d7;
-    border:1px solid rgba(0,200,215,.2);
-}
-
 button:hover{
     transform:translateY(-3px);
-    box-shadow:0 8px 25px rgba(0,200,215,.12);
+    box-shadow:0 8px 25px rgba(0,200,215,.25);
+}
+
+button:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+    transform:none;
+}
+
+/* SUCCESS CARD */
+
+.success-card{
+    display:none;
+    background:#0c0c0c;
+    border:1px solid rgba(0,200,215,.4);
+    border-radius:20px;
+    padding:40px 30px;
+    text-align:center;
+}
+
+.success-card i.main-icon{
+    font-size:55px;
+    color:#00c8d7;
+    margin-bottom:20px;
+}
+
+.success-card h3{
+    font-size:1.6rem;
+    margin-bottom:10px;
+    color:#fff;
+}
+
+.success-card p{
+    color:#999;
+    font-size:.88rem;
+    max-width:500px;
+    margin:0 auto 20px;
+    line-height:1.7;
+}
+
+.enquiry-badge{
+    display:inline-block;
+    padding:12px 24px;
+    background:rgba(0,200,215,.1);
+    border:1px dashed #00c8d7;
+    color:#00c8d7;
+    font-weight:800;
+    font-size:1.1rem;
+    border-radius:10px;
+    margin-bottom:25px;
+    letter-spacing:1.5px;
 }
 
 /* CONTACT PANEL */
@@ -647,10 +741,6 @@ button:hover{
         gap:0;
     }
 
-    .actions{
-        grid-template-columns:1fr;
-    }
-
 }
 
 @media(max-width:500px){
@@ -790,319 +880,361 @@ a:focus{
 <main class="main">
 
 
-<!-- CONSULTATION FORM -->
+<!-- CONSULTATION FORM CONTAINER -->
 
 <section class="form-container">
 
-    <div class="form-heading">
+    <div id="formSection">
+        <div class="form-heading">
 
-        <h2>
-            Start a BlackLogic Consultation
-        </h2>
+            <h2>
+                Start a BlackLogic Consultation
+            </h2>
 
-        <p>
-            Select the BlackLogic division you would like to consult,
-            then provide details about your requirement. Your
-            information will be prepared into a consultation request
-            that you can send directly to BlackLogic Technologies.
-        </p>
+            <p>
+                Select the BlackLogic division you would like to consult,
+                then provide details about your requirement. Your
+                information will be submitted directly to BlackLogic Infrastructure Cloud.
+            </p>
 
+        </div>
+
+
+        <form id="consultForm">
+
+            <!-- DIVISION SELECTOR -->
+
+            <div class="division-field">
+
+                <div class="division-label">
+
+                    <i class="fas fa-layer-group"></i>
+
+                    <span>
+                        What would you like to consult BlackLogic about?
+                        <span class="required">*</span>
+                    </span>
+
+                </div>
+
+
+                <div class="division-options">
+
+                    <!-- CONSULTATION -->
+
+                    <div class="division-option">
+
+                        <input
+                            type="radio"
+                            id="consulting"
+                            name="division"
+                            value="BlackLogic Consultation — Business Consultation"
+                            required
+                        >
+
+                        <label for="consulting">
+
+                            <i class="fas fa-file-signature"></i>
+
+                            <strong>BlackLogic Consultation</strong>
+
+                            <span>
+                                Business Registration & Formalisation
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                    <!-- DESIGN -->
+
+                    <div class="division-option">
+
+                        <input
+                            type="radio"
+                            id="design"
+                            name="division"
+                            value="BlackLogic Design — Professional Design"
+                            required
+                        >
+
+                        <label for="design">
+
+                            <i class="fas fa-pen-ruler"></i>
+
+                            <strong>BlackLogic Design</strong>
+
+                            <span>
+                                Branding & Business Materials
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                    <!-- MEDIA -->
+
+                    <div class="division-option">
+
+                        <input
+                            type="radio"
+                            id="media"
+                            name="division"
+                            value="BlackLogic Media — Media Production"
+                            required
+                        >
+
+                        <label for="media">
+
+                            <i class="fas fa-photo-film"></i>
+
+                            <strong>BlackLogic Media</strong>
+
+                            <span>
+                                Content, Filming & Social Media
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                    <!-- ENGINEERING -->
+
+                    <div class="division-option">
+
+                        <input
+                            type="radio"
+                            id="engineering"
+                            name="division"
+                            value="BlackLogic Engineering — Digital Systems Engineering"
+                            required
+                        >
+
+                        <label for="engineering">
+
+                            <i class="fas fa-microchip"></i>
+
+                            <strong>BlackLogic Engineering</strong>
+
+                            <span>
+                                Digital Systems, AI, Software & UX/UI
+                            </span>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+                <div class="division-help">
+                    Select the division that best matches your requirement.
+                    You can explain the full request below.
+                </div>
+
+            </div>
+
+
+            <!-- PERSONAL / BUSINESS DETAILS -->
+
+            <div class="form-row">
+
+                <div class="field">
+
+                    <label for="name">
+                        Name & Surname <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Your full name"
+                        autocomplete="name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="company">
+                        Company / Organisation
+                    </label>
+
+                    <input
+                        type="text"
+                        id="company"
+                        placeholder="Company name (if applicable)"
+                        autocomplete="organization"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="field">
+
+                    <label for="contact">
+                        Contact Details <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="contact"
+                        placeholder="Phone / WhatsApp number"
+                        autocomplete="tel"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="email">
+                        Email Address <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="you@company.com"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- INDUSTRY -->
+
+            <div class="field">
+
+                <label for="industry">
+                    Industry / Environment
+                </label>
+
+                <select id="industry">
+
+                    <option value="">
+                        Select an industry
+                    </option>
+
+                    <option>Security & Risk Operations</option>
+                    <option>Mining</option>
+                    <option>Construction</option>
+                    <option>Education</option>
+                    <option>Government</option>
+                    <option>Manufacturing</option>
+                    <option>Professional Services</option>
+                    <option>Retail & Commerce</option>
+                    <option>Media & Entertainment</option>
+                    <option>Other</option>
+
+                </select>
+
+            </div>
+
+            <!-- CONSULTATION SESSIONS SELECTION -->
+
+            <div class="field" style="margin-bottom:22px;">
+
+                <label>
+                    Would you like to schedule dedicated Consultation Sessions? <span class="required">*</span>
+                </label>
+
+                <div class="session-toggle-grid">
+
+                    <div class="session-toggle-option">
+                        <input
+                            type="radio"
+                            id="sessionYes"
+                            name="consultationSession"
+                            value="YES — Schedule Consultation Session"
+                            required
+                        >
+                        <label for="sessionYes">
+                            <i class="fas fa-calendar-check"></i>
+                            YES
+                        </label>
+                    </div>
+
+                    <div class="session-toggle-option">
+                        <input
+                            type="radio"
+                            id="sessionNo"
+                            name="consultationSession"
+                            value="NO — Requirement Overview Only"
+                            required
+                        >
+                        <label for="sessionNo">
+                            <i class="fas fa-calendar-xmark"></i>
+                            NO
+                        </label>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- REQUIREMENT -->
+
+            <div class="field">
+
+                <label for="challenge">
+                    Tell us what you need
+                    <span class="required">*</span>
+                </label>
+
+                <textarea
+                    id="challenge"
+                    placeholder="Describe the business requirement, design work, media project, registration need, workflow, system, problem or opportunity you want to discuss..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <!-- ACTIONS -->
+
+            <div class="actions">
+
+                <button
+                    type="submit"
+                    id="submitBtn"
+                >
+                    <span>Submit Enquiry</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+
+            </div>
+
+        </form>
     </div>
 
-
-    <form id="consultForm">
-
-        <!-- DIVISION SELECTOR -->
-
-        <div class="division-field">
-
-            <div class="division-label">
-
-                <i class="fas fa-layer-group"></i>
-
-                <span>
-                    What would you like to consult BlackLogic about?
-                    <span class="required">*</span>
-                </span>
-
-            </div>
-
-
-            <div class="division-options">
-
-                <!-- CONSULTATION -->
-
-                <div class="division-option">
-
-                    <input
-                        type="radio"
-                        id="consulting"
-                        name="division"
-                        value="BlackLogic Consultation — Business Consultation"
-                        required
-                    >
-
-                    <label for="consulting">
-
-                        <i class="fas fa-file-signature"></i>
-
-                        <strong>BlackLogic Consultation</strong>
-
-                        <span>
-                            Business Registration & Formalisation
-                        </span>
-
-                    </label>
-
-                </div>
-
-
-                <!-- DESIGN -->
-
-                <div class="division-option">
-
-                    <input
-                        type="radio"
-                        id="design"
-                        name="division"
-                        value="BlackLogic Design — Professional Design"
-                        required
-                    >
-
-                    <label for="design">
-
-                        <i class="fas fa-pen-ruler"></i>
-
-                        <strong>BlackLogic Design</strong>
-
-                        <span>
-                            Branding & Business Materials
-                        </span>
-
-                    </label>
-
-                </div>
-
-
-                <!-- MEDIA -->
-
-                <div class="division-option">
-
-                    <input
-                        type="radio"
-                        id="media"
-                        name="division"
-                        value="BlackLogic Media — Media Production"
-                        required
-                    >
-
-                    <label for="media">
-
-                        <i class="fas fa-photo-film"></i>
-
-                        <strong>BlackLogic Media</strong>
-
-                        <span>
-                            Content, Filming & Social Media
-                        </span>
-
-                    </label>
-
-                </div>
-
-
-                <!-- ENGINEERING -->
-
-                <div class="division-option">
-
-                    <input
-                        type="radio"
-                        id="engineering"
-                        name="division"
-                        value="BlackLogic Engineering — Digital Systems Engineering"
-                        required
-                    >
-
-                    <label for="engineering">
-
-                        <i class="fas fa-microchip"></i>
-
-                        <strong>BlackLogic Engineering</strong>
-
-                        <span>
-                            Digital Systems, AI, Software & UX/UI
-                        </span>
-
-                    </label>
-
-                </div>
-
-            </div>
-
-            <div class="division-help">
-                Select the division that best matches your requirement.
-                You can explain the full request below.
-            </div>
-
-        </div>
-
-
-        <!-- PERSONAL / BUSINESS DETAILS -->
-
-        <div class="form-row">
-
-            <div class="field">
-
-                <label for="name">
-                    Name & Surname <span class="required">*</span>
-                </label>
-
-                <input
-                    type="text"
-                    id="name"
-                    placeholder="Your full name"
-                    autocomplete="name"
-                    required
-                >
-
-            </div>
-
-
-            <div class="field">
-
-                <label for="company">
-                    Company / Organisation
-                </label>
-
-                <input
-                    type="text"
-                    id="company"
-                    placeholder="Company name (if applicable)"
-                    autocomplete="organization"
-                >
-
-            </div>
-
-        </div>
-
-
-        <div class="form-row">
-
-            <div class="field">
-
-                <label for="contact">
-                    Contact Details <span class="required">*</span>
-                </label>
-
-                <input
-                    type="tel"
-                    id="contact"
-                    placeholder="Phone / WhatsApp number"
-                    autocomplete="tel"
-                    required
-                >
-
-            </div>
-
-
-            <div class="field">
-
-                <label for="email">
-                    Email Address <span class="required">*</span>
-                </label>
-
-                <input
-                    type="email"
-                    id="email"
-                    placeholder="you@company.com"
-                    autocomplete="email"
-                    required
-                >
-
-            </div>
-
-        </div>
-
-
-        <!-- INDUSTRY -->
-
-        <div class="field">
-
-            <label for="industry">
-                Industry / Environment
-            </label>
-
-            <select id="industry">
-
-                <option value="">
-                    Select an industry
-                </option>
-
-                <option>Security & Risk Operations</option>
-                <option>Mining</option>
-                <option>Construction</option>
-                <option>Education</option>
-                <option>Government</option>
-                <option>Manufacturing</option>
-                <option>Professional Services</option>
-                <option>Retail & Commerce</option>
-                <option>Media & Entertainment</option>
-                <option>Other</option>
-
-            </select>
-
-        </div>
-
-
-        <!-- REQUIREMENT -->
-
-        <div class="field">
-
-            <label for="challenge">
-                Tell us what you need
-                <span class="required">*</span>
-            </label>
-
-            <textarea
-                id="challenge"
-                placeholder="Describe the business requirement, design work, media project, registration need, workflow, system, problem or opportunity you want to discuss..."
-                required
-            ></textarea>
-
-        </div>
-
-
-        <!-- ACTIONS -->
-
-        <div class="actions">
-
-            <button
-                type="submit"
-                class="whatsapp-btn"
-            >
-
-                <i class="fab fa-whatsapp"></i>
-
-                Continue via WhatsApp
-
-            </button>
-
-
-            <button
-                type="button"
-                class="email-btn"
-                id="emailBtn"
-            >
-
-                <i class="fas fa-envelope"></i>
-
-                Continue via Email
-
-            </button>
-
-        </div>
-
-    </form>
+    <!-- SUCCESS & RECEIPT DISPLAY CARD -->
+    <div class="success-card" id="successCard">
+        <i class="fas fa-circle-check main-icon"></i>
+        <h3>Enquiry Submitted to Cloud</h3>
+        <p>Your consultation request has been written to the BlackLogic Infrastructure Cloud Dashboard.</p>
+
+        <div class="enquiry-badge" id="enquiryIdDisplay">BLCONS2026110000</div>
+
+        <p>Your official consultation receipt has been generated and downloaded. Our team will review your requirement.</p>
+
+        <button type="button" onclick="window.location.reload();" style="max-width:300px; margin:0 auto;">
+            Submit Another Enquiry
+        </button>
+    </div>
 
 </section>
 
@@ -1335,189 +1467,140 @@ a:focus{
 
 </footer>
 
+<!-- FIREBASE REALTIME CLOUD INTEGRATION -->
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-<script>
-
-/* =========================================
-   BLACKLOGIC CONSULTATION ENGINE
-========================================= */
-
-
-/* COMPANY CONTACT DETAILS */
-
-const WHATSAPP_NUMBER = "27606614909";
-
-const COMPANY_EMAIL = "blacklogictechnologies@gmail.com";
-
-
-const form = document.getElementById("consultForm");
-
-const emailBtn = document.getElementById("emailBtn");
-
-
-/* =========================================
-   GET FORM DATA
-========================================= */
-
-function getFormData(){
-
-    const selectedDivision = document.querySelector(
-        'input[name="division"]:checked'
-    );
-
-    return {
-
-        division: selectedDivision
-            ? selectedDivision.value
-            : "",
-
-        name: document.getElementById("name").value.trim(),
-
-        company: document.getElementById("company").value.trim(),
-
-        contact: document.getElementById("contact").value.trim(),
-
-        email: document.getElementById("email").value.trim(),
-
-        industry: document.getElementById("industry").value.trim(),
-
-        challenge: document.getElementById("challenge").value.trim()
-
+    const firebaseConfig = {
+      apiKey: "AIzaSyDgPvBHxMVhOBkI4pGrekMFggqn1ifgqPE",
+      authDomain: "blacklogic-5bdbe.firebaseapp.com",
+      databaseURL: "https://blacklogic-5bdbe-default-rtdb.firebaseio.com",
+      projectId: "blacklogic-5bdbe",
+      storageBucket: "blacklogic-5bdbe.firebasestorage.app",
+      messagingSenderId: "10978908004",
+      appId: "1:10978908004:web:eb223b6d510aafabb84c71",
+      measurementId: "G-JYP6MJWMDB"
     };
 
-}
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
 
+    const form = document.getElementById("consultForm");
+    const submitBtn = document.getElementById("submitBtn");
+    const formSection = document.getElementById("formSection");
+    const successCard = document.getElementById("successCard");
+    const enquiryIdDisplay = document.getElementById("enquiryIdDisplay");
 
-/* =========================================
-   VALIDATION
-========================================= */
-
-function validateForm(){
-
-    if(!form.checkValidity()){
-
-        form.reportValidity();
-
-        return false;
-
+    // Generate Enquiry ID: BLCONS202611....
+    function generateEnquiryId() {
+        const hexSuffix = Math.floor(1000 + Math.random() * 9000).toString(16).toUpperCase();
+        const randDigits = Math.floor(1000 + Math.random() * 9000);
+        return `BLCONS202611${randDigits}${hexSuffix}`;
     }
 
-    const selectedDivision = document.querySelector(
-        'input[name="division"]:checked'
-    );
+    // Download Text Receipt
+    function downloadReceipt(data) {
+        const receiptText = `================================================================
+BLACKLOGIC TECHNOLOGIES HARDWARE & PROJECTS (PTY) LTD
+OFFICIAL CONSULTATION & ENGINEERING ENQUIRY RECEIPT
+================================================================
 
-    if(!selectedDivision){
+Enquiry Ref ID        : ${data.enquiryId}
+Timestamp             : ${new Date(data.timestamp).toLocaleString("en-ZA")}
 
-        alert(
-            "Please select the BlackLogic division you would like to consult."
-        );
+1. CONSULTATION DETAILS
+----------------------------------------------------------------
+Division Requested    : ${data.division}
+Consultation Sessions : ${data.consultationSession}
+Industry / Sector     : ${data.industry || "Not specified"}
 
-        return false;
+2. CONTACT INFORMATION
+----------------------------------------------------------------
+Name & Surname        : ${data.name}
+Company / Entity      : ${data.company || "N/A"}
+Contact Number        : ${data.contact}
+Email Address         : ${data.email}
 
-    }
-
-    return true;
-
-}
-
-
-/* =========================================
-   GENERATE CONSULTATION MESSAGE
-========================================= */
-
-function createMessage(data){
-
-    return `Hello BlackLogic Technologies,
-
-I would like to request a consultation.
-
-BLACKLOGIC CONSULTATION REQUEST
-
-Division:
-${data.division}
-
-Name & Surname:
-${data.name}
-
-Company / Organisation:
-${data.company || "Not provided"}
-
-Contact Details:
-${data.contact}
-
-Email:
-${data.email}
-
-Industry / Environment:
-${data.industry || "Not specified"}
-
-Requirement / Problem:
+3. REQUIREMENT OVERVIEW
+----------------------------------------------------------------
 ${data.challenge}
 
-I would like to discuss my requirement with the relevant BlackLogic team and understand the appropriate next steps.
+================================================================
+BlackLogic Infrastructure Dashboard Sync Status: ACTIVE [100%]
+Digital Infrastructure. Engineered for Impact.
+================================================================`;
 
-Thank you.`;
-
-
-}
-
-
-/* =========================================
-   WHATSAPP SUBMISSION
-========================================= */
-
-form.addEventListener("submit", function(event){
-
-    event.preventDefault();
-
-    if(!validateForm()){
-
-        return;
-
+        const blob = new Blob([receiptText], { type: "text/plain;charset=utf-8" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = `BlackLogic_Consultation_Receipt_${data.enquiryId}.txt`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     }
 
-    const data = getFormData();
+    form.addEventListener("submit", async function(event) {
+        event.preventDefault();
 
-    const message = createMessage(data);
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
 
-    const whatsappURL =
-        `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+        const selectedDivision = document.querySelector('input[name="division"]:checked');
+        if (!selectedDivision) {
+            alert("Please select the BlackLogic division you would like to consult.");
+            return;
+        }
 
-    window.open(
-        whatsappURL,
-        "_blank",
-        "noopener,noreferrer"
-    );
+        const selectedSession = document.querySelector('input[name="consultationSession"]:checked');
+        if (!selectedSession) {
+            alert("Please indicate whether you would like to schedule Consultation Sessions.");
+            return;
+        }
 
-});
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Writing to Infrastructure Cloud...`;
 
+        const enquiryId = generateEnquiryId();
+        const timestamp = new Date().toISOString();
 
-/* =========================================
-   EMAIL SUBMISSION
-========================================= */
+        const data = {
+            enquiryId: enquiryId,
+            timestamp: timestamp,
+            division: selectedDivision.value,
+            consultationSession: selectedSession.value,
+            name: document.getElementById("name").value.trim(),
+            company: document.getElementById("company").value.trim(),
+            contact: document.getElementById("contact").value.trim(),
+            email: document.getElementById("email").value.trim(),
+            industry: document.getElementById("industry").value.trim(),
+            challenge: document.getElementById("challenge").value.trim()
+        };
 
-emailBtn.addEventListener("click", function(){
+        try {
+            // Push record to Firebase Realtime Database (/consultations)
+            const consultRef = ref(database, 'consultations');
+            const newConsultRef = push(consultRef);
+            await set(newConsultRef, data);
 
-    if(!validateForm()){
+            // Download official receipt
+            downloadReceipt(data);
 
-        return;
+            // Render Success State
+            enquiryIdDisplay.textContent = enquiryId;
+            formSection.style.display = "none";
+            successCard.style.display = "block";
 
-    }
-
-    const data = getFormData();
-
-    const message = createMessage(data);
-
-    const subject =
-        `BlackLogic Consultation — ${data.division.split(" — ")[0]}`;
-
-    const emailURL =
-        `mailto:${COMPANY_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
-
-    window.location.href = emailURL;
-
-});
-
+        } catch (error) {
+            console.error("Firebase Sync Error:", error);
+            alert("Failed to submit enquiry to BlackLogic Cloud. Please check your internet connection.");
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = `<span>Submit Enquiry</span> <i class="fas fa-arrow-right"></i>`;
+        }
+    });
 </script>
 
 </body>

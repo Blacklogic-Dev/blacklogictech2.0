@@ -731,6 +731,123 @@ outline-offset:3px;
 outline:2px solid #00c8d7;
 }
 
+/* ================================
+   BLACKLOGIC BUSINESS SUPPLIER PORTAL
+================================ */
+
+.bbsp-section{
+max-width:1000px;
+margin:65px auto 55px;
+padding:0 20px;
+}
+
+.bbsp-card{
+background:linear-gradient(135deg,#0d1517,#090909);
+border:1px solid rgba(0,200,215,.25);
+border-radius:18px;
+padding:32px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:30px;
+transition:.3s ease;
+}
+
+.bbsp-card:hover{
+border-color:rgba(0,200,215,.55);
+box-shadow:0 0 25px rgba(0,200,215,.09);
+}
+
+.bbsp-content{
+flex:1;
+}
+
+.bbsp-label{
+display:inline-block;
+color:#00c8d7;
+font-size:.7rem;
+font-weight:700;
+letter-spacing:2px;
+margin-bottom:12px;
+}
+
+.bbsp-title{
+font-size:1.45rem;
+font-weight:800;
+color:#fff;
+margin-bottom:12px;
+}
+
+.bbsp-title span{
+color:#00c8d7;
+}
+
+.bbsp-description{
+color:#aaa;
+font-size:.9rem;
+line-height:1.8;
+max-width:650px;
+}
+
+.bbsp-actions{
+display:flex;
+flex-direction:column;
+gap:12px;
+min-width:155px;
+}
+
+.bbsp-btn{
+display:inline-flex;
+justify-content:center;
+align-items:center;
+gap:9px;
+padding:12px 18px;
+border-radius:30px;
+text-decoration:none;
+font-size:.82rem;
+font-weight:700;
+transition:.3s ease;
+}
+
+.bbsp-register{
+background:#00c8d7;
+color:#000;
+}
+
+.bbsp-open{
+border:1px solid rgba(0,200,215,.5);
+color:#00c8d7;
+background:transparent;
+}
+
+.bbsp-btn:hover{
+transform:translateY(-3px);
+box-shadow:0 0 18px rgba(0,200,215,.2);
+}
+
+@media(max-width:650px){
+
+.bbsp-card{
+flex-direction:column;
+align-items:flex-start;
+padding:25px 20px;
+}
+
+.bbsp-actions{
+width:100%;
+flex-direction:column;
+}
+
+.bbsp-btn{
+width:100%;
+}
+
+.bbsp-title{
+font-size:1.25rem;
+}
+
+}
+
 </style>
 </head>
 
@@ -1818,6 +1935,50 @@ Have a business, creative, media or technology requirement?
 <a href="consult.html">
 Contact BlackLogic Technologies
 </a>
+
+</div>
+
+</section>
+
+<!-- ================================
+     BLACKLOGIC BUSINESS SUPPLIER PORTAL
+================================ -->
+
+<section class="bbsp-section" id="bbsp">
+
+<div class="bbsp-card">
+
+<div class="bbsp-content">
+
+<span class="bbsp-label">
+BUSINESS NETWORK INITIATIVE
+</span>
+
+<h3 class="bbsp-title">
+BlackLogic <span>Business Supplier Portal</span>
+</h3>
+
+<p class="bbsp-description">
+A business supplier network by BlackLogic Technologies,
+connecting formally registered businesses with relevant
+procurement and funding opportunities, supplier partnerships,
+subcontracting and joint venture opportunities.
+Register your business to become part of the network and
+access business collaboration opportunities.
+</p>
+
+</div>
+
+<div class="bbsp-actions">
+
+<a href="portal.html" class="bbsp-btn bbsp-register">
+Register Now
+<i class="fas fa-user-plus"></i>
+</a>
+
+
+
+</div>
 
 </div>
 
