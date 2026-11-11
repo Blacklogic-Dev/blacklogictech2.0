@@ -1,21 +1,22 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>BlackLogic Technologies | Consulting, Design & Engineering</title>
+<title>BlackLogic Technologies | Digital Infrastructure Engineering</title>
 
-<meta name="description" content="Explore BlackLogic Technologies across Business Consulting, Professional Design and Digital Systems Engineering, including AI, software, UX/UI and systems intelligence.">
+<meta name="description" content="BlackLogic Technologies is a South African digital infrastructure engineering company delivering business consultation, professional design, media production and digital systems engineering.">
 
-<meta name="keywords" content="BlackLogic Technologies, Business Consulting South Africa, Business Registration, Professional Design, Software Engineering South Africa, Artificial Intelligence Engineering, UX UI Design, Systems Intelligence Engineering, Digital Systems">
+<meta name="keywords" content="BlackLogic Technologies, Digital Infrastructure Engineering South Africa, Business Consultation, Business Registration, Professional Design, Media Production, Software Engineering, Artificial Intelligence Engineering, UX UI Design, Systems Intelligence">
 
 <meta name="author" content="BlackLogic Technologies">
 <meta name="robots" content="index, follow">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="BlackLogic Technologies | Consulting, Design & Engineering">
-<meta property="og:description" content="Business consulting, professional design and digital systems engineering delivered through one technology ecosystem.">
+<meta property="og:title" content="BlackLogic Technologies | Digital Infrastructure Engineering">
+<meta property="og:description" content="Business consultation, professional design, media production and digital systems engineering delivered through one technology ecosystem.">
 <meta property="og:site_name" content="BlackLogic Technologies">
 <meta property="og:locale" content="en_ZA">
 
@@ -63,6 +64,9 @@ body{
     cursor:pointer;
     z-index:1001;
     transition:.3s ease;
+    background:transparent;
+    border:0;
+    padding:4px;
 }
 
 .hamburger:hover{
@@ -175,7 +179,7 @@ body{
 }
 
 .hero p{
-    max-width:800px;
+    max-width:820px;
     margin:auto;
     color:#aaa;
     font-size:1.05rem;
@@ -184,12 +188,12 @@ body{
 
 
 /* ================================
-   THREE DIVISIONS
+   FOUR DIVISIONS
 ================================ */
 
 .divisions{
     padding:80px 20px 70px;
-    max-width:1250px;
+    max-width:1400px;
     margin:auto;
 }
 
@@ -215,15 +219,15 @@ body{
 
 .division-grid{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:25px;
+    grid-template-columns:repeat(4,1fr);
+    gap:22px;
 }
 
 .division{
     background:#0d0d0d;
     border:1px solid rgba(0,200,215,.16);
     border-radius:18px;
-    padding:35px 30px;
+    padding:32px 25px;
     transition:.35s ease;
     position:relative;
     overflow:hidden;
@@ -255,16 +259,16 @@ body{
 
 .division-number{
     position:absolute;
-    top:25px;
-    right:28px;
+    top:22px;
+    right:23px;
     color:#333;
-    font-size:2rem;
+    font-size:1.8rem;
     font-weight:800;
 }
 
 .division-icon{
-    width:58px;
-    height:58px;
+    width:55px;
+    height:55px;
     border-radius:15px;
 
     display:flex;
@@ -275,26 +279,26 @@ body{
     border:1px solid rgba(0,200,215,.18);
 
     color:#00c8d7;
-    font-size:1.45rem;
+    font-size:1.35rem;
 
     margin-bottom:22px;
 }
 
 .division h3{
-    font-size:1.25rem;
+    font-size:1.15rem;
     margin-bottom:14px;
 }
 
 .division p{
     color:#999;
-    font-size:.91rem;
+    font-size:.87rem;
     line-height:1.8;
 }
 
 .division-label{
     color:#00c8d7;
-    font-size:.72rem;
-    letter-spacing:2px;
+    font-size:.68rem;
+    letter-spacing:1.7px;
     text-transform:uppercase;
     font-weight:600;
     margin-bottom:9px;
@@ -652,10 +656,10 @@ body{
    RESPONSIVE
 ================================ */
 
-@media(max-width:950px){
+@media(max-width:1100px){
 
     .division-grid{
-        grid-template-columns:1fr;
+        grid-template-columns:repeat(2,1fr);
     }
 
 }
@@ -677,6 +681,14 @@ body{
 
     .truth h2{
         font-size:1.55rem;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .division-grid{
+        grid-template-columns:1fr;
     }
 
 }
@@ -714,8 +726,7 @@ body{
 ================================ */
 
 a:focus,
-button:focus,
-.hamburger:focus{
+button:focus{
     outline:2px solid #00c8d7;
     outline-offset:3px;
 }
@@ -730,15 +741,16 @@ button:focus,
      NAVIGATION
 ================================ -->
 
-<div
+<button
     class="hamburger"
     id="hamburger"
-    role="button"
-    tabindex="0"
+    type="button"
     aria-label="Open navigation menu"
+    aria-controls="drawer"
+    aria-expanded="false"
 >
     <i class="fas fa-bars"></i>
-</div>
+</button>
 
 
 <nav
@@ -788,17 +800,18 @@ button:focus,
         </div>
 
         <h1>
-            Business.
+            Consultation.
             <span>Design.</span>
             Engineering.
         </h1>
 
         <p>
-            BlackLogic Technologies operates across three connected
-            divisions — Business Consulting, Professional Design and
-            Digital Systems Engineering — bringing business formalisation,
-            visual communication and technology together within one
-            technology ecosystem.
+            BlackLogic Technologies is a South African digital
+            infrastructure engineering company operating across four
+            connected divisions — Business Consultation, Professional
+            Design, Media Production and Digital Systems Engineering.
+            We bring business processes, visual communication, media
+            and technology together to address real-world requirements.
         </p>
 
     </div>
@@ -807,7 +820,7 @@ button:focus,
 
 
 <!-- ================================
-     THREE DIVISIONS
+     FOUR DIVISIONS
 ================================ -->
 
 <section class="divisions">
@@ -815,13 +828,14 @@ button:focus,
     <div class="section-heading">
 
         <h2>
-            Three Divisions. One Ecosystem.
+            Four Divisions. One Ecosystem.
         </h2>
 
         <p>
-            Each division addresses a different layer of an organisation's
-            journey — from formalisation and professional identity to the
-            engineering of digital systems and operational infrastructure.
+            Each division contributes a different capability to the
+            BlackLogic ecosystem — supporting business formalisation,
+            professional identity, digital communication and the
+            engineering of operational technology.
         </p>
 
     </div>
@@ -830,7 +844,7 @@ button:focus,
     <div class="division-grid">
 
 
-        <!-- CONSULTING -->
+        <!-- CONSULTATION -->
 
         <article class="division">
 
@@ -843,7 +857,7 @@ button:focus,
             </div>
 
             <div class="division-label">
-                BlackLogic Consulting
+                BlackLogic Consultation
             </div>
 
             <h3>
@@ -851,9 +865,10 @@ button:focus,
             </h3>
 
             <p>
-                Support across business registration and formalisation
-                requirements, including CIPC, SARS, CSD, B-BBEE and related
-                business documentation.
+                Business registration and formalisation support,
+                procurement readiness, business documentation and
+                assistance with processes involving CIPC, SARS,
+                CSD and B-BBEE requirements.
             </p>
 
         </article>
@@ -880,10 +895,40 @@ button:focus,
             </h3>
 
             <p>
-                Professional visual and business communication assets
-                including logos, visual identity, invoices, company profiles,
-                flyers and other materials that help organisations present
-                themselves professionally.
+                Business branding, visual identity, professional
+                documentation, company profiles, invoice templates,
+                flyers and marketing communication materials that
+                help organisations present themselves professionally.
+            </p>
+
+        </article>
+
+
+        <!-- MEDIA -->
+
+        <article class="division">
+
+            <div class="division-number">
+                03
+            </div>
+
+            <div class="division-icon">
+                <i class="fas fa-photo-film"></i>
+            </div>
+
+            <div class="division-label">
+                BlackLogic Media
+            </div>
+
+            <h3>
+                Media Production
+            </h3>
+
+            <p>
+                Digital content creation, filming, video editing,
+                AI-enhanced visual content, promotional materials
+                and social media content management for business
+                communication and digital presence.
             </p>
 
         </article>
@@ -894,7 +939,7 @@ button:focus,
         <article class="division">
 
             <div class="division-number">
-                03
+                04
             </div>
 
             <div class="division-icon">
@@ -910,9 +955,10 @@ button:focus,
             </h3>
 
             <p>
-                Engineering digital systems, software, artificial
-                intelligence, cloud infrastructure, UX/UI and operational
-                technology around real-world organisational requirements.
+                Engineering digital systems, software applications,
+                artificial intelligence capabilities, cloud
+                infrastructure, UX/UI experiences and operational
+                technology around real-world requirements.
             </p>
 
         </article>
@@ -958,9 +1004,9 @@ button:focus,
         </h2>
 
         <p>
-            The engineering disciplines through which BlackLogic transforms
-            complex operational problems into usable digital systems,
-            experiences and infrastructure.
+            The engineering disciplines through which BlackLogic
+            transforms operational problems into usable digital
+            systems, experiences and infrastructure.
         </p>
 
     </div>
@@ -986,10 +1032,10 @@ button:focus,
             </h3>
 
             <p>
-                Engineering intelligent capabilities into digital systems
-                through AI-assisted workflows, intelligent automation,
-                machine learning technologies, data interpretation and
-                emerging AI technologies.
+                Integrating intelligent capabilities into digital
+                systems through AI-assisted workflows, intelligent
+                automation, machine learning technologies, data
+                interpretation and emerging AI technologies.
             </p>
 
         </article>
@@ -1012,10 +1058,11 @@ button:focus,
             </h3>
 
             <p>
-                Designing and engineering secure software systems, cloud
-                applications, databases, authentication, operational
-                platforms, web applications and digital infrastructure
-                built around real-world requirements.
+                Designing and engineering software systems, cloud
+                applications, databases, authentication, access
+                control, operational platforms, web applications
+                and digital infrastructure built around practical
+                organisational requirements.
             </p>
 
         </article>
@@ -1038,10 +1085,10 @@ button:focus,
             </h3>
 
             <p>
-                Designing intuitive digital experiences through interface
-                architecture, interaction design, visual systems,
-                accessibility, responsive experiences and human-centred
-                digital workflows.
+                Designing intuitive digital experiences through
+                interface architecture, interaction design,
+                visual systems, responsive experiences,
+                accessibility and human-centred digital workflows.
             </p>
 
         </article>
@@ -1064,10 +1111,11 @@ button:focus,
             </h3>
 
             <p>
-                Understanding complex operational environments, modelling
-                workflows, connecting information and engineering digital
-                ecosystems that improve visibility, coordination,
-                decision-making and operational intelligence.
+                Understanding complex operational environments,
+                modelling workflows, connecting information and
+                engineering digital ecosystems that improve
+                visibility, coordination, decision-making
+                and operational intelligence.
             </p>
 
         </article>
@@ -1095,8 +1143,9 @@ button:focus,
         </h2>
 
         <p>
-            Engineering and design leadership across BlackLogic Technologies
-            digital systems and intelligence ecosystems.
+            Engineering and design leadership across BlackLogic
+            Technologies' digital systems, visual experiences
+            and intelligence ecosystems.
         </p>
 
     </div>
@@ -1122,10 +1171,10 @@ button:focus,
             </div>
 
             <p>
-                Leads software engineering, AI integration, cloud
-                infrastructure, systems architecture and systems
-                intelligence engineering across BlackLogic Technologies
-                digital systems.
+                Leads software engineering, AI integration,
+                cloud infrastructure, systems architecture
+                and systems intelligence engineering across
+                BlackLogic Technologies' digital systems.
             </p>
 
         </article>
@@ -1144,13 +1193,14 @@ button:focus,
             </h3>
 
             <div class="role">
-                Lead Designer — Software Designer & UX/UI Practitioner
+                Lead Designer — UX/UI Practitioner & AI Designer
             </div>
 
             <p>
-                Leads design direction, UX/UI architecture, creative
-                development, visual communication and human-centred
-                digital experiences across BlackLogic Technologies.
+                Leads design direction, UX/UI architecture,
+                creative development, visual communication
+                and human-centred digital experiences across
+                BlackLogic Technologies.
             </p>
 
         </article>
@@ -1177,13 +1227,14 @@ button:focus,
     </h2>
 
     <p>
-        From business formalisation and professional communication to
-        operational intelligence, investigation systems, workforce
-        technology, digital access, commerce and enterprise transformation,
-        BlackLogic Technologies approaches each engagement according to
-        the actual requirement — understanding the environment, designing
-        the experience, engineering the technology and continuously
-        improving the system.
+        From business formalisation and professional communication
+        to operational intelligence, investigation systems,
+        workforce technology, digital access, commerce and
+        enterprise transformation, BlackLogic Technologies
+        approaches each engagement according to its actual
+        requirements — understanding the environment, designing
+        the experience, engineering the technology and
+        continuously improving the system.
     </p>
 
 </section>
@@ -1196,7 +1247,7 @@ button:focus,
 <section class="cta">
 
     <p>
-        Have a business, design or technology requirement?
+        Have a business, design, media or technology requirement?
     </p>
 
     <a href="contact.html">
@@ -1214,7 +1265,7 @@ button:focus,
 <footer class="footer">
 
     BlackLogic Technologies —
-    Consulting. Design. Engineering.
+    Consultation. Design. Media. Engineering.
 
 </footer>
 
@@ -1225,17 +1276,59 @@ const hamburger = document.getElementById('hamburger');
 const drawer = document.getElementById('drawer');
 
 function toggleDrawer(){
-    drawer.classList.toggle('drawer-open');
+
+    const isOpen = drawer.classList.toggle('drawer-open');
+
+    hamburger.setAttribute('aria-expanded', isOpen);
+
+    hamburger.setAttribute(
+        'aria-label',
+        isOpen ? 'Close navigation menu' : 'Open navigation menu'
+    );
+
+    hamburger.innerHTML = isOpen
+        ? '<i class="fas fa-times"></i>'
+        : '<i class="fas fa-bars"></i>';
+
 }
 
 hamburger.addEventListener('click', toggleDrawer);
 
-hamburger.addEventListener('keydown', function(event){
+// Close the drawer after selecting a navigation link.
 
-    if(event.key === 'Enter' || event.key === ' '){
+drawer.querySelectorAll('a').forEach(link => {
 
-        event.preventDefault();
-        toggleDrawer();
+    link.addEventListener('click', () => {
+
+        drawer.classList.remove('drawer-open');
+
+        hamburger.setAttribute('aria-expanded', 'false');
+
+        hamburger.setAttribute('aria-label', 'Open navigation menu');
+
+        hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+
+    });
+
+});
+
+// Close the drawer when the user clicks outside it.
+
+document.addEventListener('click', event => {
+
+    if(
+        drawer.classList.contains('drawer-open') &&
+        !drawer.contains(event.target) &&
+        !hamburger.contains(event.target)
+    ){
+
+        drawer.classList.remove('drawer-open');
+
+        hamburger.setAttribute('aria-expanded', 'false');
+
+        hamburger.setAttribute('aria-label', 'Open navigation menu');
+
+        hamburger.innerHTML = '<i class="fas fa-bars"></i>';
 
     }
 

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,37 +8,22 @@
 
 <title>Company Profile | BlackLogic Technologies</title>
 
-<meta name="description"
-content="Official company profile of BlackLogic Technologies Hardware and Projects Pty Ltd, a South African company providing business consultation, professional design and digital systems engineering.">
+<meta name="description" content="Official company profile of BlackLogic Technologies Hardware and Projects Pty Ltd, a South African digital infrastructure engineering company delivering consultation, design, media production, engineering and educational initiatives.">
 
-<meta name="keywords"
-content="BlackLogic Technologies Hardware and Projects Pty Ltd, BlackLogic Technologies, South Africa technology company, business consultation, business registration, professional design, logo design, company profile, software engineering, AI engineering, systems intelligence, digital transformation">
+<meta name="keywords" content="BlackLogic Technologies, Digital Infrastructure Engineering, Business Consultation, Professional Design, Media Production, Software Engineering, AI Engineering, African Institution of Technology">
 
-<meta name="author"
-content="BlackLogic Technologies Hardware and Projects Pty Ltd">
+<meta name="author" content="BlackLogic Technologies Hardware and Projects Pty Ltd">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#050505">
 
-<meta name="robots"
-content="index, follow">
+<link rel="canonical" href="https://blacklogictechnologies.netlify.app/profile.html">
 
-<meta name="theme-color"
-content="#050505">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link rel="canonical"
-href="https://blacklogictechnologies.netlify.app/profile.html">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="preconnect"
-href="https://fonts.googleapis.com">
-
-<link rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-rel="stylesheet">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
 
@@ -58,1161 +44,893 @@ body{
     overflow-x:hidden;
 }
 
+a{
+    color:inherit;
+}
 
-/* =========================================
-   HEADER
-========================================= */
+/* HEADER */
 
 header{
-
     padding:20px 30px;
-
     background:#080808;
-
     border-bottom:1px solid rgba(0,200,215,.12);
-
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
-
     position:relative;
-
     z-index:10;
-
 }
 
 .brand{
-
     display:flex;
-
     align-items:center;
-
     gap:12px;
-
 }
 
 .brand-icon{
-
     width:42px;
-
     height:42px;
-
     border-radius:12px;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     color:#00c8d7;
-
     background:rgba(0,200,215,.08);
-
     border:1px solid rgba(0,200,215,.2);
-
 }
 
 .brand-text{
-
     display:flex;
-
     flex-direction:column;
-
 }
 
 .brand-text strong{
-
     font-size:.9rem;
-
     letter-spacing:1px;
-
 }
 
 .brand-text span{
-
     font-size:.63rem;
-
     color:#777;
-
     letter-spacing:1px;
-
 }
 
 .back{
-
     color:#aaa;
-
     text-decoration:none;
-
     font-size:.84rem;
-
     transition:.3s ease;
-
 }
 
 .back i{
-
     color:#00c8d7;
-
     margin-right:7px;
-
 }
 
 .back:hover{
-
     color:#fff;
-
 }
 
-
-/* =========================================
-   HERO
-========================================= */
+/* HERO */
 
 .hero{
-
     min-height:620px;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     text-align:center;
-
     padding:110px 25px 100px;
-
     position:relative;
-
     background:
-
-    radial-gradient(
-
-        circle at center,
-
-        rgba(0,200,215,.10),
-
-        transparent 45%
-
-    ),
-
-    #050505;
-
+        radial-gradient(circle at center,rgba(0,200,215,.10),transparent 45%),
+        #050505;
 }
 
 .hero::before{
-
     content:"";
-
     position:absolute;
-
     width:420px;
-
     height:420px;
-
     border:1px solid rgba(0,200,215,.08);
-
     border-radius:50%;
-
     animation:pulse 7s infinite ease-in-out;
-
 }
 
 .hero::after{
-
     content:"";
-
     position:absolute;
-
     bottom:0;
-
     left:10%;
-
     right:10%;
-
     height:1px;
-
-    background:
-
-    linear-gradient(
-
+    background:linear-gradient(
         90deg,
-
         transparent,
-
         rgba(0,200,215,.35),
-
         transparent
-
     );
-
 }
 
 @keyframes pulse{
-
     0%,100%{
-
         transform:scale(.9);
-
         opacity:.3;
-
     }
-
     50%{
-
         transform:scale(1.1);
-
         opacity:.7;
-
     }
-
 }
 
 .hero-content{
-
     max-width:950px;
-
     position:relative;
-
     z-index:2;
-
 }
 
 .eyebrow{
-
     color:#00c8d7;
-
     font-size:.78rem;
-
     letter-spacing:5px;
-
     font-weight:600;
-
     text-transform:uppercase;
-
     margin-bottom:24px;
-
 }
 
 .hero h1{
-
     font-size:3.5rem;
-
     font-weight:800;
-
     line-height:1.15;
-
     margin-bottom:25px;
-
 }
 
 .hero h1 span{
-
     color:#00c8d7;
-
 }
 
 .hero p{
-
     max-width:800px;
-
     margin:auto;
-
     color:#999;
-
     font-size:1rem;
-
     line-height:1.9;
-
 }
 
+/* DOCUMENT ACCESS */
 
-/* =========================================
-   STATEMENT
-========================================= */
-
-.statement{
-
-    max-width:950px;
-
-    margin:auto;
-
-    padding:85px 25px;
-
-    text-align:center;
-
-}
-
-.statement-icon{
-
-    color:#00c8d7;
-
-    font-size:2rem;
-
-    margin-bottom:22px;
-
-}
-
-.statement h2{
-
-    font-size:2.15rem;
-
-    line-height:1.5;
-
-    margin-bottom:22px;
-
-}
-
-.statement h2 span{
-
-    color:#00c8d7;
-
-}
-
-.statement p{
-
-    color:#888;
-
-    font-size:.94rem;
-
-    line-height:1.9;
-
-}
-
-
-/* =========================================
-   DIVISIONS
-========================================= */
-
-.divisions{
-
-    padding:85px 20px;
-
+.documents{
+    padding:75px 20px;
     background:#080808;
-
-    border-top:1px solid rgba(255,255,255,.04);
-
     border-bottom:1px solid rgba(255,255,255,.04);
-
 }
 
-.divisions-inner{
-
+.documents-inner{
     max-width:1150px;
-
     margin:auto;
-
 }
 
 .section-label{
-
     color:#00c8d7;
-
     font-size:.72rem;
-
     font-weight:600;
-
     letter-spacing:3px;
-
     text-transform:uppercase;
-
     margin-bottom:12px;
-
 }
 
-.divisions h2{
-
+.documents h2{
     font-size:2rem;
-
     margin-bottom:15px;
-
 }
 
 .section-intro{
-
     max-width:780px;
-
     color:#777;
-
     font-size:.88rem;
-
     line-height:1.8;
+    margin-bottom:35px;
+}
 
-    margin-bottom:40px;
+.document-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+}
 
+.document-card{
+    background:#0d0d0d;
+    border:1px solid rgba(0,200,215,.14);
+    border-radius:18px;
+    padding:30px;
+    transition:.35s ease;
+}
+
+.document-card:hover{
+    transform:translateY(-5px);
+    border-color:rgba(0,200,215,.35);
+    box-shadow:0 0 25px rgba(0,200,215,.07);
+}
+
+.document-icon{
+    width:55px;
+    height:55px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:14px;
+    background:rgba(0,200,215,.07);
+    border:1px solid rgba(0,200,215,.17);
+    color:#00c8d7;
+    font-size:1.4rem;
+    margin-bottom:20px;
+}
+
+.document-card h3{
+    font-size:1.15rem;
+    margin-bottom:9px;
+}
+
+.document-card p{
+    color:#888;
+    font-size:.83rem;
+    line-height:1.8;
+    margin-bottom:22px;
+}
+
+.document-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.document-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+    padding:12px 17px;
+    border-radius:30px;
+    background:#00c8d7;
+    color:#000;
+    text-decoration:none;
+    font-size:.76rem;
+    font-weight:700;
+    transition:.3s ease;
+}
+
+.document-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 20px rgba(0,200,215,.13);
+}
+
+.document-btn.secondary{
+    background:#151515;
+    color:#00c8d7;
+    border:1px solid rgba(0,200,215,.25);
+}
+
+/* STATEMENT */
+
+.statement{
+    max-width:950px;
+    margin:auto;
+    padding:85px 25px;
+    text-align:center;
+}
+
+.statement-icon{
+    color:#00c8d7;
+    font-size:2rem;
+    margin-bottom:22px;
+}
+
+.statement h2{
+    font-size:2.15rem;
+    line-height:1.5;
+    margin-bottom:22px;
+}
+
+.statement h2 span{
+    color:#00c8d7;
+}
+
+.statement p{
+    color:#888;
+    font-size:.94rem;
+    line-height:1.9;
+}
+
+/* DIVISIONS */
+
+.divisions{
+    padding:85px 20px;
+    background:#080808;
+    border-top:1px solid rgba(255,255,255,.04);
+    border-bottom:1px solid rgba(255,255,255,.04);
+}
+
+.divisions-inner{
+    max-width:1150px;
+    margin:auto;
+}
+
+.divisions h2{
+    font-size:2rem;
+    margin-bottom:15px;
 }
 
 .division-grid{
-
     display:grid;
-
-    grid-template-columns:repeat(3,1fr);
-
-    gap:20px;
-
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
 }
 
 .division-card{
-
     background:#0d0d0d;
-
     border:1px solid rgba(0,200,215,.14);
-
     border-radius:18px;
-
-    padding:30px;
-
+    padding:26px;
     position:relative;
-
     overflow:hidden;
-
     transition:.35s ease;
-
 }
 
 .division-card::before{
-
     content:"";
-
     position:absolute;
-
     top:0;
-
     left:0;
-
     width:100%;
-
     height:2px;
-
     background:#00c8d7;
-
     transform:scaleX(0);
-
     transform-origin:left;
-
     transition:.35s ease;
-
 }
 
 .division-card:hover{
-
     transform:translateY(-6px);
-
     border-color:rgba(0,200,215,.3);
-
     box-shadow:0 0 25px rgba(0,200,215,.07);
-
 }
 
 .division-card:hover::before{
-
     transform:scaleX(1);
-
 }
 
 .division-icon{
-
     width:55px;
-
     height:55px;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     border-radius:14px;
-
     background:rgba(0,200,215,.07);
-
     border:1px solid rgba(0,200,215,.17);
-
     color:#00c8d7;
-
     font-size:1.35rem;
-
     margin-bottom:22px;
-
 }
 
 .division-card h3{
-
-    font-size:1.1rem;
-
+    font-size:1.05rem;
     margin-bottom:8px;
-
 }
 
 .division-role{
-
     color:#00c8d7;
-
-    font-size:.74rem;
-
+    font-size:.72rem;
     font-weight:600;
-
     margin-bottom:15px;
-
 }
 
 .division-card p{
-
     color:#888;
-
-    font-size:.82rem;
-
+    font-size:.79rem;
     line-height:1.8;
-
 }
 
+/* EDUCATIONAL INITIATIVE */
 
-/* =========================================
-   LEGAL FOUNDATION
-========================================= */
+.education{
+    padding:80px 20px;
+    background:#050505;
+}
+
+.education-inner{
+    max-width:1150px;
+    margin:auto;
+}
+
+.education-card{
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    gap:30px;
+    align-items:center;
+    background:#0d0d0d;
+    border:1px solid rgba(0,200,215,.16);
+    border-radius:20px;
+    padding:35px;
+}
+
+.education-content h2{
+    font-size:1.8rem;
+    margin-bottom:12px;
+}
+
+.education-content h2 span{
+    color:#00c8d7;
+}
+
+.education-content p{
+    color:#888;
+    font-size:.87rem;
+    line-height:1.9;
+    margin-bottom:20px;
+}
+
+.education-tag{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    color:#00c8d7;
+    font-size:.72rem;
+    font-weight:600;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    margin-bottom:15px;
+}
+
+.education-visual{
+    min-height:210px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background:rgba(0,200,215,.045);
+    border:1px solid rgba(0,200,215,.12);
+    border-radius:16px;
+    padding:25px;
+}
+
+.education-visual i{
+    color:#00c8d7;
+    font-size:3rem;
+    margin-bottom:18px;
+}
+
+.education-visual strong{
+    font-size:1.2rem;
+    letter-spacing:1px;
+}
+
+.education-visual span{
+    color:#777;
+    font-size:.72rem;
+    margin-top:7px;
+}
+
+/* LEGAL FOUNDATION */
 
 .foundation{
-
     padding:80px 20px;
-
     background:#050505;
-
 }
 
 .foundation-inner{
-
     max-width:1150px;
-
     margin:auto;
-
 }
 
 .foundation h2{
-
     font-size:2rem;
-
     margin-bottom:35px;
-
 }
 
 .legal-grid{
-
     display:grid;
-
     grid-template-columns:1.4fr .6fr;
-
     gap:25px;
-
 }
 
 .legal-card{
-
     background:#0d0d0d;
-
     border:1px solid rgba(0,200,215,.14);
-
     border-radius:18px;
-
     padding:30px;
-
     transition:.35s ease;
-
 }
 
 .legal-card:hover{
-
     transform:translateY(-5px);
-
     border-color:rgba(0,200,215,.3);
-
     box-shadow:0 0 25px rgba(0,200,215,.08);
-
 }
 
 .legal-icon{
-
     width:52px;
-
     height:52px;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     border-radius:14px;
-
     background:rgba(0,200,215,.07);
-
     border:1px solid rgba(0,200,215,.17);
-
     color:#00c8d7;
-
     font-size:1.3rem;
-
     margin-bottom:20px;
-
 }
 
 .legal-card h3{
-
     font-size:1.05rem;
-
     margin-bottom:10px;
-
 }
 
 .legal-card p{
-
     color:#888;
-
     font-size:.84rem;
-
     line-height:1.8;
-
 }
 
 .compliance{
-
     display:flex;
-
     flex-direction:column;
-
     gap:12px;
-
 }
 
 .compliance-item{
-
     display:flex;
-
     align-items:center;
-
     gap:12px;
-
     padding:14px;
-
     background:#111;
-
     border-radius:10px;
-
     border:1px solid rgba(255,255,255,.05);
-
     color:#aaa;
-
     font-size:.78rem;
-
 }
 
 .compliance-item i{
-
     color:#00c8d7;
-
 }
 
-
-/* =========================================
-   LEADERSHIP
-========================================= */
+/* LEADERSHIP */
 
 .leadership{
-
     max-width:1150px;
-
     margin:auto;
-
     padding:90px 20px;
-
 }
 
 .heading{
-
     text-align:center;
-
     margin-bottom:50px;
-
 }
 
 .heading h2{
-
     color:#00c8d7;
-
     font-size:2.25rem;
-
     margin-bottom:12px;
-
 }
 
 .heading p{
-
     color:#777;
-
     font-size:.9rem;
-
 }
 
 .leaders{
-
     display:grid;
-
     grid-template-columns:1fr 1fr;
-
     gap:25px;
-
 }
 
 .leader{
-
     background:#0b0b0b;
-
     border:1px solid rgba(0,200,215,.15);
-
     border-radius:20px;
-
     padding:35px;
-
     position:relative;
-
     overflow:hidden;
-
     transition:.35s ease;
-
 }
 
 .leader::before{
-
     content:"";
-
     position:absolute;
-
     top:0;
-
     left:0;
-
     width:100%;
-
     height:2px;
-
     background:#00c8d7;
-
     transform:scaleX(0);
-
     transform-origin:left;
-
     transition:.35s ease;
-
 }
 
 .leader:hover{
-
     transform:translateY(-7px);
-
     border-color:rgba(0,200,215,.32);
-
     box-shadow:0 0 28px rgba(0,200,215,.08);
-
 }
 
 .leader:hover::before{
-
     transform:scaleX(1);
-
 }
 
 .leader-icon{
-
     width:70px;
-
     height:70px;
-
     border-radius:50%;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     background:rgba(0,200,215,.07);
-
     border:1px solid rgba(0,200,215,.2);
-
     color:#00c8d7;
-
     font-size:1.7rem;
-
     margin-bottom:22px;
-
 }
 
 .leader h3{
-
     font-size:1.25rem;
+    margin-bottom:5px;
+}
 
-    margin-bottom:8px;
-
+.leader-fullname{
+    color:#888;
+    font-size:.78rem;
+    margin-bottom:12px;
 }
 
 .role{
-
     color:#00c8d7;
-
     font-size:.78rem;
-
     font-weight:600;
-
-    line-height:1.5;
-
+    line-height:1.7;
     margin-bottom:17px;
-
 }
 
 .leader p{
-
     color:#888;
-
-    font-size:.87rem;
-
+    font-size:.85rem;
     line-height:1.85;
-
 }
 
 .leader-number{
-
     position:absolute;
-
     top:25px;
-
     right:30px;
-
     color:#222;
-
     font-size:2.5rem;
-
     font-weight:800;
-
 }
 
+.leader-social{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:22px;
+    padding-top:18px;
+    border-top:1px solid rgba(255,255,255,.06);
+}
 
-/* =========================================
-   IDENTITY
-========================================= */
+.leader-social a,
+.leader-social span{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    color:#aaa;
+    text-decoration:none;
+    font-size:.75rem;
+    padding:9px 12px;
+    border-radius:9px;
+    background:#111;
+    border:1px solid rgba(255,255,255,.06);
+}
+
+.leader-social a:hover{
+    color:#00c8d7;
+    border-color:rgba(0,200,215,.3);
+}
+
+/* IDENTITY */
 
 .identity{
-
     padding:85px 20px;
-
     background:#080808;
-
     border-top:1px solid rgba(255,255,255,.04);
-
     border-bottom:1px solid rgba(255,255,255,.04);
-
 }
 
 .identity-inner{
-
     max-width:1050px;
-
     margin:auto;
-
     text-align:center;
-
 }
 
 .identity h2{
-
     font-size:2.1rem;
-
     margin-bottom:20px;
-
 }
 
 .identity h2 span{
-
     color:#00c8d7;
-
 }
 
 .identity p{
-
     max-width:800px;
-
     margin:auto;
-
     color:#888;
-
     font-size:.92rem;
-
     line-height:1.9;
-
 }
 
 .identity-grid{
-
     display:grid;
-
     grid-template-columns:repeat(4,1fr);
-
     gap:15px;
-
     margin-top:40px;
-
 }
 
 .identity-item{
-
     padding:25px 15px;
-
     background:#0d0d0d;
-
     border:1px solid rgba(0,200,215,.1);
-
     border-radius:15px;
-
 }
 
 .identity-item i{
-
     color:#00c8d7;
-
     font-size:1.3rem;
-
     margin-bottom:12px;
-
 }
 
 .identity-item strong{
-
     display:block;
-
     font-size:.78rem;
-
     color:#ddd;
-
 }
 
-
-/* =========================================
-   PHILOSOPHY
-========================================= */
+/* PHILOSOPHY */
 
 .philosophy{
-
     max-width:1000px;
-
     margin:auto;
-
     padding:100px 25px;
-
     text-align:center;
-
 }
 
 .philosophy-icon{
-
     color:#00c8d7;
-
     font-size:2.3rem;
-
     margin-bottom:25px;
-
 }
 
 .philosophy h2{
-
     font-size:2.4rem;
-
     line-height:1.4;
-
     margin-bottom:22px;
-
 }
 
 .philosophy h2 span{
-
     color:#00c8d7;
-
 }
 
 .philosophy p{
-
     max-width:800px;
-
     margin:auto;
-
     color:#888;
-
     font-size:.95rem;
-
     line-height:2;
-
 }
 
 .philosophy-line{
-
     width:90px;
-
     height:2px;
-
     background:#00c8d7;
-
     margin:35px auto;
-
 }
 
 .philosophy strong{
-
     color:#fff;
-
 }
 
-
-/* =========================================
-   CTA
-========================================= */
+/* CTA */
 
 .cta{
-
     padding:70px 20px 100px;
-
     text-align:center;
-
 }
 
 .cta-box{
-
     max-width:900px;
-
     margin:auto;
-
     padding:45px 30px;
-
     border-radius:20px;
-
     background:#0b0b0b;
-
     border:1px solid rgba(0,200,215,.14);
-
 }
 
 .cta-box h2{
-
     font-size:1.8rem;
-
     margin-bottom:12px;
-
 }
 
 .cta-box p{
-
     color:#777;
-
     font-size:.85rem;
-
     line-height:1.8;
-
     max-width:650px;
-
     margin:0 auto 25px;
-
 }
 
 .cta-btn{
-
     display:inline-flex;
-
     align-items:center;
-
     gap:9px;
-
     padding:14px 25px;
-
     border-radius:40px;
-
     background:#00c8d7;
-
     color:#000;
-
     text-decoration:none;
-
     font-size:.82rem;
-
     font-weight:700;
-
     transition:.3s ease;
-
 }
 
 .cta-btn:hover{
-
     transform:translateY(-3px);
-
     box-shadow:0 8px 25px rgba(0,200,215,.14);
-
 }
 
-
-/* =========================================
-   FOOTER
-========================================= */
+/* FOOTER */
 
 footer{
-
     padding:35px 20px;
-
     text-align:center;
-
     border-top:1px solid rgba(255,255,255,.06);
-
     color:#555;
-
     font-size:.76rem;
-
     line-height:1.8;
-
 }
 
 footer strong{
-
     color:#777;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1050px){
+
+    .division-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
 
 }
 
-
-/* =========================================
-   RESPONSIVE
-========================================= */
-
 @media(max-width:900px){
 
-    .division-grid{
-
+    .legal-grid,
+    .leaders,
+    .education-card{
         grid-template-columns:1fr;
-
-    }
-
-    .legal-grid{
-
-        grid-template-columns:1fr;
-
-    }
-
-    .leaders{
-
-        grid-template-columns:1fr;
-
     }
 
     .identity-grid{
-
         grid-template-columns:1fr 1fr;
+    }
 
+}
+
+@media(max-width:650px){
+
+    .document-grid{
+        grid-template-columns:1fr;
+    }
+
+    .division-grid{
+        grid-template-columns:1fr;
     }
 
 }
@@ -1220,106 +938,92 @@ footer strong{
 @media(max-width:550px){
 
     header{
-
         padding:17px;
-
     }
 
     .brand-text strong{
-
         font-size:.75rem;
+    }
 
+    .brand-text span{
+        font-size:.55rem;
+    }
+
+    .back{
+        font-size:.75rem;
     }
 
     .hero{
-
         min-height:520px;
-
         padding:90px 20px 80px;
-
     }
 
     .hero h1{
-
         font-size:2rem;
-
     }
 
     .hero p{
-
         font-size:.88rem;
-
     }
 
     .statement h2{
-
         font-size:1.65rem;
-
     }
 
     .foundation h2,
-    .heading h2{
-
+    .heading h2,
+    .documents h2{
         font-size:1.8rem;
-
     }
 
     .identity-grid{
-
         grid-template-columns:1fr;
-
     }
 
     .philosophy h2{
-
         font-size:1.9rem;
-
     }
 
     .cta-box{
-
         padding:35px 22px;
+    }
 
+    .document-actions{
+        flex-direction:column;
+    }
+
+    .document-btn{
+        width:100%;
     }
 
 }
 
 </style>
-
 </head>
 
 
 <body>
 
 
-<!-- =========================================
-     HEADER
-========================================= -->
+<!-- HEADER -->
 
 <header>
 
     <div class="brand">
 
         <div class="brand-icon">
-
             <i class="fas fa-building"></i>
-
         </div>
 
         <div class="brand-text">
 
-            <strong>
-                BLACKLOGIC TECHNOLOGIES
-            </strong>
+            <strong>BLACKLOGIC TECHNOLOGIES</strong>
 
-            <span>
-                COMPANY PROFILE
-            </span>
+            <span>COMPANY PROFILE</span>
 
         </div>
 
     </div>
-
 
     <a href="landing.html" class="back">
 
@@ -1332,9 +1036,7 @@ footer strong{
 </header>
 
 
-<!-- =========================================
-     HERO
-========================================= -->
+<!-- HERO -->
 
 <section class="hero">
 
@@ -1345,23 +1047,17 @@ footer strong{
         </div>
 
         <h1>
-
             Business.
-
-            <span>
-                Design. Engineering.
-            </span>
-
+            <span>Design. Media. Engineering.</span>
         </h1>
 
         <p>
-
             Blacklogic Technologies Hardware and Projects Pty Ltd
-            is a South African company bringing together business
-            consultation, professional design and digital systems
+            is a South African digital infrastructure engineering
+            company bringing together business consultation,
+            professional design, media production and digital systems
             engineering to help organisations move from requirements
             to practical outcomes.
-
         </p>
 
     </div>
@@ -1369,42 +1065,149 @@ footer strong{
 </section>
 
 
-<!-- =========================================
-     STATEMENT
-========================================= -->
+<!-- COMPANY DOCUMENTS -->
+
+<section class="documents">
+
+    <div class="documents-inner">
+
+        <div class="section-label">
+            Corporate Documents
+        </div>
+
+        <h2>
+            Explore BlackLogic Technologies.
+        </h2>
+
+        <p class="section-intro">
+            Access our corporate documents to learn more about
+            BlackLogic Technologies, our organisational capabilities,
+            services, projects and delivery experience.
+        </p>
+
+
+        <div class="document-grid">
+
+
+            <!-- COMPANY PROFILE -->
+
+            <article class="document-card">
+
+                <div class="document-icon">
+                    <i class="fas fa-building"></i>
+                </div>
+
+                <h3>
+                    Company Profile
+                </h3>
+
+                <p>
+                    An introduction to BlackLogic Technologies,
+                    our corporate identity, organisational structure,
+                    leadership, divisions and business capabilities.
+                </p>
+
+                <div class="document-actions">
+
+                    <a
+                        href="company-profile.pdf"
+                        class="document-btn"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <i class="fas fa-eye"></i>
+                        Online View
+                    </a>
+
+                    <a
+                        href="company-profile.pdf"
+                        class="document-btn secondary"
+                        download="BlackLogic-Technologies-Company-Profile.pdf"
+                    >
+                        <i class="fas fa-download"></i>
+                        Download PDF
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- CORPORATE PORTFOLIO -->
+
+            <article class="document-card">
+
+                <div class="document-icon">
+                    <i class="fas fa-folder-open"></i>
+                </div>
+
+                <h3>
+                    Corporate Portfolio
+                </h3>
+
+                <p>
+                    Explore BlackLogic's work, projects, systems,
+                    client engagements, technical capabilities
+                    and examples of delivered solutions.
+                </p>
+
+                <div class="document-actions">
+
+                    <a
+                        href="company-portfolio.pdf"
+                        class="document-btn"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <i class="fas fa-eye"></i>
+                        Online View
+                    </a>
+
+                    <a
+                        href="company-portfolio.pdf"
+                        class="document-btn secondary"
+                        download="BlackLogic-Technologies-Corporate-Portfolio.pdf"
+                    >
+                        <i class="fas fa-download"></i>
+                        Download PDF
+                    </a>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- STATEMENT -->
 
 <section class="statement">
 
     <div class="statement-icon">
-
         <i class="fas fa-circle-nodes"></i>
-
     </div>
 
     <h2>
-
         More than what we provide.
-        <span>
-            It is how we solve.
-        </span>
-
+        <span>It is how we solve.</span>
     </h2>
 
     <p>
-
-        BlackLogic Technologies is structured around three connected
-        capabilities. We help organisations formalise their business,
-        communicate professionally and engineer digital systems around
-        real-world requirements.
-
+        BlackLogic Technologies is structured around four connected
+        commercial divisions. We help organisations formalise their
+        businesses, communicate professionally, produce media and
+        engineer digital systems around real-world requirements.
     </p>
 
 </section>
 
 
-<!-- =========================================
-     DIVISIONS
-========================================= -->
+<!-- FOUR DIVISIONS -->
 
 <section class="divisions">
 
@@ -1415,34 +1218,30 @@ footer strong{
     </div>
 
     <h2>
-        Three Divisions. One Company.
+        Four Divisions. One Company.
     </h2>
 
     <p class="section-intro">
-
         Each BlackLogic division addresses a different part of an
         organisation's journey. The divisions can operate independently
         while also working together when a requirement crosses
-        business, design and technology.
-
+        business, design, media and technology.
     </p>
 
 
     <div class="division-grid">
 
 
-        <!-- CONSULTING -->
+        <!-- CONSULTATION -->
 
         <article class="division-card">
 
             <div class="division-icon">
-
                 <i class="fas fa-file-signature"></i>
-
             </div>
 
             <h3>
-                BlackLogic Consulting
+                BlackLogic Consultation
             </h3>
 
             <div class="division-role">
@@ -1450,11 +1249,9 @@ footer strong{
             </div>
 
             <p>
-
                 Support across business registration and formalisation
                 requirements, including CIPC, SARS, CSD, B-BBEE and
-                related business documentation.
-
+                related business documentation and procurement readiness.
             </p>
 
         </article>
@@ -1465,9 +1262,7 @@ footer strong{
         <article class="division-card">
 
             <div class="division-icon">
-
                 <i class="fas fa-pen-ruler"></i>
-
             </div>
 
             <h3>
@@ -1479,12 +1274,34 @@ footer strong{
             </div>
 
             <p>
-
                 Professional visual and business communication assets
-                including logos, visual identity, invoices, company
-                profiles, flyers and other materials that help
-                organisations present themselves professionally.
+                including branding, visual identity, invoices, company
+                profiles, flyers and marketing materials.
+            </p>
 
+        </article>
+
+
+        <!-- MEDIA -->
+
+        <article class="division-card">
+
+            <div class="division-icon">
+                <i class="fas fa-photo-film"></i>
+            </div>
+
+            <h3>
+                BlackLogic Media
+            </h3>
+
+            <div class="division-role">
+                Media Production
+            </div>
+
+            <p>
+                Media production and digital communication, including
+                filming, video editing, AI-enhanced visuals, promotional
+                content and social media management.
             </p>
 
         </article>
@@ -1495,9 +1312,7 @@ footer strong{
         <article class="division-card">
 
             <div class="division-icon">
-
                 <i class="fas fa-microchip"></i>
-
             </div>
 
             <h3>
@@ -1509,12 +1324,10 @@ footer strong{
             </div>
 
             <p>
-
                 Engineering digital systems, software, artificial
                 intelligence, cloud infrastructure, UX/UI and systems
                 intelligence around real-world organisational
                 requirements.
-
             </p>
 
         </article>
@@ -1527,9 +1340,78 @@ footer strong{
 </section>
 
 
-<!-- =========================================
-     LEGAL FOUNDATION
-========================================= -->
+<!-- EDUCATIONAL INITIATIVE -->
+
+<section class="education">
+
+    <div class="education-inner">
+
+        <div class="section-label">
+            Educational Initiative
+        </div>
+
+        <div class="education-card">
+
+            <div class="education-content">
+
+                <div class="education-tag">
+                    <i class="fas fa-graduation-cap"></i>
+                    Education • Technology • Opportunity
+                </div>
+
+                <h2>
+                    African Institution of <span>Technology.</span>
+                </h2>
+
+                <p>
+                    The African Institution of Technology (AIT) is
+                    an educational initiative focused on accessible,
+                    practical technology and business learning.
+                    It creates opportunities for individuals to
+                    explore career pathways, develop practical
+                    capabilities and engage with technology,
+                    entrepreneurship and digital skills.
+                </p>
+
+                <p>
+                    AIT is presented as a separate educational
+                    initiative within the wider BlackLogic ecosystem,
+                    rather than as a fifth commercial division.
+                </p>
+
+                <a
+                    href="https://startyourbusinessafrica.netlify.app/"
+                    class="document-btn"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Explore AIT
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                </a>
+
+            </div>
+
+
+            <div class="education-visual">
+
+                <i class="fas fa-graduation-cap"></i>
+
+                <strong>AIT</strong>
+
+                <span>
+                    AFRICAN INSTITUTION OF TECHNOLOGY
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- LEGAL FOUNDATION -->
 
 <section class="foundation">
 
@@ -1550,9 +1432,7 @@ footer strong{
         <div class="legal-card">
 
             <div class="legal-icon">
-
                 <i class="fas fa-scale-balanced"></i>
-
             </div>
 
             <h3>
@@ -1562,17 +1442,15 @@ footer strong{
             <p>
 
                 <strong style="color:#fff;">
-
                     Blacklogic Technologies Hardware and
                     Projects Pty Ltd
-
                 </strong>
 
                 <br><br>
 
                 This is the legal registered company identity
                 behind the BlackLogic Technologies business,
-                design and engineering operations.
+                design, media and engineering operations.
 
             </p>
 
@@ -1582,40 +1460,33 @@ footer strong{
         <div class="legal-card">
 
             <div class="legal-icon">
-
                 <i class="fas fa-shield-halved"></i>
-
             </div>
 
             <h3>
                 Compliance
             </h3>
 
-
             <div class="compliance">
 
                 <div class="compliance-item">
-
                     <i class="fas fa-check-circle"></i>
-
                     CIPC Registered
-
                 </div>
 
                 <div class="compliance-item">
-
                     <i class="fas fa-check-circle"></i>
-
-                    CSD Compliant
-
+                    CSD Registered
                 </div>
 
                 <div class="compliance-item">
-
                     <i class="fas fa-check-circle"></i>
+                    SARS Tax Compliant
+                </div>
 
-                    SARS Compliant
-
+                <div class="compliance-item">
+                    <i class="fas fa-check-circle"></i>
+                    B-BBEE Level 1 Contributor
                 </div>
 
             </div>
@@ -1630,9 +1501,7 @@ footer strong{
 </section>
 
 
-<!-- =========================================
-     LEADERSHIP
-========================================= -->
+<!-- LEADERSHIP -->
 
 <section class="leadership">
 
@@ -1647,8 +1516,9 @@ footer strong{
         </h2>
 
         <p>
-            Technical leadership and creative direction working together
-            across the BlackLogic Technologies ecosystem.
+            Engineering leadership, creative direction and
+            business strategy working together across the
+            BlackLogic Technologies ecosystem.
         </p>
 
     </div>
@@ -1657,7 +1527,7 @@ footer strong{
     <div class="leaders">
 
 
-        <!-- ENGINEERING LEADERSHIP -->
+        <!-- FOUNDER -->
 
         <article class="leader">
 
@@ -1666,46 +1536,62 @@ footer strong{
             </div>
 
             <div class="leader-icon">
-
                 <i class="fas fa-microchip"></i>
-
             </div>
 
             <h3>
-                Mr MS Mathebula
+                BlackLogic Mkholo
             </h3>
 
+            <div class="leader-fullname">
+                Mthokozisi Samukelo Mathebula
+            </div>
+
             <div class="role">
-
-                Lead Engineer & Founder
-
+                Founder • Lead Engineer
                 <br>
-
-                AI Software & Cloud Engineer
-
+                Technology Project Manager • Business Leader
             </div>
 
             <p>
-
-                Responsible for the engineering direction of
-                BlackLogic Technologies, including software
-                architecture, artificial intelligence engineering,
-                cloud infrastructure, systems engineering and
-                operational intelligence.
+                Responsible for the engineering and business
+                direction of BlackLogic Technologies, including
+                digital systems architecture, artificial intelligence,
+                cloud infrastructure, technology project management
+                and organisational development.
 
                 <br><br>
 
-                His role spans the technical lifecycle of a system:
-                understanding the requirement, designing the
-                architecture, engineering the technology, deploying
-                the system and continuously improving it.
-
+                His role spans the technical and operational
+                lifecycle of projects: understanding requirements,
+                coordinating delivery, engineering solutions,
+                overseeing implementation and driving continuous
+                improvement.
             </p>
+
+            <div class="leader-social">
+
+                <a
+                    href="https://www.tiktok.com/@blacklogicmkholo"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="BlackLogic Mkholo on TikTok"
+                >
+                    <i class="fab fa-tiktok"></i>
+                    @blacklogic
+                </a>
+
+                <span>
+                    <i class="fab fa-facebook-f"></i>
+                    Facebook: Blacklogic Mkholo
+                </span>
+
+            </div>
 
         </article>
 
 
-        <!-- DESIGN LEADERSHIP -->
+        <!-- CO-FOUNDER -->
 
         <article class="leader">
 
@@ -1714,39 +1600,61 @@ footer strong{
             </div>
 
             <div class="leader-icon">
-
                 <i class="fas fa-pen-ruler"></i>
-
             </div>
 
             <h3>
-                Ms AA Mahlaba
+                Quinn Asanda
             </h3>
 
+            <div class="leader-fullname">
+                Asanda Angel Mahlaba
+            </div>
+
             <div class="role">
-
-                Lead Designer & Co-Founder
-
+                Co-Founder • Lead Designer
                 <br>
-
-                Software Designer & UX/UI Practitioner
-
+                Engineering Technologist • Business Strategist
             </div>
 
             <p>
-
                 Responsible for the creative and design direction
-                of BlackLogic Technologies, including UX/UI architecture,
-                software interface design, visual systems and the
-                human experience surrounding digital technology.
+                of BlackLogic Technologies, including UX/UI
+                architecture, software interface design, visual
+                systems and the human experience surrounding
+                digital technology.
 
                 <br><br>
 
-                Her work transforms requirements and engineering
-                concepts into understandable, usable and purposeful
-                digital experiences.
-
+                Her role also contributes to business strategy,
+                organisational development and the translation
+                of requirements into understandable, usable
+                and purposeful digital experiences.
             </p>
+
+            <div class="leader-social">
+
+                <a
+                    href="https://www.tiktok.com/@quinnasanda"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Quinn Asanda on TikTok"
+                >
+                    <i class="fab fa-tiktok"></i>
+                    @quinnasanda
+                </a>
+
+                <a
+                    href="https://www.instagram.com/quinn_asanda/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Quinn Asanda on Instagram"
+                >
+                    <i class="fab fa-instagram"></i>
+                    @quinnasanda
+                </a>
+
+            </div>
 
         </article>
 
@@ -1756,9 +1664,7 @@ footer strong{
 </section>
 
 
-<!-- =========================================
-     IDENTITY
-========================================= -->
+<!-- ENGINEERING DISCIPLINES -->
 
 <section class="identity">
 
@@ -1769,22 +1675,15 @@ footer strong{
     </div>
 
     <h2>
-
         Four Engineering Disciplines.
-
-        <span>
-            One Philosophy.
-        </span>
-
+        <span>One Philosophy.</span>
     </h2>
 
     <p>
-
         Engineering remains one of BlackLogic's core capabilities.
         Different technical disciplines are brought together around
         one principle: understand the problem first, then engineer
         the right system.
-
     </p>
 
 
@@ -1842,39 +1741,30 @@ footer strong{
 </section>
 
 
-<!-- =========================================
-     PHILOSOPHY
-========================================= -->
+<!-- PHILOSOPHY -->
 
 <section class="philosophy">
 
     <div class="philosophy-icon">
-
         <i class="fas fa-infinity"></i>
-
     </div>
 
     <h2>
-
         The systems will change.
-
-        <span>
-            The mission remains.
-        </span>
-
+        <span>The mission remains.</span>
     </h2>
 
     <p>
-
         BlackLogic Technologies began with an ambition to use
         practical capabilities to solve problems that matter.
 
         <br><br>
 
         Today, that ambition is expressed through business
-        formalisation, professional design, software systems,
-        artificial intelligence, cloud infrastructure, operational
-        intelligence and digital experiences.
+        formalisation, professional design, media production,
+        software systems, artificial intelligence, cloud
+        infrastructure, operational intelligence and
+        educational initiatives.
 
         <br><br>
 
@@ -1908,16 +1798,14 @@ footer strong{
 
         <br>
 
-        Consulting. Design. Engineering.
+        Consultation. Design. Media. Engineering.
 
     </p>
 
 </section>
 
 
-<!-- =========================================
-     CTA
-========================================= -->
+<!-- CTA -->
 
 <section class="cta">
 
@@ -1928,17 +1816,12 @@ footer strong{
         </h2>
 
         <p>
-
-            Whether you need business registration and formalisation,
-            professional design or a digital system, start a
-            consultation with the relevant BlackLogic division.
-
+            Whether you need business consultation, professional
+            design, media production or a digital system, start
+            a consultation with the relevant BlackLogic division.
         </p>
 
-        <a
-            href="consult.html"
-            class="cta-btn"
-        >
+        <a href="consult.html" class="cta-btn">
 
             Start a Consultation
 
@@ -1951,9 +1834,7 @@ footer strong{
 </section>
 
 
-<!-- =========================================
-     FOOTER
-========================================= -->
+<!-- FOOTER -->
 
 <footer>
 
@@ -1963,11 +1844,12 @@ footer strong{
 
     <br>
 
-    Consulting • Design • Engineering
+    Consultation • Design • Media • Engineering
 
     <br><br>
 
-    CIPC Registered • CSD Compliant • SARS Compliant
+    CIPC Registered • CSD Registered • SARS Tax Compliant
+    • B-BBEE Level 1 Contributor
 
     <br><br>
 
@@ -1977,5 +1859,4 @@ footer strong{
 
 
 </body>
-
 </html>

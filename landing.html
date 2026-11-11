@@ -1,29 +1,32 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>BlackLogic Infrastructure Solutions | Consulting, Design & Engineering</title>
+<title>BlackLogic Technologies | Digital Infrastructure Solutions</title>
 
-<meta name="description" content="Explore BlackLogic Technologies infrastructure solutions across business consultation, professional design and digital systems engineering, including business formalisation, visual identity, e-commerce infrastructure, AI, software and operational technology.">
+<meta name="description" content="BlackLogic Technologies is a South African digital infrastructure engineering company delivering business consultation, branding, media production and digital systems engineering across South Africa and Africa.">
 
-<meta name="keywords" content="BlackLogic Technologies, BlackLogic Consulting, BlackLogic Design, BlackLogic Engineering, business consultation South Africa, CIPC, SARS, CSD, B-BBEE, logo design, company profile design, invoice design, software engineering, digital systems, AI engineering, cloud infrastructure, e-commerce infrastructure, Luxury Culture, NCIA, NewEra Investigators, AfricaSpani Database, Black Empowerment Portal, Bonvinco Tactical Response, Bovinco Holdings">
+<meta name="keywords" content="BlackLogic Technologies, BlackLogic Consultation, BlackLogic Design, BlackLogic Media, BlackLogic Engineering, business registration South Africa, procurement readiness, CIPC, SARS, CSD, B-BBEE, business documentation, branding, marketing assets, media production, social media management, digital infrastructure, NCIA, NewEra Investigators, AfricaSpani, Black Empowerment Portal, African Institution of Technology, Bonvinco Tactical Response, Bovinco Holdings, Luxury Group">
 
 <meta name="author" content="BlackLogic Technologies">
 <meta name="robots" content="index, follow">
 
+<meta name="theme-color" content="#050505">
+
 <link rel="canonical" href="https://blacklogictechnologies.netlify.app/landing.html">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="BlackLogic Infrastructure Solutions | Consulting, Design & Engineering">
-<meta property="og:description" content="Business consultation, professional design and digital systems engineering delivered through BlackLogic Technologies.">
+<meta property="og:title" content="BlackLogic Technologies | Digital Infrastructure Engineering">
+<meta property="og:description" content="Business consultation, branding, media production and digital infrastructure engineering delivered through four specialised divisions.">
 <meta property="og:site_name" content="BlackLogic Technologies">
 <meta property="og:locale" content="en_ZA">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="BlackLogic Infrastructure Solutions">
-<meta name="twitter:description" content="Consulting, Design and Engineering solutions by BlackLogic Technologies.">
+<meta name="twitter:title" content="BlackLogic Technologies | Digital Infrastructure Engineering">
+<meta name="twitter:description" content="Consultation, Design, Media and Engineering — one technology ecosystem.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -82,6 +85,7 @@ transition:.35s ease;
 z-index:1000;
 border-right:1px solid rgba(0,200,215,.15);
 box-shadow:10px 0 30px rgba(0,0,0,.4);
+overflow-y:auto;
 }
 
 .side-drawer a{
@@ -116,7 +120,7 @@ left:0;
 ================================ */
 
 .banner{
-min-height:420px;
+min-height:450px;
 background:url('software.jpg') center/cover no-repeat;
 display:flex;
 align-items:center;
@@ -139,8 +143,8 @@ rgba(0,0,0,.92)
 .banner-content{
 position:relative;
 z-index:2;
-max-width:900px;
-padding:0 20px;
+max-width:950px;
+padding:50px 20px;
 }
 
 .banner h1{
@@ -158,7 +162,7 @@ color:#00c8d7;
 color:#ccc;
 font-size:1.05rem;
 line-height:1.8;
-max-width:780px;
+max-width:820px;
 margin:auto;
 }
 
@@ -182,6 +186,7 @@ margin-bottom:12px;
 color:#999;
 margin-bottom:55px;
 font-size:.98rem;
+line-height:1.8;
 }
 
 /* ================================
@@ -192,6 +197,7 @@ font-size:.98rem;
 max-width:1300px;
 margin:0 auto 85px;
 text-align:left;
+scroll-margin-top:35px;
 }
 
 .division-header{
@@ -223,7 +229,7 @@ color:#00c8d7;
 color:#999;
 font-size:.95rem;
 line-height:1.8;
-max-width:850px;
+max-width:900px;
 }
 
 /* ================================
@@ -347,6 +353,7 @@ text-decoration:none;
 font-size:.85rem;
 font-weight:700;
 transition:.3s ease;
+width:fit-content;
 }
 
 .solution-btn:hover{
@@ -359,12 +366,12 @@ font-size:.8rem;
 }
 
 /* ================================
-   CONSULTING EVIDENCE
+   EVIDENCE GRID
 ================================ */
 
 .consulting-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
 gap:30px;
 }
 
@@ -373,11 +380,13 @@ background:#0d0d0d;
 border:1px solid rgba(0,200,215,.18);
 border-radius:18px;
 overflow:hidden;
+display:flex;
+flex-direction:column;
 }
 
 .consulting-card img{
 width:100%;
-height:230px;
+height:220px;
 object-fit:cover;
 display:block;
 }
@@ -399,6 +408,42 @@ line-height:1.7;
 }
 
 /* ================================
+   CONSULTATION HIGHLIGHTS
+================================ */
+
+.consultation-highlights{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:18px;
+margin-bottom:30px;
+}
+
+.highlight-card{
+background:#0d0d0d;
+border:1px solid rgba(0,200,215,.18);
+border-radius:14px;
+padding:22px;
+}
+
+.highlight-card i{
+color:#00c8d7;
+font-size:1.4rem;
+margin-bottom:13px;
+}
+
+.highlight-card h4{
+color:#fff;
+font-size:1rem;
+margin-bottom:8px;
+}
+
+.highlight-card p{
+color:#999;
+font-size:.85rem;
+line-height:1.7;
+}
+
+/* ================================
    DESIGN SLIDER
 ================================ */
 
@@ -414,7 +459,11 @@ background:#0d0d0d;
 .design-track{
 display:flex;
 width:max-content;
-animation:designSlide 22s linear infinite;
+animation:designSlide 30s linear infinite;
+}
+
+.design-slider:hover .design-track{
+animation-play-state:paused;
 }
 
 .design-slide{
@@ -441,18 +490,16 @@ to top,
 rgba(0,0,0,.65),
 transparent 55%
 );
+pointer-events:none;
 }
 
 @keyframes designSlide{
-
 0%{
 transform:translateX(0);
 }
-
 100%{
 transform:translateX(-50%);
 }
-
 }
 
 .design-label{
@@ -466,12 +513,46 @@ font-weight:600;
 letter-spacing:.5px;
 }
 
-.design-description{
-margin-top:22px;
-color:#aaa;
-font-size:.91rem;
-line-height:1.8;
-max-width:900px;
+/* ================================
+   MEDIA PLATFORMS
+================================ */
+
+.platform-list{
+display:flex;
+flex-wrap:wrap;
+gap:12px;
+margin-top:18px;
+}
+
+.platform-item{
+display:inline-flex;
+align-items:center;
+gap:8px;
+padding:10px 15px;
+background:#101010;
+border:1px solid rgba(0,200,215,.18);
+border-radius:30px;
+color:#ccc;
+font-size:.82rem;
+}
+
+.platform-item i{
+color:#00c8d7;
+}
+
+/* ================================
+   SECTION LABEL
+================================ */
+
+.subsection-heading{
+font-size:1.35rem;
+font-weight:700;
+color:#fff;
+margin:38px 0 20px;
+}
+
+.subsection-heading span{
+color:#00c8d7;
 }
 
 /* ================================
@@ -551,6 +632,7 @@ border-top:1px solid rgba(255,255,255,.06);
 color:#666;
 font-size:.8rem;
 letter-spacing:.7px;
+line-height:1.8;
 }
 
 /* ================================
@@ -623,6 +705,10 @@ font-size:.85rem;
 padding:20px;
 }
 
+.consulting-content{
+padding:20px;
+}
+
 }
 
 /* ================================
@@ -657,6 +743,8 @@ outline:2px solid #00c8d7;
 <div class="hamburger"
      id="hamburger"
      aria-label="Open navigation menu"
+     aria-expanded="false"
+     aria-controls="drawer"
      role="button"
      tabindex="0">
 
@@ -710,8 +798,10 @@ BlackLogic
 </h1>
 
 <p>
-Business consultation, professional design and digital systems engineering
-delivered through one technology ecosystem for real-world organisations
+BlackLogic Technologies is a South African digital infrastructure
+engineering company based in Middelburg, Mpumalanga. Through four
+specialised divisions, we deliver business consultation, visual design,
+media production and digital systems engineering for organisations
 across South Africa and Africa.
 </p>
 
@@ -727,25 +817,26 @@ across South Africa and Africa.
 <section class="portal-section">
 
 <h2>
-BlackLogic Infrastructure Solutions
+BlackLogic Technologies
 </h2>
 
 <p class="portal-subtitle">
-Three divisions. One technology ecosystem. Evidence-led solutions built
-around the real requirements of organisations and businesses.
+Four specialised divisions. One technology ecosystem.
+Evidence-led solutions built around the real requirements of
+organisations and businesses.
 </p>
 
 
 <!-- =================================
-     01 — CONSULTING
+     01 — CONSULTATION
 ================================= -->
 
-<section class="division">
+<section class="division" id="consultation">
 
 <div class="division-header">
 
 <span class="division-number">
-01 — BlackLogic Consulting
+01 — BlackLogic Consultation
 </span>
 
 <h3 class="division-title">
@@ -753,10 +844,52 @@ Business <span>Consultation</span>
 </h3>
 
 <p class="division-description">
-BlackLogic supports businesses with formalisation, registration and
-business documentation requirements, helping organisations establish
-the required administrative foundation for operating professionally.
+BlackLogic Consultation supports businesses with registration and
+formalisation, procurement readiness, business documentation and
+exploration of funding opportunities. The division helps organisations
+establish the administrative foundation required to operate and
+participate in business and procurement environments.
 </p>
+
+</div>
+
+
+<div class="consultation-highlights">
+
+<div class="highlight-card">
+<i class="fas fa-building"></i>
+<h4>Business Registration</h4>
+<p>
+CIPC, SARS, CSD and B-BBEE registration and business formalisation support.
+</p>
+</div>
+
+<div class="highlight-card">
+<i class="fas fa-file-signature"></i>
+<h4>Business Documentation</h4>
+<p>
+Business profiles, compliance documentation and professional
+administrative records.
+</p>
+</div>
+
+<div class="highlight-card">
+<i class="fas fa-handshake"></i>
+<h4>Procurement Readiness</h4>
+<p>
+Supplier onboarding, procurement documentation and exploration
+of RFQs, RFPs and state-owned enterprise tenders.
+</p>
+</div>
+
+<div class="highlight-card">
+<i class="fas fa-chart-line"></i>
+<h4>Funding Opportunities</h4>
+<p>
+Exploration of funding opportunities and business development
+programmes relevant to organisational growth.
+</p>
+</div>
 
 </div>
 
@@ -767,19 +900,21 @@ the required administrative foundation for operating professionally.
 
 <img
 src="cipc.png"
-alt="CIPC, SARS and CSD business registration and formalisation"
+alt="Business registration and formalisation documentation"
 loading="lazy"
 >
 
 <div class="consulting-content">
 
 <h3>
-Business Registration & Formalisation
+BlackLogic Procurement Readiness
 </h3>
 
 <p>
-Support across business registration and formalisation requirements,
-including CIPC, SARS, CSD, B-BBEE and related business documentation.
+BlackLogic Technologies has developed its own procurement readiness
+through supplier registrations, business documentation and communication
+with more than 135 companies across different industries in South Africa.
+The company has explored RFQs, RFPs and state-owned enterprise tenders.
 </p>
 
 </div>
@@ -796,8 +931,27 @@ KHAYA GROUP (PTY) LTD
 </h3>
 
 <p>
-A completed business formalisation engagement covering business
-registration, SARS registration, CSD and the resulting documentation.
+A completed business registration and formalisation engagement
+covering CIPC, SARS and B-BBEE, with the resulting company
+documentation handed over to the client.
+</p>
+
+</div>
+
+</article>
+
+
+<article class="consulting-card">
+
+<div class="consulting-content">
+
+<h3>
+QUEENZELLE GROUP (PTY) LTD
+</h3>
+
+<p>
+A business registration engagement involving CIPC, SARS,
+B-BBEE and CSD registration assistance.
 </p>
 
 </div>
@@ -810,11 +964,11 @@ registration, SARS registration, CSD and the resulting documentation.
 <div class="division-cta">
 
 <p>
-Need Business Registration?
+Need Business Registration, Procurement or Documentation Support?
 </p>
 
 <a href="consult.html">
-Consult BlackLogic Consulting
+Consult BlackLogic Consultation
 <i class="fas fa-arrow-right"></i>
 </a>
 
@@ -827,7 +981,7 @@ Consult BlackLogic Consulting
      02 — DESIGN
 ================================= -->
 
-<section class="division">
+<section class="division" id="design">
 
 <div class="division-header">
 
@@ -836,18 +990,55 @@ Consult BlackLogic Consulting
 </span>
 
 <h3 class="division-title">
-Professional <span>Design</span>
+Branding & <span>Creative Design</span>
 </h3>
 
 <p class="division-description">
-BlackLogic Design creates professional visual and business materials
-that give organisations a consistent and credible visual identity —
-from logos and invoices to company profiles, flyers and other business
-communication assets.
+BlackLogic Design develops professional branding and creative assets
+for businesses and organisations. Its work includes visual identity,
+company profiles, invoice templates, marketing materials, promotional
+designs and other business communication assets.
 </p>
 
 </div>
 
+
+<h4 class="subsection-heading">
+Internal Company <span>Design Work</span>
+</h4>
+
+<div class="consulting-grid">
+
+<article class="consulting-card">
+
+<img
+src="logic.png"
+alt="BlackLogic Technologies company profile and corporate visual identity"
+loading="lazy"
+>
+
+<div class="consulting-content">
+
+<h3>
+BlackLogic Technologies
+</h3>
+
+<p>
+Visual branding, company profile, corporate portfolio,
+invoice templates and marketing assets produced by
+BlackLogic Design.
+</p>
+
+</div>
+
+</article>
+
+</div>
+
+
+<h4 class="subsection-heading">
+Client <span>Design Engagements</span>
+</h4>
 
 <div class="design-slider">
 
@@ -859,37 +1050,35 @@ communication assets.
 
 <img
 src="aziseza.jpg"
-alt="AZISEZA GROUP logo designed by BlackLogic Technologies"
+alt="Aziseza Group business branding"
 loading="lazy"
 >
 
 <div class="design-label">
-AZISEZA GROUP — Logo Design
+AZISEZA GROUP — Branding
 </div>
 
 </div>
-
 
 <div class="design-slide">
 
 <img
 src="invoice.jpg"
-alt="AZISEZA GROUP invoice design by BlackLogic Technologies"
+alt="Aziseza Group invoice template design"
 loading="lazy"
 >
 
 <div class="design-label">
-AZISEZA GROUP — Invoice Design
+AZISEZA GROUP — Invoice Template
 </div>
 
 </div>
-
 
 <div class="design-slide">
 
 <img
 src="profile.jpg"
-alt="AZISEZA GROUP company profile designed by BlackLogic Technologies"
+alt="Aziseza Group company profile design"
 loading="lazy"
 >
 
@@ -899,71 +1088,143 @@ AZISEZA GROUP — Company Profile
 
 </div>
 
+<div class="design-slide">
 
+<img
+src="khaya.jpg"
+alt="Khaya Group business branding"
+loading="lazy"
+>
 
+<div class="design-label">
+KHAYA GROUP — Branding
+</div>
+
+</div>
+
+<div class="design-slide">
+
+<img
+src="group.jpg"
+alt="Luxury Group branding"
+loading="lazy"
+>
+
+<div class="design-label">
+LUXURY GROUP — Branding
+</div>
+
+</div>
+
+<div class="design-slide">
+
+<img
+src="laas.jpg"
+alt="Lass Skin Care Distributor flyer design"
+loading="lazy"
+>
+
+<div class="design-label">
+LASS SKIN CARE — Flyer Design
+</div>
+
+</div>
 
 
 <!-- DUPLICATED SET FOR CONTINUOUS SLIDER -->
 
-<div class="design-slide">
-    <img
-        src="group.jpg"
-        alt="Luxury Group logo"
-        loading="lazy"
-    >
+<div class="design-slide" aria-hidden="true">
+<img src="aziseza.jpg" alt="" loading="lazy">
+<div class="design-label">AZISEZA GROUP — Branding</div>
 </div>
 
-<div class="design-slide">
-    <img
-        src="aziseza.jpg"
-        alt="Aziseza Group design"
-        loading="lazy"
-    >
+<div class="design-slide" aria-hidden="true">
+<img src="invoice.jpg" alt="" loading="lazy">
+<div class="design-label">AZISEZA GROUP — Invoice Template</div>
 </div>
 
-<div class="design-slide">
-    <img
-        src="invoice.jpg"
-        alt="Invoice design"
-        loading="lazy"
-    >
+<div class="design-slide" aria-hidden="true">
+<img src="profile.jpg" alt="" loading="lazy">
+<div class="design-label">AZISEZA GROUP — Company Profile</div>
 </div>
 
-<div class="design-slide">
-    <img
-        src="khaya.jpg"
-        alt="Khaya Group logo"
-        loading="lazy"
-    >
+<div class="design-slide" aria-hidden="true">
+<img src="khaya.jpg" alt="" loading="lazy">
+<div class="design-label">KHAYA GROUP — Branding</div>
 </div>
 
-<div class="design-slide">
-    <img
-        src="profile.jpg"
-        alt="Company profile design"
-        loading="lazy"
-    >
+<div class="design-slide" aria-hidden="true">
+<img src="group.jpg" alt="" loading="lazy">
+<div class="design-label">LUXURY GROUP — Branding</div>
 </div>
 
-<div class="design-slide">
-    <img
-        src="khaya.jpg"
-        alt="Khaya Group design"
-        loading="lazy"
-    >
+<div class="design-slide" aria-hidden="true">
+<img src="las.jpg" alt="" loading="lazy">
+<div class="design-label">LASS SKIN CARE — Flyer Design</div>
 </div>
 
-<p class="design-description">
-The portfolio above represents actual BlackLogic design delivery,
-including visual identity, professional business documentation and
-marketing communication materials.
+</div>
+
+</div>
+
+<div class="design-description">
+The design portfolio represents actual creative delivery,
+including business branding, visual identity, professional
+business documentation and marketing communication materials.
+</div>
+
+
+<div class="consulting-grid" style="margin-top:25px;">
+
+<article class="consulting-card">
+<div class="consulting-content">
+<h3>
+Lass Skin Care Distributor
+</h3>
+<p>
+Flyer design and printing.
 </p>
+</div>
+</article>
+<article class="consulting-card">
+<div class="consulting-content">
+<h3>
+Khaya Group (Pty) Ltd
+</h3>
+<p>
+Business Branding
+</p>
+</div>
+</article>
+
+<article class="consulting-card">
+<div class="consulting-content">
+<h3>
+Aziseza Group (Pty) Ltd
+</h3>
+<p>
+Business branding, company profile and invoice template design.
+</p>
+</div>
+</article>
+<article class="consulting-card">
+<div class="consulting-content">
+<h3>
+Luxury Group
+</h3>
+<p>
+Business branding and Marketing assets.
+</p>
+</div>
+</article>
+
+</div>
 
 
 <div class="division-cta">
 
 <p>
-Need Professional Design?
+Need Business Branding or Creative Assets?
 </p>
 
 <a href="consult.html">
@@ -977,53 +1238,174 @@ Consult BlackLogic Design
 
 
 <!-- =================================
-     03 — ENGINEERING
+     03 — MEDIA
 ================================= -->
 
-<section class="division">
+<section class="division" id="media">
 
 <div class="division-header">
 
 <span class="division-number">
-03 — BlackLogic Engineering
+03 — BlackLogic Media
 </span>
 
 <h3 class="division-title">
-Digital Systems <span>Engineering</span>
+Media Production & <span>Digital Presence</span>
 </h3>
 
 <p class="division-description">
-Digital systems, software, AI, cloud infrastructure and operational
-technology engineered for real-world organisations, businesses and
-operational environments.
+BlackLogic Media delivers filming, video editing, post-production,
+AI-enhanced visuals, advertisement video production, content generation
+and social media management. The division supports organisations in
+building and maintaining a consistent digital presence.
 </p>
 
 </div>
 
 
-<div class="portal-grid">
+<div class="consultation-highlights">
 
-<!-- =================================
-     05 — LUXURY GROUP
-================================= -->
+<div class="highlight-card">
+<i class="fas fa-video"></i>
+<h4>Filming & Production</h4>
+<p>
+Video filming, production and visual content creation.
+</p>
+</div>
+
+<div class="highlight-card">
+<i class="fas fa-film"></i>
+<h4>Editing & Post-Production</h4>
+<p>
+Video editing, content refinement and publishing preparation.
+</p>
+</div>
+
+<div class="highlight-card">
+<i class="fas fa-wand-magic-sparkles"></i>
+<h4>AI-Enhanced Visuals</h4>
+<p>
+AI-assisted visual content and advertisement production.
+</p>
+</div>
+
+<div class="highlight-card">
+<i class="fas fa-share-nodes"></i>
+<h4>Social Media Management</h4>
+<p>
+Content planning, generation, posting and digital account management.
+</p>
+</div>
+
+</div>
+
+
+<h4 class="subsection-heading">
+Digital Platforms <span>Managed</span>
+</h4>
+
+<div class="platform-list">
+
+<div class="platform-item">
+<i class="fab fa-whatsapp"></i>
+WhatsApp Business
+</div>
+
+<div class="platform-item">
+<i class="fab fa-google"></i>
+Google
+</div>
+
+<div class="platform-item">
+<i class="fab fa-facebook"></i>
+Facebook
+</div>
+
+<div class="platform-item">
+<i class="fab fa-instagram"></i>
+Instagram
+</div>
+
+<div class="platform-item">
+<i class="fab fa-tiktok"></i>
+TikTok
+</div>
+
+</div>
+
+
+<h4 class="subsection-heading">
+Media Production & <span>Partnerships</span>
+</h4>
+
+<div class="portal-grid">
 
 <article class="portal-card">
 
 <div class="card-image-wrapper">
-
 <img
-src="group.jpg"
-alt="Luxury Group digital business infrastructure"
+src="bonvinco.jpg"
+alt="Bonvinco Tactical Response media and digital presence"
 class="card-image"
 loading="lazy"
 >
-
 <div class="card-overlay"></div>
-
-<div class="status">
-CLIENT INFRASTRUCTURE
 </div>
 
+<div class="card-content">
+
+<div class="portal-title">
+Bonvinco Tactical Response
+</div>
+
+<div class="portal-desc">
+Daily content generation, advertisement content, posting
+and social media management.
+</div>
+
+</div>
+
+</article>
+
+
+<article class="portal-card">
+
+<div class="card-image-wrapper">
+<img
+src="bovinco.jpg"
+alt="Bovinco Holdings media and digital presence"
+class="card-image"
+loading="lazy"
+>
+<div class="card-overlay"></div>
+</div>
+
+<div class="card-content">
+
+<div class="portal-title">
+Bovinco Holdings
+</div>
+
+<div class="portal-desc">
+Daily content generation, promotional content, posting
+and social media management.
+</div>
+
+</div>
+
+</article>
+
+
+<article class="portal-card">
+
+<div class="card-image-wrapper">
+<img
+src="group.jpg"
+alt="Luxury Group media and digital presence"
+class="card-image"
+loading="lazy"
+>
+<div class="card-overlay"></div>
 </div>
 
 <div class="card-content">
@@ -1033,32 +1415,71 @@ Luxury Group
 </div>
 
 <div class="portal-desc">
-A digital business infrastructure engineered to support Luxury Group's
-customer-facing commerce and internal operations. The system connects
-product presentation, customer ordering, database infrastructure,
-administrative order management, Stock ID generation, automated
-documentation and communication workflows within one integrated
-environment.
+Promotional content generation, product marketing visuals,
+posting and social media management.
 </div>
-
-<a
-href="https://luxurygroup.netlify.app/"
-target="_blank"
-rel="noopener noreferrer"
-class="solution-btn"
-aria-label="Visit Luxury Group digital platform"
->
-Visit Platform
-<i class="fas fa-external-link-alt"></i>
-</a>
 
 </div>
 
 </article>
 
+</div>
+
+
+<div class="division-cta">
+
+<p>
+Need Media Production or Social Media Management?
+</p>
+
+<a href="consult.html">
+Consult BlackLogic Media
+<i class="fas fa-arrow-right"></i>
+</a>
+
+</div>
+
+</section>
+
+
 <!-- =================================
-     01 — NCIA
+     04 — ENGINEERING
 ================================= -->
+
+<section class="division" id="engineering">
+
+<div class="division-header">
+
+<span class="division-number">
+04 — BlackLogic Engineering
+</span>
+
+<h3 class="division-title">
+Digital Infrastructure <span>Engineering</span>
+</h3>
+
+<p class="division-description">
+BlackLogic Engineering designs and develops digital infrastructure,
+software systems, AI-enabled platforms, cloud-backed applications
+and operational technology for real-world organisations and
+business environments.
+</p>
+
+</div>
+
+
+<!-- =================================
+     BLACKLOGIC OWN INFRASTRUCTURE
+================================= -->
+
+<h4 class="subsection-heading">
+BlackLogic Digital <span>Infrastructure</span>
+</h4>
+
+<div class="portal-grid">
+
+
+<!-- NCIA -->
 
 <article class="portal-card">
 
@@ -1066,7 +1487,7 @@ Visit Platform
 
 <img
 src="ncia.jpg"
-alt="NewEra Central Intelligence Agency operational intelligence technology ecosystem"
+alt="NCIA Intelligence Central Infrastructure"
 class="card-image"
 loading="lazy"
 >
@@ -1074,7 +1495,7 @@ loading="lazy"
 <div class="card-overlay"></div>
 
 <div class="status">
-PILOT
+CORE INFRASTRUCTURE
 </div>
 
 </div>
@@ -1082,13 +1503,14 @@ PILOT
 <div class="card-content">
 
 <div class="portal-title">
-NewEra Central Intelligence Agency
+NCIA — Intelligence Central Infrastructure
 </div>
 
 <div class="portal-desc">
-An operational intelligence technology ecosystem designed to support
-structured intelligence workflows, information management, operational
-analysis, secure access and data-driven decision support.
+The central intelligence infrastructure powering the NewEra
+Investigators and AfricaSpani operational technology environments.
+It provides the underlying digital foundation for structured
+information management, operational workflows and connected systems.
 </div>
 
 </div>
@@ -1096,89 +1518,7 @@ analysis, secure access and data-driven decision support.
 </article>
 
 
-<!-- =================================
-     02 — NEWERA INVESTIGATORS
-================================= -->
-
-<article class="portal-card">
-
-<div class="card-image-wrapper">
-
-<img
-src="new.jpg"
-alt="NewEra Investigators digital investigation and case management system"
-class="card-image"
-loading="lazy"
->
-
-<div class="card-overlay"></div>
-
-<div class="status">
-OPERATIONAL SYSTEM
-</div>
-
-</div>
-
-<div class="card-content">
-
-<div class="portal-title">
-NewEra Investigators
-</div>
-
-<div class="portal-desc">
-A digital investigation and operational reporting ecosystem supporting
-case management, incident reporting, forensic workflows, medical reporting
-and structured investigative records.
-</div>
-
-</div>
-
-</article>
-
-
-<!-- =================================
-     03 — AFRICASPANI
-================================= -->
-
-<article class="portal-card">
-
-<div class="card-image-wrapper">
-
-<img
-src="span.jpg"
-alt="AfricaSpani Database digital workforce attendance and workplace identity system"
-class="card-image"
-loading="lazy"
->
-
-<div class="card-overlay"></div>
-
-<div class="status">
-PILOT
-</div>
-
-</div>
-
-<div class="card-content">
-
-<div class="portal-title">
-AfricaSpani Database
-</div>
-
-<div class="portal-desc">
-A workforce technology platform combining digital workplace identity,
-QR verification, attendance management, labour registration, checkout
-tracking and operational workforce telemetry.
-</div>
-
-</div>
-
-</article>
-
-
-<!-- =================================
-     04 — BLACK EMPOWERMENT
-================================= -->
+<!-- BLACK EMPOWERMENT PORTAL -->
 
 <article class="portal-card">
 
@@ -1186,7 +1526,7 @@ tracking and operational workforce telemetry.
 
 <img
 src="black.jpg"
-alt="Black Empowerment Portal digital education and student access platform"
+alt="Black Empowerment Application Portal"
 class="card-image"
 loading="lazy"
 >
@@ -1202,13 +1542,13 @@ LIVE PLATFORM
 <div class="card-content">
 
 <div class="portal-title">
-Black Empowerment Portal
+Black Empowerment Application Portal
 </div>
 
 <div class="portal-desc">
-A digital access platform connecting students with university and TVET
-information, study choices, application assistance, processing workflows
-and application tracking.
+A digital education and student access platform connecting
+students with university and TVET information, study choices,
+application assistance, processing workflows and application tracking.
 </div>
 
 <a
@@ -1216,7 +1556,7 @@ href="https://blackempower.netlify.app/"
 target="_blank"
 rel="noopener noreferrer"
 class="solution-btn"
-aria-label="Visit Black Empowerment Portal"
+aria-label="Visit Black Empowerment Application Portal"
 >
 Visit Portal
 <i class="fas fa-external-link-alt"></i>
@@ -1227,11 +1567,76 @@ Visit Portal
 </article>
 
 
+<!-- AFRICAN INSTITUTION OF TECHNOLOGY -->
+
+<article class="portal-card">
+
+<div class="card-image-wrapper">
+
+<img
+src="bash.jpg"
+alt="African Institution of Technology educational infrastructure"
+class="card-image"
+loading="lazy"
+>
+
+<div class="card-overlay"></div>
+
+<div class="status">
+EDUCATIONAL INITIATIVE
+</div>
+
+</div>
+
+<div class="card-content">
+
+<div class="portal-title">
+African Institution of Technology
+</div>
+
+<div class="portal-desc">
+Digital educational infrastructure supporting AIT's learning
+initiatives, student access, educational programmes and
+technology-focused development.
+</div>
+
+<a
+href="https://startyourbusinessafrica.netlify.app/"
+target="_blank"
+rel="noopener noreferrer"
+class="solution-btn"
+aria-label="Visit African Institution of Technology"
+>
+Visit AIT Platform
+<i class="fas fa-external-link-alt"></i>
+</a>
+
+</div>
+
+</article>
+
+
+</div>
 
 
 <!-- =================================
-     06 — BONVINCO TACTICAL RESPONSE
+     PARTNERSHIP SYSTEMS
 ================================= -->
+
+<h4 class="subsection-heading">
+Partnership <span>Systems</span>
+</h4>
+
+<p class="division-description" style="margin-bottom:25px;">
+Digital systems and business infrastructure engineered for
+partner organisations through BlackLogic Engineering.
+</p>
+
+
+<div class="portal-grid">
+
+
+<!-- BONVINCO TACTICAL RESPONSE -->
 
 <article class="portal-card">
 
@@ -1239,7 +1644,7 @@ Visit Portal
 
 <img
 src="bonvinco.jpg"
-alt="Bonvinco Tactical Response Gen 3.5 digital transformation platform"
+alt="Bonvinco Tactical Response digital infrastructure"
 class="card-image"
 loading="lazy"
 >
@@ -1255,13 +1660,14 @@ GEN 3.5 • LAUNCHED
 <div class="card-content">
 
 <div class="portal-title">
-Bonvinco Tactical Response Gen 3.5
+Bonvinco Tactical Response
 </div>
 
 <div class="portal-desc">
-A digital transformation ecosystem engineered for a security operations
-environment, combining modern web infrastructure, operational technology,
-UX engineering, performance optimisation, SEO and digital standardisation.
+A digital transformation ecosystem engineered for a security
+operations environment, combining modern web infrastructure,
+operational technology, UX engineering, performance optimisation,
+SEO and digital standardisation.
 </div>
 
 <a
@@ -1280,9 +1686,7 @@ Visit Platform
 </article>
 
 
-<!-- =================================
-     07 — BOVINCO HOLDINGS
-================================= -->
+<!-- BOVINCO HOLDINGS -->
 
 <article class="portal-card">
 
@@ -1290,7 +1694,7 @@ Visit Platform
 
 <img
 src="bovinco.jpg"
-alt="Bovinco Holdings Gen 3.5 digital ecosystem"
+alt="Bovinco Holdings digital ecosystem"
 class="card-image"
 loading="lazy"
 >
@@ -1306,13 +1710,14 @@ GEN 3.5 • LAUNCHED
 <div class="card-content">
 
 <div class="portal-title">
-Bovinco Holdings Gen 3.5
+Bovinco Holdings
 </div>
 
 <div class="portal-desc">
-A corporate digital ecosystem engineered to strengthen Bovinco Holdings'
-online presence through modern UX/UI, structured information architecture,
-responsive engineering, SEO and digital transformation.
+A corporate digital ecosystem engineered to strengthen
+Bovinco Holdings' online presence through modern UX/UI,
+structured information architecture, responsive engineering,
+SEO and digital transformation.
 </div>
 
 <a
@@ -1331,13 +1736,63 @@ Visit Platform
 </article>
 
 
+<!-- LUXURY GROUP -->
+
+<article class="portal-card">
+
+<div class="card-image-wrapper">
+
+<img
+src="group.jpg"
+alt="Luxury Group e-commerce infrastructure"
+class="card-image"
+loading="lazy"
+>
+
+<div class="card-overlay"></div>
+
+<div class="status">
+CLIENT INFRASTRUCTURE
+</div>
+
+</div>
+
+<div class="card-content">
+
+<div class="portal-title">
+Luxury Group E-commerce Infrastructure
+</div>
+
+<div class="portal-desc">
+An integrated digital business infrastructure supporting
+product presentation, customer registration, product ordering,
+database operations, administrative order management, Stock ID
+generation, automated documentation and communication workflows.
+</div>
+
+<a
+href="https://luxurygroup.netlify.app/"
+target="_blank"
+rel="noopener noreferrer"
+class="solution-btn"
+aria-label="Visit Luxury Group e-commerce platform"
+>
+Visit Platform
+<i class="fas fa-external-link-alt"></i>
+</a>
+
+</div>
+
+</article>
+
+
 </div>
 
 
 <div class="division-cta">
 
 <p>
-Need a Digital System?
+Need Digital Infrastructure or Systems Engineering?
 </p>
 
 <a href="consult.html">
@@ -1357,11 +1812,11 @@ Consult BlackLogic Engineering
 <div class="cta">
 
 <p>
-Have a business, design or technology requirement?
+Have a business, creative, media or technology requirement?
 </p>
 
 <a href="consult.html">
-Contact BlackLogic
+Contact BlackLogic Technologies
 </a>
 
 </div>
@@ -1375,8 +1830,15 @@ Contact BlackLogic
 
 <footer class="footer">
 
-BlackLogic Technologies —
-Consulting. Design. Engineering.
+BlackLogic Technologies
+
+<br>
+
+Consultation • Design • Media • Engineering
+
+<br>
+
+Digital Infrastructure. Engineered for Impact.
 
 </footer>
 
@@ -1387,10 +1849,14 @@ const hamburger = document.getElementById('hamburger');
 const drawer = document.getElementById('drawer');
 
 function toggleDrawer(){
-drawer.classList.toggle('drawer-open');
+
+const isOpen = drawer.classList.toggle('drawer-open');
+
+hamburger.setAttribute('aria-expanded',isOpen);
+
 }
 
-hamburger.addEventListener('click', toggleDrawer);
+hamburger.addEventListener('click',toggleDrawer);
 
 hamburger.addEventListener('keydown',(event)=>{
 
@@ -1400,6 +1866,17 @@ event.preventDefault();
 toggleDrawer();
 
 }
+
+});
+
+document.querySelectorAll('.side-drawer a').forEach(link=>{
+
+link.addEventListener('click',()=>{
+
+drawer.classList.remove('drawer-open');
+hamburger.setAttribute('aria-expanded','false');
+
+});
 
 });
 
