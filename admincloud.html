@@ -154,6 +154,8 @@ header {
     position: sticky;
     top: 0;
     z-index: 100;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
 .brand {
@@ -193,7 +195,8 @@ header {
 .header-right {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
+    flex-wrap: wrap;
 }
 
 .cloud-status {
@@ -223,6 +226,26 @@ header {
     100% { opacity: 1; }
 }
 
+.sync-btn {
+    background: rgba(0,200,215,.1);
+    color: #00c8d7;
+    border: 1px solid rgba(0,200,215,.3);
+    padding: 7px 15px;
+    border-radius: 20px;
+    font-size: .75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .3s ease;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.sync-btn:hover {
+    background: rgba(0,200,215,.2);
+    transform: translateY(-1px);
+}
+
 .logout-btn {
     background: #151515;
     color: #ff5757;
@@ -246,10 +269,10 @@ header {
     padding: 0 25px;
 }
 
-/* METRICS 2-GRID TOP CARDS */
+/* METRICS 3-GRID TOP CARDS */
 .metrics-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     margin-bottom: 30px;
 }
@@ -258,7 +281,7 @@ header {
     background: #0c0c0c;
     border: 1px solid rgba(0,200,215,.15);
     border-radius: 18px;
-    padding: 25px 30px;
+    padding: 25px 28px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -272,7 +295,7 @@ header {
 }
 
 .metric-info h3 {
-    font-size: .85rem;
+    font-size: .8rem;
     color: #777;
     text-transform: uppercase;
     letter-spacing: 1.5px;
@@ -293,8 +316,8 @@ header {
 }
 
 .metric-icon {
-    width: 54px;
-    height: 54px;
+    width: 52px;
+    height: 52px;
     border-radius: 14px;
     background: rgba(0,200,215,.08);
     border: 1px solid rgba(0,200,215,.2);
@@ -302,7 +325,7 @@ header {
     align-items: center;
     justify-content: center;
     color: #00c8d7;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
 }
 
 /* CONTROLS BAR */
@@ -458,6 +481,12 @@ header {
     border: 1px solid rgba(255,193,7,.3);
 }
 
+.badge-replied {
+    background: rgba(46,204,113,.12);
+    color: #2ecc71;
+    border: 1px solid rgba(46,204,113,.3);
+}
+
 .badge-approved {
     background: rgba(0,200,215,.1);
     color: #00c8d7;
@@ -502,8 +531,8 @@ header {
     background: #0c0c0c;
     border: 1px solid rgba(0,200,215,.3);
     border-radius: 20px;
-    width: min(800px, 100%);
-    max-height: 90vh;
+    width: min(850px, 100%);
+    max-height: 92vh;
     overflow-y: auto;
     box-shadow: 0 0 40px rgba(0,200,215,.15);
 }
@@ -515,6 +544,10 @@ header {
     justify-content: space-between;
     align-items: center;
     background: rgba(0,200,215,.04);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(10px);
 }
 
 .modal-header h3 {
@@ -565,7 +598,7 @@ header {
     border: 1px solid rgba(255,255,255,.05);
     border-radius: 12px;
     padding: 20px;
-    margin-bottom: 25px;
+    margin-bottom: 22px;
 }
 
 .content-box h4 {
@@ -583,12 +616,154 @@ header {
     white-space: pre-wrap;
 }
 
+/* RESPONSE WORKSPACE */
+.response-workspace {
+    background: #111;
+    border: 1px solid rgba(0,200,215,.22);
+    border-radius: 14px;
+    padding: 22px;
+    margin-bottom: 22px;
+}
+
+.workspace-tag {
+    font-size: .68rem;
+    letter-spacing: 1.5px;
+    color: #00c8d7;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.workspace-label {
+    font-size: .85rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.channel-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.channel-card {
+    background: #161616;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: .25s ease;
+    color: #bbb;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.channel-card i {
+    font-size: 1.3rem;
+}
+
+.channel-card span {
+    font-size: .85rem;
+    font-weight: 600;
+}
+
+.channel-card:hover {
+    border-color: rgba(0,200,215,.35);
+    color: #fff;
+}
+
+.channel-card.selected {
+    background: rgba(0,200,215,.1);
+    border-color: #00c8d7;
+    color: #00c8d7;
+    box-shadow: 0 0 15px rgba(0,200,215,.12);
+}
+
+.template-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.template-option {
+    background: #161616;
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 10px;
+    padding: 13px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: .25s ease;
+    font-size: .84rem;
+    color: #ddd;
+}
+
+.template-option:hover {
+    border-color: rgba(0,200,215,.3);
+}
+
+.template-option.selected {
+    background: rgba(0,200,215,.08);
+    border-color: #00c8d7;
+    color: #fff;
+    font-weight: 600;
+}
+
+.template-option i {
+    color: #444;
+    font-size: 1rem;
+}
+
+.template-option.selected i {
+    color: #2ecc71;
+}
+
+.preview-box {
+    margin-bottom: 16px;
+}
+
+.preview-box label {
+    font-size: .72rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.preview-box textarea {
+    width: 100%;
+    min-height: 125px;
+    background: #0a0a0a;
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 10px;
+    padding: 14px;
+    color: #e6e6e6;
+    font-size: .82rem;
+    line-height: 1.6;
+    resize: vertical;
+    outline: none;
+}
+
+.preview-box textarea:focus {
+    border-color: #00c8d7;
+}
+
 .modal-actions {
     display: flex;
     gap: 12px;
     flex-wrap: wrap;
     border-top: 1px solid rgba(255,255,255,.08);
-    padding-top: 22px;
+    padding-top: 20px;
 }
 
 .action-btn {
@@ -598,16 +773,39 @@ header {
     font-size: .82rem;
     font-weight: 700;
     cursor: pointer;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 8px;
     text-decoration: none;
     transition: .3s ease;
 }
 
+.action-btn:hover {
+    transform: translateY(-1px);
+}
+
 .btn-whatsapp { background: #25D366; color: #000; }
-.btn-email { background: rgba(0,200,215,.12); color: #00c8d7; border: 1px solid rgba(0,200,215,.3); }
-.btn-status { background: #151515; color: #fff; border: 1px solid rgba(255,255,255,.1); }
+.btn-email { background: #00c8d7; color: #000; }
+.btn-ai-gpt { background: #161616; color: #10a37f; border: 1px solid rgba(16,163,127,.4); }
+.btn-ai-gemini { background: #161616; color: #8ab4f8; border: 1px solid rgba(138,180,248,.4); }
+.btn-status { background: #151515; color: #fff; border: 1px solid rgba(255,255,255,.12); }
+
+.toast-notice {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #0c0c0c;
+    border: 1px solid #00c8d7;
+    color: #fff;
+    padding: 14px 20px;
+    border-radius: 12px;
+    font-size: .82rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,.6);
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    gap: 10px;
+}
 
 footer {
     padding: 30px;
@@ -617,10 +815,11 @@ footer {
     font-size: .75rem;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 960px) {
     .metrics-grid { grid-template-columns: 1fr; }
-    .inbox-item { grid-template-columns: 140px 1fr 90px; }
+    .inbox-item { grid-template-columns: 140px 1fr 110px; }
     .item-subject { display: none; }
+    .detail-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -639,7 +838,7 @@ footer {
         <form class="auth-form" id="loginForm">
             <div class="field">
                 <label for="adminEmail">Administrator Email</label>
-                <input type="email" id="adminEmail" placeholder="admin@blacklogic.com" required autocomplete="email">
+                <input type="email" id="adminEmail" placeholder="admin@company.com" required autocomplete="email">
             </div>
 
             <div class="field">
@@ -672,6 +871,9 @@ footer {
                 <div class="pulse"></div>
                 <span>Administrator Authenticated</span>
             </div>
+            <button class="sync-btn" onclick="downloadLocalBackup()">
+                <i class="fas fa-cloud-arrow-down"></i> Local Sync
+            </button>
             <button class="logout-btn" id="logoutBtn"><i class="fas fa-right-from-bracket"></i> Sign Out</button>
         </div>
     </header>
@@ -695,7 +897,18 @@ footer {
                 <div class="metric-info">
                     <h3>Supplier Applications</h3>
                     <div class="count" id="supplierTotalCount">0</div>
-                    <p>Total Registered Entities</p>
+                    <p>Total Applications Received</p>
+                </div>
+                <div class="metric-icon">
+                    <i class="fas fa-file-signature"></i>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-info">
+                    <h3>Registered Suppliers</h3>
+                    <div class="count" id="registeredSupplierCount">0</div>
+                    <p>Issued Supplier Cert Number</p>
                 </div>
                 <div class="metric-icon">
                     <i class="fas fa-id-card"></i>
@@ -750,9 +963,68 @@ footer {
                     <p id="modalContentText">Loading...</p>
                 </div>
 
+                <!-- RESPONSE WORKSPACE -->
+                <div class="response-workspace">
+                    <span class="workspace-tag">BlackLogic Central Cloud · Response Workspace</span>
+
+                    <label class="workspace-label">Select communication channel</label>
+                    <div class="channel-grid">
+                        <div class="channel-card selected" id="channelEmail" onclick="selectChannel('email')">
+                            <i class="fas fa-envelope"></i>
+                            <span>Email</span>
+                        </div>
+                        <div class="channel-card" id="channelWhatsapp" onclick="selectChannel('whatsapp')">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>WhatsApp</span>
+                        </div>
+                    </div>
+
+                    <label class="workspace-label">Select response template</label>
+                    <div class="template-list">
+                        <div class="template-option selected" id="tpl-acknowledgement" onclick="selectTemplate('acknowledgement')">
+                            <span>Acknowledgement</span>
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="template-option" id="tpl-registration" onclick="selectTemplate('registration')">
+                            <span>Registration Confirmation</span>
+                            <i class="far fa-circle"></i>
+                        </div>
+                        <div class="template-option" id="tpl-quotation" onclick="selectTemplate('quotation')">
+                            <span>Quotation Reply</span>
+                            <i class="far fa-circle"></i>
+                        </div>
+                        <div class="template-option" id="tpl-approval" onclick="selectTemplate('approval')">
+                            <span>Supplier Approval Confirmation</span>
+                            <i class="far fa-circle"></i>
+                        </div>
+                    </div>
+
+                    <div class="preview-box">
+                        <label for="responseMessageBox">Prefilled Message Preview (Editable)</label>
+                        <textarea id="responseMessageBox"></textarea>
+                    </div>
+
+                    <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+                        <button type="button" class="action-btn btn-email" id="dispatchResponseBtn" onclick="dispatchResponse()">
+                            <i class="fas fa-paper-plane"></i> Send via Email
+                        </button>
+                        <button type="button" class="action-btn btn-ai-gpt" onclick="openWithAI('chatgpt')">
+                            <i class="fas fa-robot"></i> Open ChatGPT
+                        </button>
+                        <button type="button" class="action-btn btn-ai-gemini" onclick="openWithAI('gemini')">
+                            <i class="fas fa-sparkles"></i> Open Gemini
+                        </button>
+                    </div>
+                </div>
+
                 <div class="modal-actions" id="modalActions"></div>
             </div>
         </div>
+    </div>
+
+    <div class="toast-notice" id="toastNotice">
+        <i class="fas fa-circle-check" style="color:#00c8d7;"></i>
+        <span id="toastText">Action completed</span>
     </div>
 
     <footer>
@@ -793,6 +1065,17 @@ let currentView = 'consultations';
 let rawConsultations = {};
 let rawSuppliers = {};
 let activeRecord = null;
+let selectedChannel = 'email';
+let selectedTemplate = 'acknowledgement';
+
+function showToast(msg) {
+    const toast = document.getElementById('toastNotice');
+    document.getElementById('toastText').textContent = msg;
+    toast.style.display = 'flex';
+    setTimeout(() => {
+        toast.style.display = 'none';
+    }, 3500);
+}
 
 // Auth State Monitor & Role Check with Resilient Fallback
 onAuthStateChanged(auth, async (user) => {
@@ -811,7 +1094,6 @@ onAuthStateChanged(auth, async (user) => {
                 }
             }
             
-            // Fallback for authenticated admin@blacklogic.com if database rule restricts direct node query
             if (user.email === "admin@blacklogic.com") {
                 authSection.style.display = "none";
                 dashboardContent.style.display = "block";
@@ -850,9 +1132,6 @@ loginForm.addEventListener("submit", async (e) => {
     try {
         await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
-        console.error("Authentication Error Code:", error.code);
-        console.error("Authentication Error Message:", error.message);
-        
         let friendlyMsg = "Authentication failed. ";
         if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
             friendlyMsg = "Account not found or incorrect password. Please create the user in Firebase Auth.";
@@ -863,7 +1142,6 @@ loginForm.addEventListener("submit", async (e) => {
         } else {
             friendlyMsg = `Error: ${error.message}`;
         }
-        
         showAuthError(friendlyMsg);
     } finally {
         loginBtn.disabled = false;
@@ -876,7 +1154,6 @@ function showAuthError(msg) {
     authError.style.display = "block";
 }
 
-// Sign Out Action
 logoutBtn.addEventListener("click", () => {
     signOut(auth);
 });
@@ -891,7 +1168,15 @@ function initListeners() {
 
     onValue(ref(database, 'suppliers'), (snapshot) => {
         rawSuppliers = snapshot.val() || {};
-        document.getElementById('supplierTotalCount').textContent = Object.keys(rawSuppliers).length;
+        const supplierList = Object.values(rawSuppliers);
+        
+        // Total Supplier Applications Received
+        document.getElementById('supplierTotalCount').textContent = supplierList.length;
+        
+        // Total Registered Suppliers (Issued a Supplier Cert Number)
+        const registeredCount = supplierList.filter(s => s.supplierCertNumber && String(s.supplierCertNumber).trim() !== '').length;
+        document.getElementById('registeredSupplierCount').textContent = registeredCount;
+        
         if (currentView === 'suppliers') renderInbox();
     });
 }
@@ -939,6 +1224,7 @@ window.renderInbox = function() {
         renderedCount++;
 
         let badgeClass = 'badge-pending';
+        if (status === 'Replied') badgeClass = 'badge-replied';
         if (status === 'Approved') badgeClass = 'badge-approved';
         if (status === 'Compliance Required') badgeClass = 'badge-compliance';
 
@@ -984,6 +1270,164 @@ window.filterInbox = function() {
     renderInbox();
 };
 
+function generateTemplateMessage() {
+    if (!activeRecord) return "";
+    const isConsult = currentView === 'consultations';
+    const recipientName = isConsult ? activeRecord.name : `${activeRecord.representativeName} ${activeRecord.representativeSurname || ''}`.trim();
+    const companyName = isConsult ? (activeRecord.company || 'your organization') : activeRecord.enterpriseName;
+    const refId = isConsult ? activeRecord.enquiryId : activeRecord.applicationNumber;
+    const categoryOrDiv = isConsult ? activeRecord.division : activeRecord.businessCategory;
+    const certNumber = activeRecord.supplierCertNumber || 'PENDING-ISSUANCE';
+
+    switch (selectedTemplate) {
+        case 'acknowledgement':
+            return `Dear ${recipientName},\n\nThank you for contacting BlackLogic Technologies regarding ${companyName}. We acknowledge receipt of your ${isConsult ? 'consultation enquiry' : 'submission'} under Reference [${refId}] (${categoryOrDiv}).\n\nOur team is currently reviewing your details and will follow up with the next steps shortly.\n\nKind regards,\nBlackLogic Central Cloud Operations\nBlackLogic Technologies (Pty) Ltd`;
+
+        case 'registration':
+            return `Dear ${recipientName},\n\nThis serves as official confirmation that the registration file for ${companyName} has been logged on the BlackLogic Central Cloud Infrastructure under Reference [${refId}].\n\nAll submitted particulars under ${categoryOrDiv} are currently indexed for verification.\n\nKind regards,\nBlackLogic Procurement & Onboarding\nBlackLogic Technologies (Pty) Ltd`;
+
+        case 'quotation':
+            return `Dear ${recipientName},\n\nFollowing your request for ${companyName} (Ref: [${refId}] — ${categoryOrDiv}), we have prepared the scope and quotation alignment for your requirements.\n\nPlease confirm your availability for a brief technical & commercial walkthrough so we can finalize delivery timelines.\n\nKind regards,\nBlackLogic Consultation & Engineering\nBlackLogic Technologies (Pty) Ltd`;
+
+        case 'approval':
+            return `Dear ${recipientName},\n\nCongratulations! We are pleased to confirm that ${companyName} has been formally approved on the BlackLogic Technologies Supplier Database under Reference [${refId}].\n\n• Approved Category: ${categoryOrDiv}\n• Official Supplier Certificate Number: ${certNumber}\n\nPlease quote your Supplier Certificate Number in all future procurement correspondence and quotations.\n\nKind regards,\nBlackLogic Procurement & Compliance\nBlackLogic Technologies (Pty) Ltd`;
+
+        default:
+            return "";
+    }
+}
+
+window.selectChannel = function(channel) {
+    selectedChannel = channel;
+    document.getElementById('channelEmail').classList.toggle('selected', channel === 'email');
+    document.getElementById('channelWhatsapp').classList.toggle('selected', channel === 'whatsapp');
+
+    const btn = document.getElementById('dispatchResponseBtn');
+    if (channel === 'whatsapp') {
+        btn.className = 'action-btn btn-whatsapp';
+        btn.innerHTML = `<i class="fab fa-whatsapp"></i> Send via WhatsApp`;
+    } else {
+        btn.className = 'action-btn btn-email';
+        btn.innerHTML = `<i class="fas fa-paper-plane"></i> Send via Email`;
+    }
+};
+
+window.selectTemplate = function(templateKey) {
+    selectedTemplate = templateKey;
+    const keys = ['acknowledgement', 'registration', 'quotation', 'approval'];
+    keys.forEach(k => {
+        const el = document.getElementById(`tpl-${k}`);
+        const icon = el.querySelector('i');
+        if (k === templateKey) {
+            el.classList.add('selected');
+            icon.className = 'fas fa-check-circle';
+        } else {
+            el.classList.remove('selected');
+            icon.className = 'far fa-circle';
+        }
+    });
+    document.getElementById('responseMessageBox').value = generateTemplateMessage();
+};
+
+window.dispatchResponse = async function() {
+    if (!activeRecord) return;
+    const isConsult = currentView === 'consultations';
+    const messageText = document.getElementById('responseMessageBox').value.trim();
+    const refId = isConsult ? activeRecord.enquiryId : activeRecord.applicationNumber;
+    const phone = isConsult ? activeRecord.contact : activeRecord.representativePhone;
+    const email = isConsult ? activeRecord.email : activeRecord.businessEmail;
+
+    // Auto-update Enquiries Inbox status from Pending to Replied
+    if (isConsult) {
+        try {
+            await update(ref(database, `consultations/${activeRecord._firebaseKey}`), {
+                status: 'Replied',
+                lastRepliedChannel: selectedChannel,
+                lastRepliedTemplate: selectedTemplate,
+                lastRepliedAt: new Date().toISOString()
+            });
+            activeRecord.status = 'Replied';
+            showToast(`Enquiry [${refId}] status updated to Replied`);
+        } catch (err) {
+            console.error("Failed to update enquiry status:", err);
+        }
+    }
+
+    if (selectedChannel === 'whatsapp') {
+        let cleanPhone = phone ? phone.replace(/[^0-9]/g, '') : '';
+        if (cleanPhone.startsWith('0')) {
+            cleanPhone = '27' + cleanPhone.substring(1);
+        }
+        const encodedMsg = encodeURIComponent(messageText);
+        window.open(`https://wa.me/${cleanPhone}?text=${encodedMsg}`, '_blank');
+    } else {
+        const subject = encodeURIComponent(`BlackLogic Technologies — Reference ${refId}`);
+        const body = encodeURIComponent(messageText);
+        window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+    }
+};
+
+window.openWithAI = async function(provider) {
+    if (!activeRecord) return;
+    const isConsult = currentView === 'consultations';
+    const promptText = isConsult
+        ? `Draft a professional corporate response from BlackLogic Technologies (Pty) Ltd to the following client enquiry:\n\n` +
+          `• Client Name: ${activeRecord.name}\n` +
+          `• Company: ${activeRecord.company || 'N/A'}\n` +
+          `• Reference ID: ${activeRecord.enquiryId}\n` +
+          `• Division Requested: ${activeRecord.division}\n` +
+          `• Session Type: ${activeRecord.consultationSession || 'N/A'}\n` +
+          `• Client Challenge / Enquiry:\n"${activeRecord.challenge}"\n\n` +
+          `Please provide a clear, executive, and actionable response tailored to our ${activeRecord.division} division.`
+        : `Draft a professional procurement/compliance response from BlackLogic Technologies (Pty) Ltd regarding the following supplier application:\n\n` +
+          `• Enterprise Name: ${activeRecord.enterpriseName} (${activeRecord.enterpriseType})\n` +
+          `• CIPC / Reg Number: ${activeRecord.enterpriseNumber}\n` +
+          `• Application Reference: ${activeRecord.applicationNumber}\n` +
+          `• Procurement Category: ${activeRecord.businessCategory}\n` +
+          `• Representative: ${activeRecord.representativeName} ${activeRecord.representativeSurname} (${activeRecord.representativePosition})\n` +
+          `• Current Status: ${activeRecord.status || 'Pending'}\n` +
+          `• Supplier Cert Number: ${activeRecord.supplierCertNumber || 'Not Issued'}\n` +
+          `• Business Profile:\n"${activeRecord.businessDescription}"\n\n` +
+          `Please draft an appropriate response addressing their supplier onboarding and compliance standing.`;
+
+    try {
+        await navigator.clipboard.writeText(promptText);
+        showToast(`Context prompt copied! Opening ${provider === 'chatgpt' ? 'ChatGPT' : 'Gemini'}...`);
+    } catch (e) {
+        showToast(`Opening ${provider === 'chatgpt' ? 'ChatGPT' : 'Gemini'}...`);
+    }
+
+    if (provider === 'chatgpt') {
+        window.open(`https://chatgpt.com/?q=${encodeURIComponent(promptText)}`, '_blank');
+    } else {
+        window.open(`https://gemini.google.com/app`, '_blank');
+    }
+};
+
+window.downloadLocalBackup = function() {
+    const backupPayload = {
+        exportedAt: new Date().toISOString(),
+        platform: "BlackLogic Central Cloud Console",
+        metrics: {
+            totalEnquiries: Object.keys(rawConsultations).length,
+            totalSupplierApplications: Object.keys(rawSuppliers).length,
+            totalRegisteredSuppliers: Object.values(rawSuppliers).filter(s => s.supplierCertNumber && String(s.supplierCertNumber).trim() !== '').length
+        },
+        consultations: rawConsultations,
+        suppliers: rawSuppliers
+    };
+
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backupPayload, null, 2));
+    const downloadAnchor = document.createElement('a');
+    const dateStamp = new Date().toISOString().slice(0, 10);
+    downloadAnchor.setAttribute("href", dataStr);
+    downloadAnchor.setAttribute("download", `BlackLogic_Cloud_Backup_${dateStamp}.json`);
+    document.body.appendChild(downloadAnchor);
+    downloadAnchor.click();
+    downloadAnchor.remove();
+    showToast(`Local backup downloaded (BlackLogic_Cloud_Backup_${dateStamp}.json)`);
+};
+
 window.openModal = function(item) {
     activeRecord = item;
     const modal = document.getElementById('detailModal');
@@ -1005,6 +1449,7 @@ window.openModal = function(item) {
             <div class="detail-item"><small>Session Required</small><span>${item.consultationSession || 'N/A'}</span></div>
         `;
         content.textContent = item.challenge;
+        actions.innerHTML = '';
     } else {
         grid.innerHTML = `
             <div class="detail-item"><small>Enterprise Name</small><span>${item.enterpriseName}</span></div>
@@ -1017,26 +1462,8 @@ window.openModal = function(item) {
             <div class="detail-item"><small>Supplier Cert Number</small><span style="color:#00c8d7; font-weight:700;">${item.supplierCertNumber || 'Not Issued'}</span></div>
         `;
         content.textContent = item.businessDescription;
-    }
 
-    const phone = isConsult ? item.contact : item.representativePhone;
-    const email = isConsult ? item.email : item.businessEmail;
-    const cleanPhone = phone ? phone.replace(/[^0-9]/g, '') : '';
-
-    const waMsg = encodeURIComponent(`Hello ${isConsult ? item.name : item.representativeName}, this is BlackLogic Technologies regarding your ${isConsult ? 'Consultation Request ' + item.enquiryId : 'Supplier Application ' + item.applicationNumber}.`);
-    const emailSub = encodeURIComponent(`BlackLogic Technologies — Reference ${isConsult ? item.enquiryId : item.applicationNumber}`);
-
-    actions.innerHTML = `
-        <a href="https://wa.me/${cleanPhone}?text=${waMsg}" target="_blank" class="action-btn btn-whatsapp">
-            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
-        </a>
-        <a href="mailto:${email}?subject=${emailSub}" class="action-btn btn-email">
-            <i class="fas fa-envelope"></i> Send Direct Email
-        </a>
-    `;
-
-    if (!isConsult) {
-        actions.innerHTML += `
+        actions.innerHTML = `
             <button class="action-btn btn-status" onclick="updateStatus('Approved')">
                 <i class="fas fa-check-circle" style="color:#00c8d7;"></i> Approve & Issue Cert Number
             </button>
@@ -1045,6 +1472,10 @@ window.openModal = function(item) {
             </button>
         `;
     }
+
+    // Reset workspace to default channel & template with populated record fields
+    selectChannel('email');
+    selectTemplate('acknowledgement');
 
     modal.style.display = 'flex';
 };
@@ -1069,8 +1500,10 @@ window.updateStatus = async function(newStatus) {
 
     try {
         await update(ref(database, `suppliers/${activeRecord._firebaseKey}`), updates);
-        alert(`Status updated to: ${newStatus}${certNum ? ' | Cert No: ' + certNum : ''}`);
-        closeModal();
+        activeRecord.status = newStatus;
+        activeRecord.supplierCertNumber = certNum;
+        showToast(`Status updated to: ${newStatus}${certNum ? ' | Cert No: ' + certNum : ''}`);
+        openModal(activeRecord);
     } catch (err) {
         console.error("Status Update Error:", err);
         alert("Failed to update status in cloud.");
