@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>BVBL | BlackLogic Verified Business Listings</title>
+
+  <meta name="description" content="Discover, verify, and connect with approved businesses in the BlackLogic Business Network.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-base: #06090b;
+      --bg-elevated: #0d1316;
+      --bg-card: #11181c;
+      --bg-input: #162025;
+      --teal: #00c9b1;
+      --teal-dark: #009f8d;
+      --teal-soft: rgba(0, 201, 177, 0.10);
+      --teal-border: rgba(0, 201, 177, 0.28);
+      --white: #ffffff;
+      --text-secondary: #c9d5d7;
+      --muted: #8a999c;
+      --border: rgba(255, 255, 255, 0.08);
+      --danger: #ff7777;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-base);
+      background-image:
+        radial-gradient(circle at 50% -10%, rgba(0, 201, 177, 0.12), transparent 55%),
+        radial-gradient(circle at 85% 25%, rgba(0, 201, 177, 0.05), transparent 40%);
+      color: var(--white);
+      min-height: 100vh;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ================= TOP NAVIGATION BAR ================= */
+    .navbar {
+      width: 100%;
+      padding: 16px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      background: rgba(6, 9, 11, 0.88);
+      backdrop-filter: blur(14px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, var(--teal), #00796b);
+      color: #04100e;
+      font-weight: 800;
+      font-size: 14px;
+      display: grid;
+      place-items: center;
+      letter-spacing: -0.5px;
+    }
+
+    .brand {
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand span {
+      color: var(--teal);
+    }
+
+    .brand-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: var(--teal-soft);
+      border: 1px solid var(--teal-border);
+      color: var(--teal);
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-link {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      transition: 0.2s;
+      cursor: pointer;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--white);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-outline-nav {
+      padding: 9px 15px;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      font-size: 12.5px;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .btn-outline-nav:hover {
+      border-color: var(--teal);
+      color: var(--white);
+    }
+
+    .btn-primary-nav {
+      padding: 9px 17px;
+      border-radius: 9px;
+      background: var(--teal);
+      color: #051210;
+      font-size: 12.5px;
+      font-weight: 800;
+      transition: 0.25s;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .btn-primary-nav:hover {
+      background: var(--teal-dark);
+      color: var(--white);
+      transform: translateY(-1px);
+    }
+
+    /* ================= HERO SECTION ================= */
+    .hero {
+      max-width: 1040px;
+      margin: 56px auto 36px;
+      padding: 0 22px;
+      text-align: center;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--teal);
+      border: 1px solid var(--teal-border);
+      background: var(--teal-soft);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 8px var(--teal);
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 52px);
+      line-height: 1.12;
+      letter-spacing: -1.8px;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, var(--teal), #64ffda);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 660px;
+      margin: 0 auto 32px;
+    }
+
+    /* Portal Stats Bar */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      max-width: 820px;
+      margin: 0 auto 34px;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 18px;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .stat-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--teal-soft);
+      border: 1px solid var(--teal-border);
+      color: var(--teal);
+      display: grid;
+      place-items: center;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+
+    .stat-value {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.2;
+    }
+
+    .stat-label {
+      font-size: 11.5px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* Segmented Portal Switcher */
+    .portal-switcher {
+      display: inline-flex;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      padding: 5px;
+      border-radius: 13px;
+      gap: 6px;
+    }
+
+    .switch-btn {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      padding: 12px 24px;
+      border-radius: 9px;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.25s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .switch-btn:hover {
+      color: var(--white);
+    }
+
+    .switch-btn.active {
+      background: var(--teal);
+      color: #051210;
+      box-shadow: 0 4px 16px rgba(0, 201, 177, 0.25);
+    }
+
+    /* ================= MAIN PORTAL CONTAINER ================= */
+    .container {
+      width: min(1160px, calc(100% - 32px));
+      margin: 0 auto 80px;
+    }
+
+    /* Filter & Search Console */
+    .search-console {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr auto;
+      gap: 14px;
+      margin-bottom: 20px;
+      align-items: center;
+    }
+
+    .input-wrap {
+      position: relative;
+    }
+
+    .input-wrap i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 13px 15px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      outline: none;
+      background: var(--bg-input);
+      color: var(--white);
+      font-family: inherit;
+      font-size: 13px;
+      transition: 0.25s;
+    }
+
+    .input-wrap input {
+      padding-left: 41px;
+    }
+
+    input::placeholder {
+      color: #6f8084;
+    }
+
+    select {
+      cursor: pointer;
+    }
+
+    select option {
+      background: var(--bg-input);
+      color: var(--white);
+    }
+
+    input:focus,
+    select:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(0, 201, 177, 0.10);
+    }
+
+    .btn-secondary {
+      padding: 13px 18px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg-input);
+      color: var(--text-secondary);
+      font-family: inherit;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--teal);
+      color: var(--white);
+    }
+
+    .toolbar-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding: 0 4px;
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+
+    .toolbar-meta strong {
+      color: var(--teal);
+    }
+
+    .privacy-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 11px;
+      color: var(--text-secondary);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 999px;
+    }
+
+    .privacy-badge i {
+      color: var(--teal);
+    }
+
+    /* ================= DIRECTORY CARDS ================= */
+    .business-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 20px;
+    }
+
+    .biz-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: 0.25s ease;
+    }
+
+    .biz-card:hover {
+      border-color: var(--teal-border);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .card-top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .verified-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--teal-soft);
+      border: 1px solid var(--teal-border);
+      color: var(--teal);
+      font-size: 10.5px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.4px;
+    }
+
+    .ref-chip {
+      font-family: monospace;
+      font-size: 11.5px;
+      color: var(--muted);
+      background: var(--bg-input);
+      padding: 4px 9px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+
+    .field-block {
+      margin-bottom: 14px;
+    }
+
+    .field-label {
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.1px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .enterprise-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.4px;
+      line-height: 1.3;
+    }
+
+    .sector-pill {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--teal);
+      background: rgba(0, 201, 177, 0.06);
+      border: 1px solid rgba(0, 201, 177, 0.18);
+      padding: 4px 10px;
+      border-radius: 7px;
+    }
+
+    .description-text {
+      font-size: 13px;
+      color: var(--text-secondary);
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      line-height: 1.6;
+    }
+
+    .contact-panel {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .email-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      padding: 9px 12px;
+      border-radius: 9px;
+      font-size: 12.5px;
+    }
+
+    .email-value {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--white);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .email-value i {
+      color: var(--teal);
+    }
+
+    .mini-copy-btn {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 12px;
+      padding: 3px 6px;
+      border-radius: 5px;
+      transition: 0.2s;
+    }
+
+    .mini-copy-btn:hover {
+      color: var(--teal);
+      background: rgba(0, 201, 177, 0.1);
+    }
+
+    .hidden-phone-tag {
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .card-footer-btns {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+    }
+
+    .btn-view-profile {
+      padding: 11px 14px;
+      border-radius: 9px;
+      border: 1px solid var(--teal-border);
+      background: var(--teal-soft);
+      color: var(--teal);
+      font-family: inherit;
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+    }
+
+    .btn-view-profile:hover {
+      background: var(--teal);
+      color: #051210;
+    }
+
+    .btn-direct-email {
+      padding: 11px 14px;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+      background: var(--bg-input);
+      color: var(--white);
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.2s;
+    }
+
+    .btn-direct-email:hover {
+      border-color: var(--teal);
+      color: var(--teal);
+    }
+
+    /* Empty / Loading Box */
+    .state-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 60px 24px;
+      text-align: center;
+      grid-column: 1 / -1;
+    }
+
+    .state-panel i {
+      font-size: 38px;
+      color: var(--teal);
+      margin-bottom: 14px;
+    }
+
+    .state-panel h3 {
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    .state-panel p {
+      color: var(--muted);
+      font-size: 13px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ================= VERIFY SUPPLIER VIEW ================= */
+    .verify-container {
+      max-width: 740px;
+      margin: 0 auto;
+    }
+
+    .verify-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    .verify-box-header {
+      padding: 26px 30px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(120deg, rgba(0, 201, 177, 0.09), transparent);
+    }
+
+    .verify-box-header h2 {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .verify-box-header p {
+      color: var(--muted);
+      font-size: 12.5px;
+      margin-top: 4px;
+    }
+
+    .verify-box-body {
+      padding: 30px;
+    }
+
+    .verify-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .verify-row input {
+      font-family: monospace;
+      font-size: 15px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    .btn-verify {
+      padding: 14px 26px;
+      border: none;
+      border-radius: 10px;
+      background: var(--teal);
+      color: #051210;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: 0.25s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-verify:hover {
+      background: var(--teal-dark);
+      color: var(--white);
+    }
+
+    .verify-helper {
+      font-size: 11.5px;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+
+    .verify-helper code {
+      color: var(--teal);
+      background: var(--teal-soft);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .verify-output {
+      margin-top: 26px;
+      border-radius: 14px;
+      padding: 24px;
+      display: none;
+    }
+
+    .verify-output.valid {
+      display: block;
+      background: rgba(0, 201, 177, 0.05);
+      border: 1px solid rgba(0, 201, 177, 0.4);
+    }
+
+    .verify-output.invalid {
+      display: block;
+      background: rgba(255, 119, 119, 0.06);
+      border: 1px solid rgba(255, 119, 119, 0.35);
+    }
+
+    .result-banner {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .result-banner i {
+      font-size: 28px;
+    }
+
+    .verify-output.valid .result-banner i {
+      color: var(--teal);
+    }
+
+    .verify-output.invalid .result-banner i {
+      color: var(--danger);
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .result-cell.full {
+      grid-column: 1 / -1;
+    }
+
+    .result-cell span {
+      display: block;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.9px;
+      color: var(--muted);
+      margin-bottom: 3px;
+      font-weight: 700;
+    }
+
+    .result-cell strong {
+      font-size: 13.5px;
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    /* ================= ECOSYSTEM & GOVERNANCE FOOTER ================= */
+    .ecosystem-section {
+      margin-top: 56px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .ecosystem-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .eco-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .eco-card.current {
+      border-color: var(--teal-border);
+      background: linear-gradient(145deg, rgba(0, 201, 177, 0.08), var(--bg-card));
+    }
+
+    .eco-step-tag {
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      color: var(--teal);
+      margin-bottom: 6px;
+    }
+
+    .eco-card h4 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .eco-card p {
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+
+    .disclaimer-card {
+      padding: 20px 24px;
+      border: 1px solid var(--teal-border);
+      background: rgba(0, 201, 177, 0.03);
+      border-radius: 14px;
+    }
+
+    .disclaimer-card h4 {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 13px;
+      color: var(--teal);
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .disclaimer-card p {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    /* ================= MODAL ================= */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.80);
+      backdrop-filter: blur(5px);
+      z-index: 300;
+      display: none;
+      place-items: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.open {
+      display: grid;
+    }
+
+    .modal-box {
+      background: var(--bg-card);
+      border: 1px solid var(--teal-border);
+      border-radius: 18px;
+      width: min(620px, 100%);
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 28px;
+    }
+
+    .modal-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 14px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+
+    .modal-close-btn {
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .modal-close-btn:hover {
+      color: var(--white);
+      border-color: var(--teal);
+    }
+
+    .modal-group {
+      margin-bottom: 18px;
+    }
+
+    .modal-label {
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 5px;
+    }
+
+    .modal-text {
+      font-size: 14px;
+      color: var(--white);
+      line-height: 1.6;
+    }
+
+    .modal-contact-card {
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      margin-top: 20px;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 22px;
+      flex-wrap: wrap;
+    }
+
+    /* ================= FOOTER ================= */
+    .footer {
+      padding: 28px 7%;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--muted);
+      font-size: 11.5px;
+    }
+
+    .footer span {
+      color: var(--teal);
+      font-weight: 700;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 860px) {
+      .nav-links {
+        display: none;
+      }
+
+      .stats-bar,
+      .ecosystem-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .search-console {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .navbar {
+        padding: 14px 5%;
+      }
+
+      .brand-tag {
+        display: none;
+      }
+
+      .verify-row,
+      .result-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .toolbar-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CLEAN TOP NAVBAR (NO SIDE DRAWER) -->
+  <nav class="navbar">
+    <div class="brand-group">
+      
+      <a href="index.html" class="brand">
+        BLACKLOGIC<span>.</span>
+      </a>
+      <span class="brand-tag">BVBL Directory</span>
+    </div>
+
+    <div class="nav-links">
+      <a class="nav-link active" id="navLinkDirectory">Business Directory</a>
+      <a class="nav-link" id="navLinkVerify">Verify Supplier</a>
+      <a href="#ecosystem" class="nav-link">Network Layers</a>
+    </div>
+
+  
+    </div>
+  </nav>
+
+  <!-- HERO HEADER -->
+  <header class="hero">
+
+
+    <h1>
+      BlackLogic Verified<br>
+      <span>Business Listings.</span>
+    </h1>
+
+    <p>
+      Discover. Verify. Connect. Grow. Explore approved suppliers across the BlackLogic Business Network,
+      confirm official supplier status, and initiate direct business opportunities.
+    </p>
+
+    <!-- LIVE TELEMETRY STRIP -->
+    <div class="stats-bar">
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fas fa-building-circle-check"></i></div>
+        <div>
+          <div class="stat-value" id="statTotalApproved">--</div>
+          <div class="stat-label">Verified Enterprises</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fas fa-layer-group"></i></div>
+        <div>
+          <div class="stat-value" id="statActiveSectors">--</div>
+          <div class="stat-label">Active Industry Sectors</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fas fa-user-shield"></i></div>
+        <div>
+          <div class="stat-value">Protected</div>
+          <div class="stat-label">Cellphone Privacy Enforced</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PORTAL VIEW SWITCHER -->
+    <div class="portal-switcher" role="tablist">
+      <button class="switch-btn active" id="tabDirectory" role="tab" aria-selected="true">
+        <i class="fas fa-compass"></i> Discover Businesses
+      </button>
+      <button class="switch-btn" id="tabVerify" role="tab" aria-selected="false">
+        <i class="fas fa-shield-check"></i> Verify a Supplier
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="container">
+
+    <!-- ================= VIEW 1: PUBLIC DIRECTORY ================= -->
+    <section id="directorySection">
+
+      <div class="search-console">
+        <div class="input-wrap">
+          <i class="fas fa-search"></i>
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search by Enterprise Name, sector, or services offered..."
+            aria-label="Search approved businesses"
+          >
+        </div>
+
+        <div>
+          <select id="sectorFilter" aria-label="Filter by business sector">
+            <option value="">All Business Sectors (30 Categories)</option>
+            <option value="Information Technology & Telecommunications">1. Information Technology & Telecommunications</option>
+            <option value="Civil & Structural Engineering (CIDB CE)">2. Civil & Structural Engineering (CIDB CE)</option>
+            <option value="General Building Works (CIDB GB)">3. General Building Works (CIDB GB)</option>
+            <option value="Mechanical Engineering & HVAC (CIDB ME)">4. Mechanical Engineering & HVAC (CIDB ME)</option>
+            <option value="Electrical Infrastructure (CIDB EB/EP)">5. Electrical Infrastructure (CIDB EB/EP)</option>
+            <option value="Professional Advisory & Consulting Services">6. Professional Advisory & Consulting Services</option>
+            <option value="Facilities & Maintenance Services">7. Facilities & Maintenance Services</option>
+            <option value="Physical Security & Asset Protection">8. Physical Security & Asset Protection</option>
+            <option value="Transport, Fleet & Logistics">9. Transport, Fleet & Logistics</option>
+            <option value="Medical Equipment & Health Supplies">10. Medical Equipment & Health Supplies</option>
+            <option value="Renewable Energy & Environmental Services">11. Renewable Energy & Environmental Services</option>
+            <option value="Office Supplies, Furniture & Stationery">12. Office Supplies, Furniture & Stationery</option>
+            <option value="Printing, Packaging & Publishing">13. Printing, Packaging & Publishing</option>
+            <option value="Catering, Hospitality & Food Services">14. Catering, Hospitality & Food Services</option>
+            <option value="Petroleum, Fuels & Lubricants">15. Petroleum, Fuels & Lubricants</option>
+            <option value="Agriculture, Farming & Livestock">16. Agriculture, Farming & Livestock</option>
+            <option value="Mining & Heavy Industrial Supplies">17. Mining & Heavy Industrial Supplies</option>
+            <option value="Apparel, Textiles & Uniforms">18. Apparel, Textiles & Uniforms</option>
+            <option value="Water & Sanitation Services">19. Water & Sanitation Services</option>
+            <option value="Telecoms Infrastructure & Fibre Optics">20. Telecoms Infrastructure & Fibre Optics</option>
+            <option value="Real Estate, Property & Leasing">21. Real Estate, Property & Leasing</option>
+            <option value="Human Capital, Recruitment & Labour Brokering">22. Human Capital, Recruitment & Labour Brokering</option>
+            <option value="Events, Marketing & Public Relations">23. Events, Marketing & Public Relations</option>
+            <option value="Travel, Accommodation & Tourism">24. Travel, Accommodation & Tourism</option>
+            <option value="Automotive Sales, Maintenance & Repair">25. Automotive Sales, Maintenance & Repair</option>
+            <option value="Chemical & Laboratory Consumables">26. Chemical & Laboratory Consumables</option>
+            <option value="Defense, Aviation & Aerospace">27. Defense, Aviation & Aerospace</option>
+            <option value="Hardware, Tools & Industrial Building Consumables">28. Hardware, Tools & Industrial Building Consumables</option>
+            <option value="Disaster Management & Emergency Services">29. Disaster Management & Emergency Services</option>
+            <option value="Art, Heritage, Culture & Creative Goods">30. Art, Heritage, Culture & Creative Goods</option>
+          </select>
+        </div>
+
+        <button class="btn-secondary" id="resetFiltersBtn">
+          <i class="fas fa-rotate-left"></i> Clear Filters
+        </button>
+      </div>
+
+      <div class="toolbar-meta">
+        <div>
+          Displaying <strong id="listingCount">0</strong> approved network listings
+        </div>
+        <div class="privacy-badge">
+          <i class="fas fa-eye-slash"></i> Representative cellphone numbers hidden by default
+        </div>
+      </div>
+
+      <div class="business-grid" id="businessGrid">
+        <div class="state-panel">
+          <i class="fas fa-spinner fa-spin"></i>
+          <h3>Loading Verified Business Listings...</h3>
+          <p>Syncing approved records from the BlackLogic Cloud Supplier Registry.</p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ================= VIEW 2: SUPPLIER VERIFICATION ================= -->
+    <section id="verifySection" class="hidden">
+      <div class="verify-container">
+        <div class="verify-box">
+          <div class="verify-box-header">
+            <h2>Supplier Status Verification</h2>
+            <p>Enter a BlackLogic Supplier Number or BBSP Application Reference to verify network approval.</p>
+          </div>
+
+          <div class="verify-box-body">
+            <label for="supplierVerifyInput" style="font-size:12px; font-weight:600; color:var(--text-secondary);">
+              Supplier Number / Reference <span style="color:var(--teal);">*</span>
+            </label>
+
+            <div class="verify-row">
+              <input
+                type="text"
+                id="supplierVerifyInput"
+                placeholder="e.g. BBSP*32*12"
+                autocomplete="off"
+              >
+              <button class="btn-verify" id="verifySubmitBtn">
+                <i class="fas fa-magnifying-glass"></i> Verify Supplier
+              </button>
+            </div>
+
+            <div class="verify-helper">
+              Format example: <code>BBSP*32*12</code> or <code>BBSPSA202611...</code>. Only authorised public verification details are shown.
+            </div>
+
+            <div class="verify-output" id="verifyResultBox"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ECOSYSTEM & GOVERNANCE ================= -->
+    <section class="ecosystem-section" id="ecosystem">
+      <div class="ecosystem-grid">
+        <div class="eco-card">
+          <div class="eco-step-tag">01 · APPLICATION</div>
+          <h4>BBSP Supplier Portal</h4>
+          <p>Formally registered enterprises submit their business profile to apply for network approval.</p>
+        </div>
+
+        <div class="eco-card">
+          <div class="eco-step-tag">02 · COMMUNITY</div>
+          <h4>BlackLogic Business Network</h4>
+          <p>Approved suppliers gain access to ecosystem updates, collaboration channels, and opportunities.</p>
+        </div>
+
+        <div class="eco-card current">
+          <div class="eco-step-tag">03 · DISCOVERY (BVBL)</div>
+          <h4>Verified Business Listings</h4>
+          <p>Publicly discoverable directory where partners verify supplier numbers and connect via email.</p>
+        </div>
+      </div>
+
+      <div class="disclaimer-card">
+        <h4><i class="fas fa-scale-balanced"></i> Verification Scope & Privacy Notice</h4>
+        <p>
+          A listing on <strong>BlackLogic Verified Business Listings (BVBL)</strong> confirms that an enterprise has been approved for the BlackLogic Business Network based on its BBSP submission. Network approval does not imply a statutory procurement audit, tax/CIDB clearance verification, or guarantee of contract award by BlackLogic Technologies Hardware and Projects (Pty) Ltd. Personal cellphone numbers are withheld to protect representative privacy; all initial outreach is conducted via the listed business email address.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- BUSINESS PROFILE MODAL -->
+  <div class="modal-overlay" id="profileModal" role="dialog" aria-modal="true" aria-labelledby="modalEnterpriseName">
+    <div class="modal-box">
+      <div class="modal-top">
+        <div>
+          <span class="verified-chip" style="margin-bottom:8px;">
+            <i class="fas fa-circle-check"></i> APPROVED NETWORK SUPPLIER
+          </span>
+          <h2 id="modalEnterpriseName" style="font-size:22px; font-weight:800; letter-spacing:-0.5px;"></h2>
+          <div id="modalSupplierCode" style="font-family:monospace; font-size:12px; color:var(--muted); margin-top:4px;"></div>
+        </div>
+        <button class="modal-close-btn" id="closeModalBtn" aria-label="Close modal">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="modal-group">
+        <div class="modal-label">Sector</div>
+        <div class="modal-text" id="modalSector" style="color:var(--teal); font-weight:600;"></div>
+      </div>
+
+      <div class="modal-group">
+        <div class="modal-label">Description</div>
+        <div class="modal-text" id="modalDescription"></div>
+      </div>
+
+      <div class="modal-contact-card">
+        <div class="modal-label" style="margin-bottom:10px;">Authorised Business Contact</div>
+
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div>
+            <span style="color:var(--muted); font-size:11.5px;">Email:</span><br>
+            <strong id="modalEmail" style="color:var(--white); font-size:14px;"></strong>
+          </div>
+
+          <div id="modalWebsiteWrap">
+            <span style="color:var(--muted); font-size:11.5px;">Website:</span><br>
+            <a id="modalWebsite" href="#" target="_blank" rel="noopener noreferrer" style="color:var(--teal); font-weight:600; font-size:13.5px;"></a>
+          </div>
+
+          <div class="hidden-phone-tag" style="margin-top:4px; padding-top:8px; border-top:1px solid var(--border);">
+            <i class="fas fa-lock" style="color:var(--teal);"></i>
+            Cellphone number hidden in accordance with BVBL privacy standards.
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <a id="modalMailtoBtn" href="#" class="btn-verify" style="flex:1; justify-content:center;">
+          <i class="fas fa-paper-plane"></i> Connect via Email
+        </a>
+        <button class="btn-secondary" id="copyEmailBtn">
+          <i class="fas fa-copy"></i> Copy Email
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>
+      © <span>BlackLogic Technologies</span> |
+      BlackLogic Verified Business Listings (BVBL)
+    </p>
+    <p>Discover. Verify. Connect. Grow. — Digital Infrastructure. Engineered for Impact.</p>
+  </footer>
+
+  <!-- FIREBASE & PORTAL LOGIC -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDgPvBHxMVhOBkI4pGrekMFggqn1ifgqPE",
+      authDomain: "blacklogic-5bdbe.firebaseapp.com",
+      databaseURL: "https://blacklogic-5bdbe-default-rtdb.firebaseio.com",
+      projectId: "blacklogic-5bdbe",
+      storageBucket: "blacklogic-5bdbe.firebasestorage.app",
+      messagingSenderId: "10978908004",
+      appId: "1:10978908004:web:eb223b6d510aafabb84c71",
+      measurementId: "G-JYP6MJWMDB"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+
+    // Only records marked approved/verified in Firebase are rendered publicly.
+    const REQUIRE_APPROVED_FLAG = true;
+
+    let approvedBusinesses = [];
+
+    // DOM Elements
+    const businessGrid = document.getElementById("businessGrid");
+    const listingCount = document.getElementById("listingCount");
+    const statTotalApproved = document.getElementById("statTotalApproved");
+    const statActiveSectors = document.getElementById("statActiveSectors");
+    const searchInput = document.getElementById("searchInput");
+    const sectorFilter = document.getElementById("sectorFilter");
+    const resetFiltersBtn = document.getElementById("resetFiltersBtn");
+
+    // View Switchers
+    const tabDirectory = document.getElementById("tabDirectory");
+    const tabVerify = document.getElementById("tabVerify");
+    const navLinkDirectory = document.getElementById("navLinkDirectory");
+    const navLinkVerify = document.getElementById("navLinkVerify");
+    const directorySection = document.getElementById("directorySection");
+    const verifySection = document.getElementById("verifySection");
+
+    // Verification Elements
+    const supplierVerifyInput = document.getElementById("supplierVerifyInput");
+    const verifySubmitBtn = document.getElementById("verifySubmitBtn");
+    const verifyResultBox = document.getElementById("verifyResultBox");
+
+    // Modal Elements
+    const profileModal = document.getElementById("profileModal");
+    const closeModalBtn = document.getElementById("closeModalBtn");
+    const copyEmailBtn = document.getElementById("copyEmailBtn");
+
+    function switchView(view) {
+      const isDir = view === "directory";
+      tabDirectory.classList.toggle("active", isDir);
+      tabVerify.classList.toggle("active", !isDir);
+      navLinkDirectory.classList.toggle("active", isDir);
+      navLinkVerify.classList.toggle("active", !isDir);
+      directorySection.classList.toggle("hidden", !isDir);
+      verifySection.classList.toggle("hidden", isDir);
+      if (!isDir) supplierVerifyInput.focus();
+    }
+
+    tabDirectory.addEventListener("click", () => switchView("directory"));
+    navLinkDirectory.addEventListener("click", () => switchView("directory"));
+    tabVerify.addEventListener("click", () => switchView("verify"));
+    navLinkVerify.addEventListener("click", () => switchView("verify"));
+
+    // Privacy Sanitizer: strictly omits representativePhone, representativeEmail, representativeName & CIPC ID
+    function sanitizePublicRecord(firebaseKey, raw) {
+      if (!raw || typeof raw !== "object") return null;
+
+      const statusStr = String(raw.status || raw.listingStatus || "").toLowerCase().trim();
+      if (["suspended", "rejected", "removed"].includes(statusStr)) return null;
+
+      const isApproved =
+        raw.approved === true ||
+        raw.verified === true ||
+        ["approved", "verified", "active"].includes(statusStr);
+
+      if (REQUIRE_APPROVED_FLAG && !isApproved) return null;
+
+      return {
+        id: firebaseKey,
+        supplierNumber: (raw.supplierNumber || raw.applicationNumber || "PENDING-REF").trim(),
+        applicationNumber: (raw.applicationNumber || "").trim(),
+        enterpriseName: (raw.enterpriseName || "Unnamed Enterprise").trim(),
+        enterpriseType: (raw.enterpriseType || "").trim(),
+        sector: (raw.businessCategory || raw.sector || "General Business Services").trim(),
+        description: (raw.businessDescription || "Approved member of the BlackLogic Business Network.").trim(),
+        email: (raw.businessEmail || "").trim(),
+        website: (raw.businessWebsite || "").trim()
+      };
+    }
+
+    function escapeHTML(str) {
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function renderDirectory(list) {
+      listingCount.textContent = list.length;
+
+      if (list.length === 0) {
+        businessGrid.innerHTML = `
+          <div class="state-panel">
+            <i class="fas fa-folder-open"></i>
+            <h3>No Matching Verified Businesses Found</h3>
+            <p>Try adjusting your search terms or clearing the sector filter to browse all approved network suppliers.</p>
+          </div>
+        `;
+        return;
+      }
+
+      businessGrid.innerHTML = list.map((biz, index) => {
+        const displayTitle = biz.enterpriseType
+          ? `${biz.enterpriseName} (${biz.enterpriseType})`
+          : biz.enterpriseName;
+
+        return `
+          <article class="biz-card">
+            <div>
+              <div class="card-top-bar">
+                <span class="verified-chip">
+                  <i class="fas fa-circle-check"></i> VERIFIED
+                </span>
+                <span class="ref-chip">${escapeHTML(biz.supplierNumber)}</span>
+              </div>
+
+              <div class="field-block">
+                <div class="field-label">Enterprise Name</div>
+                <h2 class="enterprise-title">${escapeHTML(displayTitle)}</h2>
+              </div>
+
+              <div class="field-block">
+                <div class="field-label">Sector</div>
+                <div class="sector-pill">${escapeHTML(biz.sector)}</div>
+              </div>
+
+              <div class="field-block">
+                <div class="field-label">Description</div>
+                <p class="description-text">${escapeHTML(biz.description)}</p>
+              </div>
+            </div>
+
+            <div>
+              <div class="contact-panel">
+                <div class="field-label" style="margin-bottom:0;">Email</div>
+                <div class="email-strip">
+                  <div class="email-value" title="${escapeHTML(biz.email)}">
+                    <i class="fas fa-envelope"></i>
+                    <span>${escapeHTML(biz.email || "Available on request")}</span>
+                  </div>
+                  ${biz.email ? `
+                    <button class="mini-copy-btn" data-copy-email="${escapeHTML(biz.email)}" title="Copy email">
+                      <i class="fas fa-copy"></i>
+                    </button>
+                  ` : ""}
+                </div>
+                <div class="hidden-phone-tag">
+                  <i class="fas fa-lock"></i> Cellphone number hidden for privacy
+                </div>
+              </div>
+
+              <div class="card-footer-btns">
+                <button class="btn-view-profile" data-biz-index="${index}">
+                  <i class="fas fa-id-card"></i> View Business Profile
+                </button>
+                ${biz.email ? `
+                  <a href="mailto:${encodeURIComponent(biz.email)}?subject=${encodeURIComponent("Business Opportunity Inquiry via BlackLogic BVBL")}" class="btn-direct-email" title="Email ${escapeHTML(biz.enterpriseName)}">
+                    <i class="fas fa-paper-plane"></i>
+                  </a>
+                ` : ""}
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      document.querySelectorAll(".btn-view-profile").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const idx = Number(btn.getAttribute("data-biz-index"));
+          openBusinessModal(list[idx]);
+        });
+      });
+
+      document.querySelectorAll(".mini-copy-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const email = btn.getAttribute("data-copy-email");
+          navigator.clipboard.writeText(email);
+          btn.innerHTML = `<i class="fas fa-check" style="color:var(--teal);"></i>`;
+          setTimeout(() => {
+            btn.innerHTML = `<i class="fas fa-copy"></i>`;
+          }, 1800);
+        });
+      });
+    }
+
+    function applyFilters() {
+      const query = searchInput.value.toLowerCase().trim();
+      const selectedSector = sectorFilter.value;
+
+      const filtered = approvedBusinesses.filter(biz => {
+        const matchesSector = !selectedSector || biz.sector === selectedSector;
+        const matchesQuery =
+          !query ||
+          biz.enterpriseName.toLowerCase().includes(query) ||
+          biz.sector.toLowerCase().includes(query) ||
+          biz.description.toLowerCase().includes(query) ||
+          biz.supplierNumber.toLowerCase().includes(query);
+
+        return matchesSector && matchesQuery;
+      });
+
+      renderDirectory(filtered);
+    }
+
+    searchInput.addEventListener("input", applyFilters);
+    sectorFilter.addEventListener("change", applyFilters);
+    resetFiltersBtn.addEventListener("click", () => {
+      searchInput.value = "";
+      sectorFilter.value = "";
+      applyFilters();
+    });
+
+    function openBusinessModal(biz) {
+      if (!biz) return;
+
+      const displayTitle = biz.enterpriseType
+        ? `${biz.enterpriseName} (${biz.enterpriseType})`
+        : biz.enterpriseName;
+
+      document.getElementById("modalEnterpriseName").textContent = displayTitle;
+      document.getElementById("modalSupplierCode").textContent = `Supplier Number: ${biz.supplierNumber}`;
+      document.getElementById("modalSector").textContent = biz.sector;
+      document.getElementById("modalDescription").textContent = biz.description;
+      document.getElementById("modalEmail").textContent = biz.email || "Not published";
+
+      const websiteWrap = document.getElementById("modalWebsiteWrap");
+      const websiteLink = document.getElementById("modalWebsite");
+
+      if (biz.website) {
+        websiteWrap.classList.remove("hidden");
+        const formattedUrl = biz.website.startsWith("http") ? biz.website : `https://${biz.website}`;
+        websiteLink.href = formattedUrl;
+        websiteLink.textContent = biz.website;
+      } else {
+        websiteWrap.classList.add("hidden");
+      }
+
+      const mailtoBtn = document.getElementById("modalMailtoBtn");
+      if (biz.email) {
+        mailtoBtn.classList.remove("hidden");
+        mailtoBtn.href = `mailto:${encodeURIComponent(biz.email)}?subject=${encodeURIComponent("Business Opportunity Inquiry via BlackLogic BVBL")}`;
+      } else {
+        mailtoBtn.classList.add("hidden");
+      }
+
+      copyEmailBtn.onclick = () => {
+        if (!biz.email) return;
+        navigator.clipboard.writeText(biz.email);
+        copyEmailBtn.innerHTML = `<i class="fas fa-check"></i> Copied!`;
+        setTimeout(() => {
+          copyEmailBtn.innerHTML = `<i class="fas fa-copy"></i> Copy Email`;
+        }, 2000);
+      };
+
+      profileModal.classList.add("open");
+    }
+
+    closeModalBtn.addEventListener("click", () => profileModal.classList.remove("open"));
+    profileModal.addEventListener("click", (e) => {
+      if (e.target === profileModal) profileModal.classList.remove("open");
+    });
+
+    function verifySupplier() {
+      const code = supplierVerifyInput.value.trim().toUpperCase();
+      if (!code) {
+        supplierVerifyInput.focus();
+        return;
+      }
+
+      const match = approvedBusinesses.find(
+        biz =>
+          biz.supplierNumber.toUpperCase() === code ||
+          biz.applicationNumber.toUpperCase() === code
+      );
+
+      if (match) {
+        const displayTitle = match.enterpriseType
+          ? `${match.enterpriseName} (${match.enterpriseType})`
+          : match.enterpriseName;
+
+        verifyResultBox.className = "verify-output valid";
+        verifyResultBox.innerHTML = `
+          <div class="result-banner">
+            <i class="fas fa-circle-check"></i>
+            <div>
+              <h3 style="font-size:16px; color:var(--teal);">Verified BlackLogic Network Supplier</h3>
+              <p style="font-size:12px; color:var(--muted);">Confirmed active and approved in the BlackLogic Business Network.</p>
+            </div>
+          </div>
+
+          <div class="result-grid">
+            <div class="result-cell">
+              <span>Enterprise Name</span>
+              <strong>${escapeHTML(displayTitle)}</strong>
+            </div>
+            <div class="result-cell">
+              <span>Supplier Number</span>
+              <strong style="font-family:monospace; color:var(--teal);">${escapeHTML(match.supplierNumber)}</strong>
+            </div>
+            <div class="result-cell full">
+              <span>Sector</span>
+              <strong>${escapeHTML(match.sector)}</strong>
+            </div>
+            <div class="result-cell full">
+              <span>Description</span>
+              <strong style="font-weight:400; color:var(--text-secondary);">${escapeHTML(match.description)}</strong>
+            </div>
+            <div class="result-cell">
+              <span>Email</span>
+              <strong>${escapeHTML(match.email || "Not published")}</strong>
+            </div>
+            <div class="result-cell">
+              <span>Cellphone Number</span>
+              <strong style="color:var(--muted); font-weight:500;"><i class="fas fa-lock"></i> Hidden for Privacy</strong>
+            </div>
+          </div>
+        `;
+      } else {
+        verifyResultBox.className = "verify-output invalid";
+        verifyResultBox.innerHTML = `
+          <div class="result-banner">
+            <i class="fas fa-circle-exclamation"></i>
+            <div>
+              <h3 style="font-size:16px; color:var(--danger);">Supplier Record Not Confirmed</h3>
+              <p style="font-size:12px; color:var(--muted);">
+                No approved supplier listing was found matching <strong style="color:var(--white);">${escapeHTML(code)}</strong>.
+                The application may still be under review, suspended, or entered incorrectly.
+              </p>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    verifySubmitBtn.addEventListener("click", verifySupplier);
+    supplierVerifyInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        verifySupplier();
+      }
+    });
+
+    // Real-time Firebase Sync
+    const suppliersRef = ref(database, "suppliers");
+    onValue(
+      suppliersRef,
+      (snapshot) => {
+        const data = snapshot.val();
+        const sanitizedList = [];
+
+        if (data) {
+          Object.entries(data).forEach(([key, record]) => {
+            const clean = sanitizePublicRecord(key, record);
+            if (clean) sanitizedList.push(clean);
+          });
+        }
+
+        approvedBusinesses = sanitizedList.sort((a, b) =>
+          a.enterpriseName.localeCompare(b.enterpriseName)
+        );
+
+        // Update Live Telemetry Counters
+        statTotalApproved.textContent = approvedBusinesses.length;
+        const uniqueSectors = new Set(approvedBusinesses.map(b => b.sector));
+        statActiveSectors.textContent = uniqueSectors.size;
+
+        applyFilters();
+
+        // Support direct shareable verification URLs (e.g., bvbl.html?verify=BBSP*32*12)
+        const params = new URLSearchParams(window.location.search);
+        const verifyParam = params.get("verify");
+        if (verifyParam) {
+          switchView("verify");
+          supplierVerifyInput.value = verifyParam;
+          verifySupplier();
+        }
+      },
+      (error) => {
+        console.error("BVBL Firebase Read Error:", error);
+        businessGrid.innerHTML = `
+          <div class="state-panel">
+            <i class="fas fa-triangle-exclamation" style="color:var(--danger);"></i>
+            <h3>Unable to Load Directory</h3>
+            <p>Please check your connection or verify Firebase Realtime Database read permissions for <code>/suppliers</code>.</p>
+          </div>
+        `;
+      }
+    );
+  </script>
+</body>
+</html>
