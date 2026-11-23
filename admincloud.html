@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>BlackLogic Central Cloud Dashboard | Secure Console</title>
+<title>BlackLogic Central Intelligence Infrastructure</title>
 
-<meta name="description" content="Secure BlackLogic Central Cloud Infrastructure Dashboard for managing consultations, business enquiries, and supplier applications.">
+<meta name="description" content="BlackLogic Central Intelligence Infrastructure for managing business enquiries, business leads, supplier applications, procurement records, and live analytics.">
 <meta name="author" content="BlackLogic Technologies Pty Ltd">
 <meta name="theme-color" content="#050505">
 
@@ -14,6 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 
 <style>
 * {
@@ -32,6 +33,34 @@ body {
     color: #fff;
     min-height: 100vh;
     overflow-x: hidden;
+    position: relative;
+}
+
+/* SUBTLE ELECTRIC-NEURON BACKGROUND */
+#neuronCanvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.45;
+}
+
+.auth-wrapper,
+#dashboardContent,
+.modal-overlay,
+.toast-notice {
+    position: relative;
+    z-index: 1;
+}
+
+.modal-overlay {
+    z-index: 1000;
+}
+
+.toast-notice {
+    z-index: 2000;
 }
 
 /* AUTHENTICATION OVERLAY & CARD */
@@ -41,42 +70,42 @@ body {
     justify-content: center;
     min-height: 100vh;
     padding: 20px;
-    background: radial-gradient(circle at center, rgba(0,200,215,.08), transparent 50%), #050505;
+    background: radial-gradient(circle at center, rgba(0,200,215,.08), transparent 55%), #050505;
 }
 
 .auth-card {
-    background: #0c0c0c;
+    background: rgba(12, 12, 12, 0.94);
     border: 1px solid rgba(0,200,215,.25);
     border-radius: 20px;
-    width: min(420px, 100%);
+    width: min(430px, 100%);
     padding: 35px 30px;
-    box-shadow: 0 0 35px rgba(0,0,0,.6);
+    box-shadow: 0 0 35px rgba(0,0,0,.65);
     text-align: center;
 }
 
 .auth-card .brand-icon {
-    width: 50px;
-    height: 50px;
+    width: 52px;
+    height: 52px;
     border-radius: 14px;
     background: rgba(0,200,215,.08);
-    border: 1px solid rgba(0,200,215,.2);
+    border: 1px solid rgba(0,200,215,.25);
     display: grid;
     place-items: center;
     color: #00c8d7;
     font-size: 1.4rem;
-    margin: 0 auto 18px;
+    margin: 0 auto 16px;
 }
 
 .auth-card h2 {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: #fff;
     margin-bottom: 6px;
 }
 
 .auth-card p {
     font-size: .78rem;
-    color: #777;
-    margin-bottom: 25px;
+    color: #888;
+    margin-bottom: 24px;
 }
 
 .auth-form .field {
@@ -145,9 +174,10 @@ body {
 
 /* HEADER */
 header {
-    padding: 20px 30px;
-    background: #080808;
-    border-bottom: 1px solid rgba(0,200,215,.12);
+    padding: 18px 30px;
+    background: rgba(8, 8, 8, 0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0,200,215,.15);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -173,7 +203,7 @@ header {
     justify-content: center;
     color: #00c8d7;
     background: rgba(0,200,215,.08);
-    border: 1px solid rgba(0,200,215,.2);
+    border: 1px solid rgba(0,200,215,.25);
 }
 
 .brand-text {
@@ -182,20 +212,20 @@ header {
 }
 
 .brand-text strong {
-    font-size: .9rem;
-    letter-spacing: 1px;
+    font-size: .92rem;
+    letter-spacing: .8px;
 }
 
 .brand-text span {
     font-size: .65rem;
-    color: #777;
+    color: #888;
     letter-spacing: 1px;
 }
 
 .header-right {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     flex-wrap: wrap;
 }
 
@@ -203,7 +233,7 @@ header {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: .75rem;
+    font-size: .74rem;
     color: #00c8d7;
     background: rgba(0,200,215,.07);
     padding: 6px 14px;
@@ -249,7 +279,7 @@ header {
 .logout-btn {
     background: #151515;
     color: #ff5757;
-    border: 1px solid rgba(255,87,87,.2);
+    border: 1px solid rgba(255,87,87,.25);
     padding: 7px 15px;
     border-radius: 20px;
     font-size: .75rem;
@@ -259,29 +289,107 @@ header {
 }
 
 .logout-btn:hover {
-    background: rgba(255,87,87,.1);
+    background: rgba(255,87,87,.12);
 }
 
 /* CONTAINER */
 .dashboard-container {
-    max-width: 1300px;
-    margin: 30px auto 60px;
-    padding: 0 25px;
+    max-width: 1320px;
+    margin: 26px auto 60px;
+    padding: 0 24px;
 }
 
-/* METRICS 3-GRID TOP CARDS */
+/* WELCOME BANNER */
+.welcome-banner {
+    background: linear-gradient(120deg, rgba(0, 136, 255, 0.14), rgba(0, 200, 215, 0.08), rgba(12, 12, 12, 0.95));
+    border: 1px solid rgba(0,200,215,.28);
+    border-radius: 18px;
+    padding: 22px 26px;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.welcome-banner h1 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: .3px;
+}
+
+.welcome-banner p {
+    font-size: .8rem;
+    color: #9fb8c2;
+    margin-top: 4px;
+}
+
+.welcome-tag {
+    font-size: .72rem;
+    color: #00c8d7;
+    background: rgba(0,200,215,.1);
+    border: 1px solid rgba(0,200,215,.25);
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-weight: 600;
+}
+
+/* 5 PRIMARY SECTIONS NAVIGATION */
+.primary-nav {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    background: rgba(12, 12, 12, 0.92);
+    border: 1px solid rgba(0,200,215,.18);
+    border-radius: 16px;
+    padding: 10px;
+    margin-bottom: 24px;
+}
+
+.nav-tab-btn {
+    background: #121212;
+    border: 1px solid rgba(255,255,255,.06);
+    color: #9aa5b1;
+    padding: 12px 14px;
+    border-radius: 11px;
+    font-size: .8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-align: center;
+}
+
+.nav-tab-btn:hover {
+    color: #fff;
+    border-color: rgba(0,200,215,.35);
+}
+
+.nav-tab-btn.active {
+    background: rgba(0,200,215,.14);
+    color: #00c8d7;
+    border-color: #00c8d7;
+    box-shadow: 0 0 18px rgba(0,200,215,.12);
+}
+
+/* METRICS GRID */
 .metrics-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 24px;
 }
 
 .metric-card {
-    background: #0c0c0c;
+    background: rgba(12, 12, 12, 0.92);
     border: 1px solid rgba(0,200,215,.15);
     border-radius: 18px;
-    padding: 25px 28px;
+    padding: 22px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -295,29 +403,29 @@ header {
 }
 
 .metric-info h3 {
-    font-size: .8rem;
-    color: #777;
+    font-size: .76rem;
+    color: #888;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.4px;
     margin-bottom: 8px;
 }
 
 .metric-info .count {
-    font-size: 2.2rem;
+    font-size: 2rem;
     font-weight: 800;
     color: #00c8d7;
     line-height: 1;
 }
 
 .metric-info p {
-    font-size: .75rem;
+    font-size: .74rem;
     color: #aaa;
     margin-top: 6px;
 }
 
 .metric-icon {
-    width: 52px;
-    height: 52px;
+    width: 48px;
+    height: 48px;
     border-radius: 14px;
     background: rgba(0,200,215,.08);
     border: 1px solid rgba(0,200,215,.2);
@@ -325,56 +433,37 @@ header {
     align-items: center;
     justify-content: center;
     color: #00c8d7;
-    font-size: 1.4rem;
+    font-size: 1.25rem;
+}
+
+/* SECTION PANELS */
+.section-panel {
+    display: none;
+}
+
+.section-panel.active {
+    display: block;
 }
 
 /* CONTROLS BAR */
 .controls-bar {
-    background: #0c0c0c;
+    background: rgba(12, 12, 12, 0.92);
     border: 1px solid rgba(0,200,215,.15);
     border-radius: 16px;
-    padding: 18px 24px;
+    padding: 16px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 20px;
-    margin-bottom: 25px;
+    gap: 14px;
+    margin-bottom: 20px;
     flex-wrap: wrap;
-}
-
-.inbox-toggle {
-    display: flex;
-    background: #111;
-    padding: 4px;
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,.07);
-}
-
-.toggle-btn {
-    padding: 10px 20px;
-    border: none;
-    background: transparent;
-    color: #888;
-    font-size: .82rem;
-    font-weight: 600;
-    border-radius: 9px;
-    cursor: pointer;
-    transition: .3s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.toggle-btn.active {
-    background: rgba(0,200,215,.12);
-    color: #00c8d7;
-    border: 1px solid rgba(0,200,215,.3);
 }
 
 .search-box {
     position: relative;
     flex: 1;
-    max-width: 450px;
+    min-width: 240px;
+    max-width: 460px;
 }
 
 .search-box i {
@@ -382,34 +471,92 @@ header {
     left: 15px;
     top: 50%;
     transform: translateY(-50%);
-    color: #555;
+    color: #666;
     font-size: .88rem;
 }
 
-.search-box input {
+.search-box input,
+.form-control {
     width: 100%;
-    padding: 12px 15px 12px 42px;
+    padding: 11px 14px;
     background: #151515;
-    border: 1px solid rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.09);
     border-radius: 10px;
     color: #fff;
-    font-size: .85rem;
+    font-size: .84rem;
     outline: none;
-    transition: .3s ease;
+    transition: .25s ease;
 }
 
-.search-box input:focus {
+.search-box input {
+    padding-left: 40px;
+}
+
+.search-box input:focus,
+.form-control:focus {
     border-color: rgba(0,200,215,.55);
     box-shadow: 0 0 0 3px rgba(0,200,215,.06);
 }
 
-/* INBOX CONTAINER */
+/* CARDS & FORMS */
+.panel-card {
+    background: rgba(12, 12, 12, 0.92);
+    border: 1px solid rgba(0,200,215,.16);
+    border-radius: 18px;
+    padding: 22px;
+    margin-bottom: 22px;
+    box-shadow: 0 0 25px rgba(0,0,0,.25);
+}
+
+.panel-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+.panel-card-header h2 {
+    font-size: 1rem;
+    color: #00c8d7;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-field.full {
+    grid-column: 1 / -1;
+}
+
+.form-field label {
+    font-size: .74rem;
+    color: #bbb;
+    font-weight: 500;
+}
+
+/* INBOX / DATA LIST */
 .inbox-card {
-    background: #0c0c0c;
+    background: rgba(12, 12, 12, 0.92);
     border: 1px solid rgba(0,200,215,.15);
     border-radius: 18px;
     overflow: hidden;
     box-shadow: 0 0 25px rgba(0,0,0,.25);
+    margin-bottom: 22px;
 }
 
 .inbox-list {
@@ -419,12 +566,13 @@ header {
 
 .inbox-item {
     display: grid;
-    grid-template-columns: 180px 1.5fr 2fr 130px 40px;
+    grid-template-columns: 165px 1.5fr 2fr 150px 40px;
     align-items: center;
-    padding: 18px 24px;
+    padding: 16px 22px;
     border-bottom: 1px solid rgba(255,255,255,.05);
     cursor: pointer;
     transition: .25s ease;
+    gap: 12px;
 }
 
 .inbox-item:last-child {
@@ -436,7 +584,7 @@ header {
 }
 
 .item-date {
-    font-size: .75rem;
+    font-size: .74rem;
     color: #00c8d7;
     font-weight: 600;
 }
@@ -453,13 +601,13 @@ header {
 .item-sender small {
     display: block;
     font-size: .7rem;
-    color: #666;
+    color: #777;
     font-weight: 400;
 }
 
 .item-subject {
     font-size: .82rem;
-    color: #aaa;
+    color: #bbb;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -468,60 +616,142 @@ header {
 .badge {
     padding: 4px 10px;
     border-radius: 20px;
-    font-size: .68rem;
+    font-size: .67rem;
     font-weight: 700;
     text-transform: uppercase;
     text-align: center;
     width: max-content;
+    display: inline-block;
 }
 
 .badge-pending {
-    background: rgba(255,193,7,.1);
+    background: rgba(255,193,7,.12);
     color: #ffc107;
     border: 1px solid rgba(255,193,7,.3);
 }
 
-.badge-replied {
-    background: rgba(46,204,113,.12);
+.badge-replied,
+.badge-converted {
+    background: rgba(46,204,113,.14);
     color: #2ecc71;
-    border: 1px solid rgba(46,204,113,.3);
+    border: 1px solid rgba(46,204,113,.35);
 }
 
 .badge-approved {
-    background: rgba(0,200,215,.1);
+    background: rgba(0,200,215,.14);
     color: #00c8d7;
-    border: 1px solid rgba(0,200,215,.3);
+    border: 1px solid rgba(0,200,215,.35);
 }
 
-.badge-compliance {
-    background: rgba(255,87,87,.1);
+.badge-compliance,
+.badge-rejected {
+    background: rgba(255,87,87,.14);
     color: #ff5757;
-    border: 1px solid rgba(255,87,87,.3);
+    border: 1px solid rgba(255,87,87,.35);
+}
+
+.badge-hot {
+    background: rgba(255, 115, 0, .15);
+    color: #ff8c3b;
+    border: 1px solid rgba(255, 115, 0, .35);
+}
+
+.badge-muted {
+    background: rgba(150, 160, 175, .12);
+    color: #aab4c0;
+    border: 1px solid rgba(150, 160, 175, .28);
+}
+
+.followup-due {
+    color: #ff6b6b;
+    font-weight: 700;
+}
+
+.followup-ok {
+    color: #5ce1e6;
+    font-weight: 500;
 }
 
 .empty-state {
-    padding: 60px 20px;
+    padding: 50px 20px;
     text-align: center;
-    color: #666;
+    color: #777;
 }
 
 .empty-state i {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     color: #00c8d7;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
+
+/* ANALYTICS CHARTS GRID */
+.charts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.chart-card {
+    background: rgba(12, 12, 12, 0.92);
+    border: 1px solid rgba(0,200,215,.16);
+    border-radius: 18px;
+    padding: 20px;
+}
+
+.chart-card h3 {
+    font-size: .92rem;
+    color: #00c8d7;
+    margin-bottom: 4px;
+}
+
+.chart-card p {
+    font-size: .74rem;
+    color: #888;
+    margin-bottom: 14px;
+}
+
+.chart-wrap {
+    position: relative;
+    height: 270px;
+    width: 100%;
+}
+
+/* ACTION BUTTONS */
+.action-btn {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 26px;
+    font-size: .78rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    text-decoration: none;
+    transition: .25s ease;
+}
+
+.action-btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn-primary { background: #00c8d7; color: #000; }
+.btn-google { background: #181a1f; color: #fff; border: 1px solid rgba(66, 133, 244, .45); }
+.btn-ext { background: #151922; color: #7cd4ff; border: 1px solid rgba(0,200,215,.32); }
+.btn-whatsapp { background: #25D366; color: #000; }
+.btn-email { background: #00c8d7; color: #000; }
+.btn-ai-gpt { background: #161616; color: #10a37f; border: 1px solid rgba(16,163,127,.4); }
+.btn-ai-gemini { background: #161616; color: #8ab4f8; border: 1px solid rgba(138,180,248,.4); }
+.btn-status { background: #151515; color: #fff; border: 1px solid rgba(255,255,255,.14); }
+.btn-danger { background: rgba(255,87,87,.14); color: #ff6b6b; border: 1px solid rgba(255,87,87,.4); }
 
 /* MODAL */
 .modal-overlay {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background: rgba(0,0,0,.85);
     backdrop-filter: blur(8px);
-    z-index: 1000;
     align-items: center;
     justify-content: center;
     padding: 20px;
@@ -531,14 +761,18 @@ header {
     background: #0c0c0c;
     border: 1px solid rgba(0,200,215,.3);
     border-radius: 20px;
-    width: min(850px, 100%);
+    width: min(860px, 100%);
     max-height: 92vh;
     overflow-y: auto;
     box-shadow: 0 0 40px rgba(0,200,215,.15);
 }
 
+.modal-card.small-modal {
+    width: min(500px, 100%);
+}
+
 .modal-header {
-    padding: 22px 28px;
+    padding: 20px 24px;
     border-bottom: 1px solid rgba(255,255,255,.08);
     display: flex;
     justify-content: space-between;
@@ -551,7 +785,7 @@ header {
 }
 
 .modal-header h3 {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     color: #00c8d7;
 }
 
@@ -564,16 +798,16 @@ header {
 }
 
 .modal-body {
-    padding: 28px;
+    padding: 24px;
 }
 
 .detail-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 22px;
+    gap: 14px;
+    margin-bottom: 20px;
     background: #111;
-    padding: 18px;
+    padding: 16px;
     border-radius: 12px;
     border: 1px solid rgba(255,255,255,.05);
 }
@@ -581,38 +815,39 @@ header {
 .detail-item small {
     display: block;
     font-size: .68rem;
-    color: #666;
+    color: #777;
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 3px;
 }
 
 .detail-item span {
-    font-size: .85rem;
+    font-size: .84rem;
     color: #eee;
     font-weight: 500;
+    word-break: break-word;
 }
 
 .content-box {
     background: #111;
     border: 1px solid rgba(255,255,255,.05);
     border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 22px;
+    padding: 18px;
+    margin-bottom: 20px;
 }
 
 .content-box h4 {
-    font-size: .78rem;
+    font-size: .76rem;
     color: #00c8d7;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .content-box p {
-    font-size: .88rem;
+    font-size: .86rem;
     color: #ccc;
-    line-height: 1.7;
+    line-height: 1.65;
     white-space: pre-wrap;
 }
 
@@ -621,8 +856,8 @@ header {
     background: #111;
     border: 1px solid rgba(0,200,215,.22);
     border-radius: 14px;
-    padding: 22px;
-    margin-bottom: 22px;
+    padding: 20px;
+    margin-bottom: 20px;
 }
 
 .workspace-tag {
@@ -631,15 +866,15 @@ header {
     color: #00c8d7;
     text-transform: uppercase;
     font-weight: 700;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     display: block;
 }
 
 .workspace-label {
-    font-size: .85rem;
+    font-size: .84rem;
     font-weight: 600;
     color: #fff;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     display: block;
 }
 
@@ -647,14 +882,14 @@ header {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 
 .channel-card {
     background: #161616;
     border: 1px solid rgba(255,255,255,.08);
     border-radius: 12px;
-    padding: 16px;
+    padding: 14px;
     text-align: center;
     cursor: pointer;
     transition: .25s ease;
@@ -662,16 +897,7 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
-}
-
-.channel-card i {
-    font-size: 1.3rem;
-}
-
-.channel-card span {
-    font-size: .85rem;
-    font-weight: 600;
+    gap: 6px;
 }
 
 .channel-card:hover {
@@ -683,32 +909,27 @@ header {
     background: rgba(0,200,215,.1);
     border-color: #00c8d7;
     color: #00c8d7;
-    box-shadow: 0 0 15px rgba(0,200,215,.12);
 }
 
 .template-list {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    margin-bottom: 18px;
+    margin-bottom: 16px;
 }
 
 .template-option {
     background: #161616;
     border: 1px solid rgba(255,255,255,.07);
     border-radius: 10px;
-    padding: 13px 16px;
+    padding: 12px 14px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
     transition: .25s ease;
-    font-size: .84rem;
+    font-size: .82rem;
     color: #ddd;
-}
-
-.template-option:hover {
-    border-color: rgba(0,200,215,.3);
 }
 
 .template-option.selected {
@@ -718,18 +939,10 @@ header {
     font-weight: 600;
 }
 
-.template-option i {
-    color: #444;
-    font-size: 1rem;
-}
+.template-option i { color: #555; }
+.template-option.selected i { color: #2ecc71; }
 
-.template-option.selected i {
-    color: #2ecc71;
-}
-
-.preview-box {
-    margin-bottom: 16px;
-}
+.preview-box { margin-bottom: 14px; }
 
 .preview-box label {
     font-size: .72rem;
@@ -742,103 +955,92 @@ header {
 
 .preview-box textarea {
     width: 100%;
-    min-height: 125px;
+    min-height: 120px;
     background: #0a0a0a;
     border: 1px solid rgba(255,255,255,.1);
     border-radius: 10px;
-    padding: 14px;
+    padding: 12px;
     color: #e6e6e6;
     font-size: .82rem;
-    line-height: 1.6;
+    line-height: 1.55;
     resize: vertical;
     outline: none;
 }
 
-.preview-box textarea:focus {
-    border-color: #00c8d7;
-}
-
 .modal-actions {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     flex-wrap: wrap;
     border-top: 1px solid rgba(255,255,255,.08);
-    padding-top: 20px;
+    padding-top: 18px;
 }
-
-.action-btn {
-    padding: 12px 20px;
-    border: none;
-    border-radius: 30px;
-    font-size: .82rem;
-    font-weight: 700;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: .3s ease;
-}
-
-.action-btn:hover {
-    transform: translateY(-1px);
-}
-
-.btn-whatsapp { background: #25D366; color: #000; }
-.btn-email { background: #00c8d7; color: #000; }
-.btn-ai-gpt { background: #161616; color: #10a37f; border: 1px solid rgba(16,163,127,.4); }
-.btn-ai-gemini { background: #161616; color: #8ab4f8; border: 1px solid rgba(138,180,248,.4); }
-.btn-status { background: #151515; color: #fff; border: 1px solid rgba(255,255,255,.12); }
 
 .toast-notice {
     position: fixed;
-    bottom: 25px;
-    right: 25px;
+    bottom: 24px;
+    right: 24px;
     background: #0c0c0c;
     border: 1px solid #00c8d7;
     color: #fff;
-    padding: 14px 20px;
+    padding: 14px 18px;
     border-radius: 12px;
     font-size: .82rem;
     box-shadow: 0 10px 30px rgba(0,0,0,.6);
-    z-index: 2000;
     display: none;
     align-items: center;
     gap: 10px;
+    max-width: 90vw;
 }
 
 footer {
-    padding: 30px;
+    padding: 26px;
     text-align: center;
     border-top: 1px solid rgba(255,255,255,.06);
-    color: #555;
+    color: #666;
     font-size: .75rem;
 }
 
+@media (max-width: 1080px) {
+    .primary-nav { grid-template-columns: repeat(3, 1fr); }
+    .charts-grid { grid-template-columns: 1fr; }
+}
+
 @media (max-width: 960px) {
-    .metrics-grid { grid-template-columns: 1fr; }
-    .inbox-item { grid-template-columns: 140px 1fr 110px; }
+    .metrics-grid,
+    .form-grid { grid-template-columns: 1fr; }
+    .inbox-item { grid-template-columns: 125px 1fr 120px; }
     .item-subject { display: none; }
     .detail-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+    .primary-nav { grid-template-columns: 1fr; }
+    header { padding: 16px; }
+    .dashboard-container { padding: 0 14px; }
+    .inbox-item { grid-template-columns: 1fr auto; padding: 14px 16px; }
+    .item-date { display: none; }
 }
 </style>
 </head>
 
 <body>
 
+<!-- SUBTLE ELECTRIC-NEURON BACKGROUND CANVAS -->
+<canvas id="neuronCanvas" aria-hidden="true"></canvas>
+
 <!-- AUTHENTICATION VIEW -->
 <div class="auth-wrapper" id="authSection">
     <div class="auth-card">
         <div class="brand-icon">
-            <i class="fas fa-lock"></i>
+            <i class="fas fa-network-wired"></i>
         </div>
-        <h2>Admin Portal Login</h2>
-        <p>Authenticate with your BlackLogic credentials.</p>
+        <h2>BlackLogic Central Intelligence Infrastructure</h2>
+        <p>Authenticate with your BlackLogic administrator credentials.</p>
 
         <form class="auth-form" id="loginForm">
             <div class="field">
                 <label for="adminEmail">Administrator Email</label>
-                <input type="email" id="adminEmail" placeholder="admin@company.com" required autocomplete="email">
+                <input type="email" id="adminEmail" placeholder="admin@blacklogic.com" required autocomplete="email">
             </div>
 
             <div class="field">
@@ -858,11 +1060,11 @@ footer {
     <header>
         <div class="brand">
             <div class="brand-icon-hdr">
-                <i class="fas fa-server"></i>
+                <i class="fas fa-microchip"></i>
             </div>
             <div class="brand-text">
-                <strong>BLACKLOGIC CENTRAL CLOUD</strong>
-                <span>INFRASTRUCTURE & PROCUREMENT CONSOLE</span>
+                <strong>BlackLogic Central Intelligence Infrastructure</strong>
+                <span>OPERATIONS · LEADS · SUPPLIERS · PROCUREMENT · ANALYTICS</span>
             </div>
         </div>
 
@@ -871,16 +1073,44 @@ footer {
                 <div class="pulse"></div>
                 <span>Administrator Authenticated</span>
             </div>
-            <button class="sync-btn" onclick="downloadLocalBackup()">
+            <button type="button" class="sync-btn" onclick="downloadLocalBackup()">
                 <i class="fas fa-cloud-arrow-down"></i> Local Sync
             </button>
-            <button class="logout-btn" id="logoutBtn"><i class="fas fa-right-from-bracket"></i> Sign Out</button>
+            <button type="button" class="logout-btn" id="logoutBtn"><i class="fas fa-right-from-bracket"></i> Sign Out</button>
         </div>
     </header>
 
     <main class="dashboard-container">
 
-        <!-- METRICS CARDS -->
+        <!-- WELCOMING BANNER -->
+        <section class="welcome-banner">
+            <div>
+                <h1>Welcome to BlackLogic Central Intelligence Infrastructure</h1>
+                <p>Unified operational command for enquiries, contacted leads, supplier onboarding, procurement opportunities, and live cloud analytics.</p>
+            </div>
+            <span class="welcome-tag"><i class="fas fa-shield-halved"></i> Cloud Sync Active</span>
+        </section>
+
+        <!-- EXACTLY 5 PRIMARY SECTIONS NAVIGATION -->
+        <nav class="primary-nav" aria-label="Primary Sections">
+            <button type="button" class="nav-tab-btn active" id="tab-enquiries" onclick="switchPrimarySection('enquiries')">
+                <i class="fas fa-envelope-open-text"></i> 1. Business Enquiries
+            </button>
+            <button type="button" class="nav-tab-btn" id="tab-leads" onclick="switchPrimarySection('leads')">
+                <i class="fas fa-bullseye"></i> 2. Business Leads
+            </button>
+            <button type="button" class="nav-tab-btn" id="tab-suppliers" onclick="switchPrimarySection('suppliers')">
+                <i class="fas fa-boxes-packing"></i> 3. Business Supplier Applications
+            </button>
+            <button type="button" class="nav-tab-btn" id="tab-procurement" onclick="switchPrimarySection('procurement')">
+                <i class="fas fa-file-contract"></i> 4. Procurement Records
+            </button>
+            <button type="button" class="nav-tab-btn" id="tab-analytics" onclick="switchPrimarySection('analytics')">
+                <i class="fas fa-chart-line"></i> 5. Data Analytics
+            </button>
+        </nav>
+
+        <!-- SHARED TOP METRICS CARDS -->
         <section class="metrics-grid">
             <div class="metric-card">
                 <div class="metric-info">
@@ -916,108 +1146,276 @@ footer {
             </div>
         </section>
 
-        <!-- CONTROLS & SEARCH BAR -->
-        <section class="controls-bar">
-            <div class="inbox-toggle">
-                <button class="toggle-btn active" id="toggleConsultBtn" onclick="switchView('consultations')">
-                    <i class="fas fa-envelope-open-text"></i>
-                    Enquiries Inbox
-                </button>
-                <button class="toggle-btn" id="toggleSupplierBtn" onclick="switchView('suppliers')">
-                    <i class="fas fa-boxes-packing"></i>
-                    Supplier Applications
-                </button>
+        <!-- SECTION 1: BUSINESS ENQUIRIES -->
+        <section class="section-panel active" id="panel-enquiries">
+            <div class="controls-bar">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchEnquiriesInput" placeholder="Search enquiries by name, ref ID, company, or division..." onkeyup="renderEnquiries()">
+                </div>
             </div>
 
-            <div class="search-box">
-                <i class="fas fa-search"></i>
-                <input type="text" id="searchInput" placeholder="Search by name, ref number, or category..." onkeyup="filterInbox()">
+            <div class="inbox-card">
+                <div class="inbox-list" id="enquiriesList">
+                    <div class="empty-state">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading Business Enquiries...</p>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- INBOX CONTAINER -->
-        <section class="inbox-card">
-            <div class="inbox-list" id="inboxList">
-                <div class="empty-state">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    <p>Loading Cloud Database Records...</p>
+        <!-- SECTION 2: BUSINESS LEADS -->
+        <section class="section-panel" id="panel-leads">
+            <div class="controls-bar">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchLeadsInput" placeholder="Search contacted leads by entity, industry, email, or status..." onkeyup="renderLeads()">
+                </div>
+                <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+                    <span id="leadFollowUpSummary" style="font-size:.78rem; color:#00c8d7; font-weight:600;">0 Due / Overdue Follow-Ups</span>
+                    <a href="https://www.google.com/" target="_blank" rel="noopener noreferrer" class="action-btn btn-google">
+                        <i class="fab fa-google"></i> Google Search
+                    </a>
+                </div>
+            </div>
+
+            <div class="panel-card">
+                <div class="panel-card-header">
+                    <h2><i class="fas fa-user-plus"></i> Record Contacted Business Lead</h2>
+                    <span style="font-size:.73rem; color:#888;">Only entities contacted with feedback · Next follow-up auto-set to +3 days</span>
+                </div>
+                <form id="addLeadForm" class="form-grid">
+                    <div class="form-field">
+                        <label for="leadEntityName">Name of Entity *</label>
+                        <input type="text" id="leadEntityName" class="form-control" required placeholder="e.g., Highveld Logistics (Pty) Ltd">
+                    </div>
+                    <div class="form-field">
+                        <label for="leadIndustry">Industry *</label>
+                        <input type="text" id="leadIndustry" class="form-control" required placeholder="e.g., Transport & Fleet">
+                    </div>
+                    <div class="form-field">
+                        <label for="leadEmail">Email *</label>
+                        <input type="email" id="leadEmail" class="form-control" required placeholder="contact@entity.co.za">
+                    </div>
+                    <div class="form-field">
+                        <label for="leadPhone">WhatsApp / Cellphone *</label>
+                        <input type="text" id="leadPhone" class="form-control" required placeholder="e.g., 082 000 0000">
+                    </div>
+                    <div class="form-field">
+                        <label for="leadStatus">Status *</label>
+                        <select id="leadStatus" class="form-control">
+                            <option value="Warm Lead">Warm Lead</option>
+                            <option value="Hot Lead">Hot Lead</option>
+                            <option value="Interested">Interested</option>
+                            <option value="Appointment Requested">Appointment Requested</option>
+                            <option value="Appointment Scheduled">Appointment Scheduled</option>
+                            <option value="Not Interested">Not Interested</option>
+                            <option value="Converted">Converted</option>
+                            <option value="No Response">No Response</option>
+                            <option value="Do Not Contact">Do Not Contact</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label for="leadFeedback">Initial Feedback / Notes</label>
+                        <input type="text" id="leadFeedback" class="form-control" placeholder="Summary of feedback received...">
+                    </div>
+                    <div class="form-field full">
+                        <div>
+                            <button type="submit" class="action-btn btn-primary">
+                                <i class="fas fa-save"></i> Save Contacted Lead (+3 Day Follow-Up)
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="inbox-card">
+                <div class="inbox-list" id="leadsList">
+                    <div class="empty-state">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading Business Leads...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: BUSINESS SUPPLIER APPLICATIONS -->
+        <section class="section-panel" id="panel-suppliers">
+            <div class="controls-bar">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchSuppliersInput" placeholder="Search supplier applications by name, app ref, CIPC number, or status..." onkeyup="renderSuppliers()">
+                </div>
+                <a href="https://eservices.cipc.co.za/" target="_blank" rel="noopener noreferrer" class="action-btn btn-ext">
+                    <i class="fas fa-building-columns"></i> CIPC eServices Verification
+                </a>
+            </div>
+
+            <div class="inbox-card">
+                <div class="inbox-list" id="suppliersList">
+                    <div class="empty-state">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading Supplier Applications...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: PROCUREMENT RECORDS -->
+        <section class="section-panel" id="panel-procurement">
+            <div class="controls-bar">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchProcurementInput" placeholder="Search procurement records by title, entity, type, or industry..." onkeyup="renderProcurement()">
+                </div>
+                <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+                    <span id="activeProcurementCounter" style="font-size:.78rem; color:#00c8d7; font-weight:700;">Active: 0 / 5</span>
+                    <a href="https://www.protenders.co.za/" target="_blank" rel="noopener noreferrer" class="action-btn btn-ext">
+                        <i class="fas fa-arrow-up-right-from-square"></i> ProTenders
+                    </a>
+                    <a href="https://tenderbulletins.co.za/location/middelburg/page/2/?ep-highlight=span&ep-offset=0&ep-orderby=relevance&ep-order=desc&ep-per_page=10&ep-search=Website%20development&ep-relation=and" target="_blank" rel="noopener noreferrer" class="action-btn btn-ext">
+                        <i class="fas fa-newspaper"></i> Tender Bulletin
+                    </a>
+                    <a href="https://www.etenders.gov.za/" target="_blank" rel="noopener noreferrer" class="action-btn btn-ext">
+                        <i class="fas fa-landmark"></i> eTenders
+                    </a>
+                </div>
+            </div>
+
+            <div class="panel-card">
+                <div class="panel-card-header">
+                    <h2><i class="fas fa-folder-plus"></i> Add Procurement Opportunity</h2>
+                    <span style="font-size:.73rem; color:#888;">Maximum of 5 active opportunities retained in the active register at once</span>
+                </div>
+                <form id="addProcurementForm" class="form-grid">
+                    <div class="form-field">
+                        <label for="procType">Type *</label>
+                        <select id="procType" class="form-control">
+                            <option value="RFQ">RFQ</option>
+                            <option value="RFP">RFP</option>
+                            <option value="Tender">Tender</option>
+                            <option value="RFI">RFI</option>
+                            <option value="Funding">Funding</option>
+                            <option value="Partnership">Partnership</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label for="procIndustry">Industry *</label>
+                        <input type="text" id="procIndustry" class="form-control" required placeholder="e.g., ICT & Infrastructure">
+                    </div>
+                    <div class="form-field">
+                        <label for="procEntityName">Entity Name *</label>
+                        <input type="text" id="procEntityName" class="form-control" required placeholder="e.g., Issuing Municipality / Company">
+                    </div>
+                    <div class="form-field">
+                        <label for="procCompanyType">Company Type *</label>
+                        <input type="text" id="procCompanyType" class="form-control" required placeholder="e.g., State-Owned / Private / Corporate">
+                    </div>
+                    <div class="form-field">
+                        <label for="procTitle">Title *</label>
+                        <input type="text" id="procTitle" class="form-control" required placeholder="Opportunity title">
+                    </div>
+                    <div class="form-field">
+                        <label for="procClosingDate">Closing Date *</label>
+                        <input type="date" id="procClosingDate" class="form-control" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="procRecordRef">Record Reference (Optional)</label>
+                        <input type="text" id="procRecordRef" class="form-control" placeholder="Auto-generated if blank">
+                    </div>
+                    <div class="form-field" style="grid-column: span 2;">
+                        <label for="procSourceUrl">Opportunity Source URL (Optional)</label>
+                        <input type="url" id="procSourceUrl" class="form-control" placeholder="https://...">
+                    </div>
+                    <div class="form-field full">
+                        <div>
+                            <button type="submit" class="action-btn btn-primary">
+                                <i class="fas fa-plus"></i> Save Procurement Opportunity
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="inbox-card">
+                <div class="panel-card-header" style="padding:18px 22px 12px; margin-bottom:0;">
+                    <h2><i class="fas fa-bolt"></i> Active Procurement Register (Max 5)</h2>
+                </div>
+                <div class="inbox-list" id="activeProcurementList"></div>
+            </div>
+
+            <div class="inbox-card">
+                <div class="panel-card-header" style="padding:18px 22px 12px; margin-bottom:0;">
+                    <h2 style="color:#9fb8c2;"><i class="fas fa-box-archive"></i> Archived Procurement Records</h2>
+                </div>
+                <div class="inbox-list" id="archivedProcurementList"></div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: DATA ANALYTICS -->
+        <section class="section-panel" id="panel-analytics">
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <h3>A. Supplier Applications vs Registrations</h3>
+                    <p>Live comparison of total supplier applications received vs approved certificates issued.</p>
+                    <div class="chart-wrap">
+                        <canvas id="supplierChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <h3>B. Business Leads by Status</h3>
+                    <p>Distribution of contacted business leads across current pipeline statuses.</p>
+                    <div class="chart-wrap">
+                        <canvas id="leadsChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <h3>C. Procurement Opportunity Distribution</h3>
+                    <p>Actual saved procurement records grouped by opportunity type.</p>
+                    <div class="chart-wrap">
+                        <canvas id="procurementChart"></canvas>
+                    </div>
                 </div>
             </div>
         </section>
 
     </main>
 
-    <!-- DETAIL READER MODAL -->
+    <!-- DETAIL READER & ACTION MODAL -->
     <div class="modal-overlay" id="detailModal">
         <div class="modal-card">
             <div class="modal-header">
                 <h3 id="modalTitle">Record Detail</h3>
-                <button class="close-btn" onclick="closeModal()"><i class="fas fa-xmark"></i></button>
+                <button type="button" class="close-btn" onclick="closeModal()"><i class="fas fa-xmark"></i></button>
             </div>
+            <div class="modal-body" id="modalDynamicBody"></div>
+        </div>
+    </div>
 
+    <!-- PERMANENT CLOUD DELETE CONFIRMATION MODAL -->
+    <div class="modal-overlay" id="deleteConfirmModal">
+        <div class="modal-card small-modal">
+            <div class="modal-header">
+                <h3 style="color:#ff6b6b;"><i class="fas fa-triangle-exclamation"></i> Confirm Permanent Cloud Deletion</h3>
+                <button type="button" class="close-btn" onclick="closeDeleteModal()"><i class="fas fa-xmark"></i></button>
+            </div>
             <div class="modal-body">
-                <div class="detail-grid" id="modalMetaGrid"></div>
-
-                <div class="content-box">
-                    <h4 id="contentBoxTitle">Requirement Details</h4>
-                    <p id="modalContentText">Loading...</p>
+                <p style="font-size:.86rem; color:#ddd; line-height:1.6; margin-bottom:14px;">
+                    You are about to permanently delete the following record from the Firebase cloud database. This action cannot be undone:
+                </p>
+                <div class="content-box" style="margin-bottom:18px;">
+                    <h4 id="deleteTargetType">Record</h4>
+                    <p id="deleteTargetSummary" style="color:#fff; font-weight:600;"></p>
                 </div>
-
-                <!-- RESPONSE WORKSPACE -->
-                <div class="response-workspace">
-                    <span class="workspace-tag">BlackLogic Central Cloud · Response Workspace</span>
-
-                    <label class="workspace-label">Select communication channel</label>
-                    <div class="channel-grid">
-                        <div class="channel-card selected" id="channelEmail" onclick="selectChannel('email')">
-                            <i class="fas fa-envelope"></i>
-                            <span>Email</span>
-                        </div>
-                        <div class="channel-card" id="channelWhatsapp" onclick="selectChannel('whatsapp')">
-                            <i class="fab fa-whatsapp"></i>
-                            <span>WhatsApp</span>
-                        </div>
-                    </div>
-
-                    <label class="workspace-label">Select response template</label>
-                    <div class="template-list">
-                        <div class="template-option selected" id="tpl-acknowledgement" onclick="selectTemplate('acknowledgement')">
-                            <span>Acknowledgement</span>
-                            <i class="fas fa-check-circle"></i>
-                        </div>
-                        <div class="template-option" id="tpl-registration" onclick="selectTemplate('registration')">
-                            <span>Registration Confirmation</span>
-                            <i class="far fa-circle"></i>
-                        </div>
-                        <div class="template-option" id="tpl-quotation" onclick="selectTemplate('quotation')">
-                            <span>Quotation Reply</span>
-                            <i class="far fa-circle"></i>
-                        </div>
-                        <div class="template-option" id="tpl-approval" onclick="selectTemplate('approval')">
-                            <span>Supplier Approval Confirmation</span>
-                            <i class="far fa-circle"></i>
-                        </div>
-                    </div>
-
-                    <div class="preview-box">
-                        <label for="responseMessageBox">Prefilled Message Preview (Editable)</label>
-                        <textarea id="responseMessageBox"></textarea>
-                    </div>
-
-                    <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
-                        <button type="button" class="action-btn btn-email" id="dispatchResponseBtn" onclick="dispatchResponse()">
-                            <i class="fas fa-paper-plane"></i> Send via Email
-                        </button>
-                        <button type="button" class="action-btn btn-ai-gpt" onclick="openWithAI('chatgpt')">
-                            <i class="fas fa-robot"></i> Open ChatGPT
-                        </button>
-                        <button type="button" class="action-btn btn-ai-gemini" onclick="openWithAI('gemini')">
-                            <i class="fas fa-sparkles"></i> Open Gemini
-                        </button>
-                    </div>
+                <div style="display:flex; gap:10px; justify-content:flex-end; flex-wrap:wrap;">
+                    <button type="button" class="action-btn btn-status" onclick="closeDeleteModal()">Cancel</button>
+                    <button type="button" class="action-btn btn-danger" id="confirmPermanentDeleteBtn">
+                        <i class="fas fa-trash"></i> Permanently Delete Record
+                    </button>
                 </div>
-
-                <div class="modal-actions" id="modalActions"></div>
             </div>
         </div>
     </div>
@@ -1028,16 +1426,74 @@ footer {
     </div>
 
     <footer>
-        © 2026 BlackLogic Technologies Pty Ltd. Engineered for Impact.
+        © 2026 BlackLogic Technologies Pty Ltd · BlackLogic Central Intelligence Infrastructure
     </footer>
 
 </div>
 
-<!-- FIREBASE MODULE & AUTH INTEGRATION -->
+<script>
+// Subtle Electric-Neuron Canvas Animation
+(function initNeuronCanvas() {
+    const canvas = document.getElementById("neuronCanvas");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    const count = Math.min(42, Math.floor((width * height) / 36000));
+    const nodes = Array.from({ length: count }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+        r: 1.5 + Math.random() * 1.8
+    }));
+
+    window.addEventListener("resize", () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+    });
+
+    function draw() {
+        ctx.clearRect(0, 0, width, height);
+        for (let i = 0; i < nodes.length; i++) {
+            const a = nodes[i];
+            a.x += a.vx;
+            a.y += a.vy;
+            if (a.x < 0 || a.x > width) a.vx *= -1;
+            if (a.y < 0 || a.y > height) a.vy *= -1;
+
+            ctx.beginPath();
+            ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(0, 200, 215, 0.7)";
+            ctx.fill();
+
+            for (let j = i + 1; j < nodes.length; j++) {
+                const b = nodes[j];
+                const dx = a.x - b.x;
+                const dy = a.y - b.y;
+                const dist = Math.hypot(dx, dy);
+                if (dist < 135) {
+                    ctx.beginPath();
+                    ctx.moveTo(a.x, a.y);
+                    ctx.lineTo(b.x, b.y);
+                    ctx.strokeStyle = `rgba(0, 150, 255, ${(1 - dist / 135) * 0.22})`;
+                    ctx.lineWidth = 0.8;
+                    ctx.stroke();
+                }
+            }
+        }
+        requestAnimationFrame(draw);
+    }
+    draw();
+})();
+</script>
+
+<!-- FIREBASE MODULE & APPLICATION LOGIC -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-import { getDatabase, ref, get, child, onValue, update } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+import { getDatabase, ref, get, child, onValue, push, set, update, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDgPvBHxMVhOBkI4pGrekMFggqn1ifgqPE",
@@ -1061,29 +1517,86 @@ const authError = document.getElementById("authError");
 const loginBtn = document.getElementById("loginBtn");
 const logoutBtn = document.getElementById("logoutBtn");
 
-let currentView = 'consultations';
-let rawConsultations = {};
-let rawSuppliers = {};
-let activeRecord = null;
-let selectedChannel = 'email';
-let selectedTemplate = 'acknowledgement';
+const LEAD_STATUSES = [
+    "Warm Lead",
+    "Hot Lead",
+    "Interested",
+    "Appointment Requested",
+    "Appointment Scheduled",
+    "Not Interested",
+    "Converted",
+    "No Response",
+    "Do Not Contact"
+];
 
-function showToast(msg) {
-    const toast = document.getElementById('toastNotice');
-    document.getElementById('toastText').textContent = msg;
-    toast.style.display = 'flex';
-    setTimeout(() => {
-        toast.style.display = 'none';
-    }, 3500);
+const SUPPLIER_STATUSES = [
+    "Pending",
+    "Compliance Required",
+    "Under Review",
+    "Approved",
+    "Not Approved",
+    "Rejected"
+];
+
+const PROCUREMENT_TYPES = ["RFQ", "RFP", "Tender", "RFI", "Funding", "Partnership"];
+
+let currentSection = "enquiries";
+let rawConsultations = {};
+let rawLeads = {};
+let rawSuppliers = {};
+let rawProcurement = {};
+let activeModalContext = null; // { section, key }
+let selectedChannel = "email";
+let selectedTemplate = "acknowledgement";
+let pendingDeleteAction = null;
+
+let supplierChartInstance = null;
+let leadsChartInstance = null;
+let procurementChartInstance = null;
+
+function showToast(msg, isError = false) {
+    const toast = document.getElementById("toastNotice");
+    const icon = toast.querySelector("i");
+    document.getElementById("toastText").textContent = msg;
+    toast.style.borderColor = isError ? "#ff6b6b" : "#00c8d7";
+    icon.className = isError ? "fas fa-circle-exclamation" : "fas fa-circle-check";
+    icon.style.color = isError ? "#ff6b6b" : "#00c8d7";
+    toast.style.display = "flex";
+    clearTimeout(window._toastTimer);
+    window._toastTimer = setTimeout(() => {
+        toast.style.display = "none";
+    }, 3600);
 }
 
-// Auth State Monitor & Role Check with Resilient Fallback
+function escapeHtml(str) {
+    return String(str ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+}
+
+function addDaysIso(baseDate = new Date(), days = 3) {
+    const d = new Date(baseDate);
+    d.setDate(d.getDate() + days);
+    return d.toISOString();
+}
+
+function formatDateShort(isoString) {
+    if (!isoString) return "N/A";
+    const d = new Date(isoString);
+    if (Number.isNaN(d.getTime())) return String(isoString);
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    return `${d.getFullYear()} - ${months[d.getMonth()]} ${String(d.getDate()).padStart(2, "0")}`;
+}
+
+// AUTHENTICATION FLOW
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         try {
             const dbRef = ref(database);
             const snapshot = await get(child(dbRef, `administrator/users/${user.uid}`));
-            
             if (snapshot.exists()) {
                 const userData = snapshot.val();
                 if (userData.active === true && userData.role === "admin") {
@@ -1093,14 +1606,12 @@ onAuthStateChanged(auth, async (user) => {
                     return;
                 }
             }
-            
             if (user.email === "admin@blacklogic.com") {
                 authSection.style.display = "none";
                 dashboardContent.style.display = "block";
                 initListeners();
                 return;
             }
-
             throw new Error("Unauthorized administrator access.");
         } catch (err) {
             console.error("Authorization check warning:", err);
@@ -1119,12 +1630,10 @@ onAuthStateChanged(auth, async (user) => {
     }
 });
 
-// Handle Email/Password Login
 loginForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     const email = document.getElementById("adminEmail").value.trim();
     const password = document.getElementById("adminPassword").value.trim();
-
     authError.style.display = "none";
     loginBtn.disabled = true;
     loginBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Authenticating...`;
@@ -1133,11 +1642,11 @@ loginForm.addEventListener("submit", async (e) => {
         await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
         let friendlyMsg = "Authentication failed. ";
-        if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
-            friendlyMsg = "Account not found or incorrect password. Please create the user in Firebase Auth.";
-        } else if (error.code === 'auth/wrong-password') {
+        if (error.code === "auth/user-not-found" || error.code === "auth/invalid-credential") {
+            friendlyMsg = "Account not found or incorrect password.";
+        } else if (error.code === "auth/wrong-password") {
             friendlyMsg = "Incorrect password.";
-        } else if (error.code === 'auth/invalid-email') {
+        } else if (error.code === "auth/invalid-email") {
             friendlyMsg = "Invalid email format.";
         } else {
             friendlyMsg = `Error: ${error.message}`;
@@ -1145,7 +1654,7 @@ loginForm.addEventListener("submit", async (e) => {
         showAuthError(friendlyMsg);
     } finally {
         loginBtn.disabled = false;
-        loginBtn.innerHTML = `Authenticate Console`;
+        loginBtn.innerHTML = "Authenticate Console";
     }
 });
 
@@ -1154,360 +1663,1069 @@ function showAuthError(msg) {
     authError.style.display = "block";
 }
 
-logoutBtn.addEventListener("click", () => {
-    signOut(auth);
-});
+logoutBtn.addEventListener("click", () => signOut(auth));
 
-// Listeners for Data Sync
+// REALTIME CLOUD LISTENERS
 function initListeners() {
-    onValue(ref(database, 'consultations'), (snapshot) => {
+    onValue(ref(database, "consultations"), (snapshot) => {
         rawConsultations = snapshot.val() || {};
-        document.getElementById('consultTotalCount').textContent = Object.keys(rawConsultations).length;
-        if (currentView === 'consultations') renderInbox();
+        document.getElementById("consultTotalCount").textContent = Object.keys(rawConsultations).length;
+        renderEnquiries();
+        updateAnalyticsCharts();
     });
 
-    onValue(ref(database, 'suppliers'), (snapshot) => {
+    onValue(ref(database, "leads"), (snapshot) => {
+        rawLeads = snapshot.val() || {};
+        renderLeads();
+        updateAnalyticsCharts();
+    });
+
+    onValue(ref(database, "suppliers"), (snapshot) => {
         rawSuppliers = snapshot.val() || {};
         const supplierList = Object.values(rawSuppliers);
-        
-        // Total Supplier Applications Received
-        document.getElementById('supplierTotalCount').textContent = supplierList.length;
-        
-        // Total Registered Suppliers (Issued a Supplier Cert Number)
-        const registeredCount = supplierList.filter(s => s.supplierCertNumber && String(s.supplierCertNumber).trim() !== '').length;
-        document.getElementById('registeredSupplierCount').textContent = registeredCount;
-        
-        if (currentView === 'suppliers') renderInbox();
+        document.getElementById("supplierTotalCount").textContent = supplierList.length;
+        const registeredCount = supplierList.filter(s => s.supplierCertNumber && String(s.supplierCertNumber).trim() !== "").length;
+        document.getElementById("registeredSupplierCount").textContent = registeredCount;
+        renderSuppliers();
+        updateAnalyticsCharts();
+    });
+
+    onValue(ref(database, "procurement"), (snapshot) => {
+        rawProcurement = snapshot.val() || {};
+        renderProcurement();
+        updateAnalyticsCharts();
     });
 }
 
-function formatDate(isoString) {
-    if (!isoString) return "2026 - Nov 11";
-    const d = new Date(isoString);
-    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    return `${d.getFullYear()} - ${months[d.getMonth()]} ${String(d.getDate()).padStart(2, '0')}`;
-}
+// SECTION SWITCHING (5 PRIMARY SECTIONS)
+window.switchPrimarySection = function(sectionName) {
+    currentSection = sectionName;
+    const tabs = ["enquiries", "leads", "suppliers", "procurement", "analytics"];
+    tabs.forEach(t => {
+        document.getElementById(`tab-${t}`).classList.toggle("active", t === sectionName);
+        document.getElementById(`panel-${t}`).classList.toggle("active", t === sectionName);
+    });
+    if (sectionName === "analytics") {
+        updateAnalyticsCharts();
+    }
+};
 
-window.renderInbox = function() {
-    const listContainer = document.getElementById('inboxList');
-    const searchVal = document.getElementById('searchInput').value.toLowerCase();
-    listContainer.innerHTML = '';
+// ---------------------------------------------------------------------------
+// SECTION 1: BUSINESS ENQUIRIES
+// ---------------------------------------------------------------------------
+window.renderEnquiries = function() {
+    const container = document.getElementById("enquiriesList");
+    const search = (document.getElementById("searchEnquiriesInput")?.value || "").toLowerCase();
+    container.innerHTML = "";
 
-    const records = currentView === 'consultations' ? rawConsultations : rawSuppliers;
-    const keys = Object.keys(records).reverse();
-
-    if (keys.length === 0) {
-        listContainer.innerHTML = `
-            <div class="empty-state">
-                <i class="fas fa-inbox"></i>
-                <p>No records found in this node.</p>
-            </div>`;
+    const keys = Object.keys(rawConsultations).reverse();
+    if (!keys.length) {
+        container.innerHTML = `<div class="empty-state"><i class="fas fa-inbox"></i><p>No business enquiries found.</p></div>`;
         return;
     }
 
-    let renderedCount = 0;
-
+    let count = 0;
     keys.forEach((key) => {
-        const item = records[key];
-        item._firebaseKey = key;
+        const item = { ...rawConsultations[key], _firebaseKey: key };
+        const match = `${item.name || ""} ${item.company || ""} ${item.email || ""} ${item.division || ""} ${item.enquiryId || ""}`.toLowerCase();
+        if (search && !match.includes(search)) return;
+        count++;
 
-        let dateStr = formatDate(item.timestamp);
-        let title = currentView === 'consultations' ? item.name : item.enterpriseName;
-        let subtitle = currentView === 'consultations' ? (item.company || item.email) : item.enterpriseType;
-        let subject = currentView === 'consultations' ? item.division : item.businessCategory;
-        let refId = currentView === 'consultations' ? item.enquiryId : item.applicationNumber;
-        let status = item.status || 'Pending';
+        const status = item.status || "Pending";
+        let badgeClass = "badge-pending";
+        if (status === "Replied") badgeClass = "badge-replied";
+        if (status === "Approved") badgeClass = "badge-approved";
 
-        const matchString = `${title} ${subtitle} ${subject} ${refId} ${item.industry || ''}`.toLowerCase();
-        if (searchVal && !matchString.includes(searchVal)) return;
-
-        renderedCount++;
-
-        let badgeClass = 'badge-pending';
-        if (status === 'Replied') badgeClass = 'badge-replied';
-        if (status === 'Approved') badgeClass = 'badge-approved';
-        if (status === 'Compliance Required') badgeClass = 'badge-compliance';
-
-        const row = document.createElement('div');
-        row.className = 'inbox-item';
-        row.onclick = () => openModal(item);
+        const row = document.createElement("div");
+        row.className = "inbox-item";
+        row.onclick = () => openEnquiryModal(key);
         row.innerHTML = `
-            <div class="item-date">${dateStr}</div>
+            <div class="item-date">${escapeHtml(formatDateShort(item.timestamp))}</div>
             <div class="item-sender">
-                ${title}
-                <small>${subtitle || 'N/A'}</small>
+                ${escapeHtml(item.name || "Unnamed")}
+                <small>${escapeHtml(item.company || item.email || "N/A")}</small>
             </div>
             <div class="item-subject">
-                <strong>[${refId}]</strong> ${subject}
+                <strong>[${escapeHtml(item.enquiryId || key)}]</strong> ${escapeHtml(item.division || "General Enquiry")}
             </div>
-            <div>
-                <span class="badge ${badgeClass}">${status}</span>
-            </div>
-            <div style="text-align:right; color:#555;">
-                <i class="fas fa-chevron-right"></i>
-            </div>
+            <div><span class="badge ${badgeClass}">${escapeHtml(status)}</span></div>
+            <div style="text-align:right; color:#666;"><i class="fas fa-chevron-right"></i></div>
         `;
-        listContainer.appendChild(row);
+        container.appendChild(row);
     });
 
-    if (renderedCount === 0) {
-        listContainer.innerHTML = `
-            <div class="empty-state">
-                <i class="fas fa-search"></i>
-                <p>No matching search results.</p>
-            </div>`;
+    if (!count) {
+        container.innerHTML = `<div class="empty-state"><i class="fas fa-search"></i><p>No matching enquiries found.</p></div>`;
     }
 };
 
-window.switchView = function(view) {
-    currentView = view;
-    document.getElementById('toggleConsultBtn').classList.toggle('active', view === 'consultations');
-    document.getElementById('toggleSupplierBtn').classList.toggle('active', view === 'suppliers');
-    renderInbox();
-};
+function openEnquiryModal(key) {
+    const item = { ...rawConsultations[key], _firebaseKey: key };
+    activeModalContext = { section: "enquiries", key };
+    selectedChannel = "email";
+    selectedTemplate = "acknowledgement";
 
-window.filterInbox = function() {
-    renderInbox();
-};
+    document.getElementById("modalTitle").textContent = `Consultation Enquiry [${item.enquiryId || key}]`;
+    document.getElementById("modalDynamicBody").innerHTML = `
+        <div class="detail-grid">
+            <div class="detail-item"><small>Applicant Name</small><span>${escapeHtml(item.name || "N/A")}</span></div>
+            <div class="detail-item"><small>Company / Entity</small><span>${escapeHtml(item.company || "N/A")}</span></div>
+            <div class="detail-item"><small>Contact Phone</small><span>${escapeHtml(item.contact || "N/A")}</span></div>
+            <div class="detail-item"><small>Email Address</small><span>${escapeHtml(item.email || "N/A")}</span></div>
+            <div class="detail-item"><small>Division Requested</small><span>${escapeHtml(item.division || "N/A")}</span></div>
+            <div class="detail-item"><small>Session Required</small><span>${escapeHtml(item.consultationSession || "N/A")}</span></div>
+        </div>
+        <div class="content-box">
+            <h4>Requirement Details</h4>
+            <p>${escapeHtml(item.challenge || "")}</p>
+        </div>
+        ${renderResponseWorkspaceHtml()}
+        <div class="modal-actions">
+            <button type="button" class="action-btn btn-danger" onclick="promptDeleteRecord('consultations', '${escapeHtml(key)}', 'Business Enquiry', '${escapeHtml((item.name || '') + ' [' + (item.enquiryId || key) + ']')}')">
+                <i class="fas fa-trash"></i> Delete Enquiry
+            </button>
+        </div>
+    `;
+
+    refreshTemplatePreview();
+    document.getElementById("detailModal").style.display = "flex";
+}
+
+function renderResponseWorkspaceHtml() {
+    return `
+        <div class="response-workspace">
+            <span class="workspace-tag">BlackLogic Central Cloud · Response Workspace</span>
+            <label class="workspace-label">Select communication channel</label>
+            <div class="channel-grid">
+                <div class="channel-card selected" id="channelEmail" onclick="selectChannel('email')">
+                    <i class="fas fa-envelope"></i><span>Email</span>
+                </div>
+                <div class="channel-card" id="channelWhatsapp" onclick="selectChannel('whatsapp')">
+                    <i class="fab fa-whatsapp"></i><span>WhatsApp</span>
+                </div>
+            </div>
+            <label class="workspace-label">Select response template</label>
+            <div class="template-list">
+                <div class="template-option selected" id="tpl-acknowledgement" onclick="selectTemplate('acknowledgement')">
+                    <span>Acknowledgement</span><i class="fas fa-check-circle"></i>
+                </div>
+                <div class="template-option" id="tpl-registration" onclick="selectTemplate('registration')">
+                    <span>Registration Confirmation</span><i class="far fa-circle"></i>
+                </div>
+                <div class="template-option" id="tpl-quotation" onclick="selectTemplate('quotation')">
+                    <span>Quotation Reply</span><i class="far fa-circle"></i>
+                </div>
+                <div class="template-option" id="tpl-approval" onclick="selectTemplate('approval')">
+                    <span>Supplier Approval Confirmation</span><i class="far fa-circle"></i>
+                </div>
+            </div>
+            <div class="preview-box">
+                <label for="responseMessageBox">Prefilled Message Preview (Editable)</label>
+                <textarea id="responseMessageBox"></textarea>
+            </div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+                <button type="button" class="action-btn btn-email" id="dispatchResponseBtn" onclick="dispatchResponse()">
+                    <i class="fas fa-paper-plane"></i> Send via Email
+                </button>
+                <button type="button" class="action-btn btn-ai-gpt" onclick="openWithAI('chatgpt')">
+                    <i class="fas fa-robot"></i> Open ChatGPT
+                </button>
+                <button type="button" class="action-btn btn-ai-gemini" onclick="openWithAI('gemini')">
+                    <i class="fas fa-sparkles"></i> Open Gemini
+                </button>
+            </div>
+        </div>
+    `;
+}
 
 function generateTemplateMessage() {
-    if (!activeRecord) return "";
-    const isConsult = currentView === 'consultations';
-    const recipientName = isConsult ? activeRecord.name : `${activeRecord.representativeName} ${activeRecord.representativeSurname || ''}`.trim();
-    const companyName = isConsult ? (activeRecord.company || 'your organization') : activeRecord.enterpriseName;
-    const refId = isConsult ? activeRecord.enquiryId : activeRecord.applicationNumber;
-    const categoryOrDiv = isConsult ? activeRecord.division : activeRecord.businessCategory;
-    const certNumber = activeRecord.supplierCertNumber || 'PENDING-ISSUANCE';
+    if (!activeModalContext) return "";
+    const isConsult = activeModalContext.section === "enquiries";
+    const rec = isConsult ? rawConsultations[activeModalContext.key] : rawSuppliers[activeModalContext.key];
+    if (!rec) return "";
+
+    const recipientName = isConsult ? (rec.name || "Client") : `${rec.representativeName || ""} ${rec.representativeSurname || ""}`.trim() || "Partner";
+    const companyName = isConsult ? (rec.company || "your organization") : (rec.enterpriseName || "your company");
+    const refId = isConsult ? (rec.enquiryId || activeModalContext.key) : (rec.applicationNumber || activeModalContext.key);
+    const categoryOrDiv = isConsult ? (rec.division || "General") : (rec.businessCategory || "Supply");
+    const certNumber = rec.supplierCertNumber || "PENDING-ISSUANCE";
 
     switch (selectedTemplate) {
-        case 'acknowledgement':
-            return `Dear ${recipientName},\n\nThank you for contacting BlackLogic Technologies regarding ${companyName}. We acknowledge receipt of your ${isConsult ? 'consultation enquiry' : 'submission'} under Reference [${refId}] (${categoryOrDiv}).\n\nOur team is currently reviewing your details and will follow up with the next steps shortly.\n\nKind regards,\nBlackLogic Central Cloud Operations\nBlackLogic Technologies (Pty) Ltd`;
-
-        case 'registration':
-            return `Dear ${recipientName},\n\nThis serves as official confirmation that the registration file for ${companyName} has been logged on the BlackLogic Central Cloud Infrastructure under Reference [${refId}].\n\nAll submitted particulars under ${categoryOrDiv} are currently indexed for verification.\n\nKind regards,\nBlackLogic Procurement & Onboarding\nBlackLogic Technologies (Pty) Ltd`;
-
-        case 'quotation':
+        case "acknowledgement":
+            return `Dear ${recipientName},\n\nThank you for contacting BlackLogic Technologies regarding ${companyName}. We acknowledge receipt of your ${isConsult ? "consultation enquiry" : "submission"} under Reference [${refId}] (${categoryOrDiv}).\n\nOur team is currently reviewing your details and will follow up with the next steps shortly.\n\nKind regards,\nBlackLogic Central Intelligence Operations\nBlackLogic Technologies (Pty) Ltd`;
+        case "registration":
+            return `Dear ${recipientName},\n\nThis serves as official confirmation that the registration file for ${companyName} has been logged on the BlackLogic Central Intelligence Infrastructure under Reference [${refId}].\n\nAll submitted particulars under ${categoryOrDiv} are currently indexed for verification.\n\nKind regards,\nBlackLogic Procurement & Onboarding\nBlackLogic Technologies (Pty) Ltd`;
+        case "quotation":
             return `Dear ${recipientName},\n\nFollowing your request for ${companyName} (Ref: [${refId}] — ${categoryOrDiv}), we have prepared the scope and quotation alignment for your requirements.\n\nPlease confirm your availability for a brief technical & commercial walkthrough so we can finalize delivery timelines.\n\nKind regards,\nBlackLogic Consultation & Engineering\nBlackLogic Technologies (Pty) Ltd`;
-
-        case 'approval':
+        case "approval":
             return `Dear ${recipientName},\n\nCongratulations! We are pleased to confirm that ${companyName} has been formally approved on the BlackLogic Technologies Supplier Database under Reference [${refId}].\n\n• Approved Category: ${categoryOrDiv}\n• Official Supplier Certificate Number: ${certNumber}\n\nPlease quote your Supplier Certificate Number in all future procurement correspondence and quotations.\n\nKind regards,\nBlackLogic Procurement & Compliance\nBlackLogic Technologies (Pty) Ltd`;
-
         default:
             return "";
     }
 }
 
+function refreshTemplatePreview() {
+    const box = document.getElementById("responseMessageBox");
+    if (box) box.value = generateTemplateMessage();
+}
+
 window.selectChannel = function(channel) {
     selectedChannel = channel;
-    document.getElementById('channelEmail').classList.toggle('selected', channel === 'email');
-    document.getElementById('channelWhatsapp').classList.toggle('selected', channel === 'whatsapp');
-
-    const btn = document.getElementById('dispatchResponseBtn');
-    if (channel === 'whatsapp') {
-        btn.className = 'action-btn btn-whatsapp';
+    document.getElementById("channelEmail")?.classList.toggle("selected", channel === "email");
+    document.getElementById("channelWhatsapp")?.classList.toggle("selected", channel === "whatsapp");
+    const btn = document.getElementById("dispatchResponseBtn");
+    if (!btn) return;
+    if (channel === "whatsapp") {
+        btn.className = "action-btn btn-whatsapp";
         btn.innerHTML = `<i class="fab fa-whatsapp"></i> Send via WhatsApp`;
     } else {
-        btn.className = 'action-btn btn-email';
+        btn.className = "action-btn btn-email";
         btn.innerHTML = `<i class="fas fa-paper-plane"></i> Send via Email`;
     }
 };
 
 window.selectTemplate = function(templateKey) {
     selectedTemplate = templateKey;
-    const keys = ['acknowledgement', 'registration', 'quotation', 'approval'];
-    keys.forEach(k => {
+    ["acknowledgement", "registration", "quotation", "approval"].forEach(k => {
         const el = document.getElementById(`tpl-${k}`);
-        const icon = el.querySelector('i');
+        if (!el) return;
+        const icon = el.querySelector("i");
         if (k === templateKey) {
-            el.classList.add('selected');
-            icon.className = 'fas fa-check-circle';
+            el.classList.add("selected");
+            if (icon) icon.className = "fas fa-check-circle";
         } else {
-            el.classList.remove('selected');
-            icon.className = 'far fa-circle';
+            el.classList.remove("selected");
+            if (icon) icon.className = "far fa-circle";
         }
     });
-    document.getElementById('responseMessageBox').value = generateTemplateMessage();
+    refreshTemplatePreview();
 };
 
 window.dispatchResponse = async function() {
-    if (!activeRecord) return;
-    const isConsult = currentView === 'consultations';
-    const messageText = document.getElementById('responseMessageBox').value.trim();
-    const refId = isConsult ? activeRecord.enquiryId : activeRecord.applicationNumber;
-    const phone = isConsult ? activeRecord.contact : activeRecord.representativePhone;
-    const email = isConsult ? activeRecord.email : activeRecord.businessEmail;
+    if (!activeModalContext) return;
+    const isConsult = activeModalContext.section === "enquiries";
+    const rec = isConsult ? rawConsultations[activeModalContext.key] : rawSuppliers[activeModalContext.key];
+    if (!rec) return;
 
-    // Auto-update Enquiries Inbox status from Pending to Replied
+    const messageText = document.getElementById("responseMessageBox")?.value.trim() || "";
+    const refId = isConsult ? (rec.enquiryId || activeModalContext.key) : (rec.applicationNumber || activeModalContext.key);
+    const phone = isConsult ? rec.contact : rec.representativePhone;
+    const email = isConsult ? rec.email : rec.businessEmail;
+
     if (isConsult) {
         try {
-            await update(ref(database, `consultations/${activeRecord._firebaseKey}`), {
-                status: 'Replied',
+            await update(ref(database, `consultations/${activeModalContext.key}`), {
+                status: "Replied",
                 lastRepliedChannel: selectedChannel,
                 lastRepliedTemplate: selectedTemplate,
                 lastRepliedAt: new Date().toISOString()
             });
-            activeRecord.status = 'Replied';
-            showToast(`Enquiry [${refId}] status updated to Replied`);
+            showToast(`Enquiry [${refId}] marked as Replied.`);
         } catch (err) {
             console.error("Failed to update enquiry status:", err);
+            showToast("Failed to update enquiry status.", true);
         }
     }
 
-    if (selectedChannel === 'whatsapp') {
-        let cleanPhone = phone ? phone.replace(/[^0-9]/g, '') : '';
-        if (cleanPhone.startsWith('0')) {
-            cleanPhone = '27' + cleanPhone.substring(1);
-        }
-        const encodedMsg = encodeURIComponent(messageText);
-        window.open(`https://wa.me/${cleanPhone}?text=${encodedMsg}`, '_blank');
+    if (selectedChannel === "whatsapp") {
+        let cleanPhone = phone ? String(phone).replace(/[^0-9]/g, "") : "";
+        if (cleanPhone.startsWith("0")) cleanPhone = "27" + cleanPhone.substring(1);
+        window.open(`https://wa.me/${cleanPhone}?text=${encodeURIComponent(messageText)}`, "_blank", "noopener,noreferrer");
     } else {
         const subject = encodeURIComponent(`BlackLogic Technologies — Reference ${refId}`);
         const body = encodeURIComponent(messageText);
-        window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+        window.location.href = `mailto:${email || ""}?subject=${subject}&body=${body}`;
     }
 };
 
 window.openWithAI = async function(provider) {
-    if (!activeRecord) return;
-    const isConsult = currentView === 'consultations';
+    if (!activeModalContext) return;
+    const isConsult = activeModalContext.section === "enquiries";
+    const rec = isConsult ? rawConsultations[activeModalContext.key] : rawSuppliers[activeModalContext.key];
+    if (!rec) return;
+
     const promptText = isConsult
-        ? `Draft a professional corporate response from BlackLogic Technologies (Pty) Ltd to the following client enquiry:\n\n` +
-          `• Client Name: ${activeRecord.name}\n` +
-          `• Company: ${activeRecord.company || 'N/A'}\n` +
-          `• Reference ID: ${activeRecord.enquiryId}\n` +
-          `• Division Requested: ${activeRecord.division}\n` +
-          `• Session Type: ${activeRecord.consultationSession || 'N/A'}\n` +
-          `• Client Challenge / Enquiry:\n"${activeRecord.challenge}"\n\n` +
-          `Please provide a clear, executive, and actionable response tailored to our ${activeRecord.division} division.`
-        : `Draft a professional procurement/compliance response from BlackLogic Technologies (Pty) Ltd regarding the following supplier application:\n\n` +
-          `• Enterprise Name: ${activeRecord.enterpriseName} (${activeRecord.enterpriseType})\n` +
-          `• CIPC / Reg Number: ${activeRecord.enterpriseNumber}\n` +
-          `• Application Reference: ${activeRecord.applicationNumber}\n` +
-          `• Procurement Category: ${activeRecord.businessCategory}\n` +
-          `• Representative: ${activeRecord.representativeName} ${activeRecord.representativeSurname} (${activeRecord.representativePosition})\n` +
-          `• Current Status: ${activeRecord.status || 'Pending'}\n` +
-          `• Supplier Cert Number: ${activeRecord.supplierCertNumber || 'Not Issued'}\n` +
-          `• Business Profile:\n"${activeRecord.businessDescription}"\n\n` +
-          `Please draft an appropriate response addressing their supplier onboarding and compliance standing.`;
+        ? `Draft a professional corporate response from BlackLogic Technologies (Pty) Ltd to:\n• Client: ${rec.name}\n• Company: ${rec.company || "N/A"}\n• Ref: ${rec.enquiryId}\n• Division: ${rec.division}\n• Enquiry:\n"${rec.challenge}"`
+        : `Draft a professional procurement/compliance response from BlackLogic Technologies (Pty) Ltd regarding:\n• Enterprise: ${rec.enterpriseName} (${rec.enterpriseType})\n• Reg No: ${rec.enterpriseNumber}\n• Ref: ${rec.applicationNumber}\n• Category: ${rec.businessCategory}\n• Status: ${rec.status || "Pending"}\n• Cert No: ${rec.supplierCertNumber || "Not Issued"}`;
 
     try {
         await navigator.clipboard.writeText(promptText);
-        showToast(`Context prompt copied! Opening ${provider === 'chatgpt' ? 'ChatGPT' : 'Gemini'}...`);
-    } catch (e) {
-        showToast(`Opening ${provider === 'chatgpt' ? 'ChatGPT' : 'Gemini'}...`);
+        showToast(`Context copied! Opening ${provider === "chatgpt" ? "ChatGPT" : "Gemini"}...`);
+    } catch (_) {
+        showToast(`Opening ${provider === "chatgpt" ? "ChatGPT" : "Gemini"}...`);
     }
 
-    if (provider === 'chatgpt') {
-        window.open(`https://chatgpt.com/?q=${encodeURIComponent(promptText)}`, '_blank');
+    if (provider === "chatgpt") {
+        window.open(`https://chatgpt.com/?q=${encodeURIComponent(promptText)}`, "_blank", "noopener,noreferrer");
     } else {
-        window.open(`https://gemini.google.com/app`, '_blank');
+        window.open("https://gemini.google.com/app", "_blank", "noopener,noreferrer");
     }
 };
 
-window.downloadLocalBackup = function() {
-    const backupPayload = {
-        exportedAt: new Date().toISOString(),
-        platform: "BlackLogic Central Cloud Console",
-        metrics: {
-            totalEnquiries: Object.keys(rawConsultations).length,
-            totalSupplierApplications: Object.keys(rawSuppliers).length,
-            totalRegisteredSuppliers: Object.values(rawSuppliers).filter(s => s.supplierCertNumber && String(s.supplierCertNumber).trim() !== '').length
-        },
-        consultations: rawConsultations,
-        suppliers: rawSuppliers
+// ---------------------------------------------------------------------------
+// SECTION 2: BUSINESS LEADS (CONTACTED ENTITIES + 3-DAY FOLLOW-UP)
+// ---------------------------------------------------------------------------
+document.getElementById("addLeadForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const entityName = document.getElementById("leadEntityName").value.trim();
+    const industry = document.getElementById("leadIndustry").value.trim();
+    const email = document.getElementById("leadEmail").value.trim();
+    const phone = document.getElementById("leadPhone").value.trim();
+    const status = document.getElementById("leadStatus").value;
+    const feedback = document.getElementById("leadFeedback").value.trim();
+
+    if (!entityName || !industry || !email || !phone) {
+        showToast("Please complete all required lead fields.", true);
+        return;
+    }
+
+    const nowIso = new Date().toISOString();
+    const payload = {
+        entityName,
+        industry,
+        email,
+        phone,
+        status,
+        feedback,
+        lastContactedAt: nowIso,
+        followUpDate: addDaysIso(new Date(), 3),
+        createdAt: nowIso
     };
 
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backupPayload, null, 2));
-    const downloadAnchor = document.createElement('a');
-    const dateStamp = new Date().toISOString().slice(0, 10);
-    downloadAnchor.setAttribute("href", dataStr);
-    downloadAnchor.setAttribute("download", `BlackLogic_Cloud_Backup_${dateStamp}.json`);
-    document.body.appendChild(downloadAnchor);
-    downloadAnchor.click();
-    downloadAnchor.remove();
-    showToast(`Local backup downloaded (BlackLogic_Cloud_Backup_${dateStamp}.json)`);
-};
+    try {
+        await set(push(ref(database, "leads")), payload);
+        e.target.reset();
+        showToast(`Lead "${entityName}" saved with 3-day follow-up scheduled.`);
+    } catch (err) {
+        console.error("Error adding lead:", err);
+        showToast("Failed to save business lead.", true);
+    }
+});
 
-window.openModal = function(item) {
-    activeRecord = item;
-    const modal = document.getElementById('detailModal');
-    const grid = document.getElementById('modalMetaGrid');
-    const title = document.getElementById('modalTitle');
-    const content = document.getElementById('modalContentText');
-    const actions = document.getElementById('modalActions');
+window.renderLeads = function() {
+    const container = document.getElementById("leadsList");
+    const search = (document.getElementById("searchLeadsInput")?.value || "").toLowerCase();
+    container.innerHTML = "";
 
-    const isConsult = currentView === 'consultations';
-    title.textContent = isConsult ? `Consultation Enquiry [${item.enquiryId}]` : `Supplier Application [${item.applicationNumber}]`;
+    const keys = Object.keys(rawLeads).reverse();
+    const nowMs = Date.now();
+    let dueCount = 0;
 
-    if (isConsult) {
-        grid.innerHTML = `
-            <div class="detail-item"><small>Applicant Name</small><span>${item.name}</span></div>
-            <div class="detail-item"><small>Company / Entity</small><span>${item.company || 'N/A'}</span></div>
-            <div class="detail-item"><small>Contact Phone</small><span>${item.contact}</span></div>
-            <div class="detail-item"><small>Email Address</small><span>${item.email}</span></div>
-            <div class="detail-item"><small>Division Requested</small><span>${item.division}</span></div>
-            <div class="detail-item"><small>Session Required</small><span>${item.consultationSession || 'N/A'}</span></div>
-        `;
-        content.textContent = item.challenge;
-        actions.innerHTML = '';
-    } else {
-        grid.innerHTML = `
-            <div class="detail-item"><small>Enterprise Name</small><span>${item.enterpriseName}</span></div>
-            <div class="detail-item"><small>Enterprise Type</small><span>${item.enterpriseType}</span></div>
-            <div class="detail-item"><small>Reg / CIPC Number</small><span>${item.enterpriseNumber}</span></div>
-            <div class="detail-item"><small>Business Email</small><span>${item.businessEmail}</span></div>
-            <div class="detail-item"><small>Procurement Category</small><span>${item.businessCategory}</span></div>
-            <div class="detail-item"><small>Representative</small><span>${item.representativeName} ${item.representativeSurname} (${item.representativePosition})</span></div>
-            <div class="detail-item"><small>Rep Phone / WhatsApp</small><span>${item.representativePhone}</span></div>
-            <div class="detail-item"><small>Supplier Cert Number</small><span style="color:#00c8d7; font-weight:700;">${item.supplierCertNumber || 'Not Issued'}</span></div>
-        `;
-        content.textContent = item.businessDescription;
+    Object.values(rawLeads).forEach(l => {
+        if (l.status !== "Do Not Contact" && l.followUpDate) {
+            if (new Date(l.followUpDate).getTime() <= nowMs) dueCount++;
+        }
+    });
+    document.getElementById("leadFollowUpSummary").textContent = `${dueCount} Due / Overdue Follow-Up${dueCount === 1 ? "" : "s"}`;
 
-        actions.innerHTML = `
-            <button class="action-btn btn-status" onclick="updateStatus('Approved')">
-                <i class="fas fa-check-circle" style="color:#00c8d7;"></i> Approve & Issue Cert Number
-            </button>
-            <button class="action-btn btn-status" onclick="updateStatus('Compliance Required')">
-                <i class="fas fa-triangle-exclamation" style="color:#ff5757;"></i> Request Compliance
-            </button>
-        `;
+    if (!keys.length) {
+        container.innerHTML = `<div class="empty-state"><i class="fas fa-bullseye"></i><p>No contacted business leads recorded yet.</p></div>`;
+        return;
     }
 
-    // Reset workspace to default channel & template with populated record fields
-    selectChannel('email');
-    selectTemplate('acknowledgement');
+    let shown = 0;
+    keys.forEach((key) => {
+        const lead = rawLeads[key];
+        const match = `${lead.entityName || ""} ${lead.industry || ""} ${lead.email || ""} ${lead.phone || ""} ${lead.status || ""}`.toLowerCase();
+        if (search && !match.includes(search)) return;
+        shown++;
 
-    modal.style.display = 'flex';
+        const isDoNotContact = lead.status === "Do Not Contact";
+        const isDue = !isDoNotContact && lead.followUpDate && new Date(lead.followUpDate).getTime() <= nowMs;
+
+        let badgeClass = "badge-pending";
+        if (lead.status === "Hot Lead" || lead.status === "Interested") badgeClass = "badge-hot";
+        if (lead.status === "Converted") badgeClass = "badge-converted";
+        if (isDoNotContact || lead.status === "Not Interested") badgeClass = "badge-muted";
+
+        const followUpLabel = isDoNotContact
+            ? `<span style="color:#888; font-size:.73rem;">No Follow-Up (DNC)</span>`
+            : `<span class="${isDue ? "followup-due" : "followup-ok"}" style="font-size:.73rem;">
+                 ${isDue ? '<i class="fas fa-bell"></i> Due: ' : 'Next: '}${escapeHtml(formatDateShort(lead.followUpDate))}
+               </span>`;
+
+        const row = document.createElement("div");
+        row.className = "inbox-item";
+        row.onclick = () => openLeadModal(key);
+        row.innerHTML = `
+            <div class="item-date">${followUpLabel}</div>
+            <div class="item-sender">
+                ${escapeHtml(lead.entityName || "Unnamed Entity")}
+                <small>${escapeHtml(lead.industry || "General")}</small>
+            </div>
+            <div class="item-subject">
+                ${escapeHtml(lead.email || "")} · ${escapeHtml(lead.phone || "")}
+            </div>
+            <div><span class="badge ${badgeClass}">${escapeHtml(lead.status || "Warm Lead")}</span></div>
+            <div style="text-align:right; color:#666;"><i class="fas fa-chevron-right"></i></div>
+        `;
+        container.appendChild(row);
+    });
+
+    if (!shown) {
+        container.innerHTML = `<div class="empty-state"><i class="fas fa-search"></i><p>No matching leads found.</p></div>`;
+    }
 };
 
-window.closeModal = function() {
-    document.getElementById('detailModal').style.display = 'none';
+function openLeadModal(key) {
+    const lead = rawLeads[key];
+    if (!lead) return;
+    activeModalContext = { section: "leads", key };
+
+    const statusOptions = LEAD_STATUSES.map(st =>
+        `<option value="${escapeHtml(st)}" ${lead.status === st ? "selected" : ""}>${escapeHtml(st)}</option>`
+    ).join("");
+
+    document.getElementById("modalTitle").textContent = `Business Lead · ${lead.entityName || key}`;
+    document.getElementById("modalDynamicBody").innerHTML = `
+        <div class="detail-grid">
+            <div class="detail-item"><small>Name of Entity</small><span>${escapeHtml(lead.entityName || "")}</span></div>
+            <div class="detail-item"><small>Industry</small><span>${escapeHtml(lead.industry || "")}</span></div>
+            <div class="detail-item"><small>Email</small><span>${escapeHtml(lead.email || "")}</span></div>
+            <div class="detail-item"><small>WhatsApp / Cellphone</small><span>${escapeHtml(lead.phone || "")}</span></div>
+            <div class="detail-item"><small>Current Status</small><span>${escapeHtml(lead.status || "")}</span></div>
+            <div class="detail-item"><small>Follow Up Schedule</small><span>${lead.status === "Do Not Contact" ? "Disabled (Do Not Contact)" : formatDateShort(lead.followUpDate)}</span></div>
+        </div>
+        <div class="content-box">
+            <h4>Feedback & Contact Notes</h4>
+            <p>${escapeHtml(lead.feedback || "No feedback notes logged.")}</p>
+        </div>
+        <form id="editLeadModalForm" class="form-grid" style="margin-bottom:18px;">
+            <div class="form-field">
+                <label for="editLeadStatus">Update Lead Status</label>
+                <select id="editLeadStatus" class="form-control">${statusOptions}</select>
+            </div>
+            <div class="form-field">
+                <label for="editLeadPhone">WhatsApp / Cellphone</label>
+                <input type="text" id="editLeadPhone" class="form-control" value="${escapeHtml(lead.phone || "")}">
+            </div>
+            <div class="form-field">
+                <label for="editLeadEmail">Email</label>
+                <input type="email" id="editLeadEmail" class="form-control" value="${escapeHtml(lead.email || "")}">
+            </div>
+            <div class="form-field full">
+                <label for="editLeadFeedback">Feedback / New Contact Update (Resets Follow-Up to +3 Days)</label>
+                <textarea id="editLeadFeedback" class="form-control" rows="3">${escapeHtml(lead.feedback || "")}</textarea>
+            </div>
+            <div class="form-field full">
+                <div>
+                    <button type="submit" class="action-btn btn-primary">
+                        <i class="fas fa-check"></i> Save Lead Update (+3 Days Follow-Up)
+                    </button>
+                </div>
+            </div>
+        </form>
+        <div class="modal-actions">
+            <button type="button" class="action-btn btn-danger" onclick="promptDeleteRecord('leads', '${escapeHtml(key)}', 'Business Lead', '${escapeHtml(lead.entityName || key)}')">
+                <i class="fas fa-trash"></i> Delete Lead
+            </button>
+        </div>
+    `;
+
+    document.getElementById("editLeadModalForm").addEventListener("submit", async (ev) => {
+        ev.preventDefault();
+        const newStatus = document.getElementById("editLeadStatus").value;
+        const newPhone = document.getElementById("editLeadPhone").value.trim();
+        const newEmail = document.getElementById("editLeadEmail").value.trim();
+        const newFeedback = document.getElementById("editLeadFeedback").value.trim();
+        const nowIso = new Date().toISOString();
+
+        try {
+            await update(ref(database, `leads/${key}`), {
+                status: newStatus,
+                phone: newPhone,
+                email: newEmail,
+                feedback: newFeedback,
+                lastContactedAt: nowIso,
+                followUpDate: newStatus === "Do Not Contact" ? null : addDaysIso(new Date(), 3)
+            });
+            showToast(`Lead "${lead.entityName}" updated.`);
+            openLeadModal(key);
+        } catch (err) {
+            console.error("Failed to update lead:", err);
+            showToast("Failed to update lead.", true);
+        }
+    });
+
+    document.getElementById("detailModal").style.display = "flex";
+}
+
+// ---------------------------------------------------------------------------
+// SECTION 3: BUSINESS SUPPLIER APPLICATIONS
+// ---------------------------------------------------------------------------
+window.renderSuppliers = function() {
+    const container = document.getElementById("suppliersList");
+    const search = (document.getElementById("searchSuppliersInput")?.value || "").toLowerCase();
+    container.innerHTML = "";
+
+    const keys = Object.keys(rawSuppliers).reverse();
+    if (!keys.length) {
+        container.innerHTML = `<div class="empty-state"><i class="fas fa-boxes-packing"></i><p>No supplier applications found.</p></div>`;
+        return;
+    }
+
+    let shown = 0;
+    keys.forEach((key) => {
+        const sup = rawSuppliers[key];
+        const match = `${sup.enterpriseName || ""} ${sup.enterpriseNumber || ""} ${sup.applicationNumber || ""} ${sup.businessCategory || ""} ${sup.status || ""}`.toLowerCase();
+        if (search && !match.includes(search)) return;
+        shown++;
+
+        const status = sup.status || "Pending";
+        let badgeClass = "badge-pending";
+        if (status === "Approved") badgeClass = "badge-approved";
+        if (status === "Compliance Required" || status === "Rejected" || status === "Not Approved") badgeClass = "badge-compliance";
+
+        const row = document.createElement("div");
+        row.className = "inbox-item";
+        row.onclick = () => openSupplierModal(key);
+        row.innerHTML = `
+            <div class="item-date">${escapeHtml(formatDateShort(sup.timestamp))}</div>
+            <div class="item-sender">
+                ${escapeHtml(sup.enterpriseName || "Unnamed Enterprise")}
+                <small>${escapeHtml(sup.enterpriseType || "N/A")} · ${escapeHtml(sup.supplierCertNumber || "No Cert")}</small>
+            </div>
+            <div class="item-subject">
+                <strong>[${escapeHtml(sup.applicationNumber || key)}]</strong> ${escapeHtml(sup.businessCategory || "General")}
+            </div>
+            <div><span class="badge ${badgeClass}">${escapeHtml(status)}</span></div>
+            <div style="text-align:right; color:#666;"><i class="fas fa-chevron-right"></i></div>
+        `;
+        container.appendChild(row);
+    });
+
+    if (!shown) {
+        container.innerHTML = `<div class="empty-state"><i class="fas fa-search"></i><p>No matching supplier applications found.</p></div>`;
+    }
 };
 
-window.updateStatus = async function(newStatus) {
-    if (!activeRecord) return;
+function openSupplierModal(key) {
+    const sup = rawSuppliers[key];
+    if (!sup) return;
+    activeModalContext = { section: "suppliers", key };
+    selectedChannel = "email";
+    selectedTemplate = "acknowledgement";
 
-    let certNum = activeRecord.supplierCertNumber || "";
-    if (newStatus === 'Approved' && !certNum) {
+    const statusOptions = SUPPLIER_STATUSES.map(st =>
+        `<option value="${escapeHtml(st)}" ${(sup.status || "Pending") === st ? "selected" : ""}>${escapeHtml(st)}</option>`
+    ).join("");
+
+    document.getElementById("modalTitle").textContent = `Supplier Application [${sup.applicationNumber || key}]`;
+    document.getElementById("modalDynamicBody").innerHTML = `
+        <div class="detail-grid">
+            <div class="detail-item"><small>Enterprise Name</small><span>${escapeHtml(sup.enterpriseName || "N/A")}</span></div>
+            <div class="detail-item"><small>Enterprise Type</small><span>${escapeHtml(sup.enterpriseType || "N/A")}</span></div>
+            <div class="detail-item"><small>Reg / CIPC Number</small><span>${escapeHtml(sup.enterpriseNumber || "N/A")}</span></div>
+            <div class="detail-item"><small>Business Email</small><span>${escapeHtml(sup.businessEmail || "N/A")}</span></div>
+            <div class="detail-item"><small>Procurement Category</small><span>${escapeHtml(sup.businessCategory || "N/A")}</span></div>
+            <div class="detail-item"><small>Representative</small><span>${escapeHtml((sup.representativeName || "") + " " + (sup.representativeSurname || ""))} (${escapeHtml(sup.representativePosition || "N/A")})</span></div>
+            <div class="detail-item"><small>Rep Phone / WhatsApp</small><span>${escapeHtml(sup.representativePhone || "N/A")}</span></div>
+            <div class="detail-item"><small>Supplier Cert Number</small><span style="color:#00c8d7; font-weight:700;">${escapeHtml(sup.supplierCertNumber || "Not Issued")}</span></div>
+        </div>
+
+        <div class="content-box">
+            <h4>Business Profile & Compliance Notes</h4>
+            <p>${escapeHtml(sup.businessDescription || "")}${sup.complianceNotes ? "\n\nCompliance Notes:\n" + escapeHtml(sup.complianceNotes) : ""}</p>
+        </div>
+
+        <form id="supplierManageForm" class="form-grid" style="margin-bottom:18px;">
+            <div class="form-field">
+                <label for="supStatusSelect">Manual Application Status</label>
+                <select id="supStatusSelect" class="form-control">${statusOptions}</select>
+            </div>
+            <div class="form-field">
+                <label for="supEnterpriseNameInput">Enterprise Name</label>
+                <input type="text" id="supEnterpriseNameInput" class="form-control" value="${escapeHtml(sup.enterpriseName || "")}">
+            </div>
+            <div class="form-field">
+                <label for="supRegNumberInput">CIPC / Registration Number</label>
+                <input type="text" id="supRegNumberInput" class="form-control" value="${escapeHtml(sup.enterpriseNumber || "")}">
+            </div>
+            <div class="form-field">
+                <label for="supCategoryInput">Procurement Category</label>
+                <input type="text" id="supCategoryInput" class="form-control" value="${escapeHtml(sup.businessCategory || "")}">
+            </div>
+            <div class="form-field" style="grid-column: span 2;">
+                <label for="supComplianceNotesInput">Compliance & Verification Notes</label>
+                <input type="text" id="supComplianceNotesInput" class="form-control" value="${escapeHtml(sup.complianceNotes || "")}" placeholder="Record CIPC / tax / compliance verification notes...">
+            </div>
+            <div class="form-field full">
+                <div>
+                    <button type="submit" class="action-btn btn-primary">
+                        <i class="fas fa-floppy-disk"></i> Save Supplier Details & Status
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <div class="modal-actions" style="margin-bottom:18px;">
+            <button type="button" class="action-btn btn-status" onclick="setSupplierStatus('${escapeHtml(key)}', 'Approved')">
+                <i class="fas fa-check-circle" style="color:#00c8d7;"></i> Approve & Issue Cert Number
+            </button>
+            <button type="button" class="action-btn btn-status" onclick="setSupplierStatus('${escapeHtml(key)}', 'Compliance Required')">
+                <i class="fas fa-triangle-exclamation" style="color:#ffc107;"></i> Compliance Required
+            </button>
+            <button type="button" class="action-btn btn-status" onclick="setSupplierStatus('${escapeHtml(key)}', 'Rejected')">
+                <i class="fas fa-ban" style="color:#ff6b6b;"></i> Reject Application
+            </button>
+            <a href="https://eservices.cipc.co.za/" target="_blank" rel="noopener noreferrer" class="action-btn btn-ext">
+                <i class="fas fa-building-columns"></i> Verify on CIPC eServices
+            </a>
+            <button type="button" class="action-btn btn-danger" onclick="promptDeleteRecord('suppliers', '${escapeHtml(key)}', 'Supplier Application', '${escapeHtml((sup.enterpriseName || '') + ' [' + (sup.applicationNumber || key) + ']')}')">
+                <i class="fas fa-trash"></i> Delete Application
+            </button>
+        </div>
+
+        ${renderResponseWorkspaceHtml()}
+    `;
+
+    document.getElementById("supplierManageForm").addEventListener("submit", async (ev) => {
+        ev.preventDefault();
+        const chosenStatus = document.getElementById("supStatusSelect").value;
+        let certNum = sup.supplierCertNumber || "";
+        if (chosenStatus === "Approved" && !certNum) {
+            const rand = Math.floor(1000 + Math.random() * 9000);
+            certNum = `BSA202611${rand}`;
+        }
+
+        try {
+            await update(ref(database, `suppliers/${key}`), {
+                status: chosenStatus,
+                enterpriseName: document.getElementById("supEnterpriseNameInput").value.trim(),
+                enterpriseNumber: document.getElementById("supRegNumberInput").value.trim(),
+                businessCategory: document.getElementById("supCategoryInput").value.trim(),
+                complianceNotes: document.getElementById("supComplianceNotesInput").value.trim(),
+                supplierCertNumber: certNum
+            });
+            showToast(`Supplier saved (${chosenStatus}${certNum ? " · " + certNum : ""}).`);
+            openSupplierModal(key);
+        } catch (err) {
+            console.error("Supplier update error:", err);
+            showToast("Failed to save supplier changes.", true);
+        }
+    });
+
+    refreshTemplatePreview();
+    document.getElementById("detailModal").style.display = "flex";
+}
+
+window.setSupplierStatus = async function(key, newStatus) {
+    const sup = rawSuppliers[key];
+    if (!sup) return;
+    let certNum = sup.supplierCertNumber || "";
+    if (newStatus === "Approved" && !certNum) {
         const rand = Math.floor(1000 + Math.random() * 9000);
         certNum = `BSA202611${rand}`;
     }
 
-    const updates = {
-        status: newStatus,
-        supplierCertNumber: certNum
+    try {
+        await update(ref(database, `suppliers/${key}`), {
+            status: newStatus,
+            supplierCertNumber: certNum
+        });
+        showToast(`Status updated to ${newStatus}${certNum ? " | Cert: " + certNum : ""}`);
+        if (activeModalContext?.section === "suppliers" && activeModalContext?.key === key) {
+            openSupplierModal(key);
+        }
+    } catch (err) {
+        console.error("Status update error:", err);
+        showToast("Failed to update supplier status.", true);
+    }
+};
+
+// ---------------------------------------------------------------------------
+// SECTION 4: PROCUREMENT RECORDS (MAX 5 ACTIVE + ARCHIVE + 6 TYPES)
+// ---------------------------------------------------------------------------
+function getActiveProcurementKeys() {
+    return Object.keys(rawProcurement).filter(k => (rawProcurement[k].state || "active") === "active");
+}
+
+document.getElementById("addProcurementForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const activeCount = getActiveProcurementKeys().length;
+    if (activeCount >= 5) {
+        showToast("Active register limit reached (5/5). Archive an active opportunity first before adding another.", true);
+        return;
+    }
+
+    const type = document.getElementById("procType").value;
+    const industry = document.getElementById("procIndustry").value.trim();
+    const entityName = document.getElementById("procEntityName").value.trim();
+    const companyType = document.getElementById("procCompanyType").value.trim();
+    const title = document.getElementById("procTitle").value.trim();
+    const closingDate = document.getElementById("procClosingDate").value;
+    const recordRefInput = document.getElementById("procRecordRef").value.trim();
+    const sourceUrl = document.getElementById("procSourceUrl").value.trim();
+
+    if (!type || !industry || !entityName || !companyType || !title || !closingDate) {
+        showToast("Please complete all required procurement fields.", true);
+        return;
+    }
+
+    const recordRef = recordRefInput || `PROC-${Date.now().toString().slice(-6)}`;
+    const payload = {
+        type,
+        industry,
+        entityName,
+        companyType,
+        title,
+        closingDate,
+        recordRef,
+        sourceUrl,
+        state: "active",
+        createdAt: new Date().toISOString()
     };
 
     try {
-        await update(ref(database, `suppliers/${activeRecord._firebaseKey}`), updates);
-        activeRecord.status = newStatus;
-        activeRecord.supplierCertNumber = certNum;
-        showToast(`Status updated to: ${newStatus}${certNum ? ' | Cert No: ' + certNum : ''}`);
-        openModal(activeRecord);
+        await set(push(ref(database, "procurement")), payload);
+        e.target.reset();
+        showToast(`Procurement opportunity "${title}" added to active register.`);
     } catch (err) {
-        console.error("Status Update Error:", err);
-        alert("Failed to update status in cloud.");
+        console.error("Error adding procurement:", err);
+        showToast("Failed to save procurement record.", true);
     }
+});
+
+window.renderProcurement = function() {
+    const activeContainer = document.getElementById("activeProcurementList");
+    const archivedContainer = document.getElementById("archivedProcurementList");
+    const search = (document.getElementById("searchProcurementInput")?.value || "").toLowerCase();
+
+    const allKeys = Object.keys(rawProcurement).reverse();
+    const activeKeysAll = getActiveProcurementKeys();
+    document.getElementById("activeProcurementCounter").textContent = `Active: ${activeKeysAll.length} / 5`;
+
+    activeContainer.innerHTML = "";
+    archivedContainer.innerHTML = "";
+
+    let activeShown = 0;
+    let archivedShown = 0;
+
+    allKeys.forEach((key) => {
+        const rec = rawProcurement[key];
+        const match = `${rec.type || ""} ${rec.industry || ""} ${rec.entityName || ""} ${rec.companyType || ""} ${rec.title || ""} ${rec.recordRef || ""}`.toLowerCase();
+        if (search && !match.includes(search)) return;
+
+        const isArchived = (rec.state || "active") === "archived";
+        const row = document.createElement("div");
+        row.className = "inbox-item";
+        row.onclick = () => openProcurementModal(key);
+        row.innerHTML = `
+            <div class="item-date">Closes: ${escapeHtml(rec.closingDate || "N/A")}</div>
+            <div class="item-sender">
+                ${escapeHtml(rec.title || "Untitled Opportunity")}
+                <small>${escapeHtml(rec.entityName || "")} · ${escapeHtml(rec.companyType || "")}</small>
+            </div>
+            <div class="item-subject">
+                <strong>[${escapeHtml(rec.recordRef || key)}]</strong> ${escapeHtml(rec.industry || "")}
+            </div>
+            <div><span class="badge ${isArchived ? "badge-muted" : "badge-approved"}">${escapeHtml(rec.type || "RFQ")}</span></div>
+            <div style="text-align:right; color:#666;"><i class="fas fa-chevron-right"></i></div>
+        `;
+
+        if (isArchived) {
+            archivedShown++;
+            archivedContainer.appendChild(row);
+        } else {
+            activeShown++;
+            activeContainer.appendChild(row);
+        }
+    });
+
+    if (!activeShown) {
+        activeContainer.innerHTML = `<div class="empty-state"><i class="fas fa-folder-open"></i><p>No active procurement opportunities in the register.</p></div>`;
+    }
+    if (!archivedShown) {
+        archivedContainer.innerHTML = `<div class="empty-state"><i class="fas fa-box-archive"></i><p>No archived procurement records.</p></div>`;
+    }
+};
+
+function openProcurementModal(key) {
+    const rec = rawProcurement[key];
+    if (!rec) return;
+    activeModalContext = { section: "procurement", key };
+    const isArchived = (rec.state || "active") === "archived";
+
+    const typeOpts = PROCUREMENT_TYPES.map(t =>
+        `<option value="${escapeHtml(t)}" ${rec.type === t ? "selected" : ""}>${escapeHtml(t)}</option>`
+    ).join("");
+
+    document.getElementById("modalTitle").textContent = `Procurement Record [${rec.recordRef || key}]`;
+    document.getElementById("modalDynamicBody").innerHTML = `
+        <div class="detail-grid">
+            <div class="detail-item"><small>Type</small><span>${escapeHtml(rec.type || "")}</span></div>
+            <div class="detail-item"><small>Register State</small><span>${isArchived ? "Archived" : "Active"}</span></div>
+            <div class="detail-item"><small>Industry</small><span>${escapeHtml(rec.industry || "")}</span></div>
+            <div class="detail-item"><small>Entity Name</small><span>${escapeHtml(rec.entityName || "")}</span></div>
+            <div class="detail-item"><small>Company Type</small><span>${escapeHtml(rec.companyType || "")}</span></div>
+            <div class="detail-item"><small>Closing Date</small><span>${escapeHtml(rec.closingDate || "")}</span></div>
+            <div class="detail-item"><small>Record Reference</small><span>${escapeHtml(rec.recordRef || key)}</span></div>
+            <div class="detail-item"><small>Source URL</small><span>${rec.sourceUrl ? `<a href="${escapeHtml(rec.sourceUrl)}" target="_blank" rel="noopener noreferrer" style="color:#00c8d7;">Open Link</a>` : "N/A"}</span></div>
+        </div>
+        <div class="content-box">
+            <h4>Opportunity Title</h4>
+            <p>${escapeHtml(rec.title || "")}</p>
+        </div>
+        <form id="editProcurementForm" class="form-grid" style="margin-bottom:18px;">
+            <div class="form-field">
+                <label for="editProcType">Type</label>
+                <select id="editProcType" class="form-control">${typeOpts}</select>
+            </div>
+            <div class="form-field">
+                <label for="editProcIndustry">Industry</label>
+                <input type="text" id="editProcIndustry" class="form-control" value="${escapeHtml(rec.industry || "")}">
+            </div>
+            <div class="form-field">
+                <label for="editProcEntityName">Entity Name</label>
+                <input type="text" id="editProcEntityName" class="form-control" value="${escapeHtml(rec.entityName || "")}">
+            </div>
+            <div class="form-field">
+                <label for="editProcCompanyType">Company Type</label>
+                <input type="text" id="editProcCompanyType" class="form-control" value="${escapeHtml(rec.companyType || "")}">
+            </div>
+            <div class="form-field">
+                <label for="editProcTitle">Title</label>
+                <input type="text" id="editProcTitle" class="form-control" value="${escapeHtml(rec.title || "")}">
+            </div>
+            <div class="form-field">
+                <label for="editProcClosingDate">Closing Date</label>
+                <input type="date" id="editProcClosingDate" class="form-control" value="${escapeHtml(rec.closingDate || "")}">
+            </div>
+            <div class="form-field full">
+                <label for="editProcSourceUrl">Source URL</label>
+                <input type="url" id="editProcSourceUrl" class="form-control" value="${escapeHtml(rec.sourceUrl || "")}">
+            </div>
+            <div class="form-field full">
+                <div>
+                    <button type="submit" class="action-btn btn-primary">
+                        <i class="fas fa-check"></i> Save Procurement Changes
+                    </button>
+                </div>
+            </div>
+        </form>
+        <div class="modal-actions">
+            ${!isArchived
+                ? `<button type="button" class="action-btn btn-status" onclick="toggleArchiveProcurement('${escapeHtml(key)}', 'archived')"><i class="fas fa-box-archive"></i> Archive Opportunity</button>`
+                : `<button type="button" class="action-btn btn-status" onclick="toggleArchiveProcurement('${escapeHtml(key)}', 'active')"><i class="fas fa-rotate-left"></i> Move to Active (Max 5)</button>`
+            }
+            <button type="button" class="action-btn btn-danger" onclick="promptDeleteRecord('procurement', '${escapeHtml(key)}', 'Procurement Record', '${escapeHtml((rec.title || '') + ' [' + (rec.recordRef || key) + ']')}')">
+                <i class="fas fa-trash"></i> Permanently Delete
+            </button>
+        </div>
+    `;
+
+    document.getElementById("editProcurementForm").addEventListener("submit", async (ev) => {
+        ev.preventDefault();
+        try {
+            await update(ref(database, `procurement/${key}`), {
+                type: document.getElementById("editProcType").value,
+                industry: document.getElementById("editProcIndustry").value.trim(),
+                entityName: document.getElementById("editProcEntityName").value.trim(),
+                companyType: document.getElementById("editProcCompanyType").value.trim(),
+                title: document.getElementById("editProcTitle").value.trim(),
+                closingDate: document.getElementById("editProcClosingDate").value,
+                sourceUrl: document.getElementById("editProcSourceUrl").value.trim()
+            });
+            showToast("Procurement record updated.");
+            openProcurementModal(key);
+        } catch (err) {
+            console.error("Procurement update error:", err);
+            showToast("Failed to update procurement record.", true);
+        }
+    });
+
+    document.getElementById("detailModal").style.display = "flex";
+}
+
+window.toggleArchiveProcurement = async function(key, nextState) {
+    if (nextState === "active" && getActiveProcurementKeys().length >= 5) {
+        showToast("Cannot restore to active: maximum of 5 active opportunities already reached.", true);
+        return;
+    }
+    try {
+        await update(ref(database, `procurement/${key}`), {
+            state: nextState,
+            archivedAt: nextState === "archived" ? new Date().toISOString() : null
+        });
+        showToast(nextState === "archived" ? "Opportunity archived." : "Opportunity restored to active register.");
+        openProcurementModal(key);
+    } catch (err) {
+        console.error("Archive state update failed:", err);
+        showToast("Failed to update archive status.", true);
+    }
+};
+
+// ---------------------------------------------------------------------------
+// SECTION 5: DATA ANALYTICS (LIVE REAL DATABASE CHARTS)
+// ---------------------------------------------------------------------------
+function updateAnalyticsCharts() {
+    if (typeof Chart === "undefined") return;
+
+    const suppliersList = Object.values(rawSuppliers);
+    const totalSupApps = suppliersList.length;
+    const totalSupReg = suppliersList.filter(s => s.supplierCertNumber && String(s.supplierCertNumber).trim() !== "").length;
+
+    const supCtx = document.getElementById("supplierChart")?.getContext("2d");
+    if (supCtx) {
+        if (supplierChartInstance) supplierChartInstance.destroy();
+        supplierChartInstance = new Chart(supCtx, {
+            type: "bar",
+            data: {
+                labels: ["Applications Received", "Approved & Registered"],
+                datasets: [{
+                    label: "Suppliers",
+                    data: [totalSupApps, totalSupReg],
+                    backgroundColor: ["rgba(0, 150, 255, 0.75)", "rgba(0, 200, 215, 0.85)"],
+                    borderColor: ["#38bdf8", "#00c8d7"],
+                    borderWidth: 1,
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: { ticks: { color: "#ccc" }, grid: { color: "rgba(255,255,255,0.05)" } },
+                    y: { beginAtZero: true, ticks: { stepSize: 1, color: "#ccc" }, grid: { color: "rgba(255,255,255,0.08)" } }
+                }
+            }
+        });
+    }
+
+    const leadStatusCounts = {};
+    LEAD_STATUSES.forEach(st => { leadStatusCounts[st] = 0; });
+    Object.values(rawLeads).forEach(l => {
+        const st = l.status || "Warm Lead";
+        leadStatusCounts[st] = (leadStatusCounts[st] || 0) + 1;
+    });
+
+    const leadsCtx = document.getElementById("leadsChart")?.getContext("2d");
+    if (leadsCtx) {
+        if (leadsChartInstance) leadsChartInstance.destroy();
+        const labels = Object.keys(leadStatusCounts);
+        const data = Object.values(leadStatusCounts);
+        leadsChartInstance = new Chart(leadsCtx, {
+            type: "doughnut",
+            data: {
+                labels,
+                datasets: [{
+                    data,
+                    backgroundColor: [
+                        "#00c8d7", "#0088ff", "#2ecc71", "#ffc107",
+                        "#8b5cf6", "#ff6b6b", "#10b981", "#64748b", "#475569"
+                    ],
+                    borderColor: "#0c0c0c",
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: "bottom", labels: { color: "#ccc", boxWidth: 12, font: { size: 11 } } }
+                }
+            }
+        });
+    }
+
+    const procCounts = {};
+    PROCUREMENT_TYPES.forEach(t => { procCounts[t] = 0; });
+    Object.values(rawProcurement).forEach(p => {
+        const t = p.type || "RFQ";
+        procCounts[t] = (procCounts[t] || 0) + 1;
+    });
+
+    const procCtx = document.getElementById("procurementChart")?.getContext("2d");
+    if (procCtx) {
+        if (procurementChartInstance) procurementChartInstance.destroy();
+        procurementChartInstance = new Chart(procCtx, {
+            type: "bar",
+            data: {
+                labels: PROCUREMENT_TYPES,
+                datasets: [{
+                    label: "Procurement Records",
+                    data: PROCUREMENT_TYPES.map(t => procCounts[t] || 0),
+                    backgroundColor: "rgba(0, 200, 215, 0.78)",
+                    borderColor: "#00c8d7",
+                    borderWidth: 1,
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: { ticks: { color: "#ccc" }, grid: { color: "rgba(255,255,255,0.05)" } },
+                    y: { beginAtZero: true, ticks: { stepSize: 1, color: "#ccc" }, grid: { color: "rgba(255,255,255,0.08)" } }
+                }
+            }
+        });
+    }
+}
+
+// ---------------------------------------------------------------------------
+// CLOUD RECORD DELETION WITH EXPLICIT CONFIRMATION
+// ---------------------------------------------------------------------------
+window.promptDeleteRecord = function(dbNode, recordKey, recordLabel, identifierText) {
+    pendingDeleteAction = { dbNode, recordKey, identifierText };
+    document.getElementById("deleteTargetType").textContent = recordLabel;
+    document.getElementById("deleteTargetSummary").textContent = `${identifierText} (Key: ${recordKey})`;
+    document.getElementById("deleteConfirmModal").style.display = "flex";
+};
+
+window.closeDeleteModal = function() {
+    pendingDeleteAction = null;
+    document.getElementById("deleteConfirmModal").style.display = "none";
+};
+
+document.getElementById("confirmPermanentDeleteBtn").addEventListener("click", async () => {
+    if (!pendingDeleteAction) return;
+    const { dbNode, recordKey, identifierText } = pendingDeleteAction;
+    try {
+        await remove(ref(database, `${dbNode}/${recordKey}`));
+        closeDeleteModal();
+        closeModal();
+        showToast(`Deleted "${identifierText}" from cloud database.`);
+    } catch (err) {
+        console.error("Cloud deletion error:", err);
+        showToast("Failed to delete record. Check administrator permissions.", true);
+    }
+});
+
+// LOCAL JSON BACKUP (PRESERVED & EXTENDED)
+window.downloadLocalBackup = function() {
+    const backupPayload = {
+        exportedAt: new Date().toISOString(),
+        platform: "BlackLogic Central Intelligence Infrastructure",
+        metrics: {
+            totalEnquiries: Object.keys(rawConsultations).length,
+            totalLeads: Object.keys(rawLeads).length,
+            totalSupplierApplications: Object.keys(rawSuppliers).length,
+            totalRegisteredSuppliers: Object.values(rawSuppliers).filter(s => s.supplierCertNumber && String(s.supplierCertNumber).trim() !== "").length,
+            totalProcurementRecords: Object.keys(rawProcurement).length
+        },
+        consultations: rawConsultations,
+        leads: rawLeads,
+        suppliers: rawSuppliers,
+        procurement: rawProcurement
+    };
+
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backupPayload, null, 2));
+    const downloadAnchor = document.createElement("a");
+    const dateStamp = new Date().toISOString().slice(0, 10);
+    downloadAnchor.setAttribute("href", dataStr);
+    downloadAnchor.setAttribute("download", `BlackLogic_CII_Backup_${dateStamp}.json`);
+    document.body.appendChild(downloadAnchor);
+    downloadAnchor.click();
+    downloadAnchor.remove();
+    showToast(`Local backup downloaded (BlackLogic_CII_Backup_${dateStamp}.json)`);
+};
+
+window.closeModal = function() {
+    document.getElementById("detailModal").style.display = "none";
+    activeModalContext = null;
 };
 </script>
 
