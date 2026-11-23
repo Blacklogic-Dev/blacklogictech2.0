@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlackLogic Finance Intelligence | Financial Control Centre</title>
+<meta name="theme-color" content="#050505">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: "Poppins", sans-serif; }
+body { background: #050505; color: #fff; min-height: 100vh; overflow-x: hidden; }
+
+/* AUTH VIEW */
+.auth-wrapper {
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100vh; padding: 20px;
+    background: radial-gradient(circle at center, rgba(0,200,215,.08), transparent 55%), #050505;
+}
+.auth-card {
+    background: #0c0c0c; border: 1px solid rgba(0,200,215,.25); border-radius: 20px;
+    width: min(430px, 100%); padding: 34px 28px; text-align: center;
+    box-shadow: 0 0 35px rgba(0,0,0,.65);
+}
+.auth-icon {
+    width: 52px; height: 52px; border-radius: 14px; margin: 0 auto 14px;
+    display: grid; place-items: center; color: #00c8d7;
+    background: rgba(0,200,215,.08); border: 1px solid rgba(0,200,215,.25); font-size: 1.35rem;
+}
+.auth-card h2 { font-size: 1.15rem; margin-bottom: 6px; }
+.auth-card p { font-size: .78rem; color: #888; margin-bottom: 22px; }
+.field { text-align: left; margin-bottom: 14px; }
+.field label { display: block; font-size: .75rem; color: #bbb; margin-bottom: 6px; }
+.form-control {
+    width: 100%; padding: 11px 13px; background: #141414;
+    border: 1px solid rgba(255,255,255,.09); border-radius: 10px;
+    color: #fff; font-size: .84rem; outline: none;
+}
+.form-control:focus { border-color: #00c8d7; }
+
+.btn {
+    padding: 10px 16px; border: none; border-radius: 24px; font-size: .8rem;
+    font-weight: 700; cursor: pointer; display: inline-flex; align-items: center;
+    gap: 7px; text-decoration: none; transition: .2s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: #00c8d7; color: #000; }
+.btn-secondary { background: #161616; color: #fff; border: 1px solid rgba(255,255,255,.14); }
+.btn-danger { background: rgba(255,87,87,.14); color: #ff6b6b; border: 1px solid rgba(255,87,87,.35); }
+.auth-btn { width: 100%; justify-content: center; padding: 13px; margin-top: 8px; }
+.auth-error {
+    display: none; margin-top: 12px; padding: 10px; border-radius: 8px;
+    background: rgba(255,87,87,.12); border: 1px solid rgba(255,87,87,.35);
+    color: #ff6b6b; font-size: .76rem;
+}
+
+#financeApp { display: none; }
+
+/* HEADER */
+header {
+    padding: 16px 28px; background: #080808;
+    border-bottom: 1px solid rgba(0,200,215,.15);
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 14px; flex-wrap: wrap; position: sticky; top: 0; z-index: 100;
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand-icon-hdr {
+    width: 42px; height: 42px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    color: #00c8d7; background: rgba(0,200,215,.08); border: 1px solid rgba(0,200,215,.22);
+    font-size: 1.15rem;
+}
+.brand-text strong { display: block; font-size: .9rem; letter-spacing: .6px; }
+.brand-text span { display: block; font-size: .64rem; color: #888; letter-spacing: .9px; }
+
+.hdr-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.status-pill {
+    display: flex; align-items: center; gap: 7px; font-size: .74rem; color: #00c8d7;
+    background: rgba(0,200,215,.08); border: 1px solid rgba(0,200,215,.22);
+    padding: 6px 13px; border-radius: 20px;
+}
+.pulse { width: 8px; height: 8px; border-radius: 50%; background: #00c8d7; box-shadow: 0 0 8px #00c8d7; }
+
+/* CONTAINER */
+.container { max-width: 1340px; margin: 24px auto 60px; padding: 0 22px; }
+
+/* KPI GRID */
+.kpi-grid {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 22px;
+}
+.kpi-card {
+    background: #0c0c0c; border: 1px solid rgba(0,200,215,.16);
+    border-radius: 16px; padding: 18px;
+}
+.kpi-card small { display: block; font-size: .68rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+.kpi-card .val { font-size: 1.35rem; font-weight: 800; color: #00c8d7; }
+.kpi-card .sub { font-size: .7rem; color: #aaa; margin-top: 4px; }
+
+/* NAV TABS */
+.nav-tabs {
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px;
+    background: #0c0c0c; border: 1px solid rgba(0,200,215,.16);
+    border-radius: 15px; padding: 8px; margin-bottom: 22px;
+}
+.tab-btn {
+    background: #131313; border: 1px solid rgba(255,255,255,.06); color: #999;
+    padding: 10px 12px; border-radius: 10px; font-size: .76rem; font-weight: 600;
+    cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.tab-btn.active { background: rgba(0,200,215,.14); color: #00c8d7; border-color: #00c8d7; }
+
+.panel { display: none; }
+.panel.active { display: block; }
+
+.card {
+    background: #0c0c0c; border: 1px solid rgba(0,200,215,.15);
+    border-radius: 16px; padding: 20px; margin-bottom: 20px;
+}
+.card-hdr {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 10px; flex-wrap: wrap; margin-bottom: 14px; padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.card-hdr h2 { font-size: .96rem; color: #00c8d7; display: flex; align-items: center; gap: 8px; }
+
+.form-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.form-grid .full { grid-column: 1 / -1; }
+
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: .8rem; }
+th, td { padding: 11px 12px; border-bottom: 1px solid rgba(255,255,255,.06); text-align: left; }
+th { color: #888; font-size: .72rem; text-transform: uppercase; letter-spacing: .8px; }
+
+.badge {
+    padding: 3px 9px; border-radius: 14px; font-size: .66rem; font-weight: 700; display: inline-block;
+}
+.b-paid { background: rgba(46,204,113,.15); color: #2ecc71; border: 1px solid rgba(46,204,113,.35); }
+.b-partial { background: rgba(255,193,7,.15); color: #ffc107; border: 1px solid rgba(255,193,7,.35); }
+.b-unpaid { background: rgba(255,87,87,.15); color: #ff6b6b; border: 1px solid rgba(255,87,87,.35); }
+.b-recon { background: rgba(0,200,215,.14); color: #00c8d7; border: 1px solid rgba(0,200,215,.32); }
+
+.charts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 20px; }
+.chart-box { position: relative; height: 250px; }
+
+.rec-box {
+    background: #111; border-left: 4px solid #00c8d7; border-radius: 10px;
+    padding: 14px 16px; margin-bottom: 10px; font-size: .82rem; color: #ddd;
+}
+
+/* PRINTABLE INVOICE & STATEMENT SHEET */
+#printableSheet {
+    display: none; background: #fff; color: #111; padding: 32px; border-radius: 12px; margin-top: 16px;
+}
+.inv-brand-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.inv-brand-row .brand-icon-hdr { background: #eef9fb; color: #008b99; border-color: #008b99; }
+
+.toast {
+    position: fixed; bottom: 22px; right: 22px; background: #0c0c0c;
+    border: 1px solid #00c8d7; color: #fff; padding: 12px 18px; border-radius: 10px;
+    font-size: .8rem; display: none; z-index: 2000;
+}
+
+@media (max-width: 1120px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .nav-tabs { grid-template-columns: repeat(3, 1fr); }
+    .charts-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+    .kpi-grid, .nav-tabs, .form-grid { grid-template-columns: 1fr; }
+}
+@media print {
+    body * { visibility: hidden; }
+    #printableSheet, #printableSheet * { visibility: visible; }
+    #printableSheet { display: block !important; position: fixed; inset: 0; margin: 0; border-radius: 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- AUTHENTICATION -->
+<div class="auth-wrapper" id="authWrapper">
+    <div class="auth-card">
+        <div class="auth-icon"><i class="fas fa-coins"></i></div>
+        <h2>BlackLogic Finance Intelligence</h2>
+        <p>FINANCIAL CONTROL · REVENUE · EXPENDITURE · ANALYTICS</p>
+        <form id="loginForm">
+            <div class="field">
+                <label for="finEmail">Administrator Email</label>
+                <input type="email" id="finEmail" class="form-control" required autocomplete="email" placeholder="admin@blacklogic.com">
+            </div>
+            <div class="field">
+                <label for="finPassword">Password</label>
+                <input type="password" id="finPassword" class="form-control" required autocomplete="current-password" placeholder="••••••••••••">
+            </div>
+            <button type="submit" class="btn btn-primary auth-btn" id="loginBtn">Authenticate Finance Console</button>
+            <div class="auth-error" id="authError"></div>
+        </form>
+    </div>
+</div>
+
+<!-- MAIN FINANCE INTELLIGENCE APP -->
+<div id="financeApp">
+    <header>
+        <div class="brand">
+            <div class="brand-icon-hdr"><i class="fas fa-microchip"></i></div>
+            <div class="brand-text">
+                <strong>BLACKLOGIC FINANCE INTELLIGENCE</strong>
+                <span>FINANCIAL CONTROL · REVENUE · EXPENDITURE · ANALYTICS</span>
+            </div>
+        </div>
+        <div class="hdr-right">
+            <div class="status-pill"><span class="pulse"></span> Cloud Connected</div>
+            <button type="button" class="btn btn-secondary" onclick="exportFinanceJson()"><i class="fas fa-download"></i> Export JSON</button>
+            <button type="button" class="btn btn-danger" id="logoutBtn"><i class="fas fa-right-from-bracket"></i> Sign Out</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- DASHBOARD SUMMARY CARDS (OPTION C: INVOICED + RECEIVED SEPARATELY) -->
+        <section class="kpi-grid">
+            <div class="kpi-card">
+                <small>Total Project Revenue (Invoiced)</small>
+                <div class="val" id="kpiInvoicedRevenue">R 0.00</div>
+                <div class="sub">Recorded project & invoice value</div>
+            </div>
+            <div class="kpi-card">
+                <small>Money Actually Received</small>
+                <div class="val" id="kpiCashReceived">R 0.00</div>
+                <div class="sub" id="kpiOutstandingSub">Outstanding: R 0.00</div>
+            </div>
+            <div class="kpi-card">
+                <small>Total Rental Expense</small>
+                <div class="val" id="kpiRentalExpense">R 0.00</div>
+                <div class="sub">Sum of rental records</div>
+            </div>
+            <div class="kpi-card">
+                <small>Total General Expenses</small>
+                <div class="val" id="kpiGeneralExpense">R 0.00</div>
+                <div class="sub">Operational & other expenses</div>
+            </div>
+            <div class="kpi-card">
+                <small>Net Recorded Position</small>
+                <div class="val" id="kpiNetPosition">R 0.00</div>
+                <div class="sub">Cash Received − Rental − General</div>
+            </div>
+        </section>
+
+        <!-- NAVIGATION -->
+        <nav class="nav-tabs">
+            <button type="button" class="tab-btn active" data-tab="projects" onclick="switchTab('projects')"><i class="fas fa-briefcase"></i> Projects Revenue</button>
+            <button type="button" class="tab-btn" data-tab="invoices" onclick="switchTab('invoices')"><i class="fas fa-file-invoice-dollar"></i> Invoice Generator</button>
+            <button type="button" class="tab-btn" data-tab="rentals" onclick="switchTab('rentals')"><i class="fas fa-house-user"></i> Rental Expenses</button>
+            <button type="button" class="tab-btn" data-tab="general" onclick="switchTab('general')"><i class="fas fa-receipt"></i> General Expenses</button>
+            <button type="button" class="tab-btn" data-tab="statements" onclick="switchTab('statements')"><i class="fas fa-file-lines"></i> Statements & Ops</button>
+            <button type="button" class="tab-btn" data-tab="analytics" onclick="switchTab('analytics')"><i class="fas fa-chart-pie"></i> Analytics & Insights</button>
+        </nav>
+
+        <!-- A. PROJECTS — REVENUE REGISTER -->
+        <section class="panel active" id="panel-projects">
+            <div class="card">
+                <div class="card-hdr">
+                    <h2><i class="fas fa-plus-circle"></i> Record Project (Revenue Register)</h2>
+                </div>
+                <form id="projectForm" class="form-grid">
+                    <div class="field">
+                        <label for="projDate">Date *</label>
+                        <input type="date" id="projDate" class="form-control" required>
+                    </div>
+                    <div class="field">
+                        <label for="projTitle">Title *</label>
+                        <input type="text" id="projTitle" class="form-control" required placeholder="e.g., Website Development">
+                    </div>
+                    <div class="field">
+                        <label for="projFrom">From (Client / Paying Entity) *</label>
+                        <input type="text" id="projFrom" class="form-control" required placeholder="e.g., ABC Construction">
+                    </div>
+                    <div class="field">
+                        <label for="projPrice">Price (ZAR) *</label>
+                        <input type="number" step="0.01" min="0" id="projPrice" class="form-control" required placeholder="5000.00">
+                    </div>
+                    <div class="field">
+                        <label for="projInvoiceRef">Invoice Ref</label>
+                        <input type="text" id="projInvoiceRef" class="form-control" placeholder="e.g., Invoice20261123.pdf">
+                    </div>
+                    <div class="field">
+                        <label for="projPaidAmount">Amount Paid So Far (ZAR)</label>
+                        <input type="number" step="0.01" min="0" id="projPaidAmount" class="form-control" placeholder="0.00">
+                    </div>
+                    <div class="field full">
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Project Record</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="card">
+                <div class="card-hdr">
+                    <h2><i class="fas fa-list"></i> Project Revenue Register</h2>
+                    <input type="text" id="projSearch" class="form-control" style="max-width:300px;" placeholder="Quick search by client, title, or invoice ref..." onkeyup="renderProjects()">
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th><th>Title</th><th>From</th><th>Price</th><th>Paid</th><th>Invoice Ref</th><th>Bank Recon</th><th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="projectsTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- B. INVOICE GENERATOR (LIMITED TO TO, AMOUNT, DATE + PARTIAL PAYMENTS) -->
+        <section class="panel" id="panel-invoices">
+            <div class="card">
+                <div class="card-hdr">
+                    <h2><i class="fas fa-file-invoice"></i> Generate Invoice (To · Amount · Date)</h2>
+                </div>
+                <form id="invoiceForm" class="form-grid">
+                    <div class="field">
+                        <label for="invTo">To *</label>
+                        <input type="text" id="invTo" class="form-control" required placeholder="Client or Entity Name">
+                    </div>
+                    <div class="field">
+                        <label for="invAmount">Amount (ZAR) *</label>
+                        <input type="number" step="0.01" min="0.01" id="invAmount" class="form-control" required placeholder="5000.00">
+                    </div>
+                    <div class="field">
+                        <label for="invDate">Date *</label>
+                        <input type="date" id="invDate" class="form-control" required>
+                    </div>
+                    <div class="field full">
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-wand-magic-sparkles"></i> Generate & Save Invoice</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="card">
+                <div class="card-hdr">
+                    <h2><i class="fas fa-folder-open"></i> Saved Invoices & Partial Payments</h2>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Invoice Ref</th><th>Date</th><th>To</th><th>Amount</th><th>Paid</th><th>Balance</th><th>Status</th><th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="invoicesTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- C. RENTAL EXPENSES -->
+        <section class="panel" id="panel-rentals">
+            <div class="card">
+                <div class="card-hdr">
+                    <h2><i class="fas fa-building"></i> Record Rental Payment</h2>
+                </div>
+                <form id="rentalForm" class="form-grid">
+                    <div class="field">
+                        <label for="rentDate">Date *</label>
+                        <input type="date" id="rentDate" class="form-control" required>
+                    </div>
+                    <div class="field">
+                        <label for="rentTo">To (Recipient) *</label>
+                        <input type="text" id="rentTo" class="form-control" required placeholder="Landlord / Property Entity">
+                    </div>
+                    <div class="field">
+                        <label for="rentRefPerson">Ref Name & Surname *</label>
+                        <input type="text" id="rentRefPerson" class="form-control" required placeholder="e.g., John Dlamini">
+                    </div>
+                    <div class="field">
+                        <label for="rentAmount">Amount (ZAR) *</label>
+                        <input type="number" step="0.01" min="0.01" id="rentAmount" class="form-control" required placeholder="0.00">
+                    </div>
+                    <div class="field full" style="grid-column: span 2;">
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Add Rental Record</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="card">
+                <div class="card-hdr">
+                    <h2><i class="fas fa-table"></i> Rental Expense Ledger</h2>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr><th>Date</th><th>To</th><th>Ref Name & Surname</th><th>Amount</th><th>Bank Recon</th><th>Actions</th></tr>
+                        </thead>
+                        <tbody id="rentalsTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- D. GENERAL EXPENSES -->
+        <section class="panel" id="panel-general">
+            <div class="card">
+                <div class="card-hdr">
+                    <h2><i class="fas fa-wallet"></i> Record General Expense</h2>
+                </div>
+                <form id="generalForm" class="form-grid">
+                    <div class="field">
+                        <label for="genDate">Date *</label>
+                        <input type="date" id="genDate" class="form-control" required>
+                    </div>
+                    <div class="field">
+                        <label for="genTitle">Title *</label>
+                        <input type="text" id="genTitle" class="form-control" required placeholder="e.g., Fibre Internet & Hosting">
+                    </div>
+                    <div class="field">
+                        <label for="genCategory">Category *</label>
+                        <select id="genCategory" class="form-control">
+                            <option value="Internet & Connectivity">Internet & Connectivity</option>
+                            <option value="Hosting & Infrastructure">Hosting & Infrastructure</option>
+                            <option value="Software Subscriptions">Software Subscriptions</option>
+                            <option value="Transport">Transport</option>
+                            <option value="Printing">Printing</option>
+                            <option value="Business Administration">Business Administration</option>
+                            <option value="Operational Purchases">Operational Purchases</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="genAmount">Amount (ZAR) *</label>
+                        <input type="number" step="0.01" min="0.01" id="genAmount" class="form-control" required placeholder="0.00">
+                    </div>
+                    <div class="field full" style="grid-column: span 2;">
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Add General Expense</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="card">
+                <div class="card-hdr">
+                    <h2><i class="fas fa-filter"></i> General Expenses (<span id="genTotalLabel">R 0.00</span>)</h2>
+                    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                        <select id="genFilterCat" class="form-control" style="width:auto;" onchange="renderGeneralExpenses()">
+                            <option value="ALL">All Categories</option>
+                            <option value="Internet & Connectivity">Internet & Connectivity</option>
+                            <option value="Hosting & Infrastructure">Hosting & Infrastructure</option>
+                            <option value="Software Subscriptions">Software Subscriptions</option>
+                            <option value="Transport">Transport</option>
+                            <option value="Printing">Printing</option>
+                            <option value="Business Administration">Business Administration</option>
+                            <option value="Operational Purchases">Operational Purchases</option>
+                        </select>
+                        <input type="date" id="genFromDate" class="form-control" style="width:auto;" onchange="renderGeneralExpenses()">
+                        <input type="date" id="genToDate" class="form-control" style="width:auto;" onchange="renderGeneralExpenses()">
+                        <button type="button" class="btn btn-secondary" onclick="printFilteredGeneralExpenses()"><i class="fas fa-print"></i> Print Filtered</button>
+                    </div>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr><th>Date</th><th>Title</th><th>Category</th><th>Amount</th><th>Bank Recon</th><th>Actions</th></tr>
+                        </thead>
+                        <tbody id="generalTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- E. STATEMENTS, SCHEDULED PAYMENTS & FUTURE BUDGETS -->
+        <section class="panel" id="panel-statements">
+            <div class="card">
+                <div class="card-hdr">
+                    <h2><i class="fas fa-print"></i> Printable Financial Statements (Internal Management)</h2>
+                    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                        <button type="button" class="btn btn-secondary" onclick="printStatement('revenue')">Project Revenue Statement</button>
+                        <button type="button" class="btn btn-secondary" onclick="printStatement('rental')">Rental Expense Statement</button>
+                        <button type="button" class="btn btn-secondary" onclick="printStatement('general')">General Expense Statement</button>
+                        <button type="button" class="btn btn-primary" onclick="printStatement('complete')">Complete Financial Statement</button>
+                    </div>
+                </div>
+                <p style="font-size:.78rem; color:#888;">Select a statement to generate a clean printable / Save-as-PDF internal management report.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-hdr">
+                    <h2><i class="fas fa-calendar-check"></i> Scheduled Payments (Upcoming Commitments)</h2>
+                </div>
+                <form id="schedForm" class="form-grid" style="margin-bottom:14px;">
+                    <div class="field">
+                        <label for="schedDueDate">Due Date *</label>
+                        <input type="date" id="schedDueDate" class="form-control" required>
+                    </div>
+                    <div class="field">
+                        <label for="schedTitle">Commitment / Payee *</label>
+                        <input type="text" id="schedTitle" class="form-control" required placeholder="e.g., Cloud Hosting Renewal">
+                    </div>
+                    <div class="field">
+                        <label for="schedAmount">Expected Amount (ZAR) *</label>
+                        <input type="number" step="0.01" min="0.01" id="schedAmount" class="form-control" required>
+                    </div>
+                    <div class="field full">
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-clock"></i> Add Scheduled Payment</button>
+                    </div>
+                </form>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>Due Date</th><th>Commitment</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead>
+                        <tbody id="schedTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-hdr">
+                    <h2><i class="fas fa-sliders"></i> Future Budgets vs Actual Expenditure</h2>
+                </div>
+                <form id="budgetForm" class="form-grid" style="margin-bottom:14px;">
+                    <div class="field">
+                        <label for="budgetArea">Budget Allocation Area *</label>
+                        <input type="text" id="budgetArea" class="form-control" required placeholder="e.g., Vehicle and transport">
+                    </div>
+                    <div class="field">
+                        <label for="budgetPlanned">Planned Amount (ZAR) *</label>
+                        <input type="number" step="0.01" min="0" id="budgetPlanned" class="form-control" required placeholder="10000">
+                    </div>
+                    <div class="field">
+                        <label for="budgetActual">Actual Spend Recorded (ZAR) *</label>
+                        <input type="number" step="0.01" min="0" id="budgetActual" class="form-control" required placeholder="0">
+                    </div>
+                    <div class="field full">
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Save Budget Allocation</button>
+                    </div>
+                </form>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>Allocation Area</th><th>Planned</th><th>Actual</th><th>Variance</th><th>Actions</th></tr></thead>
+                        <tbody id="budgetTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ANALYTICS & TREND RECOMMENDATIONS -->
+        <section class="panel" id="panel-analytics">
+            <div class="charts-grid">
+                <div class="card">
+                    <div class="card-hdr"><h2>A. Revenue vs Expenditure</h2></div>
+                    <div class="chart-box"><canvas id="revExpChart"></canvas></div>
+                </div>
+                <div class="card">
+                    <div class="card-hdr"><h2>B. Monthly Revenue</h2></div>
+                    <div class="chart-box"><canvas id="monthlyRevChart"></canvas></div>
+                </div>
+                <div class="card">
+                    <div class="card-hdr"><h2>C. Revenue Growth</h2></div>
+                    <div class="chart-box"><canvas id="revGrowthChart"></canvas></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-hdr"><h2><i class="fas fa-lightbulb"></i> Trend-Based Financial Recommendations</h2></div>
+                <div id="recommendationsContainer"></div>
+            </div>
+        </section>
+
+        <!-- PRINTABLE SHEET -->
+        <div id="printableSheet"></div>
+    </main>
+</div>
+
+<div class="toast" id="toastBox"></div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import { getDatabase, ref, get, child, onValue, push, set, update, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDgPvBHxMVhOBkI4pGrekMFggqn1ifgqPE",
+  authDomain: "blacklogic-5bdbe.firebaseapp.com",
+  databaseURL: "https://blacklogic-5bdbe-default-rtdb.firebaseio.com",
+  projectId: "blacklogic-5bdbe",
+  storageBucket: "blacklogic-5bdbe.firebasestorage.app",
+  messagingSenderId: "10978908004",
+  appId: "1:10978908004:web:eb223b6d510aafabb84c71",
+  measurementId: "G-JYP6MJWMDB"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getDatabase(app);
+
+let dataState = {
+    projects: {},
+    invoices: {},
+    rentals: {},
+    generalExpenses: {},
+    scheduledPayments: {},
+    budgets: {}
+};
+
+let charts = { revExp: null, monthlyRev: null, revGrowth: null };
+
+function toast(msg) {
+    const el = document.getElementById("toastBox");
+    el.textContent = msg;
+    el.style.display = "block";
+    clearTimeout(window._t);
+    window._t = setTimeout(() => { el.style.display = "none"; }, 3200);
+}
+
+function fmtZar(n) {
+    const num = Number(n || 0);
+    return `R ${num.toLocaleString("en-ZA", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+}
+
+function esc(s) {
+    return String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+// AUTH
+onAuthStateChanged(auth, async (user) => {
+    if (!user) {
+        document.getElementById("authWrapper").style.display = "flex";
+        document.getElementById("financeApp").style.display = "none";
+        return;
+    }
+    try {
+        const snap = await get(child(ref(db), `administrator/users/${user.uid}`));
+        const okRole = snap.exists() && snap.val().active === true && snap.val().role === "admin";
+        if (okRole || user.email === "admin@blacklogic.com") {
+            document.getElementById("authWrapper").style.display = "none";
+            document.getElementById("financeApp").style.display = "block";
+            startListeners();
+            return;
+        }
+        throw new Error("Unauthorized");
+    } catch (_) {
+        document.getElementById("authError").textContent = "Administrator authorisation required for Finance Intelligence.";
+        document.getElementById("authError").style.display = "block";
+        await signOut(auth);
+    }
+});
+
+document.getElementById("loginForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const errEl = document.getElementById("authError");
+    errEl.style.display = "none";
+    try {
+        await signInWithEmailAndPassword(auth, document.getElementById("finEmail").value.trim(), document.getElementById("finPassword").value.trim());
+    } catch (err) {
+        errEl.textContent = err.message || "Sign-in failed.";
+        errEl.style.display = "block";
+    }
+});
+
+document.getElementById("logoutBtn").addEventListener("click", () => signOut(auth));
+
+function startListeners() {
+    const nodes = ["projects", "invoices", "rentals", "generalExpenses", "scheduledPayments", "budgets"];
+    nodes.forEach((node) => {
+        onValue(ref(db, `finance/${node}`), (snap) => {
+            dataState[node] = snap.val() || {};
+            recomputeAll();
+        });
+    });
+}
+
+window.switchTab = function(tab) {
+    document.querySelectorAll(".tab-btn").forEach(b => b.classList.toggle("active", b.dataset.tab === tab));
+    document.querySelectorAll(".panel").forEach(p => p.classList.toggle("active", p.id === `panel-${tab}`));
+    if (tab === "analytics") renderAnalyticsAndRecommendations();
+};
+
+function recomputeAll() {
+    const projects = Object.values(dataState.projects);
+    const invoices = Object.values(dataState.invoices);
+    const rentals = Object.values(dataState.rentals);
+    const general = Object.values(dataState.generalExpenses);
+
+    // Invoiced revenue from projects + invoices (without double counting identical invoice refs)
+    const projInvoiced = projects.reduce((s, p) => s + Number(p.price || 0), 0);
+    const invTotal = invoices.reduce((s, i) => s + Number(i.amount || 0), 0);
+    const totalInvoiced = Math.max(projInvoiced, invTotal);
+
+    const projPaid = projects.reduce((s, p) => s + Number(p.paidAmount || 0), 0);
+    const invPaid = invoices.reduce((s, i) => s + Number(i.paidAmount || 0), 0);
+    const totalCashReceived = Math.max(projPaid, invPaid);
+
+    const totalRentals = rentals.reduce((s, r) => s + Number(r.amount || 0), 0);
+    const totalGeneral = general.reduce((s, g) => s + Number(g.amount || 0), 0);
+    const netPosition = totalCashReceived - totalRentals - totalGeneral;
+
+    document.getElementById("kpiInvoicedRevenue").textContent = fmtZar(totalInvoiced);
+    document.getElementById("kpiCashReceived").textContent = fmtZar(totalCashReceived);
+    document.getElementById("kpiOutstandingSub").textContent = `Outstanding: ${fmtZar(Math.max(0, totalInvoiced - totalCashReceived))}`;
+    document.getElementById("kpiRentalExpense").textContent = fmtZar(totalRentals);
+    document.getElementById("kpiGeneralExpense").textContent = fmtZar(totalGeneral);
+    document.getElementById("kpiNetPosition").textContent = fmtZar(netPosition);
+
+    renderProjects();
+    renderInvoices();
+    renderRentals();
+    renderGeneralExpenses();
+    renderScheduled();
+    renderBudgets();
+    renderAnalyticsAndRecommendations();
+}
+
+// A. PROJECTS
+document.getElementById("projectForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const price = Number(document.getElementById("projPrice").value || 0);
+    const paidAmount = Math.min(price, Math.max(0, Number(document.getElementById("projPaidAmount").value || 0)));
+    await set(push(ref(db, "finance/projects")), {
+        date: document.getElementById("projDate").value,
+        title: document.getElementById("projTitle").value.trim(),
+        from: document.getElementById("projFrom").value.trim(),
+        price,
+        paidAmount,
+        invoiceRef: document.getElementById("projInvoiceRef").value.trim(),
+        reconciled: false
+    });
+    e.target.reset();
+    toast("Project saved to revenue register.");
+});
+
+window.renderProjects = function() {
+    const q = (document.getElementById("projSearch")?.value || "").toLowerCase();
+    const tbody = document.getElementById("projectsTableBody");
+    tbody.innerHTML = "";
+    Object.entries(dataState.projects).reverse().forEach(([k, p]) => {
+        const hay = `${p.title} ${p.from} ${p.invoiceRef} ${p.date}`.toLowerCase();
+        if (q && !hay.includes(q)) return;
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td>${esc(p.date)}</td>
+            <td>${esc(p.title)}</td>
+            <td>${esc(p.from)}</td>
+            <td>${fmtZar(p.price)}</td>
+            <td>${fmtZar(p.paidAmount || 0)}</td>
+            <td><strong>${esc(p.invoiceRef || "—")}</strong></td>
+            <td><span class="badge ${p.reconciled ? "b-recon" : "b-unpaid"}">${p.reconciled ? "Matched" : "Unmatched"}</span></td>
+            <td>
+                <button class="btn btn-secondary" onclick="toggleRecon('projects','${k}',${!p.reconciled})">Recon</button>
+                <button class="btn btn-danger" onclick="delItem('finance/projects','${k}')"><i class="fas fa-trash"></i></button>
+            </td>
+        `;
+        tbody.appendChild(tr);
+    });
+};
+
+// B. INVOICE GENERATOR (TO, AMOUNT, DATE + PARTIAL PAYMENTS)
+document.getElementById("invoiceForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const to = document.getElementById("invTo").value.trim();
+    const amount = Number(document.getElementById("invAmount").value || 0);
+    const date = document.getElementById("invDate").value;
+    const compactDate = date.replaceAll("-", "");
+    const suffix = Math.floor(1000 + Math.random() * 9000);
+    const invoiceRef = `Invoice${compactDate}-${suffix}.pdf`;
+
+    await set(push(ref(db, "finance/invoices")), {
+        invoiceRef, to, amount, date, paidAmount: 0, status: "Unpaid"
+    });
+    e.target.reset();
+    toast(`Invoice ${invoiceRef} saved.`);
+});
+
+window.renderInvoices = function() {
+    const tbody = document.getElementById("invoicesTableBody");
+    tbody.innerHTML = "";
+    Object.entries(dataState.invoices).reverse().forEach(([k, inv]) => {
+        const amt = Number(inv.amount || 0);
+        const paid = Number(inv.paidAmount || 0);
+        const bal = Math.max(0, amt - paid);
+        const status = paid >= amt && amt > 0 ? "Paid" : (paid > 0 ? "Partial" : "Unpaid");
+        const bClass = status === "Paid" ? "b-paid" : (status === "Partial" ? "b-partial" : "b-unpaid");
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td><strong>${esc(inv.invoiceRef)}</strong></td>
+            <td>${esc(inv.date)}</td>
+            <td>${esc(inv.to)}</td>
+            <td>${fmtZar(amt)}</td>
+            <td>${fmtZar(paid)}</td>
+            <td>${fmtZar(bal)}</td>
+            <td><span class="badge ${bClass}">${status}</span></td>
+            <td>
+                <button class="btn btn-secondary" onclick="recordPartialPayment('${k}')">+ Payment</button>
+                <button class="btn btn-primary" onclick="printInvoice('${k}')"><i class="fas fa-print"></i> PDF/Print</button>
+                <button class="btn btn-danger" onclick="delItem('finance/invoices','${k}')"><i class="fas fa-trash"></i></button>
+            </td>
+        `;
+        tbody.appendChild(tr);
+    });
+};
+
+window.recordPartialPayment = async function(key) {
+    const inv = dataState.invoices[key];
+    if (!inv) return;
+    const input = prompt(`Record payment received for ${inv.invoiceRef} (Balance due: ${fmtZar(Math.max(0, Number(inv.amount || 0) - Number(inv.paidAmount || 0)))}):`);
+    if (input === null) return;
+    const addAmt = Number(input);
+    if (!Number.isFinite(addAmt) || addAmt <= 0) {
+        toast("Enter a valid positive amount.");
+        return;
+    }
+    const nextPaid = Number(inv.paidAmount || 0) + addAmt;
+    const status = nextPaid >= Number(inv.amount || 0) ? "Paid" : "Partial";
+    await update(ref(db, `finance/invoices/${key}`), { paidAmount: nextPaid, status });
+    toast(`Recorded ${fmtZar(addAmt)} payment on ${inv.invoiceRef}.`);
+};
+
+window.printInvoice = function(key) {
+    const inv = dataState.invoices[key];
+    if (!inv) return;
+    const sheet = document.getElementById("printableSheet");
+    sheet.innerHTML = `
+        <div class="inv-brand-row">
+            <div class="brand-icon-hdr"><i class="fas fa-microchip"></i></div>
+            <div>
+                <h2 style="font-size:1.15rem;">BlackLogic Technologies Hardware and Projects Pty Ltd</h2>
+                <div style="font-size:.78rem; color:#444;">Reg: 2025/885280/07 · blacklogictechnologies@gmail.com · blacklogictechnologies.netlify.app · 079 311 0798</div>
+            </div>
+        </div>
+        <hr style="margin:14px 0;">
+        <p><strong>Invoice Reference:</strong> ${esc(inv.invoiceRef)}</p>
+        <p><strong>Date:</strong> ${esc(inv.date)}</p>
+        <p><strong>To:</strong> ${esc(inv.to)}</p>
+        <p style="margin-top:14px; font-size:1.1rem;"><strong>Amount:</strong> ${fmtZar(inv.amount)}</p>
+        <p><strong>Amount Paid:</strong> ${fmtZar(inv.paidAmount || 0)} · <strong>Balance Due:</strong> ${fmtZar(Math.max(0, Number(inv.amount || 0) - Number(inv.paidAmount || 0)))}</p>
+    `;
+    window.print();
+};
+
+// C. RENTALS
+document.getElementById("rentalForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    await set(push(ref(db, "finance/rentals")), {
+        date: document.getElementById("rentDate").value,
+        to: document.getElementById("rentTo").value.trim(),
+        refPerson: document.getElementById("rentRefPerson").value.trim(),
+        amount: Number(document.getElementById("rentAmount").value || 0),
+        reconciled: false
+    });
+    e.target.reset();
+    toast("Rental expense recorded.");
+});
+
+window.renderRentals = function() {
+    const tbody = document.getElementById("rentalsTableBody");
+    tbody.innerHTML = "";
+    Object.entries(dataState.rentals).reverse().forEach(([k, r]) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td>${esc(r.date)}</td><td>${esc(r.to)}</td><td>${esc(r.refPerson)}</td><td>${fmtZar(r.amount)}</td>
+            <td><span class="badge ${r.reconciled ? "b-recon" : "b-unpaid"}">${r.reconciled ? "Matched" : "Unmatched"}</span></td>
+            <td>
+                <button class="btn btn-secondary" onclick="toggleRecon('rentals','${k}',${!r.reconciled})">Recon</button>
+                <button class="btn btn-danger" onclick="delItem('finance/rentals','${k}')"><i class="fas fa-trash"></i></button>
+            </td>
+        `;
+        tbody.appendChild(tr);
+    });
+};
+
+// D. GENERAL EXPENSES
+document.getElementById("generalForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    await set(push(ref(db, "finance/generalExpenses")), {
+        date: document.getElementById("genDate").value,
+        title: document.getElementById("genTitle").value.trim(),
+        category: document.getElementById("genCategory").value,
+        amount: Number(document.getElementById("genAmount").value || 0),
+        reconciled: false
+    });
+    e.target.reset();
+    toast("General expense recorded.");
+});
+
+function getFilteredGeneral() {
+    const cat = document.getElementById("genFilterCat")?.value || "ALL";
+    const from = document.getElementById("genFromDate")?.value || "";
+    const to = document.getElementById("genToDate")?.value || "";
+    return Object.entries(dataState.generalExpenses).filter(([, g]) => {
+        if (cat !== "ALL" && g.category !== cat) return false;
+        if (from && g.date < from) return false;
+        if (to && g.date > to) return false;
+        return true;
+    });
+}
+
+window.renderGeneralExpenses = function() {
+    const rows = getFilteredGeneral().reverse();
+    const total = rows.reduce((s, [, g]) => s + Number(g.amount || 0), 0);
+    document.getElementById("genTotalLabel").textContent = fmtZar(total);
+    const tbody = document.getElementById("generalTableBody");
+    tbody.innerHTML = "";
+    rows.forEach(([k, g]) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td>${esc(g.date)}</td><td>${esc(g.title)}</td><td>${esc(g.category)}</td><td>${fmtZar(g.amount)}</td>
+            <td><span class="badge ${g.reconciled ? "b-recon" : "b-unpaid"}">${g.reconciled ? "Matched" : "Unmatched"}</span></td>
+            <td>
+                <button class="btn btn-secondary" onclick="toggleRecon('generalExpenses','${k}',${!g.reconciled})">Recon</button>
+                <button class="btn btn-danger" onclick="delItem('finance/generalExpenses','${k}')"><i class="fas fa-trash"></i></button>
+            </td>
+        `;
+        tbody.appendChild(tr);
+    });
+};
+
+window.printFilteredGeneralExpenses = function() {
+    const rows = getFilteredGeneral();
+    const sum = rows.reduce((s, [, g]) => s + Number(g.amount || 0), 0);
+    const sheet = document.getElementById("printableSheet");
+    sheet.innerHTML = `
+        <h2>BlackLogic Finance Intelligence — General Expenses Report</h2>
+        <p style="margin-bottom:12px;">Total Filtered Expense: <strong>${fmtZar(sum)}</strong></p>
+        <table border="1" cellpadding="8" cellspacing="0" width="100%">
+            <thead><tr><th>Date</th><th>Title</th><th>Category</th><th>Amount</th></tr></thead>
+            <tbody>${rows.map(([, g]) => `<tr><td>${esc(g.date)}</td><td>${esc(g.title)}</td><td>${esc(g.category)}</td><td>${fmtZar(g.amount)}</td></tr>`).join("")}</tbody>
+        </table>
+    `;
+    window.print();
+};
+
+// SCHEDULED PAYMENTS & BUDGETS
+document.getElementById("schedForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    await set(push(ref(db, "finance/scheduledPayments")), {
+        dueDate: document.getElementById("schedDueDate").value,
+        title: document.getElementById("schedTitle").value.trim(),
+        amount: Number(document.getElementById("schedAmount").value || 0),
+        status: "Scheduled"
+    });
+    e.target.reset();
+    toast("Scheduled payment added.");
+});
+
+function renderScheduled() {
+    const tbody = document.getElementById("schedTableBody");
+    tbody.innerHTML = "";
+    Object.entries(dataState.scheduledPayments).forEach(([k, s]) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td>${esc(s.dueDate)}</td><td>${esc(s.title)}</td><td>${fmtZar(s.amount)}</td><td><span class="badge b-partial">${esc(s.status || "Scheduled")}</span></td><td><button class="btn btn-danger" onclick="delItem('finance/scheduledPayments','${k}')"><i class="fas fa-trash"></i></button></td>`;
+        tbody.appendChild(tr);
+    });
+}
+
+document.getElementById("budgetForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    await set(push(ref(db, "finance/budgets")), {
+        area: document.getElementById("budgetArea").value.trim(),
+        planned: Number(document.getElementById("budgetPlanned").value || 0),
+        actual: Number(document.getElementById("budgetActual").value || 0)
+    });
+    e.target.reset();
+    toast("Budget allocation saved.");
+});
+
+function renderBudgets() {
+    const tbody = document.getElementById("budgetTableBody");
+    tbody.innerHTML = "";
+    Object.entries(dataState.budgets).forEach(([k, b]) => {
+        const planned = Number(b.planned || 0);
+        const actual = Number(b.actual || 0);
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td>${esc(b.area)}</td><td>${fmtZar(planned)}</td><td>${fmtZar(actual)}</td><td>${fmtZar(planned - actual)}</td><td><button class="btn btn-danger" onclick="delItem('finance/budgets','${k}')"><i class="fas fa-trash"></i></button></td>`;
+        tbody.appendChild(tr);
+    });
+}
+
+window.toggleRecon = async function(node, key, nextVal) {
+    await update(ref(db, `finance/${node}/${key}`), { reconciled: nextVal });
+    toast("Bank reconciliation status updated.");
+};
+
+window.delItem = async function(path, key) {
+    if (!confirm("Permanently delete this financial record from Firebase?")) return;
+    await remove(ref(db, `${path}/${key}`));
+    toast("Record deleted.");
+};
+
+// STATEMENTS
+window.printStatement = function(type) {
+    const projects = Object.values(dataState.projects);
+    const rentals = Object.values(dataState.rentals);
+    const general = Object.values(dataState.generalExpenses);
+    const revSum = projects.reduce((s, p) => s + Number(p.paidAmount || p.price || 0), 0);
+    const rentSum = rentals.reduce((s, r) => s + Number(r.amount || 0), 0);
+    const genSum = general.reduce((s, g) => s + Number(g.amount || 0), 0);
+
+    const sheet = document.getElementById("printableSheet");
+    sheet.innerHTML = `
+        <h2>BlackLogic Finance Intelligence — ${type.toUpperCase()} STATEMENT</h2>
+        <p style="font-size:.8rem; color:#555; margin-bottom:14px;">Internal management report (not a statutory audit). Generated ${new Date().toISOString().slice(0, 10)}.</p>
+        <p><strong>Project Revenue:</strong> ${fmtZar(revSum)}</p>
+        <p><strong>Rental Expenses:</strong> ${fmtZar(rentSum)}</p>
+        <p><strong>General Expenses:</strong> ${fmtZar(genSum)}</p>
+        <p style="margin-top:8px;"><strong>Net Position (Revenue − Rental − General):</strong> ${fmtZar(revSum - rentSum - genSum)}</p>
+    `;
+    window.print();
+};
+
+// ANALYTICS & RECOMMENDATIONS
+function renderAnalyticsAndRecommendations() {
+    if (typeof Chart === "undefined") return;
+    const projects = Object.values(dataState.projects);
+    const rentals = Object.values(dataState.rentals);
+    const general = Object.values(dataState.generalExpenses);
+
+    const revCash = projects.reduce((s, p) => s + Number(p.paidAmount || 0), 0);
+    const rentTotal = rentals.reduce((s, r) => s + Number(r.amount || 0), 0);
+    const genTotal = general.reduce((s, g) => s + Number(g.amount || 0), 0);
+
+    if (charts.revExp) charts.revExp.destroy();
+    const c1 = document.getElementById("revExpChart")?.getContext("2d");
+    if (c1) {
+        charts.revExp = new Chart(c1, {
+            type: "doughnut",
+            data: {
+                labels: ["Cash Received", "Rental Expenses", "General Expenses"],
+                datasets: [{ data: [revCash, rentTotal, genTotal], backgroundColor: ["#00c8d7", "#0088ff", "#ff6b6b"], borderColor: "#0c0c0c", borderWidth: 2 }]
+            },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: "#ccc" } } } }
+        });
+    }
+
+    const byMonth = {};
+    projects.forEach(p => {
+        const m = (p.date || "").slice(0, 7) || "Unknown";
+        byMonth[m] = (byMonth[m] || 0) + Number(p.paidAmount || p.price || 0);
+    });
+    const months = Object.keys(byMonth).sort();
+    const vals = months.map(m => byMonth[m]);
+
+    if (charts.monthlyRev) charts.monthlyRev.destroy();
+    const c2 = document.getElementById("monthlyRevChart")?.getContext("2d");
+    if (c2) {
+        charts.monthlyRev = new Chart(c2, {
+            type: "bar",
+            data: { labels: months, datasets: [{ label: "Revenue (ZAR)", data: vals, backgroundColor: "#00c8d7" }] },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { ticks: { color: "#ccc" } }, y: { ticks: { color: "#ccc" }, beginAtZero: true } } }
+        });
+    }
+
+    const growth = vals.map((v, idx) => idx === 0 || vals[idx - 1] === 0 ? 0 : Number((((v - vals[idx - 1]) / vals[idx - 1]) * 100).toFixed(1)));
+    if (charts.revGrowth) charts.revGrowth.destroy();
+    const c3 = document.getElementById("revGrowthChart")?.getContext("2d");
+    if (c3) {
+        charts.revGrowth = new Chart(c3, {
+            type: "line",
+            data: { labels: months, datasets: [{ label: "Growth %", data: growth, borderColor: "#00c8d7", tension: 0.25 }] },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { ticks: { color: "#ccc" } }, y: { ticks: { color: "#ccc" } } } }
+        });
+    }
+
+    const recBox = document.getElementById("recommendationsContainer");
+    const recs = [];
+    if (vals.length >= 3 && vals[vals.length - 1] < vals[vals.length - 2] && vals[vals.length - 1] < vals[vals.length - 3]) {
+        recs.push("Revenue has declined. Increase business-development outreach, review procurement opportunities and prioritise client acquisition.");
+    } else if (vals.length >= 2 && vals[vals.length - 1] > vals[vals.length - 2]) {
+        recs.push("Revenue is showing positive growth. Maintain business-development activity, manage expenditure and continue strengthening operations.");
+    }
+    if ((rentTotal + genTotal) > revCash && (rentTotal + genTotal) > 0) {
+        recs.push("Operating expenses are increasing faster than revenue. Review expenditure and upcoming financial commitments.");
+    }
+    if (!recs.length) {
+        recs.push("Record project receipts and expenses to generate trend-based financial recommendations.");
+    }
+    recBox.innerHTML = recs.map(r => `<div class="rec-box">${esc(r)}</div>`).join("");
+}
+
+window.exportFinanceJson = function() {
+    const blob = new Blob([JSON.stringify({ exportedAt: new Date().toISOString(), ...dataState }, null, 2)], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = `BlackLogic_Finance_${new Date().toISOString().slice(0, 10)}.json`;
+    a.click();
+    toast("Finance JSON exported.");
+};
+</script>
+</body>
+</html>

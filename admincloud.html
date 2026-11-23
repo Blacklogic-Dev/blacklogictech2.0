@@ -1424,6 +1424,85 @@ footer {
         <i class="fas fa-circle-check" style="color:#00c8d7;"></i>
         <span id="toastText">Action completed</span>
     </div>
+<!-- FINANCE INTELLIGENCE ACCESS GRID -->
+<section class="finance-link-grid" aria-label="Finance Intelligence Access">
+    <div class="finance-link-card">
+        <div class="finance-link-meta">
+            <span class="finance-link-badge"><i class="fas fa-coins"></i> SEPARATE CONSOLE</span>
+            <h3>BlackLogic Finance Intelligence</h3>
+            <p>Revenue register, invoice generator, rentals, expenses, statements, and financial analytics.</p>
+        </div>
+        <a href="finances.html" class="finance-open-btn">
+            <i class="fas fa-arrow-up-right-from-square"></i> Open finances.html
+        </a>
+    </div>
+</section>
+
+<style>
+.finance-link-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.finance-link-card {
+    background: rgba(12, 12, 12, 0.94);
+    border: 1px solid rgba(0, 200, 215, 0.22);
+    border-radius: 16px;
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.finance-link-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #00c8d7;
+    background: rgba(0, 200, 215, 0.1);
+    border: 1px solid rgba(0, 200, 215, 0.25);
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 8px;
+}
+
+.finance-link-meta h3 {
+    font-size: 1rem;
+    color: #fff;
+    margin-bottom: 4px;
+}
+
+.finance-link-meta p {
+    font-size: 0.78rem;
+    color: #9aa5b1;
+}
+
+.finance-open-btn {
+    background: #00c8d7;
+    color: #000;
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 11px 18px;
+    border-radius: 26px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.2s ease;
+}
+
+.finance-open-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(0, 200, 215, 0.25);
+}
+</style>
 
     <footer>
         © 2026 BlackLogic Technologies Pty Ltd · BlackLogic Central Intelligence Infrastructure
