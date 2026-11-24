@@ -377,6 +377,70 @@ header {
     box-shadow: 0 0 18px rgba(0,200,215,.12);
 }
 
+/* SUB-TABS & FILTER PILLS (BUSINESS ENQUIRIES) */
+.sub-nav-bar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.sub-tab-btn {
+    background: #121212;
+    border: 1px solid rgba(255,255,255,.08);
+    color: #b0bac5;
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-size: .78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sub-tab-btn:hover {
+    color: #fff;
+    border-color: rgba(0,200,215,.35);
+}
+
+.sub-tab-btn.active {
+    background: rgba(0,200,215,.14);
+    color: #00c8d7;
+    border-color: #00c8d7;
+}
+
+.filter-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.filter-pill {
+    background: #141414;
+    border: 1px solid rgba(255,255,255,.08);
+    color: #9aa5b1;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: .72rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.filter-pill:hover {
+    color: #fff;
+    border-color: rgba(0,200,215,.35);
+}
+
+.filter-pill.active {
+    background: rgba(0,200,215,.16);
+    color: #00c8d7;
+    border-color: #00c8d7;
+}
+
 /* METRICS GRID */
 .metrics-grid {
     display: grid;
@@ -613,6 +677,15 @@ header {
     text-overflow: ellipsis;
 }
 
+.item-subject small {
+    display: block;
+    font-size: .72rem;
+    color: #888;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .badge {
     padding: 4px 10px;
     border-radius: 20px;
@@ -624,23 +697,32 @@ header {
     display: inline-block;
 }
 
-.badge-pending {
+.badge-pending,
+.badge-new {
     background: rgba(255,193,7,.12);
     color: #ffc107;
     border: 1px solid rgba(255,193,7,.3);
 }
 
 .badge-replied,
-.badge-converted {
+.badge-converted,
+.badge-resolved {
     background: rgba(46,204,113,.14);
     color: #2ecc71;
     border: 1px solid rgba(46,204,113,.35);
 }
 
-.badge-approved {
+.badge-approved,
+.badge-progress {
     background: rgba(0,200,215,.14);
     color: #00c8d7;
     border: 1px solid rgba(0,200,215,.35);
+}
+
+.badge-awaiting {
+    background: rgba(139, 92, 246, .15);
+    color: #b794f4;
+    border: 1px solid rgba(139, 92, 246, .35);
 }
 
 .badge-compliance,
@@ -848,6 +930,61 @@ header {
     font-size: .86rem;
     color: #ccc;
     line-height: 1.65;
+    white-space: pre-wrap;
+}
+
+/* RESOLUTION WORKSPACE & HISTORY INSIDE ENQUIRY MODAL */
+.resolution-workspace {
+    background: #111;
+    border: 1px solid rgba(46, 204, 113, .28);
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.resolution-tag {
+    font-size: .68rem;
+    letter-spacing: 1.5px;
+    color: #2ecc71;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.resolution-history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.resolution-entry {
+    background: #0b0b0b;
+    border: 1px solid rgba(255,255,255,.07);
+    border-left: 3px solid #2ecc71;
+    border-radius: 10px;
+    padding: 12px 14px;
+}
+
+.resolution-entry-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    font-size: .72rem;
+    color: #9aa5b1;
+    margin-bottom: 6px;
+}
+
+.resolution-entry-meta strong {
+    color: #00c8d7;
+}
+
+.resolution-entry p {
+    font-size: .8rem;
+    color: #ddd;
+    line-height: 1.55;
     white-space: pre-wrap;
 }
 
@@ -1146,20 +1283,62 @@ footer {
             </div>
         </section>
 
-        <!-- SECTION 1: BUSINESS ENQUIRIES -->
+        <!-- SECTION 1: BUSINESS ENQUIRIES (INBOX + CENTRAL RESOLUTION REGISTER) -->
         <section class="section-panel active" id="panel-enquiries">
-            <div class="controls-bar">
-                <div class="search-box">
-                    <i class="fas fa-search"></i>
-                    <input type="text" id="searchEnquiriesInput" placeholder="Search enquiries by name, ref ID, company, or division..." onkeyup="renderEnquiries()">
+            <div class="sub-nav-bar" role="tablist" aria-label="Business Enquiries Views">
+                <button type="button" class="sub-tab-btn active" id="subtab-enquiry-inbox" onclick="switchEnquirySubTab('inbox')">
+                    <i class="fas fa-inbox"></i> Enquiry Inbox
+                </button>
+                <button type="button" class="sub-tab-btn" id="subtab-central-resolutions" onclick="switchEnquirySubTab('resolutions')">
+                    <i class="fas fa-clipboard-check"></i> Central Resolution Register (<span id="centralResolutionCount">0</span>)
+                </button>
+            </div>
+
+            <!-- SUB-VIEW A: INBOX -->
+            <div id="enquirySubView-inbox">
+                <div class="controls-bar">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchEnquiriesInput" placeholder="Search enquiries by name, ref ID, company, or division..." onkeyup="renderEnquiries()">
+                    </div>
+                    <div class="filter-pills" id="enquiryStatusFilters">
+                        <button type="button" class="filter-pill active" data-status="All" onclick="setEnquiryStatusFilter('All')">All</button>
+                        <button type="button" class="filter-pill" data-status="New" onclick="setEnquiryStatusFilter('New')">New</button>
+                        <button type="button" class="filter-pill" data-status="In Progress" onclick="setEnquiryStatusFilter('In Progress')">In Progress</button>
+                        <button type="button" class="filter-pill" data-status="Awaiting Response" onclick="setEnquiryStatusFilter('Awaiting Response')">Awaiting Response</button>
+                        <button type="button" class="filter-pill" data-status="Resolved" onclick="setEnquiryStatusFilter('Resolved')">Resolved</button>
+                        <button type="button" class="filter-pill" data-status="Closed" onclick="setEnquiryStatusFilter('Closed')">Closed</button>
+                    </div>
+                </div>
+
+                <div class="inbox-card">
+                    <div class="inbox-list" id="enquiriesList">
+                        <div class="empty-state">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Loading Business Enquiries...</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="inbox-card">
-                <div class="inbox-list" id="enquiriesList">
-                    <div class="empty-state">
-                        <i class="fas fa-spinner fa-spin"></i>
-                        <p>Loading Business Enquiries...</p>
+            <!-- SUB-VIEW B: CENTRAL RESOLUTION REGISTER -->
+            <div id="enquirySubView-resolutions" style="display:none;">
+                <div class="controls-bar">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchResolutionsInput" placeholder="Search resolutions by enquiry ref, client, outcome, or action taken..." onkeyup="renderCentralResolutions()">
+                    </div>
+                    <span style="font-size:.75rem; color:#9fb8c2;">
+                        Internal resolution records across all enquiries · Click any entry to open its enquiry
+                    </span>
+                </div>
+
+                <div class="inbox-card">
+                    <div class="inbox-list" id="centralResolutionsList">
+                        <div class="empty-state">
+                            <i class="fas fa-clipboard-check"></i>
+                            <p>No internal resolutions logged yet.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1424,6 +1603,7 @@ footer {
         <i class="fas fa-circle-check" style="color:#00c8d7;"></i>
         <span id="toastText">Action completed</span>
     </div>
+
 <!-- FINANCE INTELLIGENCE ACCESS GRID -->
 <section class="finance-link-grid" aria-label="Finance Intelligence Access">
     <div class="finance-link-card">
@@ -1617,9 +1797,22 @@ const SUPPLIER_STATUSES = [
     "Rejected"
 ];
 
+const ENQUIRY_STATUSES = [
+    "New",
+    "In Progress",
+    "Awaiting Response",
+    "Resolved",
+    "Closed",
+    "Pending",
+    "Replied",
+    "Approved"
+];
+
 const PROCUREMENT_TYPES = ["RFQ", "RFP", "Tender", "RFI", "Funding", "Partnership"];
 
 let currentSection = "enquiries";
+let currentEnquirySubTab = "inbox";
+let currentEnquiryStatusFilter = "All";
 let rawConsultations = {};
 let rawLeads = {};
 let rawSuppliers = {};
@@ -1668,6 +1861,44 @@ function formatDateShort(isoString) {
     if (Number.isNaN(d.getTime())) return String(isoString);
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     return `${d.getFullYear()} - ${months[d.getMonth()]} ${String(d.getDate()).padStart(2, "0")}`;
+}
+
+function toDateInputValue(isoOrDate) {
+    if (!isoOrDate) return new Date().toISOString().slice(0, 10);
+    const d = new Date(isoOrDate);
+    if (Number.isNaN(d.getTime())) return new Date().toISOString().slice(0, 10);
+    return d.toISOString().slice(0, 10);
+}
+
+function getEffectiveReceivedDate(item) {
+    return item.recordedEventDate || item.receivedDate || item.timestamp || "";
+}
+
+function getEnquiryResolutionsArray(item) {
+    if (!item || !item.resolutions) return [];
+    if (Array.isArray(item.resolutions)) return item.resolutions;
+    return Object.entries(item.resolutions).map(([id, val]) => ({ id, ...val }));
+}
+
+function getAllResolutionsFlat() {
+    const list = [];
+    Object.keys(rawConsultations).forEach((key) => {
+        const enq = rawConsultations[key];
+        const entries = getEnquiryResolutionsArray(enq);
+        entries.forEach((res) => {
+            list.push({
+                enquiryKey: key,
+                enquiryId: enq.enquiryId || key,
+                clientName: enq.name || "Unnamed",
+                company: enq.company || "",
+                division: enq.division || "General",
+                enquiryStatus: enq.status || "New",
+                ...res
+            });
+        });
+    });
+    list.sort((a, b) => new Date(b.resolutionDate || b.createdAt || 0) - new Date(a.resolutionDate || a.createdAt || 0));
+    return list;
 }
 
 // AUTHENTICATION FLOW
@@ -1750,6 +1981,10 @@ function initListeners() {
         rawConsultations = snapshot.val() || {};
         document.getElementById("consultTotalCount").textContent = Object.keys(rawConsultations).length;
         renderEnquiries();
+        renderCentralResolutions();
+        if (activeModalContext?.section === "enquiries" && rawConsultations[activeModalContext.key]) {
+            renderEnquiryResolutionHistory(activeModalContext.key);
+        }
         updateAnalyticsCharts();
     });
 
@@ -1790,8 +2025,48 @@ window.switchPrimarySection = function(sectionName) {
 };
 
 // ---------------------------------------------------------------------------
-// SECTION 1: BUSINESS ENQUIRIES
+// SECTION 1: BUSINESS ENQUIRIES (INBOX + RESOLUTION + CENTRAL REGISTER)
 // ---------------------------------------------------------------------------
+window.switchEnquirySubTab = function(subTab) {
+    currentEnquirySubTab = subTab;
+    document.getElementById("subtab-enquiry-inbox").classList.toggle("active", subTab === "inbox");
+    document.getElementById("subtab-central-resolutions").classList.toggle("active", subTab === "resolutions");
+    document.getElementById("enquirySubView-inbox").style.display = subTab === "inbox" ? "block" : "none";
+    document.getElementById("enquirySubView-resolutions").style.display = subTab === "resolutions" ? "block" : "none";
+    if (subTab === "resolutions") {
+        renderCentralResolutions();
+    }
+};
+
+window.setEnquiryStatusFilter = function(statusVal) {
+    currentEnquiryStatusFilter = statusVal;
+    document.querySelectorAll("#enquiryStatusFilters .filter-pill").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.status === statusVal);
+    });
+    renderEnquiries();
+};
+
+function getEnquiryBadgeClass(status) {
+    switch (status) {
+        case "New":
+        case "Pending":
+            return "badge-new";
+        case "In Progress":
+            return "badge-progress";
+        case "Awaiting Response":
+            return "badge-awaiting";
+        case "Resolved":
+        case "Replied":
+            return "badge-resolved";
+        case "Closed":
+            return "badge-muted";
+        case "Approved":
+            return "badge-approved";
+        default:
+            return "badge-pending";
+    }
+}
+
 window.renderEnquiries = function() {
     const container = document.getElementById("enquiriesList");
     const search = (document.getElementById("searchEnquiriesInput")?.value || "").toLowerCase();
@@ -1806,35 +2081,85 @@ window.renderEnquiries = function() {
     let count = 0;
     keys.forEach((key) => {
         const item = { ...rawConsultations[key], _firebaseKey: key };
-        const match = `${item.name || ""} ${item.company || ""} ${item.email || ""} ${item.division || ""} ${item.enquiryId || ""}`.toLowerCase();
+        const status = item.status || "New";
+
+        if (currentEnquiryStatusFilter !== "All" && status !== currentEnquiryStatusFilter) return;
+
+        const match = `${item.name || ""} ${item.company || ""} ${item.email || ""} ${item.division || ""} ${item.enquiryId || ""} ${item.challenge || ""} ${status}`.toLowerCase();
         if (search && !match.includes(search)) return;
         count++;
 
-        const status = item.status || "Pending";
-        let badgeClass = "badge-pending";
-        if (status === "Replied") badgeClass = "badge-replied";
-        if (status === "Approved") badgeClass = "badge-approved";
+        const resCount = getEnquiryResolutionsArray(item).length;
+        const previewText = (item.challenge || "No description provided.").replace(/\s+/g, " ").trim();
+        const shortPreview = previewText.length > 90 ? previewText.slice(0, 90) + "..." : previewText;
 
         const row = document.createElement("div");
         row.className = "inbox-item";
         row.onclick = () => openEnquiryModal(key);
         row.innerHTML = `
-            <div class="item-date">${escapeHtml(formatDateShort(item.timestamp))}</div>
+            <div class="item-date">${escapeHtml(formatDateShort(getEffectiveReceivedDate(item)))}</div>
             <div class="item-sender">
                 ${escapeHtml(item.name || "Unnamed")}
                 <small>${escapeHtml(item.company || item.email || "N/A")}</small>
             </div>
             <div class="item-subject">
                 <strong>[${escapeHtml(item.enquiryId || key)}]</strong> ${escapeHtml(item.division || "General Enquiry")}
+                <small>${escapeHtml(shortPreview)}${resCount ? ` · ${resCount} Resolution${resCount > 1 ? "s" : ""}` : ""}</small>
             </div>
-            <div><span class="badge ${badgeClass}">${escapeHtml(status)}</span></div>
+            <div><span class="badge ${getEnquiryBadgeClass(status)}">${escapeHtml(status)}</span></div>
             <div style="text-align:right; color:#666;"><i class="fas fa-chevron-right"></i></div>
         `;
         container.appendChild(row);
     });
 
     if (!count) {
-        container.innerHTML = `<div class="empty-state"><i class="fas fa-search"></i><p>No matching enquiries found.</p></div>`;
+        container.innerHTML = `<div class="empty-state"><i class="fas fa-search"></i><p>No matching enquiries found for filter "${escapeHtml(currentEnquiryStatusFilter)}".</p></div>`;
+    }
+};
+
+window.renderCentralResolutions = function() {
+    const allRes = getAllResolutionsFlat();
+    const countEl = document.getElementById("centralResolutionCount");
+    if (countEl) countEl.textContent = allRes.length;
+
+    const container = document.getElementById("centralResolutionsList");
+    if (!container) return;
+    const search = (document.getElementById("searchResolutionsInput")?.value || "").toLowerCase();
+    container.innerHTML = "";
+
+    if (!allRes.length) {
+        container.innerHTML = `<div class="empty-state"><i class="fas fa-clipboard-check"></i><p>No internal enquiry resolutions documented yet. Open any enquiry to log a resolution.</p></div>`;
+        return;
+    }
+
+    let shown = 0;
+    allRes.forEach((entry) => {
+        const match = `${entry.enquiryId || ""} ${entry.clientName || ""} ${entry.company || ""} ${entry.division || ""} ${entry.outcome || ""} ${entry.resolutionSummary || ""} ${entry.actionsTaken || ""}`.toLowerCase();
+        if (search && !match.includes(search)) return;
+        shown++;
+
+        const summaryPreview = (entry.resolutionSummary || "").replace(/\s+/g, " ").trim();
+        const row = document.createElement("div");
+        row.className = "inbox-item";
+        row.onclick = () => openEnquiryModal(entry.enquiryKey);
+        row.innerHTML = `
+            <div class="item-date">Resolved: ${escapeHtml(formatDateShort(entry.resolutionDate || entry.createdAt))}</div>
+            <div class="item-sender">
+                ${escapeHtml(entry.clientName)}
+                <small>${escapeHtml(entry.company || entry.division)} · [${escapeHtml(entry.enquiryId)}]</small>
+            </div>
+            <div class="item-subject">
+                <strong>${escapeHtml(entry.outcome || "Resolution Logged")}</strong>
+                <small>${escapeHtml(summaryPreview.length > 95 ? summaryPreview.slice(0, 95) + "..." : summaryPreview)}</small>
+            </div>
+            <div><span class="badge badge-resolved">${escapeHtml(entry.outcome || "Resolved")}</span></div>
+            <div style="text-align:right; color:#666;"><i class="fas fa-chevron-right"></i></div>
+        `;
+        container.appendChild(row);
+    });
+
+    if (!shown) {
+        container.innerHTML = `<div class="empty-state"><i class="fas fa-search"></i><p>No matching resolutions found.</p></div>`;
     }
 };
 
@@ -1844,20 +2169,110 @@ function openEnquiryModal(key) {
     selectedChannel = "email";
     selectedTemplate = "acknowledgement";
 
+    const currentStatus = item.status || "New";
+    const statusOptions = ENQUIRY_STATUSES.map(st =>
+        `<option value="${escapeHtml(st)}" ${currentStatus === st ? "selected" : ""}>${escapeHtml(st)}</option>`
+    ).join("");
+
+    const createdAtDisplay = item.timestamp ? `${formatDateShort(item.timestamp)} (${new Date(item.timestamp).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })})` : "System Timestamp N/A";
+    const eventDateVal = toDateInputValue(getEffectiveReceivedDate(item));
+    const dateHistory = Array.isArray(item.dateAuditHistory) ? item.dateAuditHistory : [];
+
     document.getElementById("modalTitle").textContent = `Consultation Enquiry [${item.enquiryId || key}]`;
     document.getElementById("modalDynamicBody").innerHTML = `
         <div class="detail-grid">
-            <div class="detail-item"><small>Applicant Name</small><span>${escapeHtml(item.name || "N/A")}</span></div>
-            <div class="detail-item"><small>Company / Entity</small><span>${escapeHtml(item.company || "N/A")}</span></div>
-            <div class="detail-item"><small>Contact Phone</small><span>${escapeHtml(item.contact || "N/A")}</span></div>
+            <div class="detail-item"><small>Enquiry Reference</small><span>${escapeHtml(item.enquiryId || key)}</span></div>
+            <div class="detail-item"><small>Current Status</small><span><span class="badge ${getEnquiryBadgeClass(currentStatus)}">${escapeHtml(currentStatus)}</span></span></div>
+            <div class="detail-item"><small>Contact Name</small><span>${escapeHtml(item.name || "N/A")}</span></div>
+            <div class="detail-item"><small>Business / Organisation</small><span>${escapeHtml(item.company || "N/A")}</span></div>
             <div class="detail-item"><small>Email Address</small><span>${escapeHtml(item.email || "N/A")}</span></div>
+            <div class="detail-item"><small>Contact Phone</small><span>${escapeHtml(item.contact || "N/A")}</span></div>
             <div class="detail-item"><small>Division Requested</small><span>${escapeHtml(item.division || "N/A")}</span></div>
-            <div class="detail-item"><small>Session Required</small><span>${escapeHtml(item.consultationSession || "N/A")}</span></div>
+            <div class="detail-item"><small>Original Created At (System)</small><span>${escapeHtml(createdAtDisplay)}</span></div>
         </div>
+
+        <form id="enquiryMetaForm" class="form-grid" style="margin-bottom:20px; background:#111; padding:16px; border-radius:12px; border:1px solid rgba(255,255,255,.05);">
+            <div class="form-field">
+                <label for="editEnquiryStatus">Enquiry Status</label>
+                <select id="editEnquiryStatus" class="form-control">${statusOptions}</select>
+            </div>
+            <div class="form-field">
+                <label for="editEnquiryEventDate">Recorded Event / Received Date (Editable)</label>
+                <input type="date" id="editEnquiryEventDate" class="form-control" value="${escapeHtml(eventDateVal)}">
+            </div>
+            <div class="form-field">
+                <label>&nbsp;</label>
+                <div>
+                    <button type="submit" class="action-btn btn-primary">
+                        <i class="fas fa-floppy-disk"></i> Save Status & Event Date
+                    </button>
+                </div>
+            </div>
+            ${dateHistory.length ? `
+            <div class="form-field full">
+                <label>Date Correction Audit History</label>
+                <div style="font-size:.74rem; color:#9aa5b1; background:#0b0b0b; padding:10px 12px; border-radius:8px; border:1px solid rgba(255,255,255,.06);">
+                    ${dateHistory.map(h => `<div>• Changed from <strong>${escapeHtml(h.previousDate || "N/A")}</strong> to <strong>${escapeHtml(h.newDate || "N/A")}</strong> by ${escapeHtml(h.changedBy || "Admin")} on ${escapeHtml(formatDateShort(h.changedAt))}</div>`).join("")}
+                </div>
+            </div>` : ""}
+        </form>
+
         <div class="content-box">
-            <h4>Requirement Details</h4>
+            <h4>Description / Requirement Details</h4>
             <p>${escapeHtml(item.challenge || "")}</p>
         </div>
+
+        <!-- PER-ENQUIRY INTERNAL RESOLUTION SECTION (NO AUTO-DISPATCH TO CLIENT) -->
+        <div class="resolution-workspace">
+            <span class="resolution-tag"><i class="fas fa-clipboard-check"></i> Internal Resolution Documentation (Internal Only · No Auto-Send)</span>
+            <form id="addEnquiryResolutionForm" class="form-grid">
+                <div class="form-field">
+                    <label for="resDate">Resolution Date *</label>
+                    <input type="date" id="resDate" class="form-control" required value="${escapeHtml(toDateInputValue(new Date()))}">
+                </div>
+                <div class="form-field">
+                    <label for="resOutcome">Outcome *</label>
+                    <select id="resOutcome" class="form-control">
+                        <option value="Successfully Addressed">Successfully Addressed</option>
+                        <option value="Partially Addressed">Partially Addressed</option>
+                        <option value="Quotation / Proposal Delivered">Quotation / Proposal Delivered</option>
+                        <option value="Escalated / Follow-Up Required">Escalated / Follow-Up Required</option>
+                        <option value="No Further Action Needed">No Further Action Needed</option>
+                    </select>
+                </div>
+                <div class="form-field">
+                    <label for="resMarkResolved">Update Enquiry Status on Save</label>
+                    <select id="resMarkResolved" class="form-control">
+                        <option value="Resolved">Mark Enquiry as Resolved</option>
+                        <option value="keep">Keep Current Status (${escapeHtml(currentStatus)})</option>
+                        <option value="In Progress">Set In Progress</option>
+                        <option value="Closed">Mark Closed</option>
+                    </select>
+                </div>
+                <div class="form-field full">
+                    <label for="resSummary">Written Resolution Description *</label>
+                    <textarea id="resSummary" class="form-control" rows="3" required placeholder="Document how BlackLogic handled the enquiry..."></textarea>
+                </div>
+                <div class="form-field">
+                    <label for="resActions">Actions Taken</label>
+                    <input type="text" id="resActions" class="form-control" placeholder="e.g., Reviewed scope, built prototype, verified checks">
+                </div>
+                <div class="form-field">
+                    <label for="resComments">Additional Internal Comments</label>
+                    <input type="text" id="resComments" class="form-control" placeholder="Internal notes or handover context...">
+                </div>
+                <div class="form-field full">
+                    <div>
+                        <button type="submit" class="action-btn btn-primary">
+                            <i class="fas fa-plus-circle"></i> Save Internal Resolution
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <div id="enquiryResolutionHistoryContainer"></div>
+        </div>
+
         ${renderResponseWorkspaceHtml()}
         <div class="modal-actions">
             <button type="button" class="action-btn btn-danger" onclick="promptDeleteRecord('consultations', '${escapeHtml(key)}', 'Business Enquiry', '${escapeHtml((item.name || '') + ' [' + (item.enquiryId || key) + ']')}')">
@@ -1866,14 +2281,115 @@ function openEnquiryModal(key) {
         </div>
     `;
 
+    renderEnquiryResolutionHistory(key);
+
+    document.getElementById("enquiryMetaForm").addEventListener("submit", async (ev) => {
+        ev.preventDefault();
+        const nextStatus = document.getElementById("editEnquiryStatus").value;
+        const nextEventDate = document.getElementById("editEnquiryEventDate").value;
+        const prevEventDate = toDateInputValue(getEffectiveReceivedDate(item));
+        const updates = {
+            status: nextStatus,
+            recordedEventDate: nextEventDate,
+            receivedDate: nextEventDate
+        };
+        if (nextEventDate && nextEventDate !== prevEventDate) {
+            const existingAudit = Array.isArray(item.dateAuditHistory) ? item.dateAuditHistory : [];
+            existingAudit.push({
+                previousDate: prevEventDate,
+                newDate: nextEventDate,
+                changedBy: auth.currentUser?.email || "Administrator",
+                changedAt: new Date().toISOString()
+            });
+            updates.dateAuditHistory = existingAudit;
+        }
+        try {
+            await update(ref(database, `consultations/${key}`), updates);
+            showToast(`Enquiry [${item.enquiryId || key}] updated.`);
+            openEnquiryModal(key);
+        } catch (err) {
+            console.error("Enquiry update error:", err);
+            showToast("Failed to update enquiry.", true);
+        }
+    });
+
+    document.getElementById("addEnquiryResolutionForm").addEventListener("submit", async (ev) => {
+        ev.preventDefault();
+        const resolutionDate = document.getElementById("resDate").value;
+        const outcome = document.getElementById("resOutcome").value;
+        const statusChoice = document.getElementById("resMarkResolved").value;
+        const resolutionSummary = document.getElementById("resSummary").value.trim();
+        const actionsTaken = document.getElementById("resActions").value.trim();
+        const internalComments = document.getElementById("resComments").value.trim();
+
+        if (!resolutionSummary) {
+            showToast("Please enter a resolution description.", true);
+            return;
+        }
+
+        const entryPayload = {
+            resolutionDate,
+            outcome,
+            resolutionSummary,
+            actionsTaken,
+            internalComments,
+            author: auth.currentUser?.email || "Administrator",
+            createdAt: new Date().toISOString()
+        };
+
+        try {
+            await set(push(ref(database, `consultations/${key}/resolutions`)), entryPayload);
+            if (statusChoice !== "keep") {
+                await update(ref(database, `consultations/${key}`), { status: statusChoice });
+            }
+            showToast(`Internal resolution saved for [${item.enquiryId || key}].`);
+            ev.target.reset();
+            document.getElementById("resDate").value = toDateInputValue(new Date());
+        } catch (err) {
+            console.error("Failed to save resolution:", err);
+            showToast("Failed to save internal resolution.", true);
+        }
+    });
+
     refreshTemplatePreview();
     document.getElementById("detailModal").style.display = "flex";
+}
+
+function renderEnquiryResolutionHistory(key) {
+    const container = document.getElementById("enquiryResolutionHistoryContainer");
+    if (!container) return;
+    const item = rawConsultations[key];
+    const entries = getEnquiryResolutionsArray(item);
+
+    if (!entries.length) {
+        container.innerHTML = `<div style="margin-top:14px; font-size:.76rem; color:#777;">No resolution history recorded for this enquiry yet.</div>`;
+        return;
+    }
+
+    container.innerHTML = `
+        <div class="resolution-history-list">
+            <div style="font-size:.74rem; color:#00c8d7; font-weight:700; text-transform:uppercase; letter-spacing:1px;">
+                Resolution History (${entries.length})
+            </div>
+            ${entries.slice().reverse().map((r) => `
+                <div class="resolution-entry">
+                    <div class="resolution-entry-meta">
+                        <strong>Outcome: ${escapeHtml(r.outcome || "Resolved")}</strong>
+                        <span>Date: ${escapeHtml(formatDateShort(r.resolutionDate || r.createdAt))} · By: ${escapeHtml(r.author || "Admin")}</span>
+                    </div>
+                    <p>${escapeHtml(r.resolutionSummary || "")}</p>
+                    ${r.actionsTaken ? `<p style="margin-top:6px; color:#9fb8c2;"><strong>Actions Taken:</strong> ${escapeHtml(r.actionsTaken)}</p>` : ""}
+                    ${r.internalComments ? `<p style="margin-top:4px; color:#888;"><strong>Internal Comments:</strong> ${escapeHtml(r.internalComments)}</p>` : ""}
+                </div>
+            `).join("")}
+        </div>
+    `;
 }
 
 function renderResponseWorkspaceHtml() {
     return `
         <div class="response-workspace">
-            <span class="workspace-tag">BlackLogic Central Cloud · Response Workspace</span>
+            <span class="workspace-tag">BlackLogic Central Cloud · External Response Workspace</span>
             <label class="workspace-label">Select communication channel</label>
             <div class="channel-grid">
                 <div class="channel-card selected" id="channelEmail" onclick="selectChannel('email')">
@@ -2780,6 +3296,7 @@ window.downloadLocalBackup = function() {
         platform: "BlackLogic Central Intelligence Infrastructure",
         metrics: {
             totalEnquiries: Object.keys(rawConsultations).length,
+            totalResolutions: getAllResolutionsFlat().length,
             totalLeads: Object.keys(rawLeads).length,
             totalSupplierApplications: Object.keys(rawSuppliers).length,
             totalRegisteredSuppliers: Object.values(rawSuppliers).filter(s => s.supplierCertNumber && String(s.supplierCertNumber).trim() !== "").length,
