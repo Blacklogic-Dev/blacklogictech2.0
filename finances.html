@@ -44,7 +44,7 @@ body { background: #050505; color: #fff; min-height: 100vh; overflow-x: hidden; 
 .form-control:focus { border-color: #00c8d7; }
 
 .btn {
-    padding: 10px 16px; border: none; border-radius: 24px; font-size: .8rem;
+    padding: 9px 15px; border: none; border-radius: 24px; font-size: .78rem;
     font-weight: 700; cursor: pointer; display: inline-flex; align-items: center;
     gap: 7px; text-decoration: none; transition: .2s ease;
 }
@@ -87,7 +87,7 @@ header {
 .pulse { width: 8px; height: 8px; border-radius: 50%; background: #00c8d7; box-shadow: 0 0 8px #00c8d7; }
 
 /* CONTAINER */
-.container { max-width: 1340px; margin: 24px auto 60px; padding: 0 22px; }
+.container { max-width: 1360px; margin: 24px auto 60px; padding: 0 22px; }
 
 /* KPI GRID */
 .kpi-grid {
@@ -136,6 +136,14 @@ table { width: 100%; border-collapse: collapse; font-size: .8rem; }
 th, td { padding: 11px 12px; border-bottom: 1px solid rgba(255,255,255,.06); text-align: left; }
 th { color: #888; font-size: .72rem; text-transform: uppercase; letter-spacing: .8px; }
 
+.status-select {
+    padding: 5px 9px; border-radius: 14px; font-size: .72rem; font-weight: 700;
+    background: #141414; color: #fff; border: 1px solid rgba(255,255,255,.16); outline: none;
+}
+.status-select.st-paid { border-color: rgba(46,204,113,.55); color: #2ecc71; }
+.status-select.st-unsettled { border-color: rgba(255,193,7,.55); color: #ffc107; }
+.status-select.st-cancelled { border-color: rgba(255,87,87,.55); color: #ff6b6b; }
+
 .badge {
     padding: 3px 9px; border-radius: 14px; font-size: .66rem; font-weight: 700; display: inline-block;
 }
@@ -144,8 +152,17 @@ th { color: #888; font-size: .72rem; text-transform: uppercase; letter-spacing: 
 .b-unpaid { background: rgba(255,87,87,.15); color: #ff6b6b; border: 1px solid rgba(255,87,87,.35); }
 .b-recon { background: rgba(0,200,215,.14); color: #00c8d7; border: 1px solid rgba(0,200,215,.32); }
 
+.monthly-strip {
+    display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px;
+}
+.month-pill {
+    background: #131313; border: 1px solid rgba(0,200,215,.22); border-radius: 10px;
+    padding: 8px 12px; font-size: .75rem;
+}
+.month-pill strong { color: #00c8d7; display: block; font-size: .82rem; }
+
 .charts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 20px; }
-.chart-box { position: relative; height: 250px; }
+.chart-box { position: relative; height: 260px; }
 
 .rec-box {
     background: #111; border-left: 4px solid #00c8d7; border-radius: 10px;
@@ -154,10 +171,23 @@ th { color: #888; font-size: .72rem; text-transform: uppercase; letter-spacing: 
 
 /* PRINTABLE INVOICE & STATEMENT SHEET */
 #printableSheet {
-    display: none; background: #fff; color: #111; padding: 32px; border-radius: 12px; margin-top: 16px;
+    display: none; background: #fff; color: #111; padding: 36px; border-radius: 12px; margin-top: 16px;
 }
-.inv-brand-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
-.inv-brand-row .brand-icon-hdr { background: #eef9fb; color: #008b99; border-color: #008b99; }
+.inv-header-top {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; border-bottom: 2px solid #111; padding-bottom: 16px; margin-bottom: 18px;
+}
+.inv-brand-row { display: flex; align-items: center; gap: 12px; }
+.inv-brand-row .inv-chip-box {
+    width: 46px; height: 46px; border-radius: 10px; background: #0b1922; color: #00c8d7;
+    display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
+}
+.inv-meta-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; font-size: .84rem; line-height: 1.65;
+}
+.inv-table { width: 100%; border-collapse: collapse; margin-bottom: 18px; font-size: .85rem; }
+.inv-table th { background: #111; color: #fff; padding: 10px; border: 1px solid #111; }
+.inv-table td { padding: 10px; border: 1px solid #333; color: #111; }
 
 .toast {
     position: fixed; bottom: 22px; right: 22px; background: #0c0c0c;
@@ -171,7 +201,7 @@ th { color: #888; font-size: .72rem; text-transform: uppercase; letter-spacing: 
     .charts-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 760px) {
-    .kpi-grid, .nav-tabs, .form-grid { grid-template-columns: 1fr; }
+    .kpi-grid, .nav-tabs, .form-grid, .inv-meta-grid { grid-template-columns: 1fr; }
 }
 @media print {
     body * { visibility: hidden; }
@@ -221,12 +251,12 @@ th { color: #888; font-size: .72rem; text-transform: uppercase; letter-spacing: 
     </header>
 
     <main class="container">
-        <!-- DASHBOARD SUMMARY CARDS (OPTION C: INVOICED + RECEIVED SEPARATELY) -->
+        <!-- DASHBOARD SUMMARY CARDS -->
         <section class="kpi-grid">
             <div class="kpi-card">
                 <small>Total Project Revenue (Invoiced)</small>
                 <div class="val" id="kpiInvoicedRevenue">R 0.00</div>
-                <div class="sub">Recorded project & invoice value</div>
+                <div class="sub">Active recorded project & invoice value</div>
             </div>
             <div class="kpi-card">
                 <small>Money Actually Received</small>
@@ -277,22 +307,30 @@ th { color: #888; font-size: .72rem; text-transform: uppercase; letter-spacing: 
                     </div>
                     <div class="field">
                         <label for="projFrom">From (Client / Paying Entity) *</label>
-                        <input type="text" id="projFrom" class="form-control" required placeholder="e.g., ABC Construction">
+                        <input type="text" id="projFrom" class="form-control" required placeholder="e.g., Bonvinco Finances">
                     </div>
                     <div class="field">
                         <label for="projPrice">Price (ZAR) *</label>
-                        <input type="number" step="0.01" min="0" id="projPrice" class="form-control" required placeholder="5000.00">
-                    </div>
-                    <div class="field">
-                        <label for="projInvoiceRef">Invoice Ref</label>
-                        <input type="text" id="projInvoiceRef" class="form-control" placeholder="e.g., Invoice20261123.pdf">
+                        <input type="number" step="0.01" min="0" id="projPrice" class="form-control" required placeholder="15000.00">
                     </div>
                     <div class="field">
                         <label for="projPaidAmount">Amount Paid So Far (ZAR)</label>
                         <input type="number" step="0.01" min="0" id="projPaidAmount" class="form-control" placeholder="0.00">
                     </div>
-                    <div class="field full">
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Project Record</button>
+                    <div class="field">
+                        <label for="projStatus">Status *</label>
+                        <select id="projStatus" class="form-control">
+                            <option value="Paid">Paid</option>
+                            <option value="Unsettled" selected>Unsettled</option>
+                            <option value="Cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                    <div class="field" style="grid-column: span 2;">
+                        <label for="projInvoiceRef">Invoice Ref</label>
+                        <input type="text" id="projInvoiceRef" class="form-control" placeholder="e.g., Invoice20261123.pdf">
+                    </div>
+                    <div class="field" style="display:flex; align-items:flex-end;">
+                        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;"><i class="fas fa-save"></i> Save Project Record</button>
                     </div>
                 </form>
             </div>
@@ -300,13 +338,13 @@ th { color: #888; font-size: .72rem; text-transform: uppercase; letter-spacing: 
             <div class="card">
                 <div class="card-hdr">
                     <h2><i class="fas fa-list"></i> Project Revenue Register</h2>
-                    <input type="text" id="projSearch" class="form-control" style="max-width:300px;" placeholder="Quick search by client, title, or invoice ref..." onkeyup="renderProjects()">
+                    <input type="text" id="projSearch" class="form-control" style="max-width:300px;" placeholder="Quick search by client, title, status, or invoice ref..." onkeyup="renderProjects()">
                 </div>
                 <div class="table-wrap">
                     <table>
                         <thead>
                             <tr>
-                                <th>Date</th><th>Title</th><th>From</th><th>Price</th><th>Paid</th><th>Invoice Ref</th><th>Bank Recon</th><th>Actions</th>
+                                <th>Date</th><th>Title</th><th>From</th><th>Price</th><th>Paid</th><th>Invoice Ref</th><th>Status</th><th>Bank Recon</th><th>Actions</th>
                             </tr>
                         </thead>
                         <tbody id="projectsTableBody"></tbody>
@@ -315,26 +353,44 @@ th { color: #888; font-size: .72rem; text-transform: uppercase; letter-spacing: 
             </div>
         </section>
 
-        <!-- B. INVOICE GENERATOR (LIMITED TO TO, AMOUNT, DATE + PARTIAL PAYMENTS) -->
+        <!-- B. INVOICE GENERATOR -->
         <section class="panel" id="panel-invoices">
             <div class="card">
                 <div class="card-hdr">
-                    <h2><i class="fas fa-file-invoice"></i> Generate Invoice (To · Amount · Date)</h2>
+                    <h2><i class="fas fa-file-invoice"></i> Generate BlackLogic Invoice</h2>
                 </div>
                 <form id="invoiceForm" class="form-grid">
                     <div class="field">
-                        <label for="invTo">To *</label>
-                        <input type="text" id="invTo" class="form-control" required placeholder="Client or Entity Name">
+                        <label for="invDomain">Domain *</label>
+                        <select id="invDomain" class="form-control" required>
+                            <option value="Blacklogic Engineering">Blacklogic Engineering</option>
+                            <option value="Blacklogic Design">Blacklogic Design</option>
+                            <option value="Blacklogic Consultation">Blacklogic Consultation</option>
+                            <option value="Blacklogic Media">Blacklogic Media</option>
+                        </select>
                     </div>
                     <div class="field">
-                        <label for="invAmount">Amount (ZAR) *</label>
-                        <input type="number" step="0.01" min="0.01" id="invAmount" class="form-control" required placeholder="5000.00">
+                        <label for="invClientName">Company Name / Client Name *</label>
+                        <input type="text" id="invClientName" class="form-control" required placeholder="e.g., ABC Construction (Pty) Ltd">
                     </div>
                     <div class="field">
                         <label for="invDate">Date *</label>
                         <input type="date" id="invDate" class="form-control" required>
                     </div>
-                    <div class="field full">
+                    <div class="field">
+                        <label for="invSpecification">Specification *</label>
+                        <input type="text" id="invSpecification" class="form-control" required placeholder="e.g., Website Design, Logo Design...">
+                    </div>
+                    <div class="field">
+                        <label for="invQuantity">Quantity *</label>
+                        <input type="number" step="1" min="1" id="invQuantity" class="form-control" required value="1" oninput="updateInvoicePreviewCalc()">
+                    </div>
+                    <div class="field">
+                        <label for="invUnitPrice">Price (ZAR) *</label>
+                        <input type="number" step="0.01" min="0.01" id="invUnitPrice" class="form-control" required placeholder="5000.00" oninput="updateInvoicePreviewCalc()">
+                    </div>
+                    <div class="field full" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                        <span id="invCalcTotalLabel" style="font-size:.86rem; color:#00c8d7; font-weight:700;">Calculated Total: R 0.00</span>
                         <button type="submit" class="btn btn-primary"><i class="fas fa-wand-magic-sparkles"></i> Generate & Save Invoice</button>
                     </div>
                 </form>
@@ -348,7 +404,7 @@ th { color: #888; font-size: .72rem; text-transform: uppercase; letter-spacing: 
                     <table>
                         <thead>
                             <tr>
-                                <th>Invoice Ref</th><th>Date</th><th>To</th><th>Amount</th><th>Paid</th><th>Balance</th><th>Status</th><th>Actions</th>
+                                <th>Invoice Ref</th><th>Date</th><th>Domain</th><th>Company / Client</th><th>Specification</th><th>Qty</th><th>Price</th><th>Total</th><th>Paid</th><th>Balance</th><th>Status</th><th>Actions</th>
                             </tr>
                         </thead>
                         <tbody id="invoicesTableBody"></tbody>
@@ -441,7 +497,7 @@ th { color: #888; font-size: .72rem; text-transform: uppercase; letter-spacing: 
             <div class="card">
                 <div class="card-hdr">
                     <h2><i class="fas fa-filter"></i> General Expenses (<span id="genTotalLabel">R 0.00</span>)</h2>
-                    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                    <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
                         <select id="genFilterCat" class="form-control" style="width:auto;" onchange="renderGeneralExpenses()">
                             <option value="ALL">All Categories</option>
                             <option value="Internet & Connectivity">Internet & Connectivity</option>
@@ -452,11 +508,16 @@ th { color: #888; font-size: .72rem; text-transform: uppercase; letter-spacing: 
                             <option value="Business Administration">Business Administration</option>
                             <option value="Operational Purchases">Operational Purchases</option>
                         </select>
+                        <label for="genFromDate" style="font-size:.75rem; color:#aaa;">From:</label>
                         <input type="date" id="genFromDate" class="form-control" style="width:auto;" onchange="renderGeneralExpenses()">
+                        <label for="genToDate" style="font-size:.75rem; color:#aaa;">To:</label>
                         <input type="date" id="genToDate" class="form-control" style="width:auto;" onchange="renderGeneralExpenses()">
-                        <button type="button" class="btn btn-secondary" onclick="printFilteredGeneralExpenses()"><i class="fas fa-print"></i> Print Filtered</button>
+                        <button type="button" class="btn btn-secondary" onclick="clearGeneralDateRange()">Reset Range</button>
+                        <button type="button" class="btn btn-secondary" onclick="printFilteredGeneralExpenses()"><i class="fas fa-print"></i> Print Range</button>
                     </div>
                 </div>
+                <div style="margin-bottom:10px; font-size:.75rem; color:#888;">Monthly Cost Breakdown (within selected date range):</div>
+                <div class="monthly-strip" id="generalMonthlyBreakdown"></div>
                 <div class="table-wrap">
                     <table>
                         <thead>
@@ -542,19 +603,46 @@ th { color: #888; font-size: .72rem; text-transform: uppercase; letter-spacing: 
             </div>
         </section>
 
-        <!-- ANALYTICS & TREND RECOMMENDATIONS -->
+        <!-- ANALYTICS & TREND RECOMMENDATIONS (6 CHARTS TOTAL) -->
         <section class="panel" id="panel-analytics">
+            <div class="card" style="padding:14px 20px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+                    <span style="font-size:.82rem; color:#ccc; font-weight:600;"><i class="fas fa-chart-line" style="color:#00c8d7;"></i> Financial Projection Horizon (Past Monthly Revenue vs Expenses):</span>
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        <label for="projectionHorizonSelect" style="font-size:.76rem; color:#999;">Projection Window:</label>
+                        <select id="projectionHorizonSelect" class="form-control" style="width:auto;" onchange="renderAnalyticsAndRecommendations()">
+                            <option value="3">3 Months</option>
+                            <option value="6" selected>6 Months</option>
+                            <option value="9">9 Months</option>
+                            <option value="12">12 Months</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
             <div class="charts-grid">
                 <div class="card">
-                    <div class="card-hdr"><h2>A. Revenue vs Expenditure</h2></div>
+                    <div class="card-hdr"><h2>1. Past Monthly Revenue vs Expenses (+ Projection)</h2></div>
+                    <div class="chart-box"><canvas id="projRevExpChart"></canvas></div>
+                </div>
+                <div class="card">
+                    <div class="card-hdr"><h2>2. Rental Expense vs Revenue (Monthly Bar)</h2></div>
+                    <div class="chart-box"><canvas id="rentalVsRevChart"></canvas></div>
+                </div>
+                <div class="card">
+                    <div class="card-hdr"><h2>3. Overall Financial Trend (All Records)</h2></div>
+                    <div class="chart-box"><canvas id="overallTrendChart"></canvas></div>
+                </div>
+                <div class="card">
+                    <div class="card-hdr"><h2>4. Revenue vs Expenditure Split</h2></div>
                     <div class="chart-box"><canvas id="revExpChart"></canvas></div>
                 </div>
                 <div class="card">
-                    <div class="card-hdr"><h2>B. Monthly Revenue</h2></div>
+                    <div class="card-hdr"><h2>5. Monthly Revenue</h2></div>
                     <div class="chart-box"><canvas id="monthlyRevChart"></canvas></div>
                 </div>
                 <div class="card">
-                    <div class="card-hdr"><h2>C. Revenue Growth</h2></div>
+                    <div class="card-hdr"><h2>6. Monthly Revenue Growth %</h2></div>
                     <div class="chart-box"><canvas id="revGrowthChart"></canvas></div>
                 </div>
             </div>
@@ -601,7 +689,14 @@ let dataState = {
     budgets: {}
 };
 
-let charts = { revExp: null, monthlyRev: null, revGrowth: null };
+let charts = {
+    projRevExp: null,
+    rentalVsRev: null,
+    overallTrend: null,
+    revExp: null,
+    monthlyRev: null,
+    revGrowth: null
+};
 
 function toast(msg) {
     const el = document.getElementById("toastBox");
@@ -674,18 +769,28 @@ window.switchTab = function(tab) {
     if (tab === "analytics") renderAnalyticsAndRecommendations();
 };
 
+function getProjectNormalizedStatus(p) {
+    if (p.status === "Paid" || p.status === "Cancelled" || p.status === "Unsettled") return p.status;
+    const price = Number(p.price || 0);
+    const paid = Number(p.paidAmount || 0);
+    return (price > 0 && paid >= price) ? "Paid" : "Unsettled";
+}
+
 function recomputeAll() {
-    const projects = Object.values(dataState.projects);
+    const activeProjects = Object.values(dataState.projects).filter(p => getProjectNormalizedStatus(p) !== "Cancelled");
     const invoices = Object.values(dataState.invoices);
     const rentals = Object.values(dataState.rentals);
     const general = Object.values(dataState.generalExpenses);
 
-    // Invoiced revenue from projects + invoices (without double counting identical invoice refs)
-    const projInvoiced = projects.reduce((s, p) => s + Number(p.price || 0), 0);
+    const projInvoiced = activeProjects.reduce((s, p) => s + Number(p.price || 0), 0);
     const invTotal = invoices.reduce((s, i) => s + Number(i.amount || 0), 0);
     const totalInvoiced = Math.max(projInvoiced, invTotal);
 
-    const projPaid = projects.reduce((s, p) => s + Number(p.paidAmount || 0), 0);
+    const projPaid = activeProjects.reduce((s, p) => {
+        const st = getProjectNormalizedStatus(p);
+        if (st === "Paid" && (p.paidAmount === undefined || p.paidAmount === null)) return s + Number(p.price || 0);
+        return s + Number(p.paidAmount || 0);
+    }, 0);
     const invPaid = invoices.reduce((s, i) => s + Number(i.paidAmount || 0), 0);
     const totalCashReceived = Math.max(projPaid, invPaid);
 
@@ -709,17 +814,22 @@ function recomputeAll() {
     renderAnalyticsAndRecommendations();
 }
 
-// A. PROJECTS
+// A. PROJECTS — REVENUE REGISTER WITH MANUAL STATUS (Paid, Cancelled, Unsettled)
 document.getElementById("projectForm").addEventListener("submit", async (e) => {
     e.preventDefault();
     const price = Number(document.getElementById("projPrice").value || 0);
-    const paidAmount = Math.min(price, Math.max(0, Number(document.getElementById("projPaidAmount").value || 0)));
+    const status = document.getElementById("projStatus").value;
+    let paidAmount = Math.min(price, Math.max(0, Number(document.getElementById("projPaidAmount").value || 0)));
+    if (status === "Paid" && paidAmount === 0) paidAmount = price;
+    if (status === "Cancelled") paidAmount = 0;
+
     await set(push(ref(db, "finance/projects")), {
         date: document.getElementById("projDate").value,
         title: document.getElementById("projTitle").value.trim(),
         from: document.getElementById("projFrom").value.trim(),
         price,
         paidAmount,
+        status,
         invoiceRef: document.getElementById("projInvoiceRef").value.trim(),
         reconciled: false
     });
@@ -727,13 +837,30 @@ document.getElementById("projectForm").addEventListener("submit", async (e) => {
     toast("Project saved to revenue register.");
 });
 
+window.updateProjectStatus = async function(key, newStatus) {
+    const p = dataState.projects[key];
+    if (!p) return;
+    const price = Number(p.price || 0);
+    const updates = { status: newStatus };
+    if (newStatus === "Paid" && Number(p.paidAmount || 0) < price) {
+        updates.paidAmount = price;
+    } else if (newStatus === "Cancelled") {
+        updates.paidAmount = 0;
+    }
+    await update(ref(db, `finance/projects/${key}`), updates);
+    toast(`Project status updated to ${newStatus}.`);
+};
+
 window.renderProjects = function() {
     const q = (document.getElementById("projSearch")?.value || "").toLowerCase();
     const tbody = document.getElementById("projectsTableBody");
     tbody.innerHTML = "";
     Object.entries(dataState.projects).reverse().forEach(([k, p]) => {
-        const hay = `${p.title} ${p.from} ${p.invoiceRef} ${p.date}`.toLowerCase();
+        const st = getProjectNormalizedStatus(p);
+        const hay = `${p.title} ${p.from} ${p.invoiceRef} ${p.date} ${st}`.toLowerCase();
         if (q && !hay.includes(q)) return;
+
+        const stClass = st === "Paid" ? "st-paid" : (st === "Cancelled" ? "st-cancelled" : "st-unsettled");
         const tr = document.createElement("tr");
         tr.innerHTML = `
             <td>${esc(p.date)}</td>
@@ -742,6 +869,13 @@ window.renderProjects = function() {
             <td>${fmtZar(p.price)}</td>
             <td>${fmtZar(p.paidAmount || 0)}</td>
             <td><strong>${esc(p.invoiceRef || "—")}</strong></td>
+            <td>
+                <select class="status-select ${stClass}" onchange="updateProjectStatus('${k}', this.value)">
+                    <option value="Paid" ${st === "Paid" ? "selected" : ""}>Paid</option>
+                    <option value="Unsettled" ${st === "Unsettled" ? "selected" : ""}>Unsettled</option>
+                    <option value="Cancelled" ${st === "Cancelled" ? "selected" : ""}>Cancelled</option>
+                </select>
+            </td>
             <td><span class="badge ${p.reconciled ? "b-recon" : "b-unpaid"}">${p.reconciled ? "Matched" : "Unmatched"}</span></td>
             <td>
                 <button class="btn btn-secondary" onclick="toggleRecon('projects','${k}',${!p.reconciled})">Recon</button>
@@ -752,38 +886,68 @@ window.renderProjects = function() {
     });
 };
 
-// B. INVOICE GENERATOR (TO, AMOUNT, DATE + PARTIAL PAYMENTS)
+// B. INVOICE GENERATOR (DOMAIN, CLIENT NAME, DATE, SPECIFICATION, QUANTITY, PRICE)
+window.updateInvoicePreviewCalc = function() {
+    const qty = Math.max(1, Number(document.getElementById("invQuantity")?.value || 1));
+    const unit = Math.max(0, Number(document.getElementById("invUnitPrice")?.value || 0));
+    document.getElementById("invCalcTotalLabel").textContent = `Calculated Total: ${fmtZar(qty * unit)}`;
+};
+
 document.getElementById("invoiceForm").addEventListener("submit", async (e) => {
     e.preventDefault();
-    const to = document.getElementById("invTo").value.trim();
-    const amount = Number(document.getElementById("invAmount").value || 0);
+    const domain = document.getElementById("invDomain").value;
+    const clientName = document.getElementById("invClientName").value.trim();
     const date = document.getElementById("invDate").value;
+    const specification = document.getElementById("invSpecification").value.trim();
+    const quantity = Math.max(1, Number(document.getElementById("invQuantity").value || 1));
+    const unitPrice = Number(document.getElementById("invUnitPrice").value || 0);
+    const amount = Number((quantity * unitPrice).toFixed(2));
+
     const compactDate = date.replaceAll("-", "");
     const suffix = Math.floor(1000 + Math.random() * 9000);
     const invoiceRef = `Invoice${compactDate}-${suffix}.pdf`;
 
     await set(push(ref(db, "finance/invoices")), {
-        invoiceRef, to, amount, date, paidAmount: 0, status: "Unpaid"
+        invoiceRef,
+        domain,
+        to: clientName,
+        clientName,
+        date,
+        specification,
+        quantity,
+        unitPrice,
+        amount,
+        paidAmount: 0,
+        status: "Unpaid"
     });
     e.target.reset();
-    toast(`Invoice ${invoiceRef} saved.`);
+    document.getElementById("invQuantity").value = 1;
+    updateInvoicePreviewCalc();
+    toast(`Invoice ${invoiceRef} generated and saved.`);
 });
 
 window.renderInvoices = function() {
     const tbody = document.getElementById("invoicesTableBody");
     tbody.innerHTML = "";
     Object.entries(dataState.invoices).reverse().forEach(([k, inv]) => {
-        const amt = Number(inv.amount || 0);
+        const qty = Number(inv.quantity || 1);
+        const unitPrice = Number(inv.unitPrice ?? inv.amount ?? 0);
+        const amt = Number(inv.amount || (qty * unitPrice));
         const paid = Number(inv.paidAmount || 0);
         const bal = Math.max(0, amt - paid);
         const status = paid >= amt && amt > 0 ? "Paid" : (paid > 0 ? "Partial" : "Unpaid");
         const bClass = status === "Paid" ? "b-paid" : (status === "Partial" ? "b-partial" : "b-unpaid");
+        const client = inv.clientName || inv.to || "—";
 
         const tr = document.createElement("tr");
         tr.innerHTML = `
             <td><strong>${esc(inv.invoiceRef)}</strong></td>
             <td>${esc(inv.date)}</td>
-            <td>${esc(inv.to)}</td>
+            <td>${esc(inv.domain || "Blacklogic Engineering")}</td>
+            <td>${esc(client)}</td>
+            <td>${esc(inv.specification || "Service / Project")}</td>
+            <td>${qty}</td>
+            <td>${fmtZar(unitPrice)}</td>
             <td>${fmtZar(amt)}</td>
             <td>${fmtZar(paid)}</td>
             <td>${fmtZar(bal)}</td>
@@ -817,21 +981,73 @@ window.recordPartialPayment = async function(key) {
 window.printInvoice = function(key) {
     const inv = dataState.invoices[key];
     if (!inv) return;
+    const qty = Number(inv.quantity || 1);
+    const unitPrice = Number(inv.unitPrice ?? inv.amount ?? 0);
+    const total = Number(inv.amount || (qty * unitPrice));
+    const paid = Number(inv.paidAmount || 0);
+    const due = Math.max(0, total - paid);
+    const client = inv.clientName || inv.to || "Client";
+
     const sheet = document.getElementById("printableSheet");
     sheet.innerHTML = `
-        <div class="inv-brand-row">
-            <div class="brand-icon-hdr"><i class="fas fa-microchip"></i></div>
-            <div>
-                <h2 style="font-size:1.15rem;">BlackLogic Technologies Hardware and Projects Pty Ltd</h2>
-                <div style="font-size:.78rem; color:#444;">Reg: 2025/885280/07 · blacklogictechnologies@gmail.com · blacklogictechnologies.netlify.app · 079 311 0798</div>
+        <div class="inv-header-top">
+            <div class="inv-brand-row">
+                <div class="inv-chip-box"><i class="fas fa-microchip"></i></div>
+                <div>
+                    <div style="font-size:1.12rem; font-weight:800; letter-spacing:.4px;">BLACKLOGIC TECHNOLOGIES HARDWARE AND PROJECTS PTY LTD</div>
+                    <div style="font-size:.78rem; color:#444;">Division: ${esc(inv.domain || "Blacklogic Engineering")}</div>
+                </div>
+            </div>
+            <div style="text-align:right;">
+                <div style="font-size:1.45rem; font-weight:800; letter-spacing:1px;">INVOICE</div>
+                <div style="font-size:.8rem; color:#333;">Ref: <strong>${esc(inv.invoiceRef)}</strong></div>
             </div>
         </div>
-        <hr style="margin:14px 0;">
-        <p><strong>Invoice Reference:</strong> ${esc(inv.invoiceRef)}</p>
-        <p><strong>Date:</strong> ${esc(inv.date)}</p>
-        <p><strong>To:</strong> ${esc(inv.to)}</p>
-        <p style="margin-top:14px; font-size:1.1rem;"><strong>Amount:</strong> ${fmtZar(inv.amount)}</p>
-        <p><strong>Amount Paid:</strong> ${fmtZar(inv.paidAmount || 0)} · <strong>Balance Due:</strong> ${fmtZar(Math.max(0, Number(inv.amount || 0) - Number(inv.paidAmount || 0)))}</p>
+
+        <div class="inv-meta-grid">
+            <div>
+                <div><strong>Business Name:</strong> BlackLogic Technologies Hardware and Projects Pty Ltd</div>
+                <div><strong>Registration number:</strong> 2025/885280/07</div>
+                <div><strong>Website:</strong> blacklogictechnologies.netifly.app</div>
+                <div><strong>Email:</strong> blacklogictechnologies@gmail.com</div>
+                <div><strong>Contact Number:</strong> 079 311 0798</div>
+            </div>
+            <div style="background:#f7f9fa; padding:12px 14px; border-radius:8px; border:1px solid #ddd;">
+                <div><strong>Bill To (Company / Client):</strong> ${esc(client)}</div>
+                <div><strong>Domain:</strong> ${esc(inv.domain || "Blacklogic Engineering")}</div>
+                <div><strong>Invoice Date:</strong> ${esc(inv.date)}</div>
+            </div>
+        </div>
+
+        <table class="inv-table">
+            <thead>
+                <tr>
+                    <th style="width:55px;">#</th>
+                    <th>Specification</th>
+                    <th style="width:90px;">Quantity</th>
+                    <th style="width:140px;">Price (ZAR)</th>
+                    <th style="width:150px;">Total (ZAR)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1.</td>
+                    <td>${esc(inv.specification || "Professional Services")}</td>
+                    <td>${qty}</td>
+                    <td>${fmtZar(unitPrice)}</td>
+                    <td><strong>${fmtZar(total)}</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div style="display:flex; justify-content:flex-end;">
+            <div style="min-width:270px; border:1px solid #222; border-radius:8px; padding:12px 16px; background:#fafafa; font-size:.88rem; line-height:1.7;">
+                <div style="display:flex; justify-content:space-between;"><span>Subtotal:</span><span>${fmtZar(total)}</span></div>
+                <div style="display:flex; justify-content:space-between;"><span>Amount Paid:</span><span>${fmtZar(paid)}</span></div>
+                <hr style="margin:6px 0;">
+                <div style="display:flex; justify-content:space-between; font-size:1.02rem;"><strong>Total Amount Due:</strong><strong>${fmtZar(due)}</strong></div>
+            </div>
+        </div>
     `;
     window.print();
 };
@@ -867,7 +1083,7 @@ window.renderRentals = function() {
     });
 };
 
-// D. GENERAL EXPENSES
+// D. GENERAL EXPENSES (WITH DATE RANGE & MONTHLY COST BREAKDOWN)
 document.getElementById("generalForm").addEventListener("submit", async (e) => {
     e.preventDefault();
     await set(push(ref(db, "finance/generalExpenses")), {
@@ -880,6 +1096,13 @@ document.getElementById("generalForm").addEventListener("submit", async (e) => {
     e.target.reset();
     toast("General expense recorded.");
 });
+
+window.clearGeneralDateRange = function() {
+    document.getElementById("genFromDate").value = "";
+    document.getElementById("genToDate").value = "";
+    document.getElementById("genFilterCat").value = "ALL";
+    renderGeneralExpenses();
+};
 
 function getFilteredGeneral() {
     const cat = document.getElementById("genFilterCat")?.value || "ALL";
@@ -897,6 +1120,19 @@ window.renderGeneralExpenses = function() {
     const rows = getFilteredGeneral().reverse();
     const total = rows.reduce((s, [, g]) => s + Number(g.amount || 0), 0);
     document.getElementById("genTotalLabel").textContent = fmtZar(total);
+
+    // Monthly expense breakdown within selected range
+    const byMonth = {};
+    rows.forEach(([, g]) => {
+        const ym = (g.date || "Unknown").slice(0, 7);
+        byMonth[ym] = (byMonth[ym] || 0) + Number(g.amount || 0);
+    });
+    const strip = document.getElementById("generalMonthlyBreakdown");
+    const monthsSorted = Object.keys(byMonth).sort().reverse();
+    strip.innerHTML = monthsSorted.length
+        ? monthsSorted.map(m => `<div class="month-pill"><span>${esc(m)}</span><strong>${fmtZar(byMonth[m])}</strong></div>`).join("")
+        : `<span style="font-size:.76rem; color:#666;">No expenses in selected date range.</span>`;
+
     const tbody = document.getElementById("generalTableBody");
     tbody.innerHTML = "";
     rows.forEach(([k, g]) => {
@@ -915,11 +1151,14 @@ window.renderGeneralExpenses = function() {
 
 window.printFilteredGeneralExpenses = function() {
     const rows = getFilteredGeneral();
+    const from = document.getElementById("genFromDate")?.value || "Start";
+    const to = document.getElementById("genToDate")?.value || "Present";
     const sum = rows.reduce((s, [, g]) => s + Number(g.amount || 0), 0);
     const sheet = document.getElementById("printableSheet");
     sheet.innerHTML = `
         <h2>BlackLogic Finance Intelligence — General Expenses Report</h2>
-        <p style="margin-bottom:12px;">Total Filtered Expense: <strong>${fmtZar(sum)}</strong></p>
+        <p style="margin-bottom:6px;">Date Range: <strong>${esc(from)}</strong> to <strong>${esc(to)}</strong></p>
+        <p style="margin-bottom:12px;">Total Expense in Range: <strong>${fmtZar(sum)}</strong></p>
         <table border="1" cellpadding="8" cellspacing="0" width="100%">
             <thead><tr><th>Date</th><th>Title</th><th>Category</th><th>Amount</th></tr></thead>
             <tbody>${rows.map(([, g]) => `<tr><td>${esc(g.date)}</td><td>${esc(g.title)}</td><td>${esc(g.category)}</td><td>${fmtZar(g.amount)}</td></tr>`).join("")}</tbody>
@@ -987,10 +1226,10 @@ window.delItem = async function(path, key) {
 
 // STATEMENTS
 window.printStatement = function(type) {
-    const projects = Object.values(dataState.projects);
+    const projects = Object.values(dataState.projects).filter(p => getProjectNormalizedStatus(p) !== "Cancelled");
     const rentals = Object.values(dataState.rentals);
     const general = Object.values(dataState.generalExpenses);
-    const revSum = projects.reduce((s, p) => s + Number(p.paidAmount || p.price || 0), 0);
+    const revSum = projects.reduce((s, p) => s + Number(p.paidAmount || 0), 0);
     const rentSum = rentals.reduce((s, r) => s + Number(r.amount || 0), 0);
     const genSum = general.reduce((s, g) => s + Number(g.amount || 0), 0);
 
@@ -998,7 +1237,7 @@ window.printStatement = function(type) {
     sheet.innerHTML = `
         <h2>BlackLogic Finance Intelligence — ${type.toUpperCase()} STATEMENT</h2>
         <p style="font-size:.8rem; color:#555; margin-bottom:14px;">Internal management report (not a statutory audit). Generated ${new Date().toISOString().slice(0, 10)}.</p>
-        <p><strong>Project Revenue:</strong> ${fmtZar(revSum)}</p>
+        <p><strong>Project Cash Revenue:</strong> ${fmtZar(revSum)}</p>
         <p><strong>Rental Expenses:</strong> ${fmtZar(rentSum)}</p>
         <p><strong>General Expenses:</strong> ${fmtZar(genSum)}</p>
         <p style="margin-top:8px;"><strong>Net Position (Revenue − Rental − General):</strong> ${fmtZar(revSum - rentSum - genSum)}</p>
@@ -1006,13 +1245,172 @@ window.printStatement = function(type) {
     window.print();
 };
 
-// ANALYTICS & RECOMMENDATIONS
-function renderAnalyticsAndRecommendations() {
+// HELPER FOR FUTURE MONTH LABELS & LINEAR TREND PROJECTION
+function nextYearMonthLabels(lastYm, horizonMonths) {
+    let [y, m] = (lastYm && /^\d{4}-\d{2}$/.test(lastYm))
+        ? lastYm.split("-").map(Number)
+        : [new Date().getFullYear(), new Date().getMonth() + 1];
+    const out = [];
+    for (let i = 1; i <= horizonMonths; i++) {
+        m += 1;
+        if (m > 12) { m = 1; y += 1; }
+        out.push(`${y}-${String(m).padStart(2, "0")}`);
+    }
+    return out;
+}
+
+function projectSeries(values, steps) {
+    if (!values.length) return Array(steps).fill(0);
+    if (values.length === 1) return Array(steps).fill(Number(values[0].toFixed(2)));
+    const n = values.length;
+    let sumX = 0, sumY = 0, sumXY = 0, sumXX = 0;
+    for (let i = 0; i < n; i++) {
+        sumX += i;
+        sumY += values[i];
+        sumXY += i * values[i];
+        sumXX += i * i;
+    }
+    const denom = (n * sumXX - sumX * sumX);
+    const slope = denom === 0 ? 0 : (n * sumXY - sumX * sumY) / denom;
+    const intercept = (sumY - slope * sumX) / n;
+    const proj = [];
+    for (let s = 0; s < steps; s++) {
+        const val = Math.max(0, intercept + slope * (n + s));
+        proj.push(Number(val.toFixed(2)));
+    }
+    return proj;
+}
+
+// ANALYTICS & RECOMMENDATIONS (6 CHARTS)
+window.renderAnalyticsAndRecommendations = function() {
     if (typeof Chart === "undefined") return;
-    const projects = Object.values(dataState.projects);
+    const projects = Object.values(dataState.projects).filter(p => getProjectNormalizedStatus(p) !== "Cancelled");
     const rentals = Object.values(dataState.rentals);
     const general = Object.values(dataState.generalExpenses);
 
+    const revByMonth = {};
+    const rentByMonth = {};
+    const genByMonth = {};
+    const allMonthSet = new Set();
+
+    projects.forEach(p => {
+        const m = (p.date || "").slice(0, 7);
+        if (!m) return;
+        allMonthSet.add(m);
+        revByMonth[m] = (revByMonth[m] || 0) + Number(p.paidAmount || 0);
+    });
+    rentals.forEach(r => {
+        const m = (r.date || "").slice(0, 7);
+        if (!m) return;
+        allMonthSet.add(m);
+        rentByMonth[m] = (rentByMonth[m] || 0) + Number(r.amount || 0);
+    });
+    general.forEach(g => {
+        const m = (g.date || "").slice(0, 7);
+        if (!m) return;
+        allMonthSet.add(m);
+        genByMonth[m] = (genByMonth[m] || 0) + Number(g.amount || 0);
+    });
+
+    const histMonths = Array.from(allMonthSet).sort();
+    const histRev = histMonths.map(m => revByMonth[m] || 0);
+    const histRent = histMonths.map(m => rentByMonth[m] || 0);
+    const histTotalExp = histMonths.map(m => (rentByMonth[m] || 0) + (genByMonth[m] || 0));
+
+    const horizon = Number(document.getElementById("projectionHorizonSelect")?.value || 6);
+    const futureLabels = nextYearMonthLabels(histMonths[histMonths.length - 1], horizon);
+    const combinedLabels = [...histMonths, ...futureLabels.map(l => `${l} (Proj)`)];
+
+    const revProj = projectSeries(histRev, horizon);
+    const expProj = projectSeries(histTotalExp, horizon);
+
+    const actualRevSeries = [...histRev, ...Array(horizon).fill(null)];
+    const actualExpSeries = [...histTotalExp, ...Array(horizon).fill(null)];
+    const projRevSeries = [...Array(Math.max(0, histRev.length - 1)).fill(null), ...(histRev.length ? [histRev[histRev.length - 1]] : []), ...revProj];
+    const projExpSeries = [...Array(Math.max(0, histTotalExp.length - 1)).fill(null), ...(histTotalExp.length ? [histTotalExp[histTotalExp.length - 1]] : []), ...expProj];
+
+    // GRAPH 1: Past Monthly Revenue vs Expenses + 3/6/9/12 Month Projection
+    if (charts.projRevExp) charts.projRevExp.destroy();
+    const g1 = document.getElementById("projRevExpChart")?.getContext("2d");
+    if (g1) {
+        charts.projRevExp = new Chart(g1, {
+            type: "line",
+            data: {
+                labels: combinedLabels,
+                datasets: [
+                    { label: "Actual Revenue", data: actualRevSeries, borderColor: "#00c8d7", backgroundColor: "#00c8d7", tension: 0.25 },
+                    { label: "Actual Expenses", data: actualExpSeries, borderColor: "#ff6b6b", backgroundColor: "#ff6b6b", tension: 0.25 },
+                    { label: `Projected Revenue (${horizon}M)`, data: projRevSeries, borderColor: "#00c8d7", borderDash: [6, 5], tension: 0.25 },
+                    { label: `Projected Expenses (${horizon}M)`, data: projExpSeries, borderColor: "#ff6b6b", borderDash: [6, 5], tension: 0.25 }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { labels: { color: "#ccc", boxWidth: 12, font: { size: 10 } } } },
+                scales: { x: { ticks: { color: "#ccc" } }, y: { ticks: { color: "#ccc" }, beginAtZero: true } }
+            }
+        });
+    }
+
+    // GRAPH 2: Rental Expense vs Revenue (Monthly Bar Graph)
+    if (charts.rentalVsRev) charts.rentalVsRev.destroy();
+    const g2 = document.getElementById("rentalVsRevChart")?.getContext("2d");
+    if (g2) {
+        charts.rentalVsRev = new Chart(g2, {
+            type: "bar",
+            data: {
+                labels: histMonths,
+                datasets: [
+                    { label: "Monthly Revenue", data: histRev, backgroundColor: "#00c8d7" },
+                    { label: "Rental Expense", data: histRent, backgroundColor: "#0088ff" }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { labels: { color: "#ccc", boxWidth: 12, font: { size: 10 } } } },
+                scales: { x: { ticks: { color: "#ccc" } }, y: { ticks: { color: "#ccc" }, beginAtZero: true } }
+            }
+        });
+    }
+
+    // GRAPH 3: Overall Financial Trend Across All Financial Records (Cumulative Net Position)
+    let cumRev = 0, cumExp = 0;
+    const cumRevArr = [];
+    const cumExpArr = [];
+    const cumNetArr = [];
+    histMonths.forEach((m) => {
+        cumRev += (revByMonth[m] || 0);
+        cumExp += ((rentByMonth[m] || 0) + (genByMonth[m] || 0));
+        cumRevArr.push(cumRev);
+        cumExpArr.push(cumExp);
+        cumNetArr.push(cumRev - cumExp);
+    });
+
+    if (charts.overallTrend) charts.overallTrend.destroy();
+    const g3 = document.getElementById("overallTrendChart")?.getContext("2d");
+    if (g3) {
+        charts.overallTrend = new Chart(g3, {
+            type: "line",
+            data: {
+                labels: histMonths,
+                datasets: [
+                    { label: "Cumulative Revenue", data: cumRevArr, borderColor: "#00c8d7", tension: 0.25 },
+                    { label: "Cumulative Total Expenses", data: cumExpArr, borderColor: "#ff6b6b", tension: 0.25 },
+                    { label: "Cumulative Net Position", data: cumNetArr, borderColor: "#2ecc71", backgroundColor: "rgba(46,204,113,0.12)", fill: true, tension: 0.25 }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { labels: { color: "#ccc", boxWidth: 12, font: { size: 10 } } } },
+                scales: { x: { ticks: { color: "#ccc" } }, y: { ticks: { color: "#ccc" } } }
+            }
+        });
+    }
+
+    // GRAPH 4: Revenue vs Expenditure Split
     const revCash = projects.reduce((s, p) => s + Number(p.paidAmount || 0), 0);
     const rentTotal = rentals.reduce((s, r) => s + Number(r.amount || 0), 0);
     const genTotal = general.reduce((s, g) => s + Number(g.amount || 0), 0);
@@ -1030,40 +1428,38 @@ function renderAnalyticsAndRecommendations() {
         });
     }
 
-    const byMonth = {};
-    projects.forEach(p => {
-        const m = (p.date || "").slice(0, 7) || "Unknown";
-        byMonth[m] = (byMonth[m] || 0) + Number(p.paidAmount || p.price || 0);
-    });
-    const months = Object.keys(byMonth).sort();
-    const vals = months.map(m => byMonth[m]);
+    // GRAPH 5: Monthly Revenue Bar
+    const revMonths = Object.keys(revByMonth).sort();
+    const revVals = revMonths.map(m => revByMonth[m]);
 
     if (charts.monthlyRev) charts.monthlyRev.destroy();
     const c2 = document.getElementById("monthlyRevChart")?.getContext("2d");
     if (c2) {
         charts.monthlyRev = new Chart(c2, {
             type: "bar",
-            data: { labels: months, datasets: [{ label: "Revenue (ZAR)", data: vals, backgroundColor: "#00c8d7" }] },
+            data: { labels: revMonths, datasets: [{ label: "Revenue (ZAR)", data: revVals, backgroundColor: "#00c8d7" }] },
             options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { ticks: { color: "#ccc" } }, y: { ticks: { color: "#ccc" }, beginAtZero: true } } }
         });
     }
 
-    const growth = vals.map((v, idx) => idx === 0 || vals[idx - 1] === 0 ? 0 : Number((((v - vals[idx - 1]) / vals[idx - 1]) * 100).toFixed(1)));
+    // GRAPH 6: Monthly Revenue Growth %
+    const growth = revVals.map((v, idx) => idx === 0 || revVals[idx - 1] === 0 ? 0 : Number((((v - revVals[idx - 1]) / revVals[idx - 1]) * 100).toFixed(1)));
     if (charts.revGrowth) charts.revGrowth.destroy();
     const c3 = document.getElementById("revGrowthChart")?.getContext("2d");
     if (c3) {
         charts.revGrowth = new Chart(c3, {
             type: "line",
-            data: { labels: months, datasets: [{ label: "Growth %", data: growth, borderColor: "#00c8d7", tension: 0.25 }] },
+            data: { labels: revMonths, datasets: [{ label: "Growth %", data: growth, borderColor: "#00c8d7", tension: 0.25 }] },
             options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { ticks: { color: "#ccc" } }, y: { ticks: { color: "#ccc" } } } }
         });
     }
 
+    // TREND RECOMMENDATIONS
     const recBox = document.getElementById("recommendationsContainer");
     const recs = [];
-    if (vals.length >= 3 && vals[vals.length - 1] < vals[vals.length - 2] && vals[vals.length - 1] < vals[vals.length - 3]) {
+    if (revVals.length >= 3 && revVals[revVals.length - 1] < revVals[revVals.length - 2] && revVals[revVals.length - 1] < revVals[revVals.length - 3]) {
         recs.push("Revenue has declined. Increase business-development outreach, review procurement opportunities and prioritise client acquisition.");
-    } else if (vals.length >= 2 && vals[vals.length - 1] > vals[vals.length - 2]) {
+    } else if (revVals.length >= 2 && revVals[revVals.length - 1] > revVals[revVals.length - 2]) {
         recs.push("Revenue is showing positive growth. Maintain business-development activity, manage expenditure and continue strengthening operations.");
     }
     if ((rentTotal + genTotal) > revCash && (rentTotal + genTotal) > 0) {
@@ -1073,7 +1469,7 @@ function renderAnalyticsAndRecommendations() {
         recs.push("Record project receipts and expenses to generate trend-based financial recommendations.");
     }
     recBox.innerHTML = recs.map(r => `<div class="rec-box">${esc(r)}</div>`).join("");
-}
+};
 
 window.exportFinanceJson = function() {
     const blob = new Blob([JSON.stringify({ exportedAt: new Date().toISOString(), ...dataState }, null, 2)], { type: "application/json" });
