@@ -8,13 +8,14 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Poppins", sans-serif; }
 body { background: #050505; color: #fff; min-height: 100vh; overflow-x: hidden; }
+.mono { font-family: "JetBrains Mono", monospace; }
 
 /* AUTH VIEW */
 .auth-wrapper {
@@ -42,6 +43,7 @@ body { background: #050505; color: #fff; min-height: 100vh; overflow-x: hidden; 
     color: #fff; font-size: .84rem; outline: none;
 }
 .form-control:focus { border-color: #00c8d7; }
+.form-control[readonly] { background: #101517; color: #9ad8de; border-color: rgba(0,200,215,.22); }
 
 .btn {
     padding: 9px 15px; border: none; border-radius: 24px; font-size: .78rem;
@@ -50,6 +52,7 @@ body { background: #050505; color: #fff; min-height: 100vh; overflow-x: hidden; 
 }
 .btn:hover { transform: translateY(-1px); }
 .btn-primary { background: #00c8d7; color: #000; }
+.btn-gold { background: rgba(245,197,66,.16); color: #f5c542; border: 1px solid rgba(245,197,66,.4); }
 .btn-secondary { background: #161616; color: #fff; border: 1px solid rgba(255,255,255,.14); }
 .btn-danger { background: rgba(255,87,87,.14); color: #ff6b6b; border: 1px solid rgba(255,87,87,.35); }
 .auth-btn { width: 100%; justify-content: center; padding: 13px; margin-top: 8px; }
@@ -87,7 +90,7 @@ header {
 .pulse { width: 8px; height: 8px; border-radius: 50%; background: #00c8d7; box-shadow: 0 0 8px #00c8d7; }
 
 /* CONTAINER */
-.container { max-width: 1360px; margin: 24px auto 60px; padding: 0 22px; }
+.container { max-width: 1380px; margin: 24px auto 60px; padding: 0 22px; }
 
 /* KPI GRID */
 .kpi-grid {
@@ -98,7 +101,7 @@ header {
     border-radius: 16px; padding: 18px;
 }
 .kpi-card small { display: block; font-size: .68rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
-.kpi-card .val { font-size: 1.35rem; font-weight: 800; color: #00c8d7; }
+.kpi-card .val { font-size: 1.32rem; font-weight: 800; color: #00c8d7; font-family: "JetBrains Mono", monospace; }
 .kpi-card .sub { font-size: .7rem; color: #aaa; margin-top: 4px; }
 
 /* NAV TABS */
@@ -126,10 +129,20 @@ header {
     gap: 10px; flex-wrap: wrap; margin-bottom: 14px; padding-bottom: 10px;
     border-bottom: 1px solid rgba(255,255,255,.06);
 }
-.card-hdr h2 { font-size: .96rem; color: #00c8d7; display: flex; align-items: center; gap: 8px; }
+.card-hdr h2 { font-size: .95rem; color: #00c8d7; display: flex; align-items: center; gap: 8px; }
+.card-sub-note { font-size: .72rem; color: #888; margin-top: 4px; }
 
 .form-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 .form-grid .full { grid-column: 1 / -1; }
+
+.company-profile-strip {
+    background: #101618; border: 1px solid rgba(0,200,215,.22); border-radius: 12px;
+    padding: 14px; margin-bottom: 16px;
+}
+.company-profile-strip-hdr {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap;
+    margin-bottom: 10px; font-size: .76rem; color: #00c8d7; font-weight: 600;
+}
 
 .table-wrap { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; font-size: .8rem; }
@@ -151,6 +164,8 @@ th { color: #888; font-size: .72rem; text-transform: uppercase; letter-spacing: 
 .b-partial { background: rgba(255,193,7,.15); color: #ffc107; border: 1px solid rgba(255,193,7,.35); }
 .b-unpaid { background: rgba(255,87,87,.15); color: #ff6b6b; border: 1px solid rgba(255,87,87,.35); }
 .b-recon { background: rgba(0,200,215,.14); color: #00c8d7; border: 1px solid rgba(0,200,215,.32); }
+.b-quote { background: rgba(245,197,66,.15); color: #f5c542; border: 1px solid rgba(245,197,66,.35); }
+.b-inv { background: rgba(0,200,215,.15); color: #00c8d7; border: 1px solid rgba(0,200,215,.35); }
 
 .monthly-strip {
     display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px;
@@ -159,17 +174,29 @@ th { color: #888; font-size: .72rem; text-transform: uppercase; letter-spacing: 
     background: #131313; border: 1px solid rgba(0,200,215,.22); border-radius: 10px;
     padding: 8px 12px; font-size: .75rem;
 }
-.month-pill strong { color: #00c8d7; display: block; font-size: .82rem; }
+.month-pill strong { color: #00c8d7; display: block; font-size: .82rem; font-family: "JetBrains Mono", monospace; }
 
+.charts-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-bottom: 20px; }
 .charts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 20px; }
-.chart-box { position: relative; height: 260px; }
+.chart-box { position: relative; height: 270px; }
+.chart-box-tall { position: relative; height: 310px; }
+.chart-empty-note {
+    display: none; position: absolute; inset: 0; background: rgba(12,12,12,.92);
+    border: 1px dashed rgba(0,200,215,.28); border-radius: 12px; padding: 18px;
+    align-items: center; justify-content: center; text-align: center;
+    color: #999; font-size: .78rem; line-height: 1.55; z-index: 5;
+}
+.method-note {
+    font-size: .71rem; color: #888; margin-top: 10px; padding-top: 8px;
+    border-top: 1px solid rgba(255,255,255,.05); line-height: 1.5;
+}
 
 .rec-box {
     background: #111; border-left: 4px solid #00c8d7; border-radius: 10px;
     padding: 14px 16px; margin-bottom: 10px; font-size: .82rem; color: #ddd;
 }
 
-/* PRINTABLE INVOICE & STATEMENT SHEET */
+/* PRINTABLE INVOICE, QUOTATION & STATEMENT SHEET */
 #printableSheet {
     display: none; background: #fff; color: #111; padding: 36px; border-radius: 12px; margin-top: 16px;
 }
@@ -185,9 +212,10 @@ th { color: #888; font-size: .72rem; text-transform: uppercase; letter-spacing: 
 .inv-meta-grid {
     display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; font-size: .84rem; line-height: 1.65;
 }
-.inv-table { width: 100%; border-collapse: collapse; margin-bottom: 18px; font-size: .85rem; }
+.inv-table { width: 100%; border-collapse: collapse; margin-bottom: 18px; font-size: .84rem; }
 .inv-table th { background: #111; color: #fff; padding: 10px; border: 1px solid #111; }
 .inv-table td { padding: 10px; border: 1px solid #333; color: #111; }
+.print-mono { font-family: "JetBrains Mono", monospace; font-size: .8rem; }
 
 .toast {
     position: fixed; bottom: 22px; right: 22px; background: #0c0c0c;
@@ -198,7 +226,7 @@ th { color: #888; font-size: .72rem; text-transform: uppercase; letter-spacing: 
 @media (max-width: 1120px) {
     .kpi-grid { grid-template-columns: repeat(2, 1fr); }
     .nav-tabs { grid-template-columns: repeat(3, 1fr); }
-    .charts-grid { grid-template-columns: 1fr; }
+    .charts-grid, .charts-grid-2 { grid-template-columns: 1fr; }
 }
 @media (max-width: 760px) {
     .kpi-grid, .nav-tabs, .form-grid, .inv-meta-grid { grid-template-columns: 1fr; }
@@ -283,11 +311,11 @@ th { color: #888; font-size: .72rem; text-transform: uppercase; letter-spacing: 
         <!-- NAVIGATION -->
         <nav class="nav-tabs">
             <button type="button" class="tab-btn active" data-tab="projects" onclick="switchTab('projects')"><i class="fas fa-briefcase"></i> Projects Revenue</button>
-            <button type="button" class="tab-btn" data-tab="invoices" onclick="switchTab('invoices')"><i class="fas fa-file-invoice-dollar"></i> Invoice Generator</button>
+            <button type="button" class="tab-btn" data-tab="invoices" onclick="switchTab('invoices')"><i class="fas fa-file-invoice-dollar"></i> Invoices & Quotes</button>
             <button type="button" class="tab-btn" data-tab="rentals" onclick="switchTab('rentals')"><i class="fas fa-house-user"></i> Rental Expenses</button>
             <button type="button" class="tab-btn" data-tab="general" onclick="switchTab('general')"><i class="fas fa-receipt"></i> General Expenses</button>
-            <button type="button" class="tab-btn" data-tab="statements" onclick="switchTab('statements')"><i class="fas fa-file-lines"></i> Statements & Ops</button>
-            <button type="button" class="tab-btn" data-tab="analytics" onclick="switchTab('analytics')"><i class="fas fa-chart-pie"></i> Analytics & Insights</button>
+            <button type="button" class="tab-btn" data-tab="statements" onclick="switchTab('statements')"><i class="fas fa-file-lines"></i> Reports & Ops</button>
+            <button type="button" class="tab-btn" data-tab="analytics" onclick="switchTab('analytics')"><i class="fas fa-chart-pie"></i> Analytics & Forecast</button>
         </nav>
 
         <!-- A. PROJECTS — REVENUE REGISTER -->
@@ -353,15 +381,54 @@ th { color: #888; font-size: .72rem; text-transform: uppercase; letter-spacing: 
             </div>
         </section>
 
-        <!-- B. INVOICE GENERATOR -->
+        <!-- B. INVOICE & QUOTATION GENERATOR -->
         <section class="panel" id="panel-invoices">
             <div class="card">
                 <div class="card-hdr">
-                    <h2><i class="fas fa-file-invoice"></i> Generate BlackLogic Invoice</h2>
+                    <h2><i class="fas fa-file-invoice"></i> Generate BlackLogic Invoice or Quotation</h2>
+                    <span class="mono" style="font-size:.72rem; color:#888;" id="companyProfileSourceLabel">Cloud Company Profile: Loading...</span>
                 </div>
+
+                <!-- Auto-populated Company Profile from Firebase / System Configuration -->
+                <div class="company-profile-strip">
+                    <div class="company-profile-strip-hdr">
+                        <span><i class="fas fa-building-shield"></i> Registered Company Information (Auto-Populated from Cloud Profile)</span>
+                        <button type="button" class="btn btn-secondary" style="padding:5px 11px; font-size:.7rem;" onclick="toggleCompanyProfileEdit()"><i class="fas fa-pen"></i> Edit Cloud Profile</button>
+                    </div>
+                    <div class="form-grid" id="companyProfileFields">
+                        <div class="field" style="margin-bottom:4px;">
+                            <label for="cmpBusinessName">Registered Enterprise Name</label>
+                            <input type="text" id="cmpBusinessName" class="form-control" readonly>
+                        </div>
+                        <div class="field" style="margin-bottom:4px;">
+                            <label for="cmpRegNumber">CIPC Registration Number</label>
+                            <input type="text" id="cmpRegNumber" class="form-control mono" readonly>
+                        </div>
+                        <div class="field" style="margin-bottom:4px;">
+                            <label for="cmpEmail">Business Email Address</label>
+                            <input type="email" id="cmpEmail" class="form-control mono" readonly>
+                        </div>
+                        <div class="field" style="margin-bottom:4px;">
+                            <label for="cmpPhone">Business Cellphone Number</label>
+                            <input type="text" id="cmpPhone" class="form-control mono" readonly>
+                        </div>
+                        <div class="field" style="margin-bottom:4px;">
+                            <label for="cmpWebsite">Website</label>
+                            <input type="text" id="cmpWebsite" class="form-control mono" readonly>
+                        </div>
+                        <div class="field" style="margin-bottom:4px;">
+                            <label for="cmpAddress">Business Address</label>
+                            <input type="text" id="cmpAddress" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <div id="companyProfileSaveRow" style="display:none; margin-top:10px; text-align:right;">
+                        <button type="button" class="btn btn-primary" onclick="saveCompanyProfileToCloud()"><i class="fas fa-cloud-arrow-up"></i> Save Company Profile to Cloud</button>
+                    </div>
+                </div>
+
                 <form id="invoiceForm" class="form-grid">
                     <div class="field">
-                        <label for="invDomain">Domain *</label>
+                        <label for="invDomain">Domain / Division *</label>
                         <select id="invDomain" class="form-control" required>
                             <option value="Blacklogic Engineering">Blacklogic Engineering</option>
                             <option value="Blacklogic Design">Blacklogic Design</option>
@@ -374,24 +441,39 @@ th { color: #888; font-size: .72rem; text-transform: uppercase; letter-spacing: 
                         <input type="text" id="invClientName" class="form-control" required placeholder="e.g., ABC Construction (Pty) Ltd">
                     </div>
                     <div class="field">
-                        <label for="invDate">Date *</label>
+                        <label for="invClientContact">Client Email / Phone (Optional)</label>
+                        <input type="text" id="invClientContact" class="form-control" placeholder="e.g., accounts@client.co.za / 082 000 0000">
+                    </div>
+                    <div class="field">
+                        <label for="invDate">Document Date *</label>
                         <input type="date" id="invDate" class="form-control" required>
                     </div>
                     <div class="field">
-                        <label for="invSpecification">Specification *</label>
+                        <label for="invValidUntil">Valid Until (For Quotations)</label>
+                        <input type="date" id="invValidUntil" class="form-control">
+                    </div>
+                    <div class="field">
+                        <label for="invVatRate">Tax / VAT % (0 if Non-VAT)</label>
+                        <input type="number" step="0.01" min="0" max="100" id="invVatRate" class="form-control mono" value="0" oninput="updateInvoicePreviewCalc()">
+                    </div>
+                    <div class="field">
+                        <label for="invSpecification">Product / Service Specification *</label>
                         <input type="text" id="invSpecification" class="form-control" required placeholder="e.g., Website Design, Logo Design...">
                     </div>
                     <div class="field">
                         <label for="invQuantity">Quantity *</label>
-                        <input type="number" step="1" min="1" id="invQuantity" class="form-control" required value="1" oninput="updateInvoicePreviewCalc()">
+                        <input type="number" step="1" min="1" id="invQuantity" class="form-control mono" required value="1" oninput="updateInvoicePreviewCalc()">
                     </div>
                     <div class="field">
-                        <label for="invUnitPrice">Price (ZAR) *</label>
-                        <input type="number" step="0.01" min="0.01" id="invUnitPrice" class="form-control" required placeholder="5000.00" oninput="updateInvoicePreviewCalc()">
+                        <label for="invUnitPrice">Unit Price (ZAR) *</label>
+                        <input type="number" step="0.01" min="0.01" id="invUnitPrice" class="form-control mono" required placeholder="5000.00" oninput="updateInvoicePreviewCalc()">
                     </div>
-                    <div class="field full" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-                        <span id="invCalcTotalLabel" style="font-size:.86rem; color:#00c8d7; font-weight:700;">Calculated Total: R 0.00</span>
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-wand-magic-sparkles"></i> Generate & Save Invoice</button>
+                    <div class="field full" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; padding-top:4px;">
+                        <span id="invCalcTotalLabel" class="mono" style="font-size:.86rem; color:#00c8d7; font-weight:700;">Subtotal: R 0.00 | Tax: R 0.00 | Total: R 0.00</span>
+                        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                            <button type="button" class="btn btn-gold" onclick="submitCommercialDocument('quotation')"><i class="fas fa-file-signature"></i> Generate Quotation</button>
+                            <button type="button" class="btn btn-primary" onclick="submitCommercialDocument('invoice')"><i class="fas fa-file-invoice-dollar"></i> Generate Invoice</button>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -408,6 +490,22 @@ th { color: #888; font-size: .72rem; text-transform: uppercase; letter-spacing: 
                             </tr>
                         </thead>
                         <tbody id="invoicesTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-hdr">
+                    <h2><i class="fas fa-file-contract"></i> Saved Quotations</h2>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Quotation Ref</th><th>Date</th><th>Valid Until</th><th>Domain</th><th>Company / Client</th><th>Specification</th><th>Qty</th><th>Unit Price</th><th>Total</th><th>Status</th><th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="quotationsTableBody"></tbody>
                     </table>
                 </div>
             </div>
@@ -496,7 +594,7 @@ th { color: #888; font-size: .72rem; text-transform: uppercase; letter-spacing: 
 
             <div class="card">
                 <div class="card-hdr">
-                    <h2><i class="fas fa-filter"></i> General Expenses (<span id="genTotalLabel">R 0.00</span>)</h2>
+                    <h2><i class="fas fa-filter"></i> General Expenses (<span id="genTotalLabel" class="mono">R 0.00</span>)</h2>
                     <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
                         <select id="genFilterCat" class="form-control" style="width:auto;" onchange="renderGeneralExpenses()">
                             <option value="ALL">All Categories</option>
@@ -529,11 +627,61 @@ th { color: #888; font-size: .72rem; text-transform: uppercase; letter-spacing: 
             </div>
         </section>
 
-        <!-- E. STATEMENTS, SCHEDULED PAYMENTS & FUTURE BUDGETS -->
+        <!-- E. AUTOMATED FINANCIAL REPORTS, STATEMENTS, SCHEDULED PAYMENTS & BUDGETS -->
         <section class="panel" id="panel-statements">
             <div class="card">
                 <div class="card-hdr">
-                    <h2><i class="fas fa-print"></i> Printable Financial Statements (Internal Management)</h2>
+                    <h2><i class="fas fa-file-shield"></i> Automated Financial Document & Report Generator</h2>
+                </div>
+                <p style="font-size:.78rem; color:#999; margin-bottom:14px;">Generate authoritative financial reports directly from live Firebase cloud records with company credentials, itemized transaction tables, and reconciled totals.</p>
+                <div class="form-grid" style="margin-bottom:14px;">
+                    <div class="field">
+                        <label for="repPeriodType">Report Type *</label>
+                        <select id="repPeriodType" class="form-control" onchange="toggleReportFilterInputs()">
+                            <option value="daily">Daily Financial Report</option>
+                            <option value="weekly">Weekly Financial Report</option>
+                            <option value="monthly" selected>Monthly Financial Report</option>
+                            <option value="category">Category-Based Financial Report</option>
+                        </select>
+                    </div>
+                    <div class="field" id="repDailyGroup" style="display:none;">
+                        <label for="repDailyDate">Select Date *</label>
+                        <input type="date" id="repDailyDate" class="form-control">
+                    </div>
+                    <div class="field" id="repWeeklyGroup" style="display:none;">
+                        <label for="repWeeklyStart">Week Starting (Monday / Anchor Date) *</label>
+                        <input type="date" id="repWeeklyStart" class="form-control">
+                    </div>
+                    <div class="field" id="repMonthlyGroup">
+                        <label for="repMonthInput">Select Month *</label>
+                        <input type="month" id="repMonthInput" class="form-control">
+                    </div>
+                    <div class="field" id="repCategoryGroup" style="display:none;">
+                        <label for="repCategorySelect">Select Financial Category *</label>
+                        <select id="repCategorySelect" class="form-control">
+                            <option value="ALL">All Categories (Income & Expenditure)</option>
+                            <option value="Project Revenue">Project Revenue (Income)</option>
+                            <option value="Rental Expense">Rental Expense</option>
+                            <option value="Internet & Connectivity">Internet & Connectivity</option>
+                            <option value="Hosting & Infrastructure">Hosting & Infrastructure</option>
+                            <option value="Software Subscriptions">Software Subscriptions</option>
+                            <option value="Transport">Transport</option>
+                            <option value="Printing">Printing</option>
+                            <option value="Business Administration">Business Administration</option>
+                            <option value="Operational Purchases">Operational Purchases</option>
+                        </select>
+                    </div>
+                    <div class="field" style="display:flex; align-items:flex-end; gap:8px; flex-wrap:wrap;">
+                        <button type="button" class="btn btn-secondary" onclick="previewPeriodReport()"><i class="fas fa-eye"></i> Preview Report</button>
+                        <button type="button" class="btn btn-primary" onclick="generateAndPrintPeriodReport()"><i class="fas fa-print"></i> Print / Save PDF</button>
+                    </div>
+                </div>
+                <div id="reportLivePreviewBox" style="background:#111; border:1px solid rgba(0,200,215,.2); border-radius:12px; padding:16px; display:none;"></div>
+            </div>
+
+            <div class="card">
+                <div class="card-hdr">
+                    <h2><i class="fas fa-print"></i> Quick Summary Management Statements</h2>
                     <div style="display:flex; gap:8px; flex-wrap:wrap;">
                         <button type="button" class="btn btn-secondary" onclick="printStatement('revenue')">Project Revenue Statement</button>
                         <button type="button" class="btn btn-secondary" onclick="printStatement('rental')">Rental Expense Statement</button>
@@ -541,7 +689,7 @@ th { color: #888; font-size: .72rem; text-transform: uppercase; letter-spacing: 
                         <button type="button" class="btn btn-primary" onclick="printStatement('complete')">Complete Financial Statement</button>
                     </div>
                 </div>
-                <p style="font-size:.78rem; color:#888;">Select a statement to generate a clean printable / Save-as-PDF internal management report.</p>
+                <p style="font-size:.78rem; color:#888;">Select a quick summary statement for immediate print or Save-as-PDF output.</p>
             </div>
 
             <div class="card">
@@ -603,13 +751,31 @@ th { color: #888; font-size: .72rem; text-transform: uppercase; letter-spacing: 
             </div>
         </section>
 
-        <!-- ANALYTICS & TREND RECOMMENDATIONS (6 CHARTS TOTAL) -->
+        <!-- F. ADVANCED ANALYTICS, SCATTER, OHLC CANDLESTICK & FORECASTING -->
         <section class="panel" id="panel-analytics">
             <div class="card" style="padding:14px 20px;">
                 <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
-                    <span style="font-size:.82rem; color:#ccc; font-weight:600;"><i class="fas fa-chart-line" style="color:#00c8d7;"></i> Financial Projection Horizon (Past Monthly Revenue vs Expenses):</span>
-                    <div style="display:flex; align-items:center; gap:8px;">
-                        <label for="projectionHorizonSelect" style="font-size:.76rem; color:#999;">Projection Window:</label>
+                    <span style="font-size:.82rem; color:#ccc; font-weight:600;"><i class="fas fa-sliders" style="color:#00c8d7;"></i> Analytics Controls (Cloud Records Only):</span>
+                    <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                        <label for="analyticsGranularitySelect" style="font-size:.76rem; color:#999;">Time Granularity:</label>
+                        <select id="analyticsGranularitySelect" class="form-control" style="width:auto;" onchange="renderAnalyticsAndRecommendations()">
+                            <option value="monthly" selected>Monthly</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="daily">Daily</option>
+                        </select>
+                        <label for="analyticsCategoryFilter" style="font-size:.76rem; color:#999;">Expense Category:</label>
+                        <select id="analyticsCategoryFilter" class="form-control" style="width:auto;" onchange="renderAnalyticsAndRecommendations()">
+                            <option value="ALL" selected>All Expense Categories</option>
+                            <option value="Rental Expense">Rental Expense</option>
+                            <option value="Internet & Connectivity">Internet & Connectivity</option>
+                            <option value="Hosting & Infrastructure">Hosting & Infrastructure</option>
+                            <option value="Software Subscriptions">Software Subscriptions</option>
+                            <option value="Transport">Transport</option>
+                            <option value="Printing">Printing</option>
+                            <option value="Business Administration">Business Administration</option>
+                            <option value="Operational Purchases">Operational Purchases</option>
+                        </select>
+                        <label for="projectionHorizonSelect" style="font-size:.76rem; color:#999;">Forecast Horizon:</label>
                         <select id="projectionHorizonSelect" class="form-control" style="width:auto;" onchange="renderAnalyticsAndRecommendations()">
                             <option value="3">3 Months</option>
                             <option value="6" selected>6 Months</option>
@@ -620,30 +786,105 @@ th { color: #888; font-size: .72rem; text-transform: uppercase; letter-spacing: 
                 </div>
             </div>
 
+            <!-- FORECASTING & OHLC CANDLESTICK ROW -->
+            <div class="charts-grid-2">
+                <div class="card">
+                    <div class="card-hdr">
+                        <h2>1. Historical & Projected Revenue vs Expenses (With 95% Band)</h2>
+                    </div>
+                    <div class="chart-box-tall">
+                        <canvas id="projRevExpChart"></canvas>
+                        <div class="chart-empty-note" id="empty-projRevExpChart"></div>
+                    </div>
+                    <div class="method-note" id="forecastMethodNote">Methodology: Ordinary Least Squares (OLS) linear trend on historical monthly actuals. Forecasts are statistical estimates, not guaranteed outcomes, and are never written to the ledger.</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-hdr">
+                        <h2>2. Net Cash Position OHLC Candlestick Chart (Monthly Range)</h2>
+                    </div>
+                    <div class="chart-box-tall">
+                        <canvas id="ohlcCandlestickChart"></canvas>
+                        <div class="chart-empty-note" id="empty-ohlcCandlestickChart"></div>
+                    </div>
+                    <div class="method-note" id="ohlcMethodNote">Methodology: Derived strictly from chronological running net cash balance within each month (Open = start-of-month running balance, High = intra-month peak, Low = intra-month trough, Close = end-of-month balance). Requires ≥ 2 months with ≥ 2 ledger transactions.</div>
+                </div>
+            </div>
+
+            <!-- CORE COMPARISONS & DISTRIBUTIONS -->
             <div class="charts-grid">
                 <div class="card">
-                    <div class="card-hdr"><h2>1. Past Monthly Revenue vs Expenses (+ Projection)</h2></div>
-                    <div class="chart-box"><canvas id="projRevExpChart"></canvas></div>
+                    <div class="card-hdr"><h2>3. Income vs Expenses (Selected Granularity)</h2></div>
+                    <div class="chart-box">
+                        <canvas id="incomeVsExpGranularChart"></canvas>
+                        <div class="chart-empty-note" id="empty-incomeVsExpGranularChart"></div>
+                    </div>
                 </div>
+
                 <div class="card">
-                    <div class="card-hdr"><h2>2. Rental Expense vs Revenue (Monthly Bar)</h2></div>
-                    <div class="chart-box"><canvas id="rentalVsRevChart"></canvas></div>
+                    <div class="card-hdr"><h2>4. Category Expense Distribution (% Share)</h2></div>
+                    <div class="chart-box">
+                        <canvas id="categoryPieChart"></canvas>
+                        <div class="chart-empty-note" id="empty-categoryPieChart"></div>
+                    </div>
                 </div>
+
                 <div class="card">
-                    <div class="card-hdr"><h2>3. Overall Financial Trend (All Records)</h2></div>
-                    <div class="chart-box"><canvas id="overallTrendChart"></canvas></div>
+                    <div class="card-hdr"><h2>5. Category-Based Expenditure (Bar)</h2></div>
+                    <div class="chart-box">
+                        <canvas id="categoryBarChart"></canvas>
+                        <div class="chart-empty-note" id="empty-categoryBarChart"></div>
+                    </div>
                 </div>
+
                 <div class="card">
-                    <div class="card-hdr"><h2>4. Revenue vs Expenditure Split</h2></div>
-                    <div class="chart-box"><canvas id="revExpChart"></canvas></div>
+                    <div class="card-hdr"><h2>6. Scatter: Monthly Income vs Monthly Expenses</h2></div>
+                    <div class="chart-box">
+                        <canvas id="scatterIncExpChart"></canvas>
+                        <div class="chart-empty-note" id="empty-scatterIncExpChart"></div>
+                    </div>
+                    <div class="method-note">Exploratory plot of paired monthly cash receipts (X) vs total monthly expenses (Y). Requires ≥ 3 months of recorded activity; does not imply causation.</div>
                 </div>
+
                 <div class="card">
-                    <div class="card-hdr"><h2>5. Monthly Revenue</h2></div>
-                    <div class="chart-box"><canvas id="monthlyRevChart"></canvas></div>
+                    <div class="card-hdr"><h2>7. Scatter: Category Spend vs Transaction Frequency</h2></div>
+                    <div class="chart-box">
+                        <canvas id="scatterCatFreqChart"></canvas>
+                        <div class="chart-empty-note" id="empty-scatterCatFreqChart"></div>
+                    </div>
+                    <div class="method-note">Plots transaction count (X) against cumulative category expenditure in ZAR (Y) across active categories.</div>
                 </div>
+
                 <div class="card">
-                    <div class="card-hdr"><h2>6. Monthly Revenue Growth %</h2></div>
-                    <div class="chart-box"><canvas id="revGrowthChart"></canvas></div>
+                    <div class="card-hdr"><h2>8. Cumulative Cashflow Area (Income, Expense & Net)</h2></div>
+                    <div class="chart-box">
+                        <canvas id="overallTrendChart"></canvas>
+                        <div class="chart-empty-note" id="empty-overallTrendChart"></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-hdr"><h2>9. Rental Expense vs Revenue (Monthly Bar)</h2></div>
+                    <div class="chart-box">
+                        <canvas id="rentalVsRevChart"></canvas>
+                        <div class="chart-empty-note" id="empty-rentalVsRevChart"></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-hdr"><h2>10. Overall Cash Composition (Doughnut)</h2></div>
+                    <div class="chart-box">
+                        <canvas id="revExpChart"></canvas>
+                        <div class="chart-empty-note" id="empty-revExpChart"></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-hdr"><h2>11. Monthly Revenue & Growth %</h2></div>
+                    <div class="chart-box">
+                        <canvas id="revGrowthChart"></canvas>
+                        <div class="chart-empty-note" id="empty-revGrowthChart"></div>
+                    </div>
                 </div>
             </div>
 
@@ -680,23 +921,29 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getDatabase(app);
 
+// Default company profile fallback only if finance/companyProfile node has not yet been written to Firebase
+const DEFAULT_COMPANY_PROFILE = {
+    businessName: "BlackLogic Technologies Hardware and Projects (Pty) Ltd",
+    registrationNumber: "2025/885280/07",
+    email: "blacklogictechnologies@gmail.com",
+    phone: "079 311 0798",
+    website: "blacklogictechnologies.netlify.app",
+    address: "Middelburg, Mpumalanga, South Africa"
+};
+
+let companyProfile = { ...DEFAULT_COMPANY_PROFILE };
+
 let dataState = {
     projects: {},
     invoices: {},
+    quotations: {},
     rentals: {},
     generalExpenses: {},
     scheduledPayments: {},
     budgets: {}
 };
 
-let charts = {
-    projRevExp: null,
-    rentalVsRev: null,
-    overallTrend: null,
-    revExp: null,
-    monthlyRev: null,
-    revGrowth: null
-};
+let charts = {};
 
 function toast(msg) {
     const el = document.getElementById("toastBox");
@@ -715,6 +962,54 @@ function esc(s) {
     return String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
+function setDefaultDates() {
+    const today = new Date().toISOString().slice(0, 10);
+    const ym = today.slice(0, 7);
+    if (document.getElementById("invDate") && !document.getElementById("invDate").value) document.getElementById("invDate").value = today;
+    if (document.getElementById("repDailyDate") && !document.getElementById("repDailyDate").value) document.getElementById("repDailyDate").value = today;
+    if (document.getElementById("repWeeklyStart") && !document.getElementById("repWeeklyStart").value) document.getElementById("repWeeklyStart").value = today;
+    if (document.getElementById("repMonthInput") && !document.getElementById("repMonthInput").value) document.getElementById("repMonthInput").value = ym;
+}
+
+function populateCompanyProfileInputs(sourceText) {
+    document.getElementById("cmpBusinessName").value = companyProfile.businessName || "";
+    document.getElementById("cmpRegNumber").value = companyProfile.registrationNumber || "";
+    document.getElementById("cmpEmail").value = companyProfile.email || "";
+    document.getElementById("cmpPhone").value = companyProfile.phone || "";
+    document.getElementById("cmpWebsite").value = companyProfile.website || "";
+    document.getElementById("cmpAddress").value = companyProfile.address || "";
+    if (sourceText) {
+        document.getElementById("companyProfileSourceLabel").textContent = sourceText;
+    }
+}
+
+window.toggleCompanyProfileEdit = function() {
+    const fields = ["cmpBusinessName", "cmpRegNumber", "cmpEmail", "cmpPhone", "cmpWebsite", "cmpAddress"];
+    const first = document.getElementById(fields[0]);
+    const isReadonly = first.hasAttribute("readonly");
+    fields.forEach(id => {
+        const el = document.getElementById(id);
+        if (isReadonly) el.removeAttribute("readonly");
+        else el.setAttribute("readonly", "readonly");
+    });
+    document.getElementById("companyProfileSaveRow").style.display = isReadonly ? "block" : "none";
+};
+
+window.saveCompanyProfileToCloud = async function() {
+    const updated = {
+        businessName: document.getElementById("cmpBusinessName").value.trim() || DEFAULT_COMPANY_PROFILE.businessName,
+        registrationNumber: document.getElementById("cmpRegNumber").value.trim() || DEFAULT_COMPANY_PROFILE.registrationNumber,
+        email: document.getElementById("cmpEmail").value.trim() || DEFAULT_COMPANY_PROFILE.email,
+        phone: document.getElementById("cmpPhone").value.trim() || DEFAULT_COMPANY_PROFILE.phone,
+        website: document.getElementById("cmpWebsite").value.trim() || DEFAULT_COMPANY_PROFILE.website,
+        address: document.getElementById("cmpAddress").value.trim() || DEFAULT_COMPANY_PROFILE.address,
+        updatedAt: new Date().toISOString()
+    };
+    await set(ref(db, "finance/companyProfile"), updated);
+    toggleCompanyProfileEdit();
+    toast("Company profile saved to Firebase.");
+};
+
 // AUTH
 onAuthStateChanged(auth, async (user) => {
     if (!user) {
@@ -728,6 +1023,7 @@ onAuthStateChanged(auth, async (user) => {
         if (okRole || user.email === "admin@blacklogic.com") {
             document.getElementById("authWrapper").style.display = "none";
             document.getElementById("financeApp").style.display = "block";
+            setDefaultDates();
             startListeners();
             return;
         }
@@ -754,11 +1050,27 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
 document.getElementById("logoutBtn").addEventListener("click", () => signOut(auth));
 
 function startListeners() {
-    const nodes = ["projects", "invoices", "rentals", "generalExpenses", "scheduledPayments", "budgets"];
+    // Load Company Profile from Firebase (synchronizing finance/companyProfile if absent)
+    onValue(ref(db, "finance/companyProfile"), async (snap) => {
+        if (snap.exists() && snap.val()) {
+            companyProfile = { ...DEFAULT_COMPANY_PROFILE, ...snap.val() };
+            populateCompanyProfileInputs("Cloud Profile: finance/companyProfile (Synced)");
+        } else {
+            companyProfile = { ...DEFAULT_COMPANY_PROFILE };
+            populateCompanyProfileInputs("Cloud Profile: Initialized in finance/companyProfile");
+            try {
+                await set(ref(db, "finance/companyProfile"), companyProfile);
+            } catch (_) {}
+        }
+    });
+
+    const nodes = ["projects", "invoices", "quotations", "rentals", "generalExpenses", "scheduledPayments", "budgets"];
     nodes.forEach((node) => {
         onValue(ref(db, `finance/${node}`), (snap) => {
             dataState[node] = snap.val() || {};
             recomputeAll();
+        }, (err) => {
+            toast(`Cloud read warning (${node}): ${err.message}`);
         });
     });
 }
@@ -767,6 +1079,7 @@ window.switchTab = function(tab) {
     document.querySelectorAll(".tab-btn").forEach(b => b.classList.toggle("active", b.dataset.tab === tab));
     document.querySelectorAll(".panel").forEach(p => p.classList.toggle("active", p.id === `panel-${tab}`));
     if (tab === "analytics") renderAnalyticsAndRecommendations();
+    if (tab === "invoices") populateCompanyProfileInputs();
 };
 
 function getProjectNormalizedStatus(p) {
@@ -807,6 +1120,7 @@ function recomputeAll() {
 
     renderProjects();
     renderInvoices();
+    renderQuotations();
     renderRentals();
     renderGeneralExpenses();
     renderScheduled();
@@ -814,7 +1128,7 @@ function recomputeAll() {
     renderAnalyticsAndRecommendations();
 }
 
-// A. PROJECTS — REVENUE REGISTER WITH MANUAL STATUS (Paid, Cancelled, Unsettled)
+// A. PROJECTS — REVENUE REGISTER
 document.getElementById("projectForm").addEventListener("submit", async (e) => {
     e.preventDefault();
     const price = Number(document.getElementById("projPrice").value || 0);
@@ -863,12 +1177,12 @@ window.renderProjects = function() {
         const stClass = st === "Paid" ? "st-paid" : (st === "Cancelled" ? "st-cancelled" : "st-unsettled");
         const tr = document.createElement("tr");
         tr.innerHTML = `
-            <td>${esc(p.date)}</td>
+            <td class="mono">${esc(p.date)}</td>
             <td>${esc(p.title)}</td>
             <td>${esc(p.from)}</td>
-            <td>${fmtZar(p.price)}</td>
-            <td>${fmtZar(p.paidAmount || 0)}</td>
-            <td><strong>${esc(p.invoiceRef || "—")}</strong></td>
+            <td class="mono">${fmtZar(p.price)}</td>
+            <td class="mono">${fmtZar(p.paidAmount || 0)}</td>
+            <td class="mono"><strong>${esc(p.invoiceRef || "—")}</strong></td>
             <td>
                 <select class="status-select ${stClass}" onchange="updateProjectStatus('${k}', this.value)">
                     <option value="Paid" ${st === "Paid" ? "selected" : ""}>Paid</option>
@@ -886,45 +1200,105 @@ window.renderProjects = function() {
     });
 };
 
-// B. INVOICE GENERATOR (DOMAIN, CLIENT NAME, DATE, SPECIFICATION, QUANTITY, PRICE)
+// B. INVOICE & QUOTATION GENERATOR
 window.updateInvoicePreviewCalc = function() {
     const qty = Math.max(1, Number(document.getElementById("invQuantity")?.value || 1));
     const unit = Math.max(0, Number(document.getElementById("invUnitPrice")?.value || 0));
-    document.getElementById("invCalcTotalLabel").textContent = `Calculated Total: ${fmtZar(qty * unit)}`;
+    const vatRate = Math.max(0, Number(document.getElementById("invVatRate")?.value || 0));
+    const subtotal = qty * unit;
+    const tax = subtotal * (vatRate / 100);
+    const total = subtotal + tax;
+    document.getElementById("invCalcTotalLabel").textContent = `Subtotal: ${fmtZar(subtotal)} | Tax (${vatRate}%): ${fmtZar(tax)} | Total: ${fmtZar(total)}`;
 };
 
-document.getElementById("invoiceForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
+window.submitCommercialDocument = async function(docType) {
+    const form = document.getElementById("invoiceForm");
+    if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+    }
     const domain = document.getElementById("invDomain").value;
     const clientName = document.getElementById("invClientName").value.trim();
+    const clientContact = document.getElementById("invClientContact").value.trim();
     const date = document.getElementById("invDate").value;
+    const validUntil = document.getElementById("invValidUntil").value || "";
     const specification = document.getElementById("invSpecification").value.trim();
     const quantity = Math.max(1, Number(document.getElementById("invQuantity").value || 1));
     const unitPrice = Number(document.getElementById("invUnitPrice").value || 0);
-    const amount = Number((quantity * unitPrice).toFixed(2));
+    const vatRate = Math.max(0, Number(document.getElementById("invVatRate").value || 0));
+
+    if (!clientName || !date || !specification || unitPrice <= 0) {
+        toast("Please complete all required transaction fields.");
+        return;
+    }
+
+    const subtotal = Number((quantity * unitPrice).toFixed(2));
+    const taxAmount = Number((subtotal * (vatRate / 100)).toFixed(2));
+    const amount = Number((subtotal + taxAmount).toFixed(2));
 
     const compactDate = date.replaceAll("-", "");
     const suffix = Math.floor(1000 + Math.random() * 9000);
-    const invoiceRef = `Invoice${compactDate}-${suffix}.pdf`;
+    const issuerSnapshot = {
+        businessName: document.getElementById("cmpBusinessName").value.trim() || companyProfile.businessName,
+        registrationNumber: document.getElementById("cmpRegNumber").value.trim() || companyProfile.registrationNumber,
+        email: document.getElementById("cmpEmail").value.trim() || companyProfile.email,
+        phone: document.getElementById("cmpPhone").value.trim() || companyProfile.phone,
+        website: document.getElementById("cmpWebsite").value.trim() || companyProfile.website,
+        address: document.getElementById("cmpAddress").value.trim() || companyProfile.address
+    };
 
-    await set(push(ref(db, "finance/invoices")), {
-        invoiceRef,
-        domain,
-        to: clientName,
-        clientName,
-        date,
-        specification,
-        quantity,
-        unitPrice,
-        amount,
-        paidAmount: 0,
-        status: "Unpaid"
-    });
-    e.target.reset();
+    if (docType === "quotation") {
+        const quoteRef = `Quote${compactDate}-${suffix}.pdf`;
+        await set(push(ref(db, "finance/quotations")), {
+            quoteRef,
+            docType: "quotation",
+            domain,
+            to: clientName,
+            clientName,
+            clientContact,
+            date,
+            validUntil,
+            specification,
+            quantity,
+            unitPrice,
+            vatRate,
+            subtotal,
+            taxAmount,
+            amount,
+            issuer: issuerSnapshot,
+            status: "Open"
+        });
+        toast(`Quotation ${quoteRef} generated and saved.`);
+    } else {
+        const invoiceRef = `Invoice${compactDate}-${suffix}.pdf`;
+        await set(push(ref(db, "finance/invoices")), {
+            invoiceRef,
+            docType: "invoice",
+            domain,
+            to: clientName,
+            clientName,
+            clientContact,
+            date,
+            specification,
+            quantity,
+            unitPrice,
+            vatRate,
+            subtotal,
+            taxAmount,
+            amount,
+            paidAmount: 0,
+            issuer: issuerSnapshot,
+            status: "Unpaid"
+        });
+        toast(`Invoice ${invoiceRef} generated and saved.`);
+    }
+
+    form.reset();
+    setDefaultDates();
     document.getElementById("invQuantity").value = 1;
+    document.getElementById("invVatRate").value = 0;
     updateInvoicePreviewCalc();
-    toast(`Invoice ${invoiceRef} generated and saved.`);
-});
+};
 
 window.renderInvoices = function() {
     const tbody = document.getElementById("invoicesTableBody");
@@ -941,25 +1315,89 @@ window.renderInvoices = function() {
 
         const tr = document.createElement("tr");
         tr.innerHTML = `
-            <td><strong>${esc(inv.invoiceRef)}</strong></td>
-            <td>${esc(inv.date)}</td>
+            <td class="mono"><strong>${esc(inv.invoiceRef)}</strong></td>
+            <td class="mono">${esc(inv.date)}</td>
             <td>${esc(inv.domain || "Blacklogic Engineering")}</td>
             <td>${esc(client)}</td>
             <td>${esc(inv.specification || "Service / Project")}</td>
-            <td>${qty}</td>
-            <td>${fmtZar(unitPrice)}</td>
-            <td>${fmtZar(amt)}</td>
-            <td>${fmtZar(paid)}</td>
-            <td>${fmtZar(bal)}</td>
+            <td class="mono">${qty}</td>
+            <td class="mono">${fmtZar(unitPrice)}</td>
+            <td class="mono">${fmtZar(amt)}</td>
+            <td class="mono">${fmtZar(paid)}</td>
+            <td class="mono">${fmtZar(bal)}</td>
             <td><span class="badge ${bClass}">${status}</span></td>
             <td>
                 <button class="btn btn-secondary" onclick="recordPartialPayment('${k}')">+ Payment</button>
-                <button class="btn btn-primary" onclick="printInvoice('${k}')"><i class="fas fa-print"></i> PDF/Print</button>
+                <button class="btn btn-primary" onclick="printCommercialDoc('invoices','${k}')"><i class="fas fa-print"></i> PDF/Print</button>
                 <button class="btn btn-danger" onclick="delItem('finance/invoices','${k}')"><i class="fas fa-trash"></i></button>
             </td>
         `;
         tbody.appendChild(tr);
     });
+};
+
+window.renderQuotations = function() {
+    const tbody = document.getElementById("quotationsTableBody");
+    if (!tbody) return;
+    tbody.innerHTML = "";
+    Object.entries(dataState.quotations).reverse().forEach(([k, q]) => {
+        const qty = Number(q.quantity || 1);
+        const unitPrice = Number(q.unitPrice ?? q.amount ?? 0);
+        const amt = Number(q.amount || (qty * unitPrice));
+        const client = q.clientName || q.to || "—";
+        const st = q.status || "Open";
+        const bClass = st === "Converted" ? "b-paid" : "b-quote";
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td class="mono"><strong>${esc(q.quoteRef)}</strong></td>
+            <td class="mono">${esc(q.date)}</td>
+            <td class="mono">${esc(q.validUntil || "30 Days")}</td>
+            <td>${esc(q.domain || "Blacklogic Engineering")}</td>
+            <td>${esc(client)}</td>
+            <td>${esc(q.specification || "Quotation Item")}</td>
+            <td class="mono">${qty}</td>
+            <td class="mono">${fmtZar(unitPrice)}</td>
+            <td class="mono">${fmtZar(amt)}</td>
+            <td><span class="badge ${bClass}">${esc(st)}</span></td>
+            <td>
+                <button class="btn btn-secondary" onclick="convertQuoteToInvoice('${k}')">To Invoice</button>
+                <button class="btn btn-gold" onclick="printCommercialDoc('quotations','${k}')"><i class="fas fa-print"></i> PDF/Print</button>
+                <button class="btn btn-danger" onclick="delItem('finance/quotations','${k}')"><i class="fas fa-trash"></i></button>
+            </td>
+        `;
+        tbody.appendChild(tr);
+    });
+};
+
+window.convertQuoteToInvoice = async function(key) {
+    const q = dataState.quotations[key];
+    if (!q) return;
+    const today = new Date().toISOString().slice(0, 10);
+    const suffix = Math.floor(1000 + Math.random() * 9000);
+    const invoiceRef = `Invoice${today.replaceAll("-", "")}-${suffix}.pdf`;
+    await set(push(ref(db, "finance/invoices")), {
+        invoiceRef,
+        docType: "invoice",
+        sourceQuoteRef: q.quoteRef,
+        domain: q.domain || "Blacklogic Engineering",
+        to: q.clientName || q.to,
+        clientName: q.clientName || q.to,
+        clientContact: q.clientContact || "",
+        date: today,
+        specification: q.specification,
+        quantity: Number(q.quantity || 1),
+        unitPrice: Number(q.unitPrice || q.amount || 0),
+        vatRate: Number(q.vatRate || 0),
+        subtotal: Number(q.subtotal || q.amount || 0),
+        taxAmount: Number(q.taxAmount || 0),
+        amount: Number(q.amount || 0),
+        paidAmount: 0,
+        issuer: q.issuer || companyProfile,
+        status: "Unpaid"
+    });
+    await update(ref(db, `finance/quotations/${key}`), { status: "Converted", convertedInvoiceRef: invoiceRef });
+    toast(`Quotation converted to ${invoiceRef}.`);
 };
 
 window.recordPartialPayment = async function(key) {
@@ -978,15 +1416,22 @@ window.recordPartialPayment = async function(key) {
     toast(`Recorded ${fmtZar(addAmt)} payment on ${inv.invoiceRef}.`);
 };
 
-window.printInvoice = function(key) {
-    const inv = dataState.invoices[key];
-    if (!inv) return;
-    const qty = Number(inv.quantity || 1);
-    const unitPrice = Number(inv.unitPrice ?? inv.amount ?? 0);
-    const total = Number(inv.amount || (qty * unitPrice));
-    const paid = Number(inv.paidAmount || 0);
+window.printCommercialDoc = function(nodeName, key) {
+    const doc = dataState[nodeName]?.[key];
+    if (!doc) return;
+    const isQuote = nodeName === "quotations";
+    const issuer = { ...companyProfile, ...(doc.issuer || {}) };
+    const qty = Number(doc.quantity || 1);
+    const unitPrice = Number(doc.unitPrice ?? doc.amount ?? 0);
+    const subtotal = Number(doc.subtotal ?? (qty * unitPrice));
+    const vatRate = Number(doc.vatRate || 0);
+    const taxAmount = Number(doc.taxAmount ?? (subtotal * (vatRate / 100)));
+    const total = Number(doc.amount || (subtotal + taxAmount));
+    const paid = Number(doc.paidAmount || 0);
     const due = Math.max(0, total - paid);
-    const client = inv.clientName || inv.to || "Client";
+    const client = doc.clientName || doc.to || "Client";
+    const docRef = isQuote ? doc.quoteRef : doc.invoiceRef;
+    const docHeading = isQuote ? "QUOTATION" : "INVOICE";
 
     const sheet = document.getElementById("printableSheet");
     sheet.innerHTML = `
@@ -994,28 +1439,31 @@ window.printInvoice = function(key) {
             <div class="inv-brand-row">
                 <div class="inv-chip-box"><i class="fas fa-microchip"></i></div>
                 <div>
-                    <div style="font-size:1.12rem; font-weight:800; letter-spacing:.4px;">BLACKLOGIC TECHNOLOGIES HARDWARE AND PROJECTS PTY LTD</div>
-                    <div style="font-size:.78rem; color:#444;">Division: ${esc(inv.domain || "Blacklogic Engineering")}</div>
+                    <div style="font-size:1.08rem; font-weight:800; letter-spacing:.4px;">${esc((issuer.businessName || "").toUpperCase())}</div>
+                    <div style="font-size:.78rem; color:#444;">Division: ${esc(doc.domain || "Blacklogic Engineering")}</div>
                 </div>
             </div>
             <div style="text-align:right;">
-                <div style="font-size:1.45rem; font-weight:800; letter-spacing:1px;">INVOICE</div>
-                <div style="font-size:.8rem; color:#333;">Ref: <strong>${esc(inv.invoiceRef)}</strong></div>
+                <div style="font-size:1.45rem; font-weight:800; letter-spacing:1px;">${docHeading}</div>
+                <div style="font-size:.8rem; color:#333;">Ref: <strong class="print-mono">${esc(docRef)}</strong></div>
             </div>
         </div>
 
         <div class="inv-meta-grid">
             <div>
-                <div><strong>Business Name:</strong> BlackLogic Technologies Hardware and Projects Pty Ltd</div>
-                <div><strong>Registration number:</strong> 2025/885280/07</div>
-                <div><strong>Website:</strong> blacklogictechnologies.netifly.app</div>
-                <div><strong>Email:</strong> blacklogictechnologies@gmail.com</div>
-                <div><strong>Contact Number:</strong> 079 311 0798</div>
+                <div><strong>Business Name:</strong> ${esc(issuer.businessName)}</div>
+                <div><strong>Registration Number:</strong> <span class="print-mono">${esc(issuer.registrationNumber)}</span></div>
+                <div><strong>Website:</strong> <span class="print-mono">${esc(issuer.website)}</span></div>
+                <div><strong>Email:</strong> <span class="print-mono">${esc(issuer.email)}</span></div>
+                <div><strong>Contact Number:</strong> <span class="print-mono">${esc(issuer.phone)}</span></div>
+                ${issuer.address ? `<div><strong>Address:</strong> ${esc(issuer.address)}</div>` : ""}
             </div>
             <div style="background:#f7f9fa; padding:12px 14px; border-radius:8px; border:1px solid #ddd;">
-                <div><strong>Bill To (Company / Client):</strong> ${esc(client)}</div>
-                <div><strong>Domain:</strong> ${esc(inv.domain || "Blacklogic Engineering")}</div>
-                <div><strong>Invoice Date:</strong> ${esc(inv.date)}</div>
+                <div><strong>${isQuote ? "Prepared For (Client):" : "Bill To (Company / Client):"}</strong> ${esc(client)}</div>
+                ${doc.clientContact ? `<div><strong>Client Contact:</strong> <span class="print-mono">${esc(doc.clientContact)}</span></div>` : ""}
+                <div><strong>Domain:</strong> ${esc(doc.domain || "Blacklogic Engineering")}</div>
+                <div><strong>${isQuote ? "Quotation Date:" : "Invoice Date:"}</strong> <span class="print-mono">${esc(doc.date)}</span></div>
+                ${isQuote ? `<div><strong>Valid Until:</strong> <span class="print-mono">${esc(doc.validUntil || "30 Days from Issue")}</span></div>` : ""}
             </div>
         </div>
 
@@ -1025,27 +1473,36 @@ window.printInvoice = function(key) {
                     <th style="width:55px;">#</th>
                     <th>Specification</th>
                     <th style="width:90px;">Quantity</th>
-                    <th style="width:140px;">Price (ZAR)</th>
-                    <th style="width:150px;">Total (ZAR)</th>
+                    <th style="width:140px;">Unit Price (ZAR)</th>
+                    <th style="width:150px;">Line Total (ZAR)</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>1.</td>
-                    <td>${esc(inv.specification || "Professional Services")}</td>
-                    <td>${qty}</td>
-                    <td>${fmtZar(unitPrice)}</td>
-                    <td><strong>${fmtZar(total)}</strong></td>
+                    <td class="print-mono">1.</td>
+                    <td>${esc(doc.specification || "Professional Services")}</td>
+                    <td class="print-mono">${qty}</td>
+                    <td class="print-mono">${fmtZar(unitPrice)}</td>
+                    <td class="print-mono"><strong>${fmtZar(subtotal)}</strong></td>
                 </tr>
             </tbody>
         </table>
 
-        <div style="display:flex; justify-content:flex-end;">
-            <div style="min-width:270px; border:1px solid #222; border-radius:8px; padding:12px 16px; background:#fafafa; font-size:.88rem; line-height:1.7;">
-                <div style="display:flex; justify-content:space-between;"><span>Subtotal:</span><span>${fmtZar(total)}</span></div>
-                <div style="display:flex; justify-content:space-between;"><span>Amount Paid:</span><span>${fmtZar(paid)}</span></div>
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:16px; flex-wrap:wrap;">
+            <div style="font-size:.76rem; color:#444; max-width:380px;">
+                ${isQuote
+                    ? "This quotation outlines estimated pricing for the stated specification and is not a tax invoice."
+                    : "Please use the Invoice Reference above as your payment reference when settling via EFT."}
+            </div>
+            <div style="min-width:280px; border:1px solid #222; border-radius:8px; padding:12px 16px; background:#fafafa; font-size:.86rem; line-height:1.7;">
+                <div style="display:flex; justify-content:space-between;"><span>Subtotal:</span><span class="print-mono">${fmtZar(subtotal)}</span></div>
+                <div style="display:flex; justify-content:space-between;"><span>Tax / VAT (${vatRate}%):</span><span class="print-mono">${fmtZar(taxAmount)}</span></div>
+                ${isQuote ? "" : `<div style="display:flex; justify-content:space-between;"><span>Amount Paid:</span><span class="print-mono">${fmtZar(paid)}</span></div>`}
                 <hr style="margin:6px 0;">
-                <div style="display:flex; justify-content:space-between; font-size:1.02rem;"><strong>Total Amount Due:</strong><strong>${fmtZar(due)}</strong></div>
+                <div style="display:flex; justify-content:space-between; font-size:1.02rem;">
+                    <strong>${isQuote ? "Quoted Total:" : "Total Amount Due:"}</strong>
+                    <strong class="print-mono">${fmtZar(isQuote ? total : due)}</strong>
+                </div>
             </div>
         </div>
     `;
@@ -1072,7 +1529,7 @@ window.renderRentals = function() {
     Object.entries(dataState.rentals).reverse().forEach(([k, r]) => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
-            <td>${esc(r.date)}</td><td>${esc(r.to)}</td><td>${esc(r.refPerson)}</td><td>${fmtZar(r.amount)}</td>
+            <td class="mono">${esc(r.date)}</td><td>${esc(r.to)}</td><td>${esc(r.refPerson)}</td><td class="mono">${fmtZar(r.amount)}</td>
             <td><span class="badge ${r.reconciled ? "b-recon" : "b-unpaid"}">${r.reconciled ? "Matched" : "Unmatched"}</span></td>
             <td>
                 <button class="btn btn-secondary" onclick="toggleRecon('rentals','${k}',${!r.reconciled})">Recon</button>
@@ -1083,7 +1540,7 @@ window.renderRentals = function() {
     });
 };
 
-// D. GENERAL EXPENSES (WITH DATE RANGE & MONTHLY COST BREAKDOWN)
+// D. GENERAL EXPENSES
 document.getElementById("generalForm").addEventListener("submit", async (e) => {
     e.preventDefault();
     await set(push(ref(db, "finance/generalExpenses")), {
@@ -1121,7 +1578,6 @@ window.renderGeneralExpenses = function() {
     const total = rows.reduce((s, [, g]) => s + Number(g.amount || 0), 0);
     document.getElementById("genTotalLabel").textContent = fmtZar(total);
 
-    // Monthly expense breakdown within selected range
     const byMonth = {};
     rows.forEach(([, g]) => {
         const ym = (g.date || "Unknown").slice(0, 7);
@@ -1130,7 +1586,7 @@ window.renderGeneralExpenses = function() {
     const strip = document.getElementById("generalMonthlyBreakdown");
     const monthsSorted = Object.keys(byMonth).sort().reverse();
     strip.innerHTML = monthsSorted.length
-        ? monthsSorted.map(m => `<div class="month-pill"><span>${esc(m)}</span><strong>${fmtZar(byMonth[m])}</strong></div>`).join("")
+        ? monthsSorted.map(m => `<div class="month-pill"><span class="mono">${esc(m)}</span><strong>${fmtZar(byMonth[m])}</strong></div>`).join("")
         : `<span style="font-size:.76rem; color:#666;">No expenses in selected date range.</span>`;
 
     const tbody = document.getElementById("generalTableBody");
@@ -1138,7 +1594,7 @@ window.renderGeneralExpenses = function() {
     rows.forEach(([k, g]) => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
-            <td>${esc(g.date)}</td><td>${esc(g.title)}</td><td>${esc(g.category)}</td><td>${fmtZar(g.amount)}</td>
+            <td class="mono">${esc(g.date)}</td><td>${esc(g.title)}</td><td>${esc(g.category)}</td><td class="mono">${fmtZar(g.amount)}</td>
             <td><span class="badge ${g.reconciled ? "b-recon" : "b-unpaid"}">${g.reconciled ? "Matched" : "Unmatched"}</span></td>
             <td>
                 <button class="btn btn-secondary" onclick="toggleRecon('generalExpenses','${k}',${!g.reconciled})">Recon</button>
@@ -1156,14 +1612,209 @@ window.printFilteredGeneralExpenses = function() {
     const sum = rows.reduce((s, [, g]) => s + Number(g.amount || 0), 0);
     const sheet = document.getElementById("printableSheet");
     sheet.innerHTML = `
-        <h2>BlackLogic Finance Intelligence — General Expenses Report</h2>
-        <p style="margin-bottom:6px;">Date Range: <strong>${esc(from)}</strong> to <strong>${esc(to)}</strong></p>
-        <p style="margin-bottom:12px;">Total Expense in Range: <strong>${fmtZar(sum)}</strong></p>
-        <table border="1" cellpadding="8" cellspacing="0" width="100%">
+        <h2>${esc(companyProfile.businessName)} — General Expenses Report</h2>
+        <p style="font-size:.8rem; margin-bottom:6px;">Reg: <span class="print-mono">${esc(companyProfile.registrationNumber)}</span> | ${esc(companyProfile.email)} | ${esc(companyProfile.phone)}</p>
+        <p style="margin-bottom:6px;">Date Range: <strong class="print-mono">${esc(from)}</strong> to <strong class="print-mono">${esc(to)}</strong></p>
+        <p style="margin-bottom:12px;">Total Expense in Range: <strong class="print-mono">${fmtZar(sum)}</strong></p>
+        <table class="inv-table">
             <thead><tr><th>Date</th><th>Title</th><th>Category</th><th>Amount</th></tr></thead>
-            <tbody>${rows.map(([, g]) => `<tr><td>${esc(g.date)}</td><td>${esc(g.title)}</td><td>${esc(g.category)}</td><td>${fmtZar(g.amount)}</td></tr>`).join("")}</tbody>
+            <tbody>${rows.map(([, g]) => `<tr><td class="print-mono">${esc(g.date)}</td><td>${esc(g.title)}</td><td>${esc(g.category)}</td><td class="print-mono">${fmtZar(g.amount)}</td></tr>`).join("")}</tbody>
         </table>
     `;
+    window.print();
+};
+
+// E. AUTOMATED DAILY, WEEKLY, MONTHLY & CATEGORY-BASED FINANCIAL REPORT GENERATOR
+window.toggleReportFilterInputs = function() {
+    const t = document.getElementById("repPeriodType").value;
+    document.getElementById("repDailyGroup").style.display = t === "daily" ? "block" : "none";
+    document.getElementById("repWeeklyGroup").style.display = t === "weekly" ? "block" : "none";
+    document.getElementById("repMonthlyGroup").style.display = t === "monthly" ? "block" : "none";
+    document.getElementById("repCategoryGroup").style.display = t === "category" ? "block" : "none";
+};
+
+function buildUnifiedLedgerRows() {
+    const rows = [];
+    Object.entries(dataState.projects).forEach(([id, p]) => {
+        if (getProjectNormalizedStatus(p) === "Cancelled") return;
+        const paid = Number(p.paidAmount || 0);
+        rows.push({
+            id: `PRJ-${id.slice(-6).toUpperCase()}`,
+            date: p.date || "",
+            type: "Income",
+            category: "Project Revenue",
+            description: `${p.title || "Project"} (${p.from || "Client"})`,
+            ref: p.invoiceRef || "—",
+            amount: paid,
+            invoicedValue: Number(p.price || 0)
+        });
+    });
+    Object.entries(dataState.rentals).forEach(([id, r]) => {
+        rows.push({
+            id: `RNT-${id.slice(-6).toUpperCase()}`,
+            date: r.date || "",
+            type: "Expense",
+            category: "Rental Expense",
+            description: `${r.to || "Landlord"} — Ref: ${r.refPerson || "—"}`,
+            ref: "RENTAL",
+            amount: Number(r.amount || 0)
+        });
+    });
+    Object.entries(dataState.generalExpenses).forEach(([id, g]) => {
+        rows.push({
+            id: `EXP-${id.slice(-6).toUpperCase()}`,
+            date: g.date || "",
+            type: "Expense",
+            category: g.category || "General Expense",
+            description: g.title || "General Expense",
+            ref: "GEN-EXP",
+            amount: Number(g.amount || 0)
+        });
+    });
+    return rows.sort((a, b) => a.date.localeCompare(b.date));
+}
+
+function buildPeriodReportPayload() {
+    const type = document.getElementById("repPeriodType").value;
+    const allRows = buildUnifiedLedgerRows();
+    let title = "";
+    let periodLabel = "";
+    let filtered = [];
+
+    if (type === "daily") {
+        const d = document.getElementById("repDailyDate").value || new Date().toISOString().slice(0, 10);
+        title = "DAILY FINANCIAL REPORT";
+        periodLabel = d;
+        filtered = allRows.filter(r => r.date === d);
+    } else if (type === "weekly") {
+        const startStr = document.getElementById("repWeeklyStart").value || new Date().toISOString().slice(0, 10);
+        const startDt = new Date(`${startStr}T00:00:00`);
+        const endDt = new Date(startDt);
+        endDt.setDate(startDt.getDate() + 6);
+        const endStr = endDt.toISOString().slice(0, 10);
+        title = "WEEKLY FINANCIAL REPORT";
+        periodLabel = `${startStr} to ${endStr} (7-Day Window)`;
+        filtered = allRows.filter(r => r.date >= startStr && r.date <= endStr);
+    } else if (type === "monthly") {
+        const ym = document.getElementById("repMonthInput").value || new Date().toISOString().slice(0, 7);
+        title = "MONTHLY FINANCIAL REPORT";
+        periodLabel = ym;
+        filtered = allRows.filter(r => r.date.startsWith(ym));
+    } else {
+        const cat = document.getElementById("repCategorySelect").value;
+        title = "CATEGORY-BASED FINANCIAL REPORT";
+        periodLabel = cat === "ALL" ? "All Recorded Categories" : `Category: ${cat}`;
+        filtered = cat === "ALL" ? allRows : allRows.filter(r => r.category === cat);
+    }
+
+    const totalIncome = filtered.filter(r => r.type === "Income").reduce((s, r) => s + r.amount, 0);
+    const totalExpense = filtered.filter(r => r.type === "Expense").reduce((s, r) => s + r.amount, 0);
+    const netBalance = totalIncome - totalExpense;
+
+    const categoryTotals = {};
+    filtered.forEach(r => {
+        const key = `${r.type} · ${r.category}`;
+        categoryTotals[key] = (categoryTotals[key] || 0) + r.amount;
+    });
+
+    return { title, periodLabel, generatedAt: new Date().toISOString().replace("T", " ").slice(0, 19), filtered, totalIncome, totalExpense, netBalance, categoryTotals };
+}
+
+function renderReportHtml(rep, isDarkPreview) {
+    const rowsHtml = rep.filtered.length
+        ? rep.filtered.map(r => `
+            <tr>
+                <td class="${isDarkPreview ? "mono" : "print-mono"}">${esc(r.id)}</td>
+                <td class="${isDarkPreview ? "mono" : "print-mono"}">${esc(r.date)}</td>
+                <td>${esc(r.type)}</td>
+                <td>${esc(r.category)}</td>
+                <td>${esc(r.description)}</td>
+                <td class="${isDarkPreview ? "mono" : "print-mono"}">${esc(r.ref)}</td>
+                <td class="${isDarkPreview ? "mono" : "print-mono"}">${r.type === "Income" ? fmtZar(r.amount) : "—"}</td>
+                <td class="${isDarkPreview ? "mono" : "print-mono"}">${r.type === "Expense" ? fmtZar(r.amount) : "—"}</td>
+            </tr>`).join("")
+        : `<tr><td colspan="8" style="text-align:center; padding:16px;">No recorded cloud transactions found for this reporting period / filter.</td></tr>`;
+
+    const catSummaryHtml = Object.entries(rep.categoryTotals).map(([k, v]) =>
+        `<div style="display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px dashed ${isDarkPreview ? "#333" : "#ccc"};">
+            <span>${esc(k)}</span><strong class="${isDarkPreview ? "mono" : "print-mono"}">${fmtZar(v)}</strong>
+        </div>`
+    ).join("");
+
+    if (isDarkPreview) {
+        return `
+            <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; border-bottom:1px solid rgba(0,200,215,.25); padding-bottom:10px; margin-bottom:12px;">
+                <div>
+                    <strong style="color:#00c8d7; font-size:.95rem;">${esc(rep.title)}</strong>
+                    <div style="font-size:.76rem; color:#aaa;">Period: <span class="mono">${esc(rep.periodLabel)}</span> | Generated: <span class="mono">${esc(rep.generatedAt)}</span></div>
+                </div>
+                <div class="mono" style="font-size:.78rem; text-align:right;">
+                    <div>Income: <strong style="color:#2ecc71;">${fmtZar(rep.totalIncome)}</strong></div>
+                    <div>Expenses: <strong style="color:#ff6b6b;">${fmtZar(rep.totalExpense)}</strong></div>
+                    <div>Net Balance: <strong style="color:#00c8d7;">${fmtZar(rep.netBalance)}</strong></div>
+                </div>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>Txn ID</th><th>Date</th><th>Type</th><th>Category</th><th>Description</th><th>Ref</th><th>Income</th><th>Expense</th></tr></thead>
+                    <tbody>${rowsHtml}</tbody>
+                </table>
+            </div>
+        `;
+    }
+
+    return `
+        <div class="inv-header-top">
+            <div>
+                <div style="font-size:1.1rem; font-weight:800;">${esc(companyProfile.businessName.toUpperCase())}</div>
+                <div style="font-size:.78rem; color:#333;">
+                    Reg No: <span class="print-mono">${esc(companyProfile.registrationNumber)}</span> |
+                    Email: <span class="print-mono">${esc(companyProfile.email)}</span> |
+                    Tel: <span class="print-mono">${esc(companyProfile.phone)}</span> |
+                    Web: <span class="print-mono">${esc(companyProfile.website)}</span>
+                </div>
+            </div>
+            <div style="text-align:right;">
+                <div style="font-size:1.15rem; font-weight:800;">${esc(rep.title)}</div>
+                <div style="font-size:.78rem;">Period: <strong class="print-mono">${esc(rep.periodLabel)}</strong></div>
+                <div style="font-size:.74rem; color:#444;">Generated: <span class="print-mono">${esc(rep.generatedAt)}</span></div>
+            </div>
+        </div>
+
+        <table class="inv-table">
+            <thead>
+                <tr><th>Txn ID</th><th>Date</th><th>Type</th><th>Category</th><th>Description</th><th>Ref</th><th>Income (ZAR)</th><th>Expense (ZAR)</th></tr>
+            </thead>
+            <tbody>${rowsHtml}</tbody>
+        </table>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:14px;">
+            <div style="border:1px solid #333; border-radius:8px; padding:12px; font-size:.82rem;">
+                <strong style="display:block; margin-bottom:6px;">Category Breakdown</strong>
+                ${catSummaryHtml || "<div>No category entries in period.</div>"}
+            </div>
+            <div style="border:1px solid #111; border-radius:8px; padding:12px; background:#fafafa; font-size:.86rem; line-height:1.75;">
+                <div style="display:flex; justify-content:space-between;"><span>Total Cash Income:</span><strong class="print-mono">${fmtZar(rep.totalIncome)}</strong></div>
+                <div style="display:flex; justify-content:space-between;"><span>Total Expenditure:</span><strong class="print-mono">${fmtZar(rep.totalExpense)}</strong></div>
+                <hr style="margin:6px 0;">
+                <div style="display:flex; justify-content:space-between; font-size:1rem;"><span>Net Period Balance:</span><strong class="print-mono">${fmtZar(rep.netBalance)}</strong></div>
+            </div>
+        </div>
+    `;
+}
+
+window.previewPeriodReport = function() {
+    const rep = buildPeriodReportPayload();
+    const box = document.getElementById("reportLivePreviewBox");
+    box.style.display = "block";
+    box.innerHTML = renderReportHtml(rep, true);
+    toast(`Loaded ${rep.filtered.length} cloud record(s) for preview.`);
+};
+
+window.generateAndPrintPeriodReport = function() {
+    const rep = buildPeriodReportPayload();
+    const sheet = document.getElementById("printableSheet");
+    sheet.innerHTML = renderReportHtml(rep, false);
     window.print();
 };
 
@@ -1185,7 +1836,7 @@ function renderScheduled() {
     tbody.innerHTML = "";
     Object.entries(dataState.scheduledPayments).forEach(([k, s]) => {
         const tr = document.createElement("tr");
-        tr.innerHTML = `<td>${esc(s.dueDate)}</td><td>${esc(s.title)}</td><td>${fmtZar(s.amount)}</td><td><span class="badge b-partial">${esc(s.status || "Scheduled")}</span></td><td><button class="btn btn-danger" onclick="delItem('finance/scheduledPayments','${k}')"><i class="fas fa-trash"></i></button></td>`;
+        tr.innerHTML = `<td class="mono">${esc(s.dueDate)}</td><td>${esc(s.title)}</td><td class="mono">${fmtZar(s.amount)}</td><td><span class="badge b-partial">${esc(s.status || "Scheduled")}</span></td><td><button class="btn btn-danger" onclick="delItem('finance/scheduledPayments','${k}')"><i class="fas fa-trash"></i></button></td>`;
         tbody.appendChild(tr);
     });
 }
@@ -1208,7 +1859,7 @@ function renderBudgets() {
         const planned = Number(b.planned || 0);
         const actual = Number(b.actual || 0);
         const tr = document.createElement("tr");
-        tr.innerHTML = `<td>${esc(b.area)}</td><td>${fmtZar(planned)}</td><td>${fmtZar(actual)}</td><td>${fmtZar(planned - actual)}</td><td><button class="btn btn-danger" onclick="delItem('finance/budgets','${k}')"><i class="fas fa-trash"></i></button></td>`;
+        tr.innerHTML = `<td>${esc(b.area)}</td><td class="mono">${fmtZar(planned)}</td><td class="mono">${fmtZar(actual)}</td><td class="mono">${fmtZar(planned - actual)}</td><td><button class="btn btn-danger" onclick="delItem('finance/budgets','${k}')"><i class="fas fa-trash"></i></button></td>`;
         tbody.appendChild(tr);
     });
 }
@@ -1224,7 +1875,7 @@ window.delItem = async function(path, key) {
     toast("Record deleted.");
 };
 
-// STATEMENTS
+// QUICK STATEMENTS
 window.printStatement = function(type) {
     const projects = Object.values(dataState.projects).filter(p => getProjectNormalizedStatus(p) !== "Cancelled");
     const rentals = Object.values(dataState.rentals);
@@ -1235,17 +1886,31 @@ window.printStatement = function(type) {
 
     const sheet = document.getElementById("printableSheet");
     sheet.innerHTML = `
-        <h2>BlackLogic Finance Intelligence — ${type.toUpperCase()} STATEMENT</h2>
-        <p style="font-size:.8rem; color:#555; margin-bottom:14px;">Internal management report (not a statutory audit). Generated ${new Date().toISOString().slice(0, 10)}.</p>
-        <p><strong>Project Cash Revenue:</strong> ${fmtZar(revSum)}</p>
-        <p><strong>Rental Expenses:</strong> ${fmtZar(rentSum)}</p>
-        <p><strong>General Expenses:</strong> ${fmtZar(genSum)}</p>
-        <p style="margin-top:8px;"><strong>Net Position (Revenue − Rental − General):</strong> ${fmtZar(revSum - rentSum - genSum)}</p>
+        <h2>${esc(companyProfile.businessName)} — ${type.toUpperCase()} STATEMENT</h2>
+        <p style="font-size:.8rem; color:#444; margin-bottom:6px;">Reg No: <span class="print-mono">${esc(companyProfile.registrationNumber)}</span> | ${esc(companyProfile.email)} | ${esc(companyProfile.phone)}</p>
+        <p style="font-size:.8rem; color:#555; margin-bottom:14px;">Internal management report (not a statutory audit). Generated <span class="print-mono">${new Date().toISOString().slice(0, 10)}</span>.</p>
+        <p><strong>Project Cash Revenue:</strong> <span class="print-mono">${fmtZar(revSum)}</span></p>
+        <p><strong>Rental Expenses:</strong> <span class="print-mono">${fmtZar(rentSum)}</span></p>
+        <p><strong>General Expenses:</strong> <span class="print-mono">${fmtZar(genSum)}</span></p>
+        <p style="margin-top:8px;"><strong>Net Position (Revenue − Rental − General):</strong> <span class="print-mono">${fmtZar(revSum - rentSum - genSum)}</span></p>
     `;
     window.print();
 };
 
-// HELPER FOR FUTURE MONTH LABELS & LINEAR TREND PROJECTION
+// STATISTICAL & TIME-BUCKET HELPERS
+function getBucketKey(dateStr, granularity) {
+    if (!dateStr || dateStr.length < 10) return "";
+    if (granularity === "daily") return dateStr.slice(0, 10);
+    if (granularity === "weekly") {
+        const d = new Date(`${dateStr.slice(0, 10)}T00:00:00`);
+        const day = d.getDay();
+        const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+        const monday = new Date(d.setDate(diff));
+        return `W/${monday.toISOString().slice(0, 10)}`;
+    }
+    return dateStr.slice(0, 7);
+}
+
 function nextYearMonthLabels(lastYm, horizonMonths) {
     let [y, m] = (lastYm && /^\d{4}-\d{2}$/.test(lastYm))
         ? lastYm.split("-").map(Number)
@@ -1259,10 +1924,14 @@ function nextYearMonthLabels(lastYm, horizonMonths) {
     return out;
 }
 
-function projectSeries(values, steps) {
-    if (!values.length) return Array(steps).fill(0);
-    if (values.length === 1) return Array(steps).fill(Number(values[0].toFixed(2)));
+// OLS linear regression with residual standard error for statistically justified confidence bands
+function projectSeriesWithBands(values, steps) {
     const n = values.length;
+    if (!n) return { mean: Array(steps).fill(0), upper: Array(steps).fill(0), lower: Array(steps).fill(0), hasBand: false };
+    if (n === 1) {
+        const v = Number(values[0].toFixed(2));
+        return { mean: Array(steps).fill(v), upper: Array(steps).fill(v), lower: Array(steps).fill(v), hasBand: false };
+    }
     let sumX = 0, sumY = 0, sumXY = 0, sumXX = 0;
     for (let i = 0; i < n; i++) {
         sumX += i;
@@ -1270,24 +1939,67 @@ function projectSeries(values, steps) {
         sumXY += i * values[i];
         sumXX += i * i;
     }
-    const denom = (n * sumXX - sumX * sumX);
-    const slope = denom === 0 ? 0 : (n * sumXY - sumX * sumY) / denom;
-    const intercept = (sumY - slope * sumX) / n;
-    const proj = [];
-    for (let s = 0; s < steps; s++) {
-        const val = Math.max(0, intercept + slope * (n + s));
-        proj.push(Number(val.toFixed(2)));
+    const meanX = sumX / n;
+    const sxx = sumXX - n * meanX * meanX;
+    const slope = sxx === 0 ? 0 : (sumXY - n * meanX * (sumY / n)) / sxx;
+    const intercept = (sumY / n) - slope * meanX;
+
+    let sse = 0;
+    for (let i = 0; i < n; i++) {
+        const err = values[i] - (intercept + slope * i);
+        sse += err * err;
     }
-    return proj;
+    const hasBand = n >= 3 && sxx > 0;
+    const se = hasBand ? Math.sqrt(sse / (n - 2)) : 0;
+
+    const mean = [], upper = [], lower = [];
+    for (let s = 0; s < steps; s++) {
+        const xStar = n + s;
+        const pred = Math.max(0, intercept + slope * xStar);
+        const margin = hasBand ? 1.96 * se * Math.sqrt(1 + (1 / n) + (Math.pow(xStar - meanX, 2) / sxx)) : 0;
+        mean.push(Number(pred.toFixed(2)));
+        upper.push(Number(Math.max(0, pred + margin).toFixed(2)));
+        lower.push(Number(Math.max(0, pred - margin).toFixed(2)));
+    }
+    return { mean, upper, lower, hasBand };
 }
 
-// ANALYTICS & RECOMMENDATIONS (6 CHARTS)
+function setEmptyState(canvasId, message) {
+    const el = document.getElementById(`empty-${canvasId}`);
+    if (!el) return;
+    if (message) {
+        el.textContent = message;
+        el.style.display = "flex";
+    } else {
+        el.style.display = "none";
+    }
+}
+
+function renderChart(id, config) {
+    if (charts[id]) charts[id].destroy();
+    const ctx = document.getElementById(id)?.getContext("2d");
+    if (!ctx) return;
+    charts[id] = new Chart(ctx, config);
+}
+
+// ANALYTICS, SCATTER, OHLC CANDLESTICK & FORECASTING
 window.renderAnalyticsAndRecommendations = function() {
     if (typeof Chart === "undefined") return;
     const projects = Object.values(dataState.projects).filter(p => getProjectNormalizedStatus(p) !== "Cancelled");
     const rentals = Object.values(dataState.rentals);
     const general = Object.values(dataState.generalExpenses);
 
+    const granularity = document.getElementById("analyticsGranularitySelect")?.value || "monthly";
+    const selectedCat = document.getElementById("analyticsCategoryFilter")?.value || "ALL";
+    const horizon = Number(document.getElementById("projectionHorizonSelect")?.value || 6);
+
+    // Filter expenses by selected category where applicable
+    const filteredRentals = (selectedCat === "ALL" || selectedCat === "Rental Expense") ? rentals : [];
+    const filteredGeneral = selectedCat === "ALL"
+        ? general
+        : (selectedCat === "Rental Expense" ? [] : general.filter(g => g.category === selectedCat));
+
+    // Monthly aggregations (authoritative baseline for forecasting & OHLC)
     const revByMonth = {};
     const rentByMonth = {};
     const genByMonth = {};
@@ -1299,13 +2011,13 @@ window.renderAnalyticsAndRecommendations = function() {
         allMonthSet.add(m);
         revByMonth[m] = (revByMonth[m] || 0) + Number(p.paidAmount || 0);
     });
-    rentals.forEach(r => {
+    filteredRentals.forEach(r => {
         const m = (r.date || "").slice(0, 7);
         if (!m) return;
         allMonthSet.add(m);
         rentByMonth[m] = (rentByMonth[m] || 0) + Number(r.amount || 0);
     });
-    general.forEach(g => {
+    filteredGeneral.forEach(g => {
         const m = (g.date || "").slice(0, 7);
         if (!m) return;
         allMonthSet.add(m);
@@ -1317,47 +2029,366 @@ window.renderAnalyticsAndRecommendations = function() {
     const histRent = histMonths.map(m => rentByMonth[m] || 0);
     const histTotalExp = histMonths.map(m => (rentByMonth[m] || 0) + (genByMonth[m] || 0));
 
-    const horizon = Number(document.getElementById("projectionHorizonSelect")?.value || 6);
-    const futureLabels = nextYearMonthLabels(histMonths[histMonths.length - 1], horizon);
-    const combinedLabels = [...histMonths, ...futureLabels.map(l => `${l} (Proj)`)];
+    // 1. FORECASTING CHART WITH UNCERTAINTY BAND
+    if (histMonths.length < 2) {
+        setEmptyState("projRevExpChart", "Insufficient historical periods for statistical projection (minimum 2 recorded months required in Firebase).");
+    } else {
+        setEmptyState("projRevExpChart", "");
+        const futureLabels = nextYearMonthLabels(histMonths[histMonths.length - 1], horizon);
+        const combinedLabels = [...histMonths, ...futureLabels.map(l => `${l} (Est)`)];
 
-    const revProj = projectSeries(histRev, horizon);
-    const expProj = projectSeries(histTotalExp, horizon);
+        const revForecast = projectSeriesWithBands(histRev, horizon);
+        const expForecast = projectSeriesWithBands(histTotalExp, horizon);
 
-    const actualRevSeries = [...histRev, ...Array(horizon).fill(null)];
-    const actualExpSeries = [...histTotalExp, ...Array(horizon).fill(null)];
-    const projRevSeries = [...Array(Math.max(0, histRev.length - 1)).fill(null), ...(histRev.length ? [histRev[histRev.length - 1]] : []), ...revProj];
-    const projExpSeries = [...Array(Math.max(0, histTotalExp.length - 1)).fill(null), ...(histTotalExp.length ? [histTotalExp[histTotalExp.length - 1]] : []), ...expProj];
+        const padNulls = Array(Math.max(0, histRev.length - 1)).fill(null);
+        const actualRevSeries = [...histRev, ...Array(horizon).fill(null)];
+        const actualExpSeries = [...histTotalExp, ...Array(horizon).fill(null)];
+        const projRevSeries = [...padNulls, histRev[histRev.length - 1], ...revForecast.mean];
+        const projExpSeries = [...padNulls, histTotalExp[histTotalExp.length - 1], ...expForecast.mean];
 
-    // GRAPH 1: Past Monthly Revenue vs Expenses + 3/6/9/12 Month Projection
-    if (charts.projRevExp) charts.projRevExp.destroy();
-    const g1 = document.getElementById("projRevExpChart")?.getContext("2d");
-    if (g1) {
-        charts.projRevExp = new Chart(g1, {
+        const datasets = [
+            { label: "Actual Revenue", data: actualRevSeries, borderColor: "#00c8d7", backgroundColor: "#00c8d7", tension: 0.25 },
+            { label: "Actual Expenses", data: actualExpSeries, borderColor: "#ff6b6b", backgroundColor: "#ff6b6b", tension: 0.25 },
+            { label: `Projected Revenue (${horizon}M)`, data: projRevSeries, borderColor: "#00c8d7", borderDash: [6, 5], tension: 0.25 },
+            { label: `Projected Expenses (${horizon}M)`, data: projExpSeries, borderColor: "#ff6b6b", borderDash: [6, 5], tension: 0.25 }
+        ];
+
+        if (revForecast.hasBand) {
+            datasets.push({
+                label: "Rev 95% Upper",
+                data: [...padNulls, histRev[histRev.length - 1], ...revForecast.upper],
+                borderColor: "rgba(0,200,215,0.22)",
+                backgroundColor: "rgba(0,200,215,0.10)",
+                borderWidth: 1,
+                pointRadius: 0,
+                fill: "+1"
+            });
+            datasets.push({
+                label: "Rev 95% Lower",
+                data: [...padNulls, histRev[histRev.length - 1], ...revForecast.lower],
+                borderColor: "rgba(0,200,215,0.22)",
+                borderWidth: 1,
+                pointRadius: 0,
+                fill: false
+            });
+        }
+
+        document.getElementById("forecastMethodNote").textContent =
+            `Historical Window: ${histMonths[0]} to ${histMonths[histMonths.length - 1]} (${histMonths.length} months) | Forecast Horizon: ${horizon} months | Method: OLS Linear Regression${revForecast.hasBand ? " with 95% prediction interval band" : " (uncertainty band omitted: n < 3 months)"}.`;
+
+        renderChart("projRevExpChart", {
             type: "line",
-            data: {
-                labels: combinedLabels,
-                datasets: [
-                    { label: "Actual Revenue", data: actualRevSeries, borderColor: "#00c8d7", backgroundColor: "#00c8d7", tension: 0.25 },
-                    { label: "Actual Expenses", data: actualExpSeries, borderColor: "#ff6b6b", backgroundColor: "#ff6b6b", tension: 0.25 },
-                    { label: `Projected Revenue (${horizon}M)`, data: projRevSeries, borderColor: "#00c8d7", borderDash: [6, 5], tension: 0.25 },
-                    { label: `Projected Expenses (${horizon}M)`, data: projExpSeries, borderColor: "#ff6b6b", borderDash: [6, 5], tension: 0.25 }
-                ]
-            },
+            data: { labels: combinedLabels, datasets },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                plugins: { legend: { labels: { color: "#ccc", boxWidth: 12, font: { size: 10 } } } },
+                plugins: { legend: { labels: { color: "#ccc", boxWidth: 11, font: { size: 10 } } } },
                 scales: { x: { ticks: { color: "#ccc" } }, y: { ticks: { color: "#ccc" }, beginAtZero: true } }
             }
         });
     }
 
-    // GRAPH 2: Rental Expense vs Revenue (Monthly Bar Graph)
-    if (charts.rentalVsRev) charts.rentalVsRev.destroy();
-    const g2 = document.getElementById("rentalVsRevChart")?.getContext("2d");
-    if (g2) {
-        charts.rentalVsRev = new Chart(g2, {
+    // 2. OHLC CANDLESTICK CHART (RUNNING NET CASH POSITION PER MONTH)
+    const txEvents = [];
+    projects.forEach(p => {
+        if (p.date && Number(p.paidAmount || 0) > 0) txEvents.push({ date: p.date, delta: Number(p.paidAmount || 0) });
+    });
+    rentals.forEach(r => {
+        if (r.date && Number(r.amount || 0) > 0) txEvents.push({ date: r.date, delta: -Number(r.amount || 0) });
+    });
+    general.forEach(g => {
+        if (g.date && Number(g.amount || 0) > 0) txEvents.push({ date: g.date, delta: -Number(g.amount || 0) });
+    });
+    txEvents.sort((a, b) => a.date.localeCompare(b.date));
+
+    const ohlcByMonth = {};
+    let runningBalance = 0;
+    txEvents.forEach(ev => {
+        const ym = ev.date.slice(0, 7);
+        if (!ohlcByMonth[ym]) {
+            ohlcByMonth[ym] = { open: runningBalance, high: runningBalance, low: runningBalance, close: runningBalance, count: 0 };
+        }
+        runningBalance += ev.delta;
+        const b = ohlcByMonth[ym];
+        b.high = Math.max(b.high, runningBalance);
+        b.low = Math.min(b.low, runningBalance);
+        b.close = runningBalance;
+        b.count += 1;
+    });
+
+    const ohlcMonths = Object.keys(ohlcByMonth).sort();
+    const validOhlc = ohlcMonths.length >= 2 && txEvents.length >= 3;
+    if (!validOhlc) {
+        setEmptyState("ohlcCandlestickChart", "OHLC Candlestick unavailable: requires at least 2 calendar months and 3 timestamped ledger transactions to derive authentic intra-month Open, High, Low, and Close cash balances.");
+    } else {
+        setEmptyState("ohlcCandlestickChart", "");
+        const wickData = ohlcMonths.map(m => [ohlcByMonth[m].low, ohlcByMonth[m].high]);
+        const bodyData = ohlcMonths.map(m => {
+            const { open, close } = ohlcByMonth[m];
+            return open === close ? [open - 1, close + 1] : [Math.min(open, close), Math.max(open, close)];
+        });
+        const bodyColors = ohlcMonths.map(m => ohlcByMonth[m].close >= ohlcByMonth[m].open ? "#2ecc71" : "#ff6b6b");
+
+        renderChart("ohlcCandlestickChart", {
+            type: "bar",
+            data: {
+                labels: ohlcMonths,
+                datasets: [
+                    {
+                        label: "Intra-Month High/Low Range",
+                        data: wickData,
+                        backgroundColor: "rgba(255,255,255,0.45)",
+                        barThickness: 2,
+                        grouped: false
+                    },
+                    {
+                        label: "Open → Close Body",
+                        data: bodyData,
+                        backgroundColor: bodyColors,
+                        borderColor: bodyColors,
+                        borderWidth: 1,
+                        barPercentage: 0.55,
+                        grouped: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { labels: { color: "#ccc", boxWidth: 11, font: { size: 10 } } },
+                    tooltip: {
+                        callbacks: {
+                            label: (ctx) => {
+                                const m = ohlcMonths[ctx.dataIndex];
+                                const d = ohlcByMonth[m];
+                                return `Open: ${fmtZar(d.open)} | High: ${fmtZar(d.high)} | Low: ${fmtZar(d.low)} | Close: ${fmtZar(d.close)}`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: { ticks: { color: "#ccc" } },
+                    y: { ticks: { color: "#ccc" } }
+                }
+            }
+        });
+    }
+
+    // 3. GRANULAR INCOME VS EXPENSES (DAILY / WEEKLY / MONTHLY)
+    const granInc = {}, granExp = {}, granSet = new Set();
+    projects.forEach(p => {
+        const k = getBucketKey(p.date, granularity);
+        if (!k) return;
+        granSet.add(k);
+        granInc[k] = (granInc[k] || 0) + Number(p.paidAmount || 0);
+    });
+    filteredRentals.forEach(r => {
+        const k = getBucketKey(r.date, granularity);
+        if (!k) return;
+        granSet.add(k);
+        granExp[k] = (granExp[k] || 0) + Number(r.amount || 0);
+    });
+    filteredGeneral.forEach(g => {
+        const k = getBucketKey(g.date, granularity);
+        if (!k) return;
+        granSet.add(k);
+        granExp[k] = (granExp[k] || 0) + Number(g.amount || 0);
+    });
+    const granLabels = Array.from(granSet).sort();
+    if (!granLabels.length) {
+        setEmptyState("incomeVsExpGranularChart", "No recorded transactions for the selected granularity and category filter.");
+    } else {
+        setEmptyState("incomeVsExpGranularChart", "");
+        renderChart("incomeVsExpGranularChart", {
+            type: "bar",
+            data: {
+                labels: granLabels,
+                datasets: [
+                    { label: "Cash Income", data: granLabels.map(l => granInc[l] || 0), backgroundColor: "#00c8d7" },
+                    { label: "Expenditure", data: granLabels.map(l => granExp[l] || 0), backgroundColor: "#ff6b6b" }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { labels: { color: "#ccc", boxWidth: 11, font: { size: 10 } } } },
+                scales: { x: { ticks: { color: "#ccc" } }, y: { ticks: { color: "#ccc" }, beginAtZero: true } }
+            }
+        });
+    }
+
+    // 4 & 5. CATEGORY EXPENSE PIE & BAR CHARTS
+    const catTotals = {};
+    const catCounts = {};
+    rentals.forEach(r => {
+        const amt = Number(r.amount || 0);
+        if (amt <= 0) return;
+        catTotals["Rental Expense"] = (catTotals["Rental Expense"] || 0) + amt;
+        catCounts["Rental Expense"] = (catCounts["Rental Expense"] || 0) + 1;
+    });
+    general.forEach(g => {
+        const amt = Number(g.amount || 0);
+        if (amt <= 0) return;
+        const c = g.category || "Uncategorized";
+        catTotals[c] = (catTotals[c] || 0) + amt;
+        catCounts[c] = (catCounts[c] || 0) + 1;
+    });
+    const catNames = Object.keys(catTotals);
+    const catVals = catNames.map(c => catTotals[c]);
+    const totalCatSum = catVals.reduce((a, b) => a + b, 0);
+
+    if (!catNames.length || totalCatSum <= 0) {
+        setEmptyState("categoryPieChart", "No recorded expenses in Firebase to compute category shares.");
+        setEmptyState("categoryBarChart", "No recorded expenses in Firebase to compare categories.");
+    } else {
+        setEmptyState("categoryPieChart", "");
+        setEmptyState("categoryBarChart", "");
+        const palette = ["#00c8d7", "#0088ff", "#f5c542", "#2ecc71", "#ff6b6b", "#a29bfe", "#fd79a8", "#55efc4"];
+
+        renderChart("categoryPieChart", {
+            type: "pie",
+            data: {
+                labels: catNames.map((c, i) => `${c} (${((catVals[i] / totalCatSum) * 100).toFixed(1)}%)`),
+                datasets: [{ data: catVals, backgroundColor: palette, borderColor: "#0c0c0c", borderWidth: 2 }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { position: "bottom", labels: { color: "#ccc", boxWidth: 10, font: { size: 10 } } } }
+            }
+        });
+
+        renderChart("categoryBarChart", {
+            type: "bar",
+            data: {
+                labels: catNames,
+                datasets: [{ label: "Total Spend (ZAR)", data: catVals, backgroundColor: "#00c8d7" }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { x: { ticks: { color: "#ccc", font: { size: 10 } } }, y: { ticks: { color: "#ccc" }, beginAtZero: true } }
+            }
+        });
+    }
+
+    // 6. SCATTER PLOT: MONTHLY INCOME VS MONTHLY EXPENSES
+    if (histMonths.length < 3) {
+        setEmptyState("scatterIncExpChart", "Insufficient sample size: at least 3 recorded months are required to plot monthly income vs expenses.");
+    } else {
+        setEmptyState("scatterIncExpChart", "");
+        const scatterPoints = histMonths.map((m, idx) => ({ x: histRev[idx], y: histTotalExp[idx], label: m }));
+        renderChart("scatterIncExpChart", {
+            type: "scatter",
+            data: {
+                datasets: [{
+                    label: "Month (Income vs Expense)",
+                    data: scatterPoints,
+                    backgroundColor: "#00c8d7",
+                    pointRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { labels: { color: "#ccc", font: { size: 10 } } },
+                    tooltip: {
+                        callbacks: {
+                            label: (ctx) => {
+                                const pt = ctx.raw;
+                                return `${pt.label}: Income ${fmtZar(pt.x)} | Expense ${fmtZar(pt.y)}`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: { title: { display: true, text: "Monthly Cash Income (ZAR)", color: "#888" }, ticks: { color: "#ccc" }, beginAtZero: true },
+                    y: { title: { display: true, text: "Monthly Expenses (ZAR)", color: "#888" }, ticks: { color: "#ccc" }, beginAtZero: true }
+                }
+            }
+        });
+    }
+
+    // 7. SCATTER PLOT: CATEGORY SPEND VS TRANSACTION FREQUENCY
+    if (catNames.length < 2) {
+        setEmptyState("scatterCatFreqChart", "Insufficient categories: at least 2 active expense categories are required for frequency vs spend comparison.");
+    } else {
+        setEmptyState("scatterCatFreqChart", "");
+        const catScatterPts = catNames.map(c => ({ x: catCounts[c], y: catTotals[c], label: c }));
+        renderChart("scatterCatFreqChart", {
+            type: "scatter",
+            data: {
+                datasets: [{
+                    label: "Category (Count vs Spend)",
+                    data: catScatterPts,
+                    backgroundColor: "#f5c542",
+                    pointRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { labels: { color: "#ccc", font: { size: 10 } } },
+                    tooltip: {
+                        callbacks: {
+                            label: (ctx) => {
+                                const pt = ctx.raw;
+                                return `${pt.label}: ${pt.x} txns | ${fmtZar(pt.y)}`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: { title: { display: true, text: "Transaction Frequency (Count)", color: "#888" }, ticks: { color: "#ccc", stepSize: 1 }, beginAtZero: true },
+                    y: { title: { display: true, text: "Cumulative Spend (ZAR)", color: "#888" }, ticks: { color: "#ccc" }, beginAtZero: true }
+                }
+            }
+        });
+    }
+
+    // 8. CUMULATIVE CASHFLOW AREA CHART
+    if (!histMonths.length) {
+        setEmptyState("overallTrendChart", "No historical records available for cumulative cashflow area visualisation.");
+    } else {
+        setEmptyState("overallTrendChart", "");
+        let cumRev = 0, cumExp = 0;
+        const cumRevArr = [], cumExpArr = [], cumNetArr = [];
+        histMonths.forEach((m) => {
+            cumRev += (revByMonth[m] || 0);
+            cumExp += ((rentByMonth[m] || 0) + (genByMonth[m] || 0));
+            cumRevArr.push(cumRev);
+            cumExpArr.push(cumExp);
+            cumNetArr.push(cumRev - cumExp);
+        });
+        renderChart("overallTrendChart", {
+            type: "line",
+            data: {
+                labels: histMonths,
+                datasets: [
+                    { label: "Cumulative Revenue", data: cumRevArr, borderColor: "#00c8d7", backgroundColor: "rgba(0,200,215,0.08)", fill: true, tension: 0.25 },
+                    { label: "Cumulative Expenses", data: cumExpArr, borderColor: "#ff6b6b", backgroundColor: "rgba(255,107,107,0.08)", fill: true, tension: 0.25 },
+                    { label: "Cumulative Net Position", data: cumNetArr, borderColor: "#2ecc71", backgroundColor: "rgba(46,204,113,0.14)", fill: true, tension: 0.25 }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { labels: { color: "#ccc", boxWidth: 11, font: { size: 10 } } } },
+                scales: { x: { ticks: { color: "#ccc" } }, y: { ticks: { color: "#ccc" } } }
+            }
+        });
+    }
+
+    // 9. RENTAL EXPENSE VS REVENUE (MONTHLY BAR)
+    if (!histMonths.length) {
+        setEmptyState("rentalVsRevChart", "No monthly revenue or rental records available.");
+    } else {
+        setEmptyState("rentalVsRevChart", "");
+        renderChart("rentalVsRevChart", {
             type: "bar",
             data: {
                 labels: histMonths,
@@ -1369,56 +2400,21 @@ window.renderAnalyticsAndRecommendations = function() {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                plugins: { legend: { labels: { color: "#ccc", boxWidth: 12, font: { size: 10 } } } },
+                plugins: { legend: { labels: { color: "#ccc", boxWidth: 11, font: { size: 10 } } } },
                 scales: { x: { ticks: { color: "#ccc" } }, y: { ticks: { color: "#ccc" }, beginAtZero: true } }
             }
         });
     }
 
-    // GRAPH 3: Overall Financial Trend Across All Financial Records (Cumulative Net Position)
-    let cumRev = 0, cumExp = 0;
-    const cumRevArr = [];
-    const cumExpArr = [];
-    const cumNetArr = [];
-    histMonths.forEach((m) => {
-        cumRev += (revByMonth[m] || 0);
-        cumExp += ((rentByMonth[m] || 0) + (genByMonth[m] || 0));
-        cumRevArr.push(cumRev);
-        cumExpArr.push(cumExp);
-        cumNetArr.push(cumRev - cumExp);
-    });
-
-    if (charts.overallTrend) charts.overallTrend.destroy();
-    const g3 = document.getElementById("overallTrendChart")?.getContext("2d");
-    if (g3) {
-        charts.overallTrend = new Chart(g3, {
-            type: "line",
-            data: {
-                labels: histMonths,
-                datasets: [
-                    { label: "Cumulative Revenue", data: cumRevArr, borderColor: "#00c8d7", tension: 0.25 },
-                    { label: "Cumulative Total Expenses", data: cumExpArr, borderColor: "#ff6b6b", tension: 0.25 },
-                    { label: "Cumulative Net Position", data: cumNetArr, borderColor: "#2ecc71", backgroundColor: "rgba(46,204,113,0.12)", fill: true, tension: 0.25 }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: { legend: { labels: { color: "#ccc", boxWidth: 12, font: { size: 10 } } } },
-                scales: { x: { ticks: { color: "#ccc" } }, y: { ticks: { color: "#ccc" } } }
-            }
-        });
-    }
-
-    // GRAPH 4: Revenue vs Expenditure Split
+    // 10. REVENUE VS EXPENDITURE SPLIT (DOUGHNUT)
     const revCash = projects.reduce((s, p) => s + Number(p.paidAmount || 0), 0);
     const rentTotal = rentals.reduce((s, r) => s + Number(r.amount || 0), 0);
     const genTotal = general.reduce((s, g) => s + Number(g.amount || 0), 0);
-
-    if (charts.revExp) charts.revExp.destroy();
-    const c1 = document.getElementById("revExpChart")?.getContext("2d");
-    if (c1) {
-        charts.revExp = new Chart(c1, {
+    if ((revCash + rentTotal + genTotal) <= 0) {
+        setEmptyState("revExpChart", "No cash receipts or expenditure recorded yet.");
+    } else {
+        setEmptyState("revExpChart", "");
+        renderChart("revExpChart", {
             type: "doughnut",
             data: {
                 labels: ["Cash Received", "Rental Expenses", "General Expenses"],
@@ -1428,29 +2424,18 @@ window.renderAnalyticsAndRecommendations = function() {
         });
     }
 
-    // GRAPH 5: Monthly Revenue Bar
+    // 11. MONTHLY REVENUE GROWTH %
     const revMonths = Object.keys(revByMonth).sort();
     const revVals = revMonths.map(m => revByMonth[m]);
-
-    if (charts.monthlyRev) charts.monthlyRev.destroy();
-    const c2 = document.getElementById("monthlyRevChart")?.getContext("2d");
-    if (c2) {
-        charts.monthlyRev = new Chart(c2, {
-            type: "bar",
-            data: { labels: revMonths, datasets: [{ label: "Revenue (ZAR)", data: revVals, backgroundColor: "#00c8d7" }] },
-            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { ticks: { color: "#ccc" } }, y: { ticks: { color: "#ccc" }, beginAtZero: true } } }
-        });
-    }
-
-    // GRAPH 6: Monthly Revenue Growth %
-    const growth = revVals.map((v, idx) => idx === 0 || revVals[idx - 1] === 0 ? 0 : Number((((v - revVals[idx - 1]) / revVals[idx - 1]) * 100).toFixed(1)));
-    if (charts.revGrowth) charts.revGrowth.destroy();
-    const c3 = document.getElementById("revGrowthChart")?.getContext("2d");
-    if (c3) {
-        charts.revGrowth = new Chart(c3, {
+    if (revMonths.length < 2) {
+        setEmptyState("revGrowthChart", "At least 2 months of revenue receipts are required to compute month-over-month growth %.");
+    } else {
+        setEmptyState("revGrowthChart", "");
+        const growth = revVals.map((v, idx) => idx === 0 || revVals[idx - 1] === 0 ? 0 : Number((((v - revVals[idx - 1]) / revVals[idx - 1]) * 100).toFixed(1)));
+        renderChart("revGrowthChart", {
             type: "line",
-            data: { labels: revMonths, datasets: [{ label: "Growth %", data: growth, borderColor: "#00c8d7", tension: 0.25 }] },
-            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { ticks: { color: "#ccc" } }, y: { ticks: { color: "#ccc" } } } }
+            data: { labels: revMonths, datasets: [{ label: "MoM Revenue Growth %", data: growth, borderColor: "#00c8d7", tension: 0.25 }] },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: "#ccc", font: { size: 10 } } } }, scales: { x: { ticks: { color: "#ccc" } }, y: { ticks: { color: "#ccc" } } } }
         });
     }
 
@@ -1458,21 +2443,21 @@ window.renderAnalyticsAndRecommendations = function() {
     const recBox = document.getElementById("recommendationsContainer");
     const recs = [];
     if (revVals.length >= 3 && revVals[revVals.length - 1] < revVals[revVals.length - 2] && revVals[revVals.length - 1] < revVals[revVals.length - 3]) {
-        recs.push("Revenue has declined. Increase business-development outreach, review procurement opportunities and prioritise client acquisition.");
+        recs.push("Revenue has declined across recent periods. Increase business-development outreach, review procurement opportunities and prioritise client acquisition.");
     } else if (revVals.length >= 2 && revVals[revVals.length - 1] > revVals[revVals.length - 2]) {
-        recs.push("Revenue is showing positive growth. Maintain business-development activity, manage expenditure and continue strengthening operations.");
+        recs.push("Revenue is showing positive month-over-month growth. Maintain business-development activity, manage expenditure and continue strengthening operations.");
     }
     if ((rentTotal + genTotal) > revCash && (rentTotal + genTotal) > 0) {
-        recs.push("Operating expenses are increasing faster than revenue. Review expenditure and upcoming financial commitments.");
+        recs.push("Operating expenses currently exceed cumulative cash received. Review expenditure categories and upcoming financial commitments.");
     }
     if (!recs.length) {
-        recs.push("Record project receipts and expenses to generate trend-based financial recommendations.");
+        recs.push("Record project receipts and expenses in Firebase to generate trend-based financial recommendations.");
     }
     recBox.innerHTML = recs.map(r => `<div class="rec-box">${esc(r)}</div>`).join("");
 };
 
 window.exportFinanceJson = function() {
-    const blob = new Blob([JSON.stringify({ exportedAt: new Date().toISOString(), ...dataState }, null, 2)], { type: "application/json" });
+    const blob = new Blob([JSON.stringify({ exportedAt: new Date().toISOString(), companyProfile, ...dataState }, null, 2)], { type: "application/json" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
     a.download = `BlackLogic_Finance_${new Date().toISOString().slice(0, 10)}.json`;
